@@ -81,7 +81,7 @@
       "id": "b1",
       "title": "Big Billion Days Sale",
       "subtitle": "Up to 95% Off on Flagship Phones",
-      "image": "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/1aa71a5c6046e7f8.jpg",
+      "image": "https://res.cloudinary.com/sricov3c/image/upload/v1791611307/ghpdmcxxsjvlj4hsssft.jpg",
       "link": "/product.html?id=iphone17",
       "active": true
     },
@@ -89,24 +89,8 @@
       "id": "b2",
       "title": "Apple iPhone 17 Pro Max",
       "subtitle": "Exclusive Launch Deal @ ₹999",
-      "image": "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/d9290fbba96ebd91.jpg",
+      "image": "https://res.cloudinary.com/sricov3c/image/upload/v1791611315/ylnvzcw3fqnazwxikgv2.jpg",
       "link": "/product.html?id=iphone17",
-      "active": true
-    },
-    {
-      "id": "b3",
-      "title": "Mega Electronics Carnival",
-      "subtitle": "Smartwatches, Earbuds & Gadgets",
-      "image": "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/b8222998a69a6597.jpg",
-      "link": "/",
-      "active": true
-    },
-    {
-      "id": "b4",
-      "title": "Flipkart SuperCoins Fest",
-      "subtitle": "Earn Extra Coins on Every Order",
-      "image": "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/d340de5983845a70.jpg",
-      "link": "/",
       "active": true
     }
   ]

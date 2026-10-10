@@ -100,6 +100,13 @@ function productFilter(storeId) {
 const OWNER_DEFAULT = 'owner';
 
 async function getProducts(storeId) {
+  if (!_db) {
+    try {
+      const p = path.join(__dirname, 'data.json');
+      if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf8'));
+    } catch (e) {}
+    return [];
+  }
   const col = db().collection('products');
   const sid = storeId || OWNER_DEFAULT;
   const filter = productFilter(sid);
@@ -205,11 +212,20 @@ const DEFAULT_CONFIG = {
 };
 
 async function getConfig() {
-  const doc = await db().collection('config').findOne({ _id: 'admin' });
-  if (doc) return doc;
-  const seeded = { _id: 'admin', ...DEFAULT_CONFIG };
-  await db().collection('config').insertOne(seeded);
-  return seeded;
+  if (_db) {
+    try {
+      const doc = await db().collection('config').findOne({ _id: 'admin' });
+      if (doc) return doc;
+      const seeded = { _id: 'admin', ...DEFAULT_CONFIG };
+      await db().collection('config').insertOne(seeded);
+      return seeded;
+    } catch (e) {}
+  }
+  try {
+    const p = path.join(__dirname, 'admin_config.json');
+    if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf8'));
+  } catch (e) {}
+  return DEFAULT_CONFIG;
 }
 
 async function saveConfig(cfg) {
