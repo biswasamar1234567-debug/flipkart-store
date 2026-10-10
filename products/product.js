@@ -772,10 +772,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (titleEl) titleEl.textContent = product.title2 || product.name;
 
     // Pricing
-    const sellingPrice = Number(product.selling_price) || 999;
-    const mrp = Number(product.mrp) || 147900;
-    const discount = mrp > 0 ? Math.round(((mrp - sellingPrice) / mrp) * 100) : 99;
-    const wowPrice = Number(product.wow_price) || sellingPrice;
+    const sellingPrice = (product.selling_price !== undefined && product.selling_price !== null && !isNaN(Number(product.selling_price)))
+      ? Number(product.selling_price)
+      : 0;
+    const mrp = (product.mrp !== undefined && product.mrp !== null && !isNaN(Number(product.mrp)))
+      ? Number(product.mrp)
+      : (sellingPrice || 0);
+    const discount = mrp > 0 ? Math.round(((mrp - sellingPrice) / mrp) * 100) : 0;
+    const wowPrice = (product.wow_price !== undefined && !isNaN(Number(product.wow_price)))
+      ? Number(product.wow_price)
+      : sellingPrice;
 
     const discountEl = document.getElementById('discountVal');
     const mrpEl = document.getElementById('mrpVal');
@@ -1010,19 +1016,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (Array.isArray(product.sizes) && product.sizes.length > 0) {
       sizesList = product.sizes.map(s => typeof s === 'object' ? ({
         size: String(s.size || s.name || '').trim(),
-        selling_price: Number(s.selling_price) || Number(product.selling_price) || 999,
-        mrp: Number(s.mrp) || Number(product.mrp) || 189900
+        selling_price: Number(s.selling_price) || Number(product.selling_price) || 0,
+        mrp: Number(s.mrp) || Number(product.mrp) || 0
       }) : ({
         size: String(s).trim(),
-        selling_price: Number(product.selling_price) || 999,
-        mrp: Number(product.mrp) || 189900
+        selling_price: Number(product.selling_price) || 0,
+        mrp: Number(product.mrp) || 0
       })).filter(s => s.size);
     } else if (product.custom_size) {
       const parts = String(product.custom_size).split(/[,/|]+/).map(x => x.trim()).filter(Boolean);
       sizesList = parts.map(sz => ({
         size: sz,
-        selling_price: Number(product.selling_price) || 999,
-        mrp: Number(product.mrp) || 189900
+        selling_price: Number(product.selling_price) || 0,
+        mrp: Number(product.mrp) || 0
       }));
     }
 
@@ -1041,8 +1047,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (sizeName) sizeName.textContent = sizeObj.size;
 
         // Dynamic Price Up / Down
-        const sp = Number(sizeObj.selling_price) || Number(product.selling_price) || 999;
-        const mrp = Number(sizeObj.mrp) || Number(product.mrp) || 189900;
+        const sp = Number(sizeObj.selling_price) || Number(product.selling_price) || 0;
+        const mrp = Number(sizeObj.mrp) || Number(product.mrp) || sp;
         const disc = mrp > 0 ? Math.round(((mrp - sp) / mrp) * 100) : 0;
 
         const priceEl = document.getElementById('sellingPriceVal');
@@ -1148,7 +1154,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (colors.length && colorBlock && colorRow) {
       colorBlock.style.display = 'block';
       if (colorName) colorName.textContent = activeColor ? activeColor.color_name : '';
-      if (activeColor) currentProductData.selected_color = activeColor.color_name;
+      if (activeColor) {
+        currentProductData.selected_color = activeColor.color_name;
+        if (activeColor.selling_price || activeColor.mrp) {
+          const cSp = Number(activeColor.selling_price) || Number(product.selling_price) || 0;
+          const cMrp = Number(activeColor.mrp) || Number(product.mrp) || cSp;
+          currentProductData.active_selling_price = cSp;
+          currentProductData.active_mrp = cMrp;
+          const priceEl = document.getElementById('sellingPriceVal');
+          const mrpEl = document.getElementById('mrpVal');
+          const wowPriceEl = document.getElementById('wowPriceVal');
+          const discountEl = document.getElementById('discountVal');
+          if (priceEl) priceEl.textContent = `₹${cSp.toLocaleString('en-IN')}`;
+          if (mrpEl) mrpEl.textContent = `₹${cMrp.toLocaleString('en-IN')}`;
+          if (wowPriceEl) wowPriceEl.textContent = `₹${cSp.toLocaleString('en-IN')}`;
+          if (discountEl && cMrp > 0) discountEl.textContent = `${Math.round(((cMrp - cSp) / cMrp) * 100)}% off`;
+        }
+      }
 
       colorRow.innerHTML = colors.map((c, i) => {
         const thumb = c.color_img || (c.images && c.images[0]) || product.img1;
@@ -1168,6 +1190,20 @@ document.addEventListener('DOMContentLoaded', () => {
           if (!c) return;
           if (colorName) colorName.textContent = c.color_name;
           currentProductData.selected_color = c.color_name;
+          if (c.selling_price || c.mrp) {
+            const cSp = Number(c.selling_price) || Number(product.selling_price) || 0;
+            const cMrp = Number(c.mrp) || Number(product.mrp) || cSp;
+            currentProductData.active_selling_price = cSp;
+            currentProductData.active_mrp = cMrp;
+            const priceEl = document.getElementById('sellingPriceVal');
+            const mrpEl = document.getElementById('mrpVal');
+            const wowPriceEl = document.getElementById('wowPriceVal');
+            const discountEl = document.getElementById('discountVal');
+            if (priceEl) priceEl.textContent = `₹${cSp.toLocaleString('en-IN')}`;
+            if (mrpEl) mrpEl.textContent = `₹${cMrp.toLocaleString('en-IN')}`;
+            if (wowPriceEl) wowPriceEl.textContent = `₹${cSp.toLocaleString('en-IN')}`;
+            if (discountEl && cMrp > 0) discountEl.textContent = `${Math.round(((cMrp - cSp) / cMrp) * 100)}% off`;
+          }
           // Photos switch to this colour: feature photo first, then its album
           loadCarouselPhotos(variantPhotoList(product, c));
           // RAM + Storage snap to this colour automatically (if active)
