@@ -174,6 +174,18 @@
         </div>
       </div>
 
+      <!-- 🔑 License Key & Validity Section -->
+      <div style="background:#111e38; border:1px solid #233554; border-radius:12px; padding:12px; margin-bottom:14px;">
+        <div style="font-size:11.5px; font-weight:700; color:#cbd5e1; text-transform:uppercase; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;">
+          <span><i class="bi bi-key-fill" style="color:#38bdf8;"></i> Activation / License Key (লাইসেন্স কি)</span>
+          <span style="color:#4ade80; font-size:11px; font-weight:700; background:rgba(34,197,94,.16); padding:2px 8px; border-radius:12px;">⏱️ 7 Days Trial</span>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <input type="text" id="licenseKeyInput" readonly style="background:#070d18; border:1px solid #2b3d5c; border-radius:8px; padding:9px 12px; font-size:13px; color:#38bdf8; font-family:monospace; font-weight:700; width:100%;" />
+          <button type="button" class="copyBtn" onclick="copyText('licenseKeyInput', this)"><i class="bi bi-clipboard"></i> Copy</button>
+        </div>
+      </div>
+
       <!-- 1. Customer Storefront Link -->
       <div class="urlBlock">
         <div class="urlLabel">
@@ -324,6 +336,7 @@ $('signupForm').addEventListener('submit', async e => {
     $('adminUrlInput').value = adminUrl;
     $('adminUrlLink').href = adminUrl;
     $('mainAdminBtn').href = adminUrl;
+    if ($('licenseKeyInput')) $('licenseKeyInput').value = (data.license && data.license.key) || 'LIC-TRIAL-ACTIVE';
     $('sucStoreName').textContent = `${data.storeName} (${data.storeSlug}) has been created with a 7-day free trial.`;
 
     $('successBox').classList.add('show');

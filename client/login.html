@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Client Sign In - Store Portal</title>
+<title>Client Portal & Dashboard - Store Portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
@@ -11,14 +11,25 @@
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
     font-family:'Inter',system-ui,sans-serif;
-    background: linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);
+    background: linear-gradient(135deg,#0a0f1d 0%,#111c33 50%,#0a0f1d 100%);
     min-height:100vh; display:flex; align-items:center; justify-content:center;
     padding:24px 16px; color:#e2e8f0;
   }
-  .card { width:100%; max-width:460px; background:#111c33; border:1px solid #24334d; border-radius:18px; padding:32px; box-shadow:0 24px 60px rgba(0,0,0,.45); }
-  .brand { display:flex; align-items:center; gap:11px; margin-bottom:22px; }
-  .brand .logo { width:42px; height:42px; border-radius:11px; background:linear-gradient(135deg,#2563eb,#38bdf8); display:flex; align-items:center; justify-content:center; font-size:20px; color:#fff; }
-  .brand b { font-size:17px; color:#fff; display:block; }
+  .card {
+    width:100%; max-width:460px; background:#111c33; border:1px solid #24334d;
+    border-radius:20px; padding:32px; box-shadow:0 24px 60px rgba(0,0,0,.5);
+    transition: max-width .3s ease;
+  }
+  .card.wide { max-width: 580px; }
+
+  .brand { display:flex; align-items:center; gap:12px; margin-bottom:22px; }
+  .brand .logo {
+    width:44px; height:44px; border-radius:12px;
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px; color:#fff; box-shadow:0 4px 14px rgba(37,99,235,0.35);
+  }
+  .brand b { font-size:17px; color:#fff; display:block; line-height:1.2; }
   .brand span { font-size:12.5px; color:#64748b; }
 
   h2 { font-size:22px; font-weight:700; color:#fff; margin-bottom:6px; }
@@ -40,11 +51,26 @@
   .btn {
     width:100%; padding:13px; background:linear-gradient(135deg,#2563eb,#38bdf8); color:#fff;
     border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer;
-    font-family:inherit; transition:.18s; margin-top:4px; display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    font-family:inherit; transition:.18s; margin-top:4px; display:inline-flex; align-items:center; justify-content:center; gap:8px;
     text-decoration:none;
   }
-  .btn:hover { filter:brightness(1.08); }
-  .btn:disabled { opacity:.6; cursor:not-allowed; }
+  .btn:hover { filter:brightness(1.08); transform: translateY(-1px); }
+  .btn:disabled { opacity:.6; cursor:not-allowed; transform:none; }
+
+  .btn-outline {
+    background: transparent; border: 1px solid #2e446d; color: #94a3b8;
+  }
+  .btn-outline:hover { background: #162442; color: #e2e8f0; }
+
+  .btn-green {
+    background: linear-gradient(135deg,#16a34a,#22c55e); color: #fff;
+  }
+  .btn-green:hover { filter: brightness(1.1); }
+
+  .btn-sky {
+    background: #0f2747; border: 1px solid #0284c7; color: #38bdf8;
+  }
+  .btn-sky:hover { background: #153866; }
 
   .msg { padding:11px 13px; border-radius:10px; font-size:13.5px; margin-bottom:16px; display:none; line-height:1.5; }
   .msg.show { display:block; }
@@ -59,36 +85,130 @@
   .spin { display:inline-block; width:15px; height:15px; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%; animation:sp .7s linear infinite; vertical-align:-3px; margin-right:7px; }
   @keyframes sp { to { transform:rotate(360deg); } }
 
-  /* Success Screen / Link Dashboard */
-  .successBox {
-    display:none; background:#0b1426; border:1px solid #1e3a5f; border-radius:16px; padding:22px;
+  /* ========================================================
+     🌟 FULL CLIENT DASHBOARD (Rendered on Sign In)
+     ======================================================== */
+  .dashboardBox {
+    display:none;
     animation: fadeIn .3s ease;
   }
   @keyframes fadeIn { from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
-  .successBox.show { display:block; }
-  .sucHeader { display:flex; align-items:center; gap:12px; margin-bottom:18px; border-bottom:1px solid #1e293b; padding-bottom:14px; }
-  .sucIcon { width:44px; height:44px; border-radius:50%; background:rgba(34,197,94,.16); color:#22c55e; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
-  .sucHeader h3 { font-size:18px; font-weight:700; color:#fff; }
-  .sucHeader p { font-size:12.5px; color:#94a3b8; margin-top:2px; }
-  .urlBlock { background:#111e38; border:1px solid #233554; border-radius:12px; padding:12px; margin-bottom:14px; }
-  .urlLabel { font-size:11.5px; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; }
-  .urlLabel span { color:#38bdf8; font-size:11.5px; text-transform:none; font-weight:600; display:flex; align-items:center; gap:5px; }
+  .dashboardBox.show { display:block; }
+
+  .dashTop {
+    display:flex; align-items:center; justify-content:space-between;
+    background: #0a1325; border: 1px solid #1e3256; border-radius: 14px;
+    padding: 14px 16px; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;
+  }
+  .dashTopLeft { display:flex; align-items:center; gap:12px; }
+  .dashStoreIcon {
+    width:42px; height:42px; border-radius:12px;
+    background: linear-gradient(135deg,#0284c7,#38bdf8);
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; color:#fff;
+  }
+  .dashStoreName { font-size:16.5px; font-weight:800; color:#fff; }
+  .dashStoreSlug { font-size:12px; color:#94a3b8; font-family:monospace; margin-top:2px; }
+  .dashBadge {
+    display:inline-flex; align-items:center; gap:5px; padding:4px 10px;
+    border-radius:20px; font-size:11.5px; font-weight:700;
+  }
+  .dashBadge.ok { background:rgba(34,197,94,.16); color:#4ade80; border:1px solid rgba(34,197,94,.35); }
+  .dashBadge.warn { background:rgba(245,158,11,.16); color:#fbbf24; border:1px solid rgba(245,158,11,.35); }
+  .dashBadge.bad { background:rgba(239,68,68,.16); color:#f87171; border:1px solid rgba(239,68,68,.35); }
+
+  /* 🔑 License Key & Validity Section */
+  .licenseCard {
+    background: linear-gradient(135deg, rgba(30,41,59,0.7), rgba(15,23,42,0.9));
+    border: 1px solid #334155; border-radius: 14px; padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+  .licenseCardHead {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:12px; flex-wrap:wrap; gap:8px;
+  }
+  .licenseTitle {
+    font-size:13px; font-weight:700; color:#cbd5e1; text-transform:uppercase;
+    letter-spacing:.5px; display:flex; align-items:center; gap:6px;
+  }
+  .keyRow {
+    display:flex; align-items:center; gap:8px; background:#070d18;
+    border:1px solid #223758; border-radius:10px; padding:8px 12px;
+  }
+  .keyText {
+    font-family:ui-monospace,Menlo,Consolas,monospace; font-size:14px;
+    font-weight:700; color:#38bdf8; letter-spacing:1px; flex:1;
+    overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .keyCopyBtn {
+    padding:6px 11px; background:#1e293b; border:1px solid #334155;
+    color:#f1f5f9; border-radius:7px; font-size:12px; font-weight:600;
+    cursor:pointer; transition:.15s; display:inline-flex; align-items:center; gap:5px;
+  }
+  .keyCopyBtn:hover { background:#334155; color:#38bdf8; }
+
+  .validityRow {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-top:12px; padding-top:10px; border-top:1px solid #1e293b;
+    font-size:12.5px; color:#94a3b8; flex-wrap:wrap; gap:6px;
+  }
+  .validityRow b { color:#fff; }
+
+  /* 🔗 URLs Block */
+  .urlBlock {
+    background:#0b1426; border:1px solid #1e3256; border-radius:14px;
+    padding:14px; margin-bottom:14px;
+  }
+  .urlLabel {
+    font-size:12.5px; font-weight:700; color:#cbd5e1; margin-bottom:8px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .urlLabel span { color:#38bdf8; font-size:12.5px; font-weight:700; display:flex; align-items:center; gap:6px; }
   .urlInputRow { display:flex; gap:8px; align-items:center; }
-  .urlInputRow input { background:#070d18; border:1px solid #2b3d5c; border-radius:8px; padding:9px 12px; font-size:12.5px; color:#38bdf8; font-family:monospace; width:100%; }
-  .copyBtn { padding:9px 13px; background:#1e293b; border:1px solid #334155; color:#f1f5f9; border-radius:8px; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap; transition:.15s; display:inline-flex; align-items:center; gap:5px; }
-  .copyBtn:hover { background:#334155; color:#38bdf8; }
-  .openBtn { padding:9px 13px; background:linear-gradient(135deg,#2563eb,#38bdf8); border:none; color:#fff; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap; text-decoration:none; display:inline-flex; align-items:center; gap:5px; }
-  .openBtn:hover { filter:brightness(1.08); }
-  .infoList { background:#0f172a; border-radius:10px; padding:12px 14px; font-size:12px; color:#cbd5e1; margin-bottom:16px; line-height:1.6; border:1px dashed #334155; }
-  .infoList b { color:#fff; }
+  .urlInputRow input {
+    background:#060b14; border:1px solid #223758; border-radius:9px;
+    padding:10px 12px; font-size:13px; color:#38bdf8; font-family:monospace; width:100%;
+  }
+  .copyBtn {
+    padding:10px 13px; background:#18233c; border:1px solid #2b3d5c;
+    color:#f1f5f9; border-radius:9px; font-size:12.5px; font-weight:600;
+    cursor:pointer; white-space:nowrap; transition:.15s; display:inline-flex; align-items:center; gap:5px;
+  }
+  .copyBtn:hover { background:#25375c; color:#38bdf8; }
+  .openBtn {
+    padding:10px 14px; background:linear-gradient(135deg,#2563eb,#38bdf8);
+    border:none; color:#fff; border-radius:9px; font-size:12.5px; font-weight:700;
+    cursor:pointer; white-space:nowrap; text-decoration:none; display:inline-flex; align-items:center; gap:5px;
+    transition:.15s;
+  }
+  .openBtn:hover { filter:brightness(1.1); }
+
+  /* 🔐 Security Password Notice */
+  .pwNotice {
+    background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(217,119,6,0.06));
+    border: 1px solid rgba(245,158,11,0.4); border-radius: 12px;
+    padding: 13px 15px; margin-bottom: 16px;
+  }
+  .pwNoticeHead {
+    display:flex; align-items:center; gap:7px; color:#fcd34d;
+    font-size:13px; font-weight:700; margin-bottom:5px;
+  }
+  .pwNoticeBody { font-size:12.5px; color:#fde68a; line-height:1.55; }
+  .pwNoticeBody b { color:#fff; font-weight:700; text-decoration:underline; }
+  .pwNoticeSub { font-size:11.5px; color:#d97706; margin-top:4px; font-style:italic; }
+
+  /* Action Buttons */
+  .actionGroup { display:flex; flex-direction:column; gap:9px; margin-top:16px; }
+  .actionRow { display:flex; gap:9px; }
+  .actionRow .btn { flex:1; margin-top:0; }
 </style>
 </head>
 <body>
-<div class="card">
+<div class="card" id="mainCard">
   <a class="back" href="/"><i class="bi bi-arrow-left"></i> Back to store</a>
   <div class="brand">
     <div class="logo"><i class="bi bi-shop"></i></div>
-    <div><b>Store Client Portal</b><span>Sign in to manage your store</span></div>
+    <div><b>Store Client Portal</b><span id="brandSub">Sign in to manage your store</span></div>
   </div>
 
   <h2 id="cardTitle">Welcome back</h2>
@@ -96,7 +216,7 @@
 
   <div class="msg" id="msg"></div>
 
-  <!-- Login Form -->
+  <!-- 1. LOGIN FORM -->
   <form id="loginForm" novalidate>
     <div class="field">
       <label>Email Address</label>
@@ -118,54 +238,104 @@
     </button>
   </form>
 
-  <!-- Store Links Dashboard (Displayed on Sign In Without Auto-Redirect) -->
-  <div id="successBox" class="successBox">
-    <div class="sucHeader">
-      <div class="sucIcon"><i class="bi bi-check-lg"></i></div>
+  <!-- 2. FULL CLIENT DASHBOARD (Rendered upon Sign In; Strictly No Auto-Redirect!) -->
+  <div id="dashboardBox" class="dashboardBox">
+    
+    <!-- Top Identity Header -->
+    <div class="dashTop">
+      <div class="dashTopLeft">
+        <div class="dashStoreIcon"><i class="bi bi-shop"></i></div>
+        <div>
+          <div class="dashStoreName" id="dashStoreName">My Store</div>
+          <div class="dashStoreSlug" id="dashStoreSlug">store-slug</div>
+        </div>
+      </div>
       <div>
-        <h3 id="sucTitle">Sign In Successful!</h3>
-        <p id="sucStoreName">Store links are ready below.</p>
+        <span id="dashStatusBadge" class="dashBadge ok">🟢 Active Store</span>
       </div>
     </div>
 
-    <!-- 1. Customer Storefront Link -->
+    <!-- 🔑 License Key & Validity Section -->
+    <div class="licenseCard">
+      <div class="licenseCardHead">
+        <div class="licenseTitle"><i class="bi bi-key-fill text-sky-400"></i> Activation / License Key (লাইসেন্স কি)</div>
+        <span id="licDaysBadge" class="dashBadge ok">⏱️ 7 Days Left</span>
+      </div>
+      
+      <div class="keyRow">
+        <span id="licKeyVal" class="keyText">LIC-LOADING...</span>
+        <button type="button" class="keyCopyBtn" onclick="copyText('licKeyVal', this)">
+          <i class="bi bi-clipboard"></i> Copy Key
+        </button>
+      </div>
+
+      <div class="validityRow">
+        <div>Plan: <b id="licPlanVal">7 Days Trial</b></div>
+        <div>Starts: <b id="licStartsVal">-</b></div>
+        <div>Expires: <b id="licExpiresVal">-</b></div>
+      </div>
+    </div>
+
+    <!-- 🛒 1. Main Customer Shopping Storefront URL -->
     <div class="urlBlock">
       <div class="urlLabel">
-        <span><i class="bi bi-cart3"></i> Main Website Link (মেইন ওয়েবসাইট লিংক)</span>
+        <span><i class="bi bi-cart3"></i> Main Customer Website Link (গ্রাহকের ওয়েবসাইট লিংক)</span>
       </div>
       <div class="urlInputRow">
         <input type="text" id="storeUrlInput" readonly />
-        <button type="button" class="copyBtn" onclick="copyText('storeUrlInput', this)"><i class="bi bi-clipboard"></i> Copy</button>
+        <button type="button" class="copyBtn" onclick="copyInputText('storeUrlInput', this)"><i class="bi bi-clipboard"></i> Copy</button>
         <a id="storeUrlLink" href="#" target="_blank" class="openBtn"><i class="bi bi-box-arrow-up-right"></i> Open</a>
+      </div>
+      <div style="font-size:11.5px; color:#64748b; margin-top:6px;">
+        📌 গ্রাহকদের কেনাকাটা ও অর্ডার করানোর জন্য এই লিংকটি শেয়ার করুন।
       </div>
     </div>
 
-    <!-- 2. Admin Panel Link -->
+    <!-- ⚙️ 2. Flipkart Admin Panel URL -->
     <div class="urlBlock">
       <div class="urlLabel">
-        <span><i class="bi bi-shield-lock"></i> Admin Panel Link (অ্যাডমিন প্যানেল লিংক)</span>
+        <span><i class="bi bi-shield-lock"></i> Flipkart Admin Panel Link (অ্যাডমিন প্যানেল লিংক)</span>
       </div>
       <div class="urlInputRow">
         <input type="text" id="adminUrlInput" readonly />
-        <button type="button" class="copyBtn" onclick="copyText('adminUrlInput', this)"><i class="bi bi-clipboard"></i> Copy</button>
+        <button type="button" class="copyBtn" onclick="copyInputText('adminUrlInput', this)"><i class="bi bi-clipboard"></i> Copy</button>
         <a id="adminUrlLink" href="#" target="_blank" class="openBtn"><i class="bi bi-box-arrow-up-right"></i> Open</a>
+      </div>
+      <div style="font-size:11.5px; color:#64748b; margin-top:6px;">
+        📌 পণ্য যোগ করতে, মূল্য ও ক্যাটালগ বদলাতে এবং পেমেন্ট সেটিংস ম্যানেজ করতে এই প্যানেল ব্যবহার করুন।
       </div>
     </div>
 
-    <!-- Guidance note -->
-    <div class="infoList">
-      <div>📋 <b>লিংক সংরক্ষণ:</b> ওপরের দুটি লিংক কপি করে আপনার কাছে সুরক্ষিতভাবে রেখে দিন।</div>
-      <div style="margin-top:6px;">💳 <b>পেমেন্ট সেটিংস:</b> অ্যাডমিন প্যানেলে গিয়ে <b>Payment Settings</b> থেকে আপনার UPI যোগ করুন।</div>
+    <!-- 🔐 3. CRITICAL PASSWORD NOTICE (Matches user prompt requirements) -->
+    <div class="pwNotice">
+      <div class="pwNoticeHead">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <span>গুরুত্বপূর্ণ পাসওয়ার্ড নির্দেশিকা (Password Notice):</span>
+      </div>
+      <div class="pwNoticeBody">
+        সাইন আপ করার সময় আপনি যে <b>Password</b> দিয়েছিলেন, <b>ঠিক সেই পাসওয়ার্ডটি দিয়েই</b> আপনার Flipkart অ্যাডমিন প্যানেলে লগইন করতে হবে।
+      </div>
+      <div class="pwNoticeSub">
+        (Note: Use the exact password you created during signup to access your Flipkart Admin Panel.)
+      </div>
     </div>
 
-    <div style="display:flex; gap:10px; margin-top:14px;">
-      <a id="mainAdminBtn" href="/admin/" class="btn" style="text-align:center; text-decoration:none; display:flex; flex:1;">
-        <i class="bi bi-speedometer2"></i> Go To Admin Panel
+    <!-- 🚀 4. Action Buttons (Explicit manual opening only, zero auto-redirect) -->
+    <div class="actionGroup">
+      <a id="mainAdminBtn" href="#" target="_blank" class="btn btn-green">
+        <i class="bi bi-speedometer2"></i> Open Flipkart Admin Panel (অ্যাডমিন প্যানেলে যান)
       </a>
-      <button type="button" onclick="logoutFromPortal()" class="copyBtn" style="padding:13px 16px; border-radius:10px;">
-        <i class="bi bi-box-arrow-right"></i> Sign Out
-      </button>
+      
+      <div class="actionRow">
+        <a id="mainStoreBtn" href="#" target="_blank" class="btn btn-sky">
+          <i class="bi bi-shop"></i> View Customer Store (ওয়েবসাইট দেখুন)
+        </a>
+        <button type="button" onclick="logoutFromPortal()" class="btn btn-outline">
+          <i class="bi bi-box-arrow-right"></i> Sign Out (লগআউট)
+        </button>
+      </div>
     </div>
+
   </div>
 
   <div class="alt" id="altFooter">New here? <a href="/signup">Create your store</a></div>
@@ -187,7 +357,7 @@ function showMsg(text, type){
   msg.className = 'msg show ' + type;
 }
 
-function copyText(inputId, btn) {
+function copyInputText(inputId, btn) {
   const inp = $(inputId);
   if (!inp) return;
   inp.select();
@@ -204,6 +374,29 @@ function copyText(inputId, btn) {
   });
 }
 
+function copyText(elementId, btn) {
+  const el = $(elementId);
+  if (!el) return;
+  const text = el.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+  }).catch(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+  });
+}
+
+function fmtDate(d) {
+  if (!d) return '-';
+  try {
+    const dt = new Date(d);
+    return isNaN(dt.getTime()) ? '-' : dt.toISOString().slice(0, 10);
+  } catch(e) { return '-'; }
+}
+
 function getStoreBaseUrl() {
   const origin = window.location.origin;
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
@@ -215,10 +408,11 @@ function getStoreBaseUrl() {
   return origin;
 }
 
-function renderStoreLinks(user) {
+function renderDashboard(user, license) {
+  $('mainCard').classList.add('wide');
   $('loginForm').style.display = 'none';
-  $('cardTitle').textContent = 'Store Portal Ready';
-  $('cardSub').textContent = `Welcome, ${user.fullName || 'Client'}!`;
+  $('cardTitle').textContent = 'Store Client Dashboard';
+  $('cardSub').textContent = `স্বাগতম, ${user.fullName || user.storeName || 'Client'}! আপনার স্টোর তথ্য নিচে প্রস্তুত:`;
   msg.style.display = 'none';
   if ($('altFooter')) $('altFooter').style.display = 'none';
 
@@ -232,20 +426,54 @@ function renderStoreLinks(user) {
     adminUrl = `${base}/superadmin/`;
   }
 
+  // Identity
+  $('dashStoreName').textContent = user.storeName || 'My Flipkart Store';
+  $('dashStoreSlug').textContent = slug ? `Store ID: ${slug}` : `Account: ${user.email}`;
+
+  // Store & Admin links
   $('storeUrlInput').value = storeUrl;
   $('storeUrlLink').href = storeUrl;
   $('adminUrlInput').value = adminUrl;
   $('adminUrlLink').href = adminUrl;
   $('mainAdminBtn').href = adminUrl;
-  $('sucTitle').textContent = user.storeName ? `${user.storeName}` : 'Sign In Successful!';
-  $('sucStoreName').textContent = slug ? `Store ID: ${slug} • Role: ${user.role || 'Client'}` : 'Your store links are ready:';
+  $('mainStoreBtn').href = storeUrl;
 
-  $('successBox').classList.add('show');
+  // License & Validity
+  const licKey = (license && license.key) ? license.key : 'LIC-PENDING';
+  $('licKeyVal').textContent = licKey;
+  
+  const days = (license && typeof license.daysLeft === 'number') ? license.daysLeft : 7;
+  const daysBadge = $('licDaysBadge');
+  const statusBadge = $('dashStatusBadge');
+
+  if (days > 2) {
+    daysBadge.className = 'dashBadge ok';
+    daysBadge.innerHTML = `⏱️ ${days} Days Left (বাকি আছে)`;
+    statusBadge.className = 'dashBadge ok';
+    statusBadge.innerHTML = '🟢 Active Store';
+  } else if (days > 0) {
+    daysBadge.className = 'dashBadge warn';
+    daysBadge.innerHTML = `⚠️ ${days} Days Left (শীঘ্রই শেষ হবে)`;
+    statusBadge.className = 'dashBadge warn';
+    statusBadge.innerHTML = '🟡 Expiring Soon';
+  } else {
+    daysBadge.className = 'dashBadge bad';
+    daysBadge.innerHTML = '❌ Expired (মেয়াদ শেষ)';
+    statusBadge.className = 'dashBadge bad';
+    statusBadge.innerHTML = '🔴 License Expired';
+  }
+
+  $('licPlanVal').textContent = (license && license.plan) ? license.plan : '7-Day Trial';
+  $('licStartsVal').textContent = fmtDate(license && license.startsAt);
+  $('licExpiresVal').textContent = fmtDate(license && license.expiresAt);
+
+  // Show dashboard
+  $('dashboardBox').classList.add('show');
 }
 
 function logoutFromPortal() {
-  document.cookie = 'store_admin_token=; path=/; max-age=0;';
-  document.cookie = 'current_store_id=; path=/; max-age=0;';
+  document.cookie = 'store_admin_token=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+  document.cookie = 'current_store_id=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
   window.location.reload();
 }
 
@@ -256,12 +484,13 @@ window.addEventListener('DOMContentLoaded', async () => {
     if (res.ok) {
       const data = await res.json();
       if (data && data.success && data.user) {
-        renderStoreLinks(data.user);
+        renderDashboard(data.user, data.license);
       }
     }
   } catch(e) {}
 });
 
+// Sign In submission handler
 $('loginForm').addEventListener('submit', async e => {
   e.preventDefault();
   const email = $('email').value.trim();
@@ -292,8 +521,20 @@ $('loginForm').addEventListener('submit', async e => {
       document.cookie = 'current_store_id=' + encodeURIComponent(data.user.storeSlug) + '; path=/; max-age=86400; SameSite=Lax';
     }
 
-    // Render both links right here WITHOUT auto-redirecting away!
-    renderStoreLinks(data.user);
+    // If license is missing in login response, fetch /api/auth/me to get it
+    let license = data.license;
+    if (!license) {
+      try {
+        const meRes = await fetch('/api/auth/me');
+        if (meRes.ok) {
+          const meData = await meRes.json();
+          if (meData && meData.license) license = meData.license;
+        }
+      } catch(e) {}
+    }
+
+    // Strictly open the Dashboard right here WITHOUT any auto-redirect away!
+    renderDashboard(data.user, license);
   } catch (err) {
     showMsg('Server connection error. Please ensure the backend is running.', 'err');
   } finally {

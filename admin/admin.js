@@ -198,15 +198,22 @@ async function handlePortalLogin(e) {
   btn.innerHTML = `<span class="inline-block animate-spin mr-2">⟳</span> Verifying...`;
 
   try {
-    const res = await fetch(`${API_BASE}/login`, {
+    const urlStore = new URLSearchParams(window.location.search).get('store') || '';
+    const res = await fetch(`${API_BASE}/login${urlStore ? '?store=' + encodeURIComponent(urlStore) : ''}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password })
+      headers: {
+        'Content-Type': 'application/json',
+        ...(urlStore ? { 'X-Store-Id': urlStore } : {})
+      },
+      body: JSON.stringify({ password, storeSlug: urlStore })
     });
 
     const data = await res.json();
     if (res.ok && data.success && data.token) {
       setToken(data.token);
+      if (data.user && data.user.storeSlug) {
+        document.cookie = 'current_store_id=' + encodeURIComponent(data.user.storeSlug) + '; path=/; max-age=86400; SameSite=Lax';
+      }
       if (data.user) {
         applyStoreBranding({
           authenticated: true,

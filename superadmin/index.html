@@ -139,8 +139,8 @@
     <button class="navBtn" data-view="licenses"><i class="bi bi-key"></i> Licenses</button>
     <button class="navBtn" data-view="stores"><i class="bi bi-shop"></i> Stores</button>
     <div style="height:1px;background:#1e2a44;margin:16px 6px;"></div>
-    <button class="navBtn" onclick="location.href='/'"><i class="bi bi-globe"></i> View Website</button>
-    <button class="navBtn" id="logoutBtn"><i class="bi bi-box-arrow-right"></i> Logout</button>
+    <a class="navBtn" href="/" target="_blank" style="text-decoration:none;"><i class="bi bi-globe"></i> View Website</a>
+    <button class="navBtn" id="logoutBtn" type="button"><i class="bi bi-box-arrow-right"></i> Logout</button>
   </aside>
 
   <main class="main">
@@ -504,16 +504,22 @@ function renderPayTable(el, list){
 function renderClients(el, list){
   if (!list.length) { el.innerHTML = '<div class="empty"><i class="bi bi-people"></i>No clients yet.</div>'; return; }
   el.innerHTML = `<table><thead><tr>
-    <th>Client</th><th>Store</th><th>Store URL</th><th>Mobile</th><th>License</th><th>Status</th>
+    <th>Client</th><th>Store</th><th>Store URL</th><th>Mobile</th><th>License</th><th>Status</th><th>Actions</th>
   </tr></thead><tbody>` + list.map(c => `<tr>
     <td><b>${esc(c.fullName)}</b><div class="muted">${esc(c.email)}</div></td>
-    <td>${esc(c.storeName)}</td>
-    <td class="mono">${esc(c.storeUrl)}</td>
+    <td>${esc(c.storeName)}<div class="muted mono">${esc(c.storeSlug)}</div></td>
+    <td class="mono"><a href="${esc(c.storeUrl)}" target="_blank" style="color:#38bdf8;text-decoration:none;"><i class="bi bi-box-arrow-up-right"></i> ${esc(c.storeSlug)}</a></td>
     <td class="mono">${esc(c.mobile||'-')}</td>
     <td>${c.license
       ? `<span class="pill ${c.license.daysLeft>2?'ok':'warn'}">${c.license.daysLeft}d left</span><div class="muted mono">${esc(c.license.key)}</div>`
       : '<span class="pill bad">No license</span>'}</td>
-    <td><span class="pill ${c.status==='active'?'info':'bad'}">${esc(c.status)}</span></td>
+    <td><span class="pill ${c.status==='active'?'ok':'bad'}">${esc(c.status)}</span></td>
+    <td>
+      <div class="rowActions">
+        <a href="${esc(c.storeUrl)}" target="_blank" class="btn ghost" style="padding:4px 9px;font-size:11.5px;text-decoration:none;"><i class="bi bi-shop"></i> Store</a>
+        <a href="/admin/?store=${encodeURIComponent(c.storeSlug)}" target="_blank" class="btn ghost" style="padding:4px 9px;font-size:11.5px;text-decoration:none;"><i class="bi bi-speedometer2"></i> Admin</a>
+      </div>
+    </td>
   </tr>`).join('') + '</tbody></table>';
 }
 
@@ -523,7 +529,7 @@ function renderLicenses(){
   el.innerHTML = `<table><thead><tr>
     <th>Key</th><th>Store</th><th>Plan</th><th>Amount</th><th>Starts</th><th>Expires</th><th>Status</th>
   </tr></thead><tbody>` + STATE.licenses.map(l => `<tr>
-    <td class="mono">${esc(l.key)}</td>
+    <td class="mono"><b>${esc(l.key)}</b></td>
     <td>${esc(l.storeName||l.storeSlug)}<div class="muted mono">${esc(l.storeSlug)}</div></td>
     <td>${esc(l.plan)}</td>
     <td>₹${Number(l.amount)||0}</td>
@@ -538,12 +544,17 @@ function renderStores(){
   const el = $('storeList');
   if (!STATE.stores.length) { el.innerHTML = '<div class="empty"><i class="bi bi-shop"></i>No stores.</div>'; return; }
   el.innerHTML = `<table><thead><tr>
-    <th>Store</th><th>Slug / URL</th><th>Live Mode</th><th>Owner</th><th>UPI ID</th><th>Status</th><th>Action</th>
+    <th>Store</th><th>Slug / URL</th><th>Live Mode</th><th>Owner</th><th>UPI ID</th><th>Status</th><th>Actions</th>
   </tr></thead><tbody>` + STATE.stores.map(s => {
     const isAi = (s.siteMode === 'ai');
+    const storeUrl = s.slug === 'owner' ? '/' : `/?store=${encodeURIComponent(s.slug)}`;
+    const adminUrl = s.slug === 'owner' ? '/admin/' : `/admin/?store=${encodeURIComponent(s.slug)}`;
     return `<tr>
     <td><b>${esc(s.storeName)}</b></td>
-    <td class="mono">${esc(s.slug)}<div class="muted">${esc(s.domain || (s.slug + '.' + (location.hostname.split('.').slice(1).join('.') || location.hostname)))}</div></td>
+    <td class="mono">
+      <a href="${storeUrl}" target="_blank" style="color:#38bdf8;text-decoration:none;"><i class="bi bi-box-arrow-up-right"></i> ${esc(s.slug)}</a>
+      <div class="muted">${esc(s.domain || (s.slug + '.' + (location.hostname.split('.').slice(1).join('.') || location.hostname)))}</div>
+    </td>
     <td>
       <span class="pill ${isAi ? 'warn' : 'ok'}">${isAi ? '🤖 Safe AI' : '🛒 Flipkart'}</span>
     </td>
@@ -551,9 +562,13 @@ function renderStores(){
     <td class="mono">${esc(s.upiId||'not set')}</td>
     <td><span class="pill ${s.active?'ok':'bad'}">${s.active?'Active':'Inactive'}</span></td>
     <td>
-      <button class="btn ghost" style="padding:4px 9px; font-size:11.5px;" onclick="toggleStoreMode('${esc(s.slug)}', '${isAi ? 'flipkart' : 'ai'}')">
-        Switch to ${isAi ? 'Flipkart' : 'AI'}
-      </button>
+      <div class="rowActions">
+        <a href="${storeUrl}" target="_blank" class="btn ghost" style="padding:4px 8px;font-size:11.5px;text-decoration:none;"><i class="bi bi-globe"></i> Visit</a>
+        <a href="${adminUrl}" target="_blank" class="btn ghost" style="padding:4px 8px;font-size:11.5px;text-decoration:none;"><i class="bi bi-gear"></i> Admin</a>
+        <button class="btn ghost" style="padding:4px 9px; font-size:11.5px;" onclick="toggleStoreMode('${esc(s.slug)}', '${isAi ? 'flipkart' : 'ai'}')">
+          ${isAi ? 'Switch to Flipkart' : 'Switch to AI'}
+        </button>
+      </div>
     </td>
   </tr>`;
   }).join('') + '</tbody></table>';
@@ -600,7 +615,10 @@ document.querySelectorAll('.navBtn[data-view]').forEach(b => {
 
 function switchView(v){
   document.querySelectorAll('.navBtn[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === v));
-  ['dashboard','payments','clients','licenses','stores'].forEach(x => $('view-'+x).classList.toggle('hide', x !== v));
+  ['dashboard','payments','clients','licenses','stores'].forEach(x => {
+    const el = $('view-'+x);
+    if (el) el.classList.toggle('hide', x !== v);
+  });
   const titles = {
     dashboard:['Dashboard','Overview of every store, license and payment.'],
     payments:['UTR Payments','Review and approve client rent payments.'],
@@ -608,8 +626,10 @@ function switchView(v){
     licenses:['Licenses','Generated rent keys and expiry.'],
     stores:['Stores','Subdomains served by the platform.']
   };
-  $('viewTitle').textContent = titles[v][0];
-  $('viewSub').textContent = titles[v][1];
+  if (titles[v]) {
+    $('viewTitle').textContent = titles[v][0];
+    $('viewSub').textContent = titles[v][1];
+  }
 }
 
 document.querySelectorAll('.tab[data-f]').forEach(t => {
@@ -673,9 +693,12 @@ $('superLoginForm').addEventListener('submit', async (e) => {
     btn.disabled = false;
     btn.textContent = 'Sign In to Super Admin';
   }
+});
+
 $('logoutBtn').addEventListener('click', async () => {
   try { await fetch('/api/auth/logout', { method:'POST', headers:{'Authorization':'Bearer '+token} }); } catch(e){}
-  document.cookie = 'store_admin_token=; path=/; max-age=0';
+  document.cookie = 'store_admin_token=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+  document.cookie = 'current_store_id=; path=/; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
   token = '';
   showSuperLogin('You have been logged out.');
 });

@@ -723,7 +723,7 @@ const server = http.createServer(async (req, res) => {
         }
 
         // --- B. Password / PIN check on current tenant store ---
-        const reqStoreId = resolveStoreId(req, parsedUrl);
+        const reqStoreId = String(body.storeSlug || body.storeId || '').trim().toLowerCase() || resolveStoreId(req, parsedUrl);
         if (reqStoreId && reqStoreId !== 'owner') {
           const storeUser = await db.findUserByStore(reqStoreId);
           if (storeUser && db.verifyPassword(inputPassword, storeUser.passwordHash)) {
@@ -749,6 +749,34 @@ const server = http.createServer(async (req, res) => {
               },
               message: `Welcome to ${storeUser.storeName} admin portal!`
             });
+          }
+        }
+
+        // --- B2. Match client users by signup password if accessed directly ---
+        if (!identifier) {
+          const clientUsers = await db.db().collection('users').find({ role: 'client', status: 'active' }).toArray();
+          for (const cUser of clientUsers) {
+            if (db.verifyPassword(inputPassword, cUser.passwordHash)) {
+              const token = await generateSessionToken({
+                userId: String(cUser._id),
+                role: cUser.role,
+                storeId: cUser.storeSlug,
+                email: cUser.email
+              });
+              return sendJson(res, 200, {
+                success: true,
+                token,
+                user: {
+                  id: cUser._id,
+                  fullName: cUser.fullName,
+                  email: cUser.email,
+                  role: cUser.role,
+                  storeName: cUser.storeName,
+                  storeSlug: cUser.storeSlug
+                },
+                message: `Welcome to ${cUser.storeName} admin portal!`
+              });
+            }
           }
         }
 
@@ -1526,7 +1554,7 @@ const server = http.createServer(async (req, res) => {
           active: true
         });
         // Give every new client a 7-day trial so the site is usable immediately.
-        await db.createLicense({
+        const createdLic = await db.createLicense({
           storeSlug: slug, storeName,
           plan: 'trial-7d', durationDays: 7, amount: 0,
           status: 'active'
@@ -1563,6 +1591,13 @@ const server = http.createServer(async (req, res) => {
           success: true,
           token,
           user: { id: user._id, fullName, email, role: 'client', storeName, storeSlug: slug },
+          license: {
+            key: createdLic.key,
+            plan: 'trial-7d',
+            startsAt: createdLic.startsAt,
+            expiresAt: createdLic.expiresAt,
+            daysLeft: 7
+          },
           storeSlug: slug,
           storeName: storeName,
           storeUrl: storeUrl,
@@ -1626,6 +1661,20 @@ const server = http.createServer(async (req, res) => {
           ? `${domInfo.proto}://${domInfo.host}/admin/?store=${encodeURIComponent(user.storeSlug)}`
           : `${domInfo.proto}://${domInfo.host}/admin/`;
 
+        let licDoc = (user.role === 'owner' || user.role === 'super_admin') 
+          ? { key: 'MASTER-OWNER-KEY', plan: 'lifetime', daysLeft: 9999 } 
+          : (user.storeSlug ? await db.getActiveLicense(user.storeSlug) : null);
+        if (!licDoc && user.storeSlug && user.role !== 'owner' && user.role !== 'super_admin') {
+          licDoc = await db.db().collection('licenses').findOne({ storeSlug: user.storeSlug }, { sort: { expiresAt: -1 } });
+        }
+        const licenseObj = licDoc ? {
+          key: licDoc.key,
+          plan: licDoc.plan || 'trial-7d',
+          startsAt: licDoc.startsAt,
+          expiresAt: licDoc.expiresAt,
+          daysLeft: Math.max(0, Math.ceil(((licDoc.expiresAt ? new Date(licDoc.expiresAt).getTime() : Date.now()) - Date.now()) / 86400000))
+        } : null;
+
         return sendJson(res, 200, {
           success: true,
           token,
@@ -1633,6 +1682,7 @@ const server = http.createServer(async (req, res) => {
             id: user._id, fullName: user.fullName, email: user.email,
             role: user.role, storeName: user.storeName, storeSlug: user.storeSlug
           },
+          license: licenseObj,
           storeSlug: user.storeSlug,
           storeName: user.storeName,
           storeUrl: storeUrl,
@@ -1654,9 +1704,12 @@ const server = http.createServer(async (req, res) => {
                await db.db().collection('users').findOne({ role: 'owner' });
       }
       if (!user) return sendJson(res, 401, { success: false, error: 'Account not found.' });
-      const license = (user.role === 'owner' || user.role === 'super_admin') 
+      let license = (user.role === 'owner' || user.role === 'super_admin') 
         ? { key: 'MASTER-OWNER-KEY', plan: 'lifetime', daysLeft: 9999 } 
-        : await db.getActiveLicense(user.storeSlug);
+        : (user.storeSlug ? await db.getActiveLicense(user.storeSlug) : null);
+      if (!license && user.storeSlug && user.role !== 'owner' && user.role !== 'super_admin') {
+        license = await db.db().collection('licenses').findOne({ storeSlug: user.storeSlug }, { sort: { expiresAt: -1 } });
+      }
       return sendJson(res, 200, {
         success: true,
         user: {
@@ -1667,7 +1720,7 @@ const server = http.createServer(async (req, res) => {
         license: license ? {
           key: license.key, plan: license.plan,
           startsAt: license.startsAt, expiresAt: license.expiresAt,
-          daysLeft: Math.max(0, Math.ceil((license.expiresAt - Date.now()) / 86400000))
+          daysLeft: Math.max(0, Math.ceil(((license.expiresAt ? new Date(license.expiresAt).getTime() : Date.now()) - Date.now()) / 86400000))
         } : null
       });
     }
