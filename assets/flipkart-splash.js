@@ -7,9 +7,23 @@
 (function() {
   'use strict';
 
-  // Prevent multiple injections
+  // Never run on AI website or if already shown in this session
+  try {
+    if (sessionStorage.getItem('fk_splash_shown') === '1') return;
+  } catch (e) {}
+
+  if (window.location.pathname.startsWith('/ai') || window.location.pathname.includes('/ai/')) {
+    return;
+  }
+
+  // Prevent multiple injections on current page
   if (window.__FK_SPLASH_INITIALIZED__) return;
   window.__FK_SPLASH_INITIALIZED__ = true;
+
+  // Mark shown immediately so it never shows again in this session
+  try {
+    sessionStorage.setItem('fk_splash_shown', '1');
+  } catch (e) {}
 
   // Ensure CSS is loaded
   if (!document.getElementById('fkSplashCssLink')) {

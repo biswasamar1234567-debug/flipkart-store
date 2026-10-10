@@ -660,6 +660,11 @@ const server = http.createServer(async (req, res) => {
   }
 
   // Public storefront banners (read-only; saving goes through /api/admin/banners)
+  if ((pathname === '/api/banners' || pathname === '/api/banners/') && method === 'GET') {
+    const config = await getAdminConfig();
+    return sendJson(res, 200, { success: true, banners: config.banners || [] });
+  }
+
   // Public shield status (used by client-side security script)
   if ((pathname === '/api/shield-status' || pathname === '/api/shield-status/') && method === 'GET') {
     const storeId = resolveStoreId(req, parsedUrl);
