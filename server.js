@@ -2141,9 +2141,19 @@ async function start() {
     await db.connect();
     await db.ensureVisitorIndexes();
   } catch (err) {
-    console.error('❌ MongoDB connection failed:', err.message);
-    console.error('   Check MONGODB_URI in .env');
-    process.exit(1);
+    console.error('❌ MongoDB connection warning:', err.message);
+    console.error('   Tip: Ensure MongoDB Atlas Network Access has 0.0.0.0/0 enabled.');
+    // Retry periodically in background so container remains healthy
+    const retryInterval = setInterval(async () => {
+      try {
+        await db.connect();
+        await db.ensureVisitorIndexes();
+        console.log('✅ Connected to MongoDB Atlas successfully on retry!');
+        clearInterval(retryInterval);
+      } catch (e) {
+        console.warn('MongoDB reconnecting...', e.message);
+      }
+    }, 8000);
   }
 
   server.listen(PORT, () => {
