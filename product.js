@@ -348,7 +348,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  loadPDPProduct();
+  // ⚠️ NOTE: loadPDPProduct() is called at the VERY END of DOMContentLoaded
+  // (after all const/function declarations) to avoid Temporal Dead Zone crashes.
 
 
   // ==========================================================================
@@ -910,14 +911,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // 📸 Down Side Content (DSC) Photos / Banner Description Images
     const descImagesBox = document.getElementById('descImagesBox');
     if (descImagesBox) {
-      const descImgs = (product.description_images && product.description_images.length > 0)
-        ? product.description_images
-        : [
-            'assets/images/iphone17/camera.jpg',
-            'assets/images/iphone17/back.jpg',
-            'assets/images/iphone17/front.jpg'
-          ];
-      descImagesBox.innerHTML = descImgs.map(src => `<img src="${src}" loading="lazy" alt="Product feature highlight" class="dsc-banner-photo">`).join('');
+      // Collect DSC images from all possible fields
+      const descImgs =
+        (product.description_images && product.description_images.length > 0) ? product.description_images :
+        (product.dsc_images && product.dsc_images.length > 0) ? product.dsc_images :
+        null;
+
+      let html = '';
+      // Show description text if present
+      if (product.description && String(product.description).trim()) {
+        html += `<p class="dsc-description-text" style="font-size:13px;color:#212121;line-height:1.6;margin-bottom:10px;">${String(product.description).trim()}</p>`;
+      }
+      // Show DSC images if available; else show album images; else show nothing (no hardcoded fallback)
+      if (descImgs && descImgs.length > 0) {
+        html += descImgs.map(src => `<img src="${src}" loading="lazy" alt="Product feature highlight" class="dsc-banner-photo">`).join('');
+      } else {
+        const albumImgs = Array.isArray(product.images) && product.images.length > 0 ? product.images :
+                          (product.colors && product.colors[0] && Array.isArray(product.colors[0].images)) ? product.colors[0].images : [];
+        if (albumImgs.length > 0) {
+          html += albumImgs.map(src => `<img src="${src}" loading="lazy" alt="Product highlight" class="dsc-banner-photo">`).join('');
+        }
+      }
+      descImagesBox.innerHTML = html;
     }
 
     // Similar Products (Matching Screenshot 3)
@@ -1494,5 +1509,10 @@ document.addEventListener('DOMContentLoaded', () => {
       opt.classList.add('active');
     });
   });
+
+  // ✅ PERMANENT FIX: loadPDPProduct() is called HERE — after BRAND_LOGOS and all
+  // other const/function declarations — to avoid Temporal Dead Zone (TDZ) crashes
+  // that caused album carousel, DSC images, highlights, and specs to never render.
+  loadPDPProduct();
 
 });
