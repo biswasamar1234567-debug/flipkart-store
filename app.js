@@ -163,6 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await res.json();
         if (data && Array.isArray(data.products) && data.products.length > 0) {
           allStoreProducts = data.products;
+          try {
+            sessionStorage.setItem('fk_catalog', JSON.stringify(data.products));
+            localStorage.setItem('fk_catalog', JSON.stringify(data.products));
+          } catch(e) {}
           applyCategoryFilter();
           return;
         }
@@ -176,6 +180,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const data = await res.json();
       if (data && Array.isArray(data.products) && data.products.length > 0) {
         allStoreProducts = data.products;
+        try {
+          sessionStorage.setItem('fk_catalog', JSON.stringify(data.products));
+          localStorage.setItem('fk_catalog', JSON.stringify(data.products));
+        } catch(e) {}
         applyCategoryFilter();
       }
     } catch (err) {
@@ -483,20 +491,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Bind click on product cards to navigate to Product Details Page (product.html)
-  const productCards = document.querySelectorAll('.fk-product-card');
-  productCards.forEach(card => {
-    card.addEventListener('click', () => {
-      const pId = card.getAttribute('data-product');
-      if (pId === '1' || pId === 1) {
-        window.location.href = 'product.html?id=iphone17';
-      } else if (pId === '2' || pId === 2) {
-        window.location.href = 'product.html?id=iphone16';
-      } else {
-        window.location.href = `product.html?id=${pId || 'iphone17'}`;
+  // Bind click on product cards to pre-cache product and navigate to Product Details Page
+  document.addEventListener('click', (e) => {
+    const card = e.target.closest('.fk-product-card');
+    if (!card) return;
+    let pid = card.getAttribute('data-product-id') || card.getAttribute('data-product');
+    if (!pid) {
+      const href = card.getAttribute('href') || '';
+      const match = href.match(/[?&]id=([^&#]+)/);
+      if (match) pid = decodeURIComponent(match[1]);
+    }
+    if (pid && Array.isArray(allStoreProducts) && allStoreProducts.length > 0) {
+      const target = String(pid).toLowerCase();
+      const p = allStoreProducts.find(item => 
+        String(item.id || '').toLowerCase() === target ||
+        String(item._id || '').toLowerCase() === target ||
+        (target === '1' && (item.id === 'apple-iphone-17-pro-max-256-gb' || item.id === 'iphone17')) ||
+        (target === '2' && (item.id === 'apple-iphone-16-pro-max-256-gb' || item.id === 'iphone16'))
+      );
+      if (p) {
+        try {
+          sessionStorage.setItem('fk_active_product_' + p.id, JSON.stringify(p));
+          sessionStorage.setItem('fk_active_product_' + pid, JSON.stringify(p));
+          sessionStorage.setItem('fk_last_active_product', JSON.stringify(p));
+        } catch(err) {}
       }
-    });
-  });
+    }
+  }, true);
 
   const shopNowBtn = document.getElementById('shopNowBtn');
   if (shopNowBtn) {

