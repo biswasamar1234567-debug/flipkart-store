@@ -26,8 +26,8 @@ function goToPaymentPage(amt) {
 
 var itemData = null;
 var cartQty = 1;
-var cartUnitSelling = 999;
-var cartUnitMrp = 147900;
+var cartUnitSelling = 0;
+var cartUnitMrp = 0;
 var CART_QTY_MAX = 10;
 
 function formatINR(amount) {
@@ -42,7 +42,10 @@ function persistCartVariant() {
   itemData.selling_price = cartUnitSelling * cartQty;
   itemData.mrp = cartUnitMrp * cartQty;
   itemData.original_price = itemData.selling_price;
-  localStorage.setItem("selected_verient", JSON.stringify(itemData));
+  try {
+    localStorage.setItem("selected_verient", JSON.stringify(itemData));
+    sessionStorage.setItem("selected_verient", JSON.stringify(itemData));
+  } catch(e) {}
 }
 
 function applyCartPrices(qty) {
@@ -114,14 +117,16 @@ $(document).ready(function () {
         if (cached) {
           var p = JSON.parse(cached);
           if (p) {
+            var pSell = Number(p.active_selling_price) || Number(p.selling_price) || 0;
+            var pMrp = Number(p.active_mrp) || Number(p.mrp) || pSell;
             itemData = {
               id: p.id,
               name: p.title2 || p.name || "Product",
               title: p.title2 || p.name || "Product",
-              mrp: Number(p.mrp) || 999,
-              selling_price: Number(p.selling_price) || 999,
-              unit_selling_price: Number(p.selling_price) || 999,
-              unit_mrp: Number(p.mrp) || 999,
+              mrp: pMrp,
+              selling_price: pSell,
+              unit_selling_price: pSell,
+              unit_mrp: pMrp,
               qty: 1,
               color: p.selected_color || p.default_color || (p.colors && p.colors[0]?.color_name) || "",
               size: p.selected_size || p.default_size || p.size || "",
@@ -145,14 +150,16 @@ $(document).ready(function () {
         if (Array.isArray(cat) && cat.length > 0) {
           var targetId = new URLSearchParams(window.location.search).get("id");
           var p = (targetId ? cat.find(function(x) { return x.id === targetId || x._id === targetId; }) : null) || cat[0];
+          var pSell = Number(p.active_selling_price) || Number(p.selling_price) || 0;
+          var pMrp = Number(p.active_mrp) || Number(p.mrp) || pSell;
           itemData = {
             id: p.id,
             name: p.title2 || p.name || "Product",
             title: p.title2 || p.name || "Product",
-            mrp: Number(p.mrp) || 999,
-            selling_price: Number(p.selling_price) || 999,
-            unit_selling_price: Number(p.selling_price) || 999,
-            unit_mrp: Number(p.mrp) || 999,
+            mrp: pMrp,
+            selling_price: pSell,
+            unit_selling_price: pSell,
+            unit_mrp: pMrp,
             qty: 1,
             color: p.selected_color || p.default_color || (p.colors && p.colors[0]?.color_name) || "",
             size: p.selected_size || p.default_size || p.size || "",
@@ -166,17 +173,28 @@ $(document).ready(function () {
     } catch(e) {}
   }
 
+  // Parse prices from itemData FIRST before doing persistCartVariant!
+  var rawSelling =
+    (itemData && itemData.unit_selling_price !== undefined && itemData.unit_selling_price !== null && !isNaN(Number(itemData.unit_selling_price)))
+      ? Number(itemData.unit_selling_price)
+      : (itemData && itemData.selling_price !== undefined && itemData.selling_price !== null && !isNaN(Number(itemData.selling_price)))
+        ? Number(itemData.selling_price)
+        : 0;
+
+  var rawMrp =
+    (itemData && itemData.unit_mrp !== undefined && itemData.unit_mrp !== null && !isNaN(Number(itemData.unit_mrp)))
+      ? Number(itemData.unit_mrp)
+      : (itemData && itemData.mrp !== undefined && itemData.mrp !== null && !isNaN(Number(itemData.mrp)))
+        ? Number(itemData.mrp)
+        : rawSelling;
+
+  cartUnitSelling = rawSelling;
+  cartUnitMrp = rawMrp > 0 ? rawMrp : rawSelling;
+  cartQty = Math.max(1, parseInt(itemData?.qty, 10) || 1);
+
   if (itemData) {
     persistCartVariant();
   }
-
-  cartUnitSelling =
-    parseInt(itemData?.unit_selling_price, 10) ||
-    parseInt(itemData?.selling_price, 10) ||
-    999;
-  cartUnitMrp =
-    parseInt(itemData?.unit_mrp, 10) || parseInt(itemData?.mrp, 10) || cartUnitSelling;
-  cartQty = parseInt(itemData?.qty, 10) || 1;
 
   var imgSrc = itemData ? (itemData.img1 || itemData.img || "") : "";
   if (imgSrc && !imgSrc.startsWith("http") && !imgSrc.startsWith("/") && !imgSrc.startsWith("../")) {

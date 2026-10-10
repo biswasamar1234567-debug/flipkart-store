@@ -571,13 +571,13 @@
             class="flex justify-between font-bold text-[16px] text-gray-900 mb-3"
           >
             <span>Total Amount</span>
-            <span class="selling_price">₹999</span>
+            <span class="selling_price"></span>
           </div>
 
           <hr class="w-full border-t border-gray-200 border-dashed mb-3" />
 
           <div class="text-[#388e3c] font-bold text-[13px]">
-            You will save <span class="discount-amt">₹1,46,901</span> on this order
+            You will save <span class="discount-amt"></span> on this order
           </div>
         </div>
       </section>
@@ -702,12 +702,13 @@
       };
 
       $(document).ready(function () {
-        variant = JSON.parse(localStorage.getItem("selected_verient")) || {};
+        try {
+          variant = JSON.parse(localStorage.getItem("selected_verient")) || JSON.parse(sessionStorage.getItem("selected_verient")) || {};
+        } catch(e) { variant = {}; }
         const qty = parseInt(variant.qty, 10) || 1;
-        const unitSell =
-          parseInt(variant.unit_selling_price, 10) ||
-          parseInt(variant.selling_price, 10) ||
-          999;
+        const unitSell = (variant.unit_selling_price !== undefined && !isNaN(Number(variant.unit_selling_price)))
+          ? Number(variant.unit_selling_price)
+          : (Number(variant.selling_price) || 0);
         basePrice = unitSell * qty;
         setTimeout(() => {
           updateTotals();
@@ -728,13 +729,14 @@
       });
 
       function updateTotals() {
-        const variantNow =
-          JSON.parse(localStorage.getItem("selected_verient")) || {};
+        let variantNow = {};
+        try {
+          variantNow = JSON.parse(localStorage.getItem("selected_verient")) || JSON.parse(sessionStorage.getItem("selected_verient")) || {};
+        } catch(e) {}
         const qty = parseInt(variantNow.qty, 10) || 1;
-        const unitSell =
-          parseInt(variantNow.unit_selling_price, 10) ||
-          parseInt(variantNow.selling_price, 10) ||
-          999;
+        const unitSell = (variantNow.unit_selling_price !== undefined && !isNaN(Number(variantNow.unit_selling_price)))
+          ? Number(variantNow.unit_selling_price)
+          : (Number(variantNow.selling_price) || 0);
         basePrice = unitSell * qty;
         let finalPrice = basePrice + currentDonation;
         $(".selling_price").html("₹" + finalPrice.toLocaleString("en-IN"));
@@ -751,19 +753,23 @@
 
       // Continue button Logic
       window.btnContinue = function () {
-        const variantNow =
-          JSON.parse(localStorage.getItem("selected_verient")) || {};
+        let variantNow = {};
+        try {
+          variantNow = JSON.parse(localStorage.getItem("selected_verient")) || JSON.parse(sessionStorage.getItem("selected_verient")) || {};
+        } catch(e) {}
         const qty = parseInt(variantNow.qty, 10) || 1;
-        const unitSell =
-          parseInt(variantNow.unit_selling_price, 10) ||
-          parseInt(variantNow.selling_price, 10) ||
-          999;
+        const unitSell = (variantNow.unit_selling_price !== undefined && !isNaN(Number(variantNow.unit_selling_price)))
+          ? Number(variantNow.unit_selling_price)
+          : (Number(variantNow.selling_price) || 0);
         let finalPrice = unitSell * qty + currentDonation;
         variantNow.selling_price = finalPrice;
         variantNow.original_price = unitSell * qty;
         variantNow.qty = qty;
         variantNow.unit_selling_price = unitSell;
-        localStorage.setItem("selected_verient", JSON.stringify(variantNow));
+        try {
+          localStorage.setItem("selected_verient", JSON.stringify(variantNow));
+          sessionStorage.setItem("selected_verient", JSON.stringify(variantNow));
+        } catch(e) {}
         goToPaymentPage(finalPrice);
       };
     </script>

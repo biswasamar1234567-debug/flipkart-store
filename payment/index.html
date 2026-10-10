@@ -1248,8 +1248,14 @@
         const passedAmt = urlParams.get("amt");
 
         const sp =
-          parseFloat(passedAmt) || parseInt(itemData.selling_price) || 999;
-        const mrp = parseInt(itemData.mrp) || 147900;
+          (passedAmt !== null && passedAmt !== undefined && !isNaN(parseFloat(passedAmt)) && parseFloat(passedAmt) > 0)
+            ? parseFloat(passedAmt)
+            : ((itemData.selling_price !== undefined && !isNaN(Number(itemData.selling_price)))
+                ? Number(itemData.selling_price)
+                : (Number(itemData.unit_selling_price) || 0));
+        const mrp = (Number(itemData.mrp) && Number(itemData.mrp) > 0)
+          ? Number(itemData.mrp)
+          : ((Number(itemData.unit_mrp) && Number(itemData.unit_mrp) > 0) ? Number(itemData.unit_mrp) : sp);
 
         $(".selling_price").html("₹" + formatINR(sp));
         $(".mrp").html("₹" + formatINR(mrp));

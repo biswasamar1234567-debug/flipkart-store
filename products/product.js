@@ -348,8 +348,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ⚠️ NOTE: loadPDPProduct() is called at the VERY END of DOMContentLoaded
-  // (after all const/function declarations) to avoid Temporal Dead Zone crashes.
+  // NOTE: loadPDPProduct() is called at the VERY END of DOMContentLoaded
+  // after all const, helper functions, and event listeners are registered.
 
 
   // ==========================================================================
@@ -911,28 +911,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // 📸 Down Side Content (DSC) Photos / Banner Description Images
     const descImagesBox = document.getElementById('descImagesBox');
     if (descImagesBox) {
-      // Collect DSC images from all possible fields
-      const descImgs =
-        (product.description_images && product.description_images.length > 0) ? product.description_images :
-        (product.dsc_images && product.dsc_images.length > 0) ? product.dsc_images :
-        null;
+      // Build fallback from actual product images so we never show broken local paths
+      const fallbackImgs = [].concat(
+        (startColor && Array.isArray(startColor.images)) ? startColor.images : [],
+        Array.isArray(product.images) ? product.images : [],
+        product.img1 ? [product.img1] : []
+      ).filter((v, i, a) => v && a.indexOf(v) === i).slice(0, 6);
 
-      let html = '';
-      // Show description text if present
-      if (product.description && String(product.description).trim()) {
-        html += `<p class="dsc-description-text" style="font-size:13px;color:#212121;line-height:1.6;margin-bottom:10px;">${String(product.description).trim()}</p>`;
-      }
-      // Show DSC images if available; else show album images; else show nothing (no hardcoded fallback)
-      if (descImgs && descImgs.length > 0) {
-        html += descImgs.map(src => `<img src="${src}" loading="lazy" alt="Product feature highlight" class="dsc-banner-photo">`).join('');
+      const descImgs = (product.description_images && product.description_images.length > 0)
+        ? product.description_images
+        : fallbackImgs;
+
+      if (descImgs.length > 0) {
+        descImagesBox.innerHTML = descImgs.map(src => `<img src="${src}" loading="lazy" alt="Product feature highlight" class="dsc-banner-photo">`).join('');
+        descImagesBox.style.display = '';
       } else {
-        const albumImgs = Array.isArray(product.images) && product.images.length > 0 ? product.images :
-                          (product.colors && product.colors[0] && Array.isArray(product.colors[0].images)) ? product.colors[0].images : [];
-        if (albumImgs.length > 0) {
-          html += albumImgs.map(src => `<img src="${src}" loading="lazy" alt="Product highlight" class="dsc-banner-photo">`).join('');
-        }
+        descImagesBox.style.display = 'none';
       }
-      descImagesBox.innerHTML = html;
+    }
+
+    // 📝 Product Description Text
+    const productDescText = document.getElementById('productDescText');
+    if (productDescText) {
+      const descText = product.description || product.title2 || product.name || '';
+      if (descText) {
+        productDescText.textContent = descText;
+        productDescText.style.display = 'block';
+      } else {
+        productDescText.style.display = 'none';
+      }
     }
 
     // Similar Products (Matching Screenshot 3)
@@ -1114,6 +1121,13 @@ document.addEventListener('DOMContentLoaded', () => {
           row.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           if (nameEl) nameEl.textContent = btn.dataset.opt;
+          if (currentProductData) {
+            if (block === ramBlock) {
+              currentProductData.selected_ram = btn.dataset.opt;
+            } else if (block === stoBlock) {
+              currentProductData.selected_storage = btn.dataset.opt;
+            }
+          }
         });
       });
     }
@@ -1386,8 +1400,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let p = currentProductData;
     if (!p) {
       try {
-        const pid = getQueryParam('id') || 'iphone17';
-        const cached = sessionStorage.getItem('fk_active_product_' + pid) || sessionStorage.getItem('fk_last_active_product');
+        const pid = getQueryParam('id');
+        const cached = (pid ? sessionStorage.getItem('fk_active_product_' + pid) : null) || sessionStorage.getItem('fk_last_active_product');
         if (cached) p = JSON.parse(cached);
       } catch (e) {}
     }
@@ -1398,8 +1412,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mainImg = p.img1 || p.image || (Array.isArray(p.images) && p.images[0]) || (p.colors && (p.colors[0]?.color_img || p.colors[0]?.images?.[0])) || 'assets/images/iphone17/hero.jpg';
 
-    const activeSellingPrice = Number(p.active_selling_price) || Number(p.selling_price) || 999;
-    const activeMrp = Number(p.active_mrp) || Number(p.mrp) || 147900;
+    const activeSellingPrice = (p.active_selling_price !== undefined && !isNaN(Number(p.active_selling_price)))
+      ? Number(p.active_selling_price)
+      : (Number(p.selling_price) || 0);
+    const activeMrp = (p.active_mrp !== undefined && !isNaN(Number(p.active_mrp)))
+      ? Number(p.active_mrp)
+      : (Number(p.mrp) || activeSellingPrice);
     const activeSize = p.selected_size || p.default_size || p.size || '';
     const activeColor = p.selected_color || p.default_color || (p.colors?.[0]?.color_name) || '';
     const activeStorage = p.selected_storage || p.storage || '';
@@ -1510,9 +1528,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ✅ PERMANENT FIX: loadPDPProduct() is called HERE — after BRAND_LOGOS and all
-  // other const/function declarations — to avoid Temporal Dead Zone (TDZ) crashes
-  // that caused album carousel, DSC images, highlights, and specs to never render.
+  // Call loadPDPProduct at the very end after everything is initialized
   loadPDPProduct();
 
 });
