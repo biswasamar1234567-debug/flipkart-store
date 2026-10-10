@@ -1461,7 +1461,7 @@
       "default_storage": "",
       "ram_options": [],
       "storage_options": [],
-      "custom_size": "6 uk-7 uk-8 uk -9 uk -10 uk",
+      "custom_size": "UK 6, UK 7, UK 8, UK 9, UK 10",
       "show_custom_size": true,
       "delivery_text": "Free Delivery in Two Days",
       "description": "Experience unmatched comfort and performance with the Adidas Supernova Rise 2 M Running Shoes for men. Engineered with a breathable mesh upper, responsive cushioning, and a durable outsole, these shoes provide the perfect blend of style and functionality for daily runs and workouts. The sleek white design adds a fresh look to any athletic outfit, while the size 10 fit ensures a snug, supportive feel. Whether you're hitting the track or the streets, the Supernova Rise 2 M keeps you moving with confidence.",
@@ -1504,7 +1504,41 @@
       "hot_deal": false,
       "show_variants": false,
       "sort_order": 12,
-      "storeId": "owner"
+      "storeId": "owner",
+      "sizes": [
+        {
+          "id": "sz_d72tj",
+          "size": "UK 6",
+          "selling_price": 599,
+          "mrp": 6999
+        },
+        {
+          "id": "sz_gnzji",
+          "size": "UK 7",
+          "selling_price": 599,
+          "mrp": 6999
+        },
+        {
+          "id": "sz_lsnnz",
+          "size": "UK 8",
+          "selling_price": 599,
+          "mrp": 6999
+        },
+        {
+          "id": "sz_kh1cx",
+          "size": "UK 9",
+          "selling_price": 599,
+          "mrp": 6999
+        },
+        {
+          "id": "sz_8r8nm",
+          "size": "UK 10",
+          "selling_price": 599,
+          "mrp": 6999
+        }
+      ],
+      "show_sizes": true,
+      "default_size": "UK 6"
     },
     {
       "_id": "6aca1ba5528ad2264704e247",
@@ -1756,6 +1790,123 @@
       ]
     },
     {
+      "_id": "6aca3add48509efd7e5a0a26",
+      "id": "sony-ult-field-5-bluetooth-speaker-100w-bass-black",
+      "name": "Sony ULT Field 5 Bluetooth Speaker, 100W Bass (2 Modes), 25Hr Battery, Power Bank, IP67 Waterproof, Quick Charge, Party Light, Connect, Strap - Black",
+      "title1": "Sony ULT Field 5 Bluetooth Speaker, 100W Bass (Black)",
+      "title2": "Sony ULT Field 5 Bluetooth Speaker, 100W Bass (2 Modes), 25Hr Battery, Power Bank, IP67 Waterproof, Quick Charge, Party Light, Connect, Strap - Black",
+      "brand": "Sony",
+      "category": "Electronics",
+      "stock": 5,
+      "mrp": 21474,
+      "selling_price": 599,
+      "wow_price": 599,
+      "discount": 97,
+      "rating": 4.6,
+      "reviews_count": 1245,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791638177/kaeo2xvexmsn9rjw1mv6.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638207/dg3pxevo44imbwq6y9wq.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638208/grtyi6bhgyx2hpvdykoc.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638209/lqdmet8d5yaemmgdqrdk.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638210/mg9llj2qmbtdahnqaral.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638210/omzlptmvt1p5cmlstve0.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638211/frpvqyygihfynbq2eapw.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638211/gppalo0fkqyhvqe81ysu.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638212/zv1qxjow5mtrazvwg2id.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638212/ylxdkfmeb0befifrkpge.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638214/dgqsg52fym5qzcafa6pd.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638214/paudqlpm0ax4o2nqqhhn.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Black",
+          "color_hex": "#000000",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791638177/kaeo2xvexmsn9rjw1mv6.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638207/dg3pxevo44imbwq6y9wq.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638208/grtyi6bhgyx2hpvdykoc.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638209/lqdmet8d5yaemmgdqrdk.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638210/mg9llj2qmbtdahnqaral.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638210/omzlptmvt1p5cmlstve0.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638211/frpvqyygihfynbq2eapw.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638211/gppalo0fkqyhvqe81ysu.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638212/zv1qxjow5mtrazvwg2id.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638212/ylxdkfmeb0befifrkpge.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638214/dgqsg52fym5qzcafa6pd.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791638214/paudqlpm0ax4o2nqqhhn.jpg"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 14999
+        }
+      ],
+      "sizes": [],
+      "show_sizes": false,
+      "default_size": "",
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638220/zkdzoe0zqyz4r6rx05cj.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638221/coavy3bvnt46ifbtc5r3.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791638221/lkcaw8gc6kkewf3stfqu.jpg"
+      ],
+      "default_color": "Black",
+      "default_ram": "",
+      "default_storage": "",
+      "ram_options": [],
+      "storage_options": [],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience powerful, portable sound with the Sony ULT Field 5 Bluetooth speaker. Boasting 100W bass, IP67 waterproof protection, 25‑hour battery life and an integrated power bank, this speaker is built for every adventure—from beach parties to backyard barbecues. Quick Charge gets you back to full power in minutes, while the vibrant party light and strap make it easy to carry and set the mood. Connect effortlessly via Bluetooth, AUX or NFC and enjoy crystal‑clear audio wherever you go.",
+      "highlights": [
+        "100W high‑output bass for deep, immersive sound",
+        "IP67 rating – fully waterproof and dust‑proof",
+        "25‑hour battery life with built‑in power bank",
+        "Quick Charge technology – 80% charge in just 30 minutes",
+        "Dual playback modes for party or personal listening",
+        "Integrated party light and detachable strap for easy portability"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "ULT Field 5",
+          "Color": "Black",
+          "Browse Type": "Bluetooth Speaker",
+          "SIM Type": ""
+        },
+        "Display Features": {
+          "Display Size": "N/A",
+          "Resolution": "N/A",
+          "Display Type": "N/A"
+        },
+        "Processor & OS": {
+          "Operating System": "N/A",
+          "Processor Type": "N/A"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "N/A",
+          "RAM": "N/A"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 15,
+      "storeId": "owner"
+    },
+    {
       "_id": "6aca30846b7a429de61561b3",
       "id": "nike-vomero-18-running-shoes-black-size-8",
       "name": "NIKE Vomero 18 Running Shoes for Men (Black, Size 8)",
@@ -1812,8 +1963,8 @@
       "default_storage": "",
       "ram_options": [],
       "storage_options": [],
-      "custom_size": "",
-      "show_custom_size": false,
+      "custom_size": "UK 6, UK 7, UK 8, UK 9, UK 10",
+      "show_custom_size": true,
       "delivery_text": "Free Delivery in Two Days",
       "description": "Experience unmatched comfort and performance with NIKE Vomero 18 Running Shoes for Men. Engineered with lightweight responsive cushioning, breathable mesh upper and a durable rubber outsole, these shoes deliver superior traction and support for every run. The sleek black finish adds a versatile style edge, while Nike’s trusted quality ensures long‑lasting durability. Perfect for daily training, casual jogs, or city runs, the Vomero 18 keeps you moving forward with confidence.",
       "highlights": [
@@ -1854,8 +2005,42 @@
       "featured": false,
       "hot_deal": false,
       "show_variants": false,
-      "sort_order": 15,
-      "storeId": "owner"
+      "sort_order": 16,
+      "storeId": "owner",
+      "sizes": [
+        {
+          "id": "sz_34fja",
+          "size": "UK 6",
+          "selling_price": 599,
+          "mrp": 13999
+        },
+        {
+          "id": "sz_p7jkr",
+          "size": "UK 7",
+          "selling_price": 599,
+          "mrp": 13999
+        },
+        {
+          "id": "sz_vuv86",
+          "size": "UK 8",
+          "selling_price": 599,
+          "mrp": 13999
+        },
+        {
+          "id": "sz_2by9g",
+          "size": "UK 9",
+          "selling_price": 599,
+          "mrp": 13999
+        },
+        {
+          "id": "sz_ku7g0",
+          "size": "UK 10",
+          "selling_price": 599,
+          "mrp": 13999
+        }
+      ],
+      "show_sizes": true,
+      "default_size": "UK 6"
     },
     {
       "_id": "6aca12d97d10263df52bee9a",
@@ -1960,7 +2145,7 @@
       "featured": false,
       "hot_deal": false,
       "show_variants": true,
-      "sort_order": 16,
+      "sort_order": 17,
       "storeId": "owner"
     },
     {
@@ -2019,8 +2204,8 @@
       "default_storage": "",
       "ram_options": [],
       "storage_options": [],
-      "custom_size": "",
-      "show_custom_size": false,
+      "custom_size": "UK 6, UK 7, UK 8, UK 9, UK 10",
+      "show_custom_size": true,
       "delivery_text": "Free Delivery in Two Days",
       "description": "Step up your game with Nike Running Shoes for Men, crafted to deliver unmatched comfort, support, and style on every run. The lightweight breathable mesh upper keeps your feet cool, while the cushioned midsole provides responsive energy return. A durable rubber outsole ensures excellent traction on varied surfaces, making these shoes perfect for daily training, jogging, or casual wear. Designed in a sleek black finish, they combine performance technology with Nike's iconic aesthetic, giving you confidence with every stride.",
       "highlights": [
@@ -2061,8 +2246,42 @@
       "featured": false,
       "hot_deal": false,
       "show_variants": false,
-      "sort_order": 17,
-      "storeId": "owner"
+      "sort_order": 18,
+      "storeId": "owner",
+      "sizes": [
+        {
+          "id": "sz_txibm",
+          "size": "UK 6",
+          "selling_price": 699,
+          "mrp": 6999
+        },
+        {
+          "id": "sz_uotlo",
+          "size": "UK 7",
+          "selling_price": 699,
+          "mrp": 6999
+        },
+        {
+          "id": "sz_0r9fn",
+          "size": "UK 8",
+          "selling_price": 699,
+          "mrp": 6999
+        },
+        {
+          "id": "sz_fis8h",
+          "size": "UK 9",
+          "selling_price": 699,
+          "mrp": 6999
+        },
+        {
+          "id": "sz_e7pe6",
+          "size": "UK 10",
+          "selling_price": 699,
+          "mrp": 6999
+        }
+      ],
+      "show_sizes": true,
+      "default_size": "UK 6"
     },
     {
       "_id": "6ac9ce2b6615536352820273",
@@ -2171,7 +2390,7 @@
       "hot_deal": false,
       "show_variants": true,
       "storeId": "owner",
-      "sort_order": 18,
+      "sort_order": 19,
       "ram_options": [
         "8 GB"
       ],
@@ -2293,7 +2512,7 @@
       "featured": false,
       "hot_deal": false,
       "show_variants": false,
-      "sort_order": 19,
+      "sort_order": 20,
       "storeId": "owner"
     },
     {
@@ -2407,7 +2626,7 @@
       "featured": false,
       "hot_deal": false,
       "show_variants": false,
-      "sort_order": 20,
+      "sort_order": 21,
       "storeId": "owner"
     },
     {
@@ -2514,7 +2733,7 @@
       "hot_deal": false,
       "show_variants": true,
       "storeId": "owner",
-      "sort_order": 21,
+      "sort_order": 22,
       "ram_options": [
         "6 GB"
       ],
@@ -2632,7 +2851,7 @@
       "featured": false,
       "hot_deal": false,
       "show_variants": false,
-      "sort_order": 22,
+      "sort_order": 23,
       "storeId": "owner"
     },
     {
@@ -2743,7 +2962,7 @@
       "featured": false,
       "hot_deal": false,
       "show_variants": false,
-      "sort_order": 23,
+      "sort_order": 24,
       "storeId": "owner"
     },
     {
@@ -2844,7 +3063,7 @@
       "hot_deal": false,
       "show_variants": true,
       "storeId": "owner",
-      "sort_order": 24,
+      "sort_order": 25,
       "ram_options": [
         "8 GB"
       ],
@@ -2955,7 +3174,7 @@
       "featured": false,
       "hot_deal": false,
       "show_variants": false,
-      "sort_order": 25,
+      "sort_order": 26,
       "storeId": "owner"
     }
   ]

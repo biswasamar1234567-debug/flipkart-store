@@ -590,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const locationBtn = document.getElementById('locationBtn');
   if (locationBtn) {
     locationBtn.addEventListener('click', () => {
-      showToast('📍 Delivery address: Kolkata, 700001');
+      showToast('📍 Select delivery location');
     });
   }
 
