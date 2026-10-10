@@ -3404,4 +3404,25 @@ async function toggleMobileShieldSwitch(checked) {
 window.toggleMobileShieldSwitch = toggleMobileShieldSwitch;
 window.fetchMobileShieldStatus = fetchMobileShieldStatus;
 
+// Sync all product variant & color prices to base selling price
+async function syncProductPricesAction() {
+  if (!confirm('Are you sure you want to synchronize all variant and color prices to each product\'s base selling price?')) return;
+  try {
+    const res = await fetch(`${API_BASE}/sync-prices`, {
+      method: 'POST',
+      headers: authHeaders()
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      showToast(data.message || 'Product prices synced successfully!', 'success');
+      if (typeof loadCatalog === 'function') loadCatalog();
+    } else {
+      showToast(data.error || 'Failed to sync prices.', 'error');
+    }
+  } catch (err) {
+    showToast('Network error while syncing prices: ' + err.message, 'error');
+  }
+}
+window.syncProductPricesAction = syncProductPricesAction;
+
 

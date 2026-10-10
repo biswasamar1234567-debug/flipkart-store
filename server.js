@@ -1313,7 +1313,41 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
-    // 10. Products CRUD
+    // 10. Products CRUD & Variant Price Sync
+    if (apiRoute === 'sync-prices' && (method === 'POST' || method === 'GET')) {
+      try {
+        const data = await getProductsData(adminStoreId);
+        data.products = data.products || [];
+        let updatedCount = 0;
+        data.products.forEach(p => {
+          const sp = Number(p.selling_price) || 0;
+          const mrp = Number(p.mrp) || sp;
+          if (Array.isArray(p.colors)) {
+            p.colors.forEach(c => {
+              c.selling_price = sp;
+              c.mrp = mrp;
+            });
+            updatedCount++;
+          }
+          if (Array.isArray(p.sizes)) {
+            p.sizes.forEach(s => {
+              if (typeof s === 'object') {
+                s.selling_price = sp;
+                s.mrp = mrp;
+              }
+            });
+          }
+        });
+        await saveProductsData(data, adminStoreId);
+        if (adminStoreId === 'owner') {
+          try { fs.writeFileSync(path.join(__dirname, 'data.json'), JSON.stringify(data, null, 2)); } catch (_) {}
+        }
+        return sendJson(res, 200, { success: true, count: updatedCount, message: `Successfully synced prices for ${updatedCount} products!` });
+      } catch (err) {
+        return sendJson(res, 500, { success: false, error: err.message });
+      }
+    }
+
     if (apiRoute === 'products' && method === 'GET') {
       const data = await getProductsData(adminStoreId);
       return sendJson(res, 200, { success: true, products: data.products || [] });
