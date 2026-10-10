@@ -1508,19 +1508,23 @@ const server = http.createServer(async (req, res) => {
           userId: String(user._id), role: 'client', storeId: slug, email
         });
 
-        const host = req.headers['host'] || 'localhost:3000';
-        const proto = (req.headers['x-forwarded-proto'] || 'http').split(',')[0].trim();
-        const hostParts = host.split(':');
-        const portPart = hostParts[1] ? `:${hostParts[1]}` : '';
-        const baseHost = hostParts[0];
-        const isLocal = baseHost === 'localhost' || baseHost === '127.0.0.1';
+        const reqHost = req.headers['host'] || '';
+        const hostParts = reqHost.split(':');
+        const isLocal = hostParts[0] === 'localhost' || hostParts[0] === '127.0.0.1';
 
-        const subdomainHost = isLocal ? `${slug}.localhost${portPart}` : `${slug}.${baseHost}${portPart}`;
-        const storeSubdomainUrl = `${proto}://${subdomainHost}/`;
-        const adminSubdomainUrl = `${proto}://${subdomainHost}/admin/`;
+        // Prefer custom domain www.filpshoponline.shop; avoid onrender.com internal URLs
+        let publicHost = '';
+        if (isLocal) {
+          publicHost = reqHost;
+        } else if (reqHost && !reqHost.includes('onrender.com') && !reqHost.includes('render.com')) {
+          publicHost = reqHost;
+        } else {
+          publicHost = process.env.CUSTOM_DOMAIN || process.env.BASE_DOMAIN || 'www.filpshoponline.shop';
+        }
 
-        const storeFallbackUrl = `${proto}://${host}/?store=${slug}`;
-        const adminFallbackUrl = `${proto}://${host}/admin/?store=${slug}`;
+        const finalProto = isLocal ? 'http' : 'https';
+        const storeUrl = `${finalProto}://${publicHost}/?store=${encodeURIComponent(slug)}`;
+        const adminUrl = `${finalProto}://${publicHost}/admin/?store=${encodeURIComponent(slug)}`;
 
         return sendJson(res, 201, {
           success: true,
@@ -1528,12 +1532,12 @@ const server = http.createServer(async (req, res) => {
           user: { id: user._id, fullName, email, role: 'client', storeName, storeSlug: slug },
           storeSlug: slug,
           storeName: storeName,
-          storeUrl: storeSubdomainUrl,
-          adminUrl: adminSubdomainUrl,
-          subdomainStoreUrl: storeSubdomainUrl,
-          subdomainAdminUrl: adminSubdomainUrl,
-          fallbackStoreUrl: storeFallbackUrl,
-          fallbackAdminUrl: adminFallbackUrl,
+          storeUrl: storeUrl,
+          adminUrl: adminUrl,
+          subdomainStoreUrl: storeUrl,
+          subdomainAdminUrl: adminUrl,
+          fallbackStoreUrl: storeUrl,
+          fallbackAdminUrl: adminUrl,
           message: 'Account created! Your store and admin panel are ready with a 7-day free trial.'
         });
       } catch (err) {
@@ -1674,7 +1678,7 @@ const server = http.createServer(async (req, res) => {
           createdAt: c.createdAt,
           upiId: store.upiId || '', paymentUrl: store.paymentUrl || '',
           siteMode: store.siteMode || 'flipkart',
-          storeUrl: `${c.storeSlug}.${process.env.BASE_DOMAIN || 'localhost'}`,
+          storeUrl: `https://${process.env.CUSTOM_DOMAIN || 'www.filpshoponline.shop'}/?store=${encodeURIComponent(c.storeSlug)}`,
           license: lic ? {
             key: lic.key, plan: lic.plan, expiresAt: lic.expiresAt,
             daysLeft: Math.max(0, Math.ceil((lic.expiresAt - Date.now()) / 86400000))

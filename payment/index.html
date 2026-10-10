@@ -1222,22 +1222,26 @@
             refreshCheckoutVisibility();
           });
 
-        const storedVariant = localStorage.getItem("selected_verient");
+        const storedVariant = localStorage.getItem("selected_verient") || sessionStorage.getItem("selected_verient");
         if (storedVariant) {
           try {
             itemData = JSON.parse(storedVariant);
           } catch(e) {}
         }
+        if (!itemData) itemData = {};
 
-        var imgSrc = itemData.img1 || itemData.img || "../assets/images/iphone17/hero.jpg";
+        var imgSrc = itemData.img1 || itemData.img || "";
         if (imgSrc && !imgSrc.startsWith("http") && !imgSrc.startsWith("/") && !imgSrc.startsWith("../")) {
           imgSrc = "../" + imgSrc;
         }
-        $("#item_image").attr("src", imgSrc);
+        if (imgSrc) {
+          $("#item_image").attr("src", imgSrc);
+        }
 
-        const name =
-          (itemData.name || "Apple iPhone 17 Pro Max") +
-          (itemData.color ? " (" + itemData.color + ")" : "");
+        let name = itemData.name || "Product";
+        if (itemData.color && !name.toLowerCase().includes(itemData.color.toLowerCase())) {
+          name += " (" + itemData.color + ")";
+        }
         $("#product-title").html(name);
 
         const urlParams = new URLSearchParams(window.location.search);

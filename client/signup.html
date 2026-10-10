@@ -304,8 +304,20 @@ $('signupForm').addEventListener('submit', async e => {
     $('msg').style.display = 'none';
     if ($('altFooter')) $('altFooter').style.display = 'none';
 
-    const storeUrl = data.subdomainStoreUrl || data.storeUrl || data.fallbackStoreUrl;
-    const adminUrl = data.subdomainAdminUrl || data.adminUrl || data.fallbackAdminUrl;
+    let baseOrigin = window.location.origin;
+    if (window.location.hostname.includes('onrender.com') || !baseOrigin || baseOrigin.includes('localhost') === false && !baseOrigin.includes('filpshoponline.shop')) {
+      baseOrigin = 'https://www.filpshoponline.shop';
+    }
+
+    // Ensure links always use working ?store= routing on the custom domain
+    let storeUrl = data.storeUrl;
+    let adminUrl = data.adminUrl;
+    if (!storeUrl || storeUrl.includes('.onrender.com') || (!storeUrl.includes('?store=') && !window.location.hostname.includes('localhost'))) {
+      storeUrl = `${baseOrigin}/?store=${encodeURIComponent(data.storeSlug)}`;
+    }
+    if (!adminUrl || adminUrl.includes('.onrender.com') || (!adminUrl.includes('?store=') && !window.location.hostname.includes('localhost'))) {
+      adminUrl = `${baseOrigin}/admin/?store=${encodeURIComponent(data.storeSlug)}`;
+    }
 
     $('storeUrlInput').value = storeUrl;
     $('storeUrlLink').href = storeUrl;

@@ -30,9 +30,9 @@ function goToCart(address) {
   showToast('✓ Address Saved');
   setTimeout(() => {
     const targetCartUrl = window.location.pathname.includes('/address') ? '../cart/index.html' : 'cart/index.html';
-    const storeParam = new URLSearchParams(window.location.search).get('store');
-    const qStore = storeParam ? `?store=${encodeURIComponent(storeParam)}` : '';
-    window.location.href = targetCartUrl + qStore;
+    const params = new URLSearchParams(window.location.search);
+    const qs = params.toString() ? ('?' + params.toString()) : '';
+    window.location.href = targetCartUrl + qs;
   }, 400);
 }
 

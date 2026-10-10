@@ -96,7 +96,7 @@ $(document).ready(function () {
     }
   });
 
-  var raw = localStorage.getItem("selected_verient");
+  var raw = localStorage.getItem("selected_verient") || sessionStorage.getItem("selected_verient");
   if (raw) {
     try {
       itemData = JSON.parse(raw);
@@ -105,41 +105,103 @@ $(document).ready(function () {
     }
   }
 
+  // If itemData is still missing or has no name, try loading from URL ?id= or cached catalog
   if (!itemData || !itemData.name) {
-    itemData = {
-      name: "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)",
-      color: "Cosmic Orange",
-      storage: "256 GB",
-      unit_selling_price: 999,
-      unit_mrp: 147900,
-      selling_price: 999,
-      mrp: 147900,
-      qty: 1,
-      img1: "../assets/images/iphone17/hero.jpg"
-    };
+    var pid = new URLSearchParams(window.location.search).get("id");
+    if (pid) {
+      try {
+        var cached = sessionStorage.getItem("fk_active_product_" + pid) || sessionStorage.getItem("fk_last_active_product");
+        if (cached) {
+          var p = JSON.parse(cached);
+          if (p) {
+            itemData = {
+              id: p.id,
+              name: p.title2 || p.name || "Product",
+              title: p.title2 || p.name || "Product",
+              mrp: Number(p.mrp) || 999,
+              selling_price: Number(p.selling_price) || 999,
+              unit_selling_price: Number(p.selling_price) || 999,
+              unit_mrp: Number(p.mrp) || 999,
+              qty: 1,
+              color: p.selected_color || p.default_color || (p.colors && p.colors[0]?.color_name) || "",
+              size: p.selected_size || p.default_size || p.size || "",
+              storage: p.selected_storage || p.storage || "",
+              ram: p.selected_ram || p.ram || "",
+              img: p.img1 || p.image || (Array.isArray(p.images) && p.images[0]) || "",
+              img1: p.img1 || p.image || (Array.isArray(p.images) && p.images[0]) || ""
+            };
+          }
+        }
+      } catch(e) {}
+    }
+  }
+
+  // Catalog fallback if available
+  if (!itemData || !itemData.name) {
+    try {
+      var catStr = sessionStorage.getItem("fk_catalog") || localStorage.getItem("fk_catalog");
+      if (catStr) {
+        var cat = JSON.parse(catStr);
+        if (Array.isArray(cat) && cat.length > 0) {
+          var targetId = new URLSearchParams(window.location.search).get("id");
+          var p = (targetId ? cat.find(function(x) { return x.id === targetId || x._id === targetId; }) : null) || cat[0];
+          itemData = {
+            id: p.id,
+            name: p.title2 || p.name || "Product",
+            title: p.title2 || p.name || "Product",
+            mrp: Number(p.mrp) || 999,
+            selling_price: Number(p.selling_price) || 999,
+            unit_selling_price: Number(p.selling_price) || 999,
+            unit_mrp: Number(p.mrp) || 999,
+            qty: 1,
+            color: p.selected_color || p.default_color || (p.colors && p.colors[0]?.color_name) || "",
+            size: p.selected_size || p.default_size || p.size || "",
+            storage: p.selected_storage || p.storage || "",
+            ram: p.selected_ram || p.ram || "",
+            img: p.img1 || p.image || (Array.isArray(p.images) && p.images[0]) || "",
+            img1: p.img1 || p.image || (Array.isArray(p.images) && p.images[0]) || ""
+          };
+        }
+      }
+    } catch(e) {}
+  }
+
+  if (itemData) {
     persistCartVariant();
   }
 
   cartUnitSelling =
-    parseInt(itemData.unit_selling_price, 10) ||
-    parseInt(itemData.selling_price, 10) ||
+    parseInt(itemData?.unit_selling_price, 10) ||
+    parseInt(itemData?.selling_price, 10) ||
     999;
   cartUnitMrp =
-    parseInt(itemData.unit_mrp, 10) || parseInt(itemData.mrp, 10) || 147900;
-  cartQty = parseInt(itemData.qty, 10) || 1;
+    parseInt(itemData?.unit_mrp, 10) || parseInt(itemData?.mrp, 10) || cartUnitSelling;
+  cartQty = parseInt(itemData?.qty, 10) || 1;
 
-  var imgSrc = itemData.img1 || itemData.img || "../assets/images/iphone17/hero.jpg";
+  var imgSrc = itemData ? (itemData.img1 || itemData.img || "") : "";
   if (imgSrc && !imgSrc.startsWith("http") && !imgSrc.startsWith("/") && !imgSrc.startsWith("../")) {
     imgSrc = "../" + imgSrc;
   }
-  $("#item_image").prop("src", imgSrc);
-  var detail =
-    (itemData.color || "Cosmic Orange") +
-    (itemData.size ? " (" + itemData.size + ")" : "") +
-    (itemData.storage ? " (" + itemData.storage + ")" : " (256 GB)");
+  if (imgSrc) {
+    $("#item_image").prop("src", imgSrc);
+  }
 
-  $("#product-title").html(itemData.name || "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)");
-  $("#product-detail").html(detail);
+  var detailParts = [];
+  if (itemData) {
+    if (itemData.color) detailParts.push(itemData.color);
+    if (itemData.size) detailParts.push("Size: " + itemData.size);
+    if (itemData.storage) detailParts.push(itemData.storage);
+    if (itemData.ram) detailParts.push(itemData.ram);
+  }
+  var detail = detailParts.join(" • ");
+  if (!detail && itemData && itemData.subtitle) {
+    detail = itemData.subtitle;
+  }
+
+  if (itemData && itemData.name) {
+    $("#product-title").text(itemData.name);
+  }
+  $("#product-detail").text(detail);
 
   applyCartPrices(cartQty);
 

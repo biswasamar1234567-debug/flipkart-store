@@ -133,10 +133,14 @@ $('loginForm').addEventListener('submit', async e => {
 
     // Cookie only - no localStorage.
     document.cookie = 'store_admin_token=' + encodeURIComponent(data.token) + '; path=/; max-age=86400; SameSite=Lax';
+    if (data.user && data.user.storeSlug) {
+      document.cookie = 'current_store_id=' + encodeURIComponent(data.user.storeSlug) + '; path=/; max-age=86400; SameSite=Lax';
+    }
 
     showMsg(data.message + ' Redirecting...', 'ok');
     setTimeout(() => {
       if (data.user.role === 'owner' || data.user.role === 'super_admin') location.href = '/superadmin/';
+      else if (data.user.storeSlug) location.href = '/admin/?store=' + encodeURIComponent(data.user.storeSlug);
       else location.href = '/admin/';
     }, 900);
   } catch (err) {

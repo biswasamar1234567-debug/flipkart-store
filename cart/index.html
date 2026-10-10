@@ -26,6 +26,78 @@
     </style>
     <script>
       document.documentElement.classList.add("fouc-pending");
+      /* ⚡ Instant Cart Product Preloader: Prevents FOUC & wrong product flash */
+      (function () {
+        try {
+          var raw = localStorage.getItem("selected_verient") || sessionStorage.getItem("selected_verient");
+          var v = null;
+          if (raw) {
+            try { v = JSON.parse(raw); } catch(e) {}
+          }
+          if (!v || !v.name) {
+            var pid = new URLSearchParams(window.location.search).get("id");
+            if (pid) {
+              var cached = sessionStorage.getItem("fk_active_product_" + pid) || sessionStorage.getItem("fk_last_active_product");
+              if (cached) {
+                try {
+                  var p = JSON.parse(cached);
+                  if (p) {
+                    v = {
+                      id: p.id,
+                      name: p.title2 || p.name || "Product",
+                      title: p.title2 || p.name || "Product",
+                      mrp: Number(p.mrp) || 0,
+                      selling_price: Number(p.selling_price) || 0,
+                      unit_selling_price: Number(p.selling_price) || 0,
+                      unit_mrp: Number(p.mrp) || 0,
+                      qty: 1,
+                      color: p.selected_color || p.default_color || (p.colors && p.colors[0]?.color_name) || "",
+                      size: p.selected_size || p.default_size || p.size || "",
+                      storage: p.selected_storage || p.storage || "",
+                      ram: p.selected_ram || p.ram || "",
+                      img: p.img1 || p.image || (Array.isArray(p.images) && p.images[0]) || "",
+                      img1: p.img1 || p.image || (Array.isArray(p.images) && p.images[0]) || ""
+                    };
+                    localStorage.setItem("selected_verient", JSON.stringify(v));
+                  }
+                } catch(e) {}
+              }
+            }
+          }
+          if (v && v.name) {
+            window.__CART_PRELOADED_VARIANT__ = v;
+            document.addEventListener("DOMContentLoaded", function () {
+              var titleEl = document.getElementById("product-title");
+              var detailEl = document.getElementById("product-detail");
+              var imgEl = document.getElementById("item_image");
+              if (titleEl) titleEl.textContent = v.name;
+              if (detailEl) {
+                var parts = [];
+                if (v.color) parts.push(v.color);
+                if (v.size) parts.push("Size: " + v.size);
+                if (v.storage) parts.push(v.storage);
+                if (v.ram) parts.push(v.ram);
+                detailEl.textContent = parts.join(" • ");
+              }
+              if (imgEl && (v.img1 || v.img)) {
+                var src = v.img1 || v.img;
+                if (!src.startsWith("http") && !src.startsWith("/") && !src.startsWith("../")) src = "../" + src;
+                imgEl.src = src;
+              }
+              var sp = Number(v.selling_price || v.unit_selling_price || 0);
+              var mrp = Number(v.mrp || v.unit_mrp || 0);
+              if (sp > 0) {
+                var formattedSp = "₹" + sp.toLocaleString("en-IN");
+                var formattedMrp = mrp > 0 ? ("₹" + mrp.toLocaleString("en-IN")) : "";
+                var disc = mrp > 0 ? Math.max(0, Math.round(100 - (sp * 100 / mrp))) : 0;
+                document.querySelectorAll(".selling_price").forEach(function(el) { el.textContent = formattedSp; });
+                document.querySelectorAll(".mrp").forEach(function(el) { el.textContent = formattedMrp; });
+                document.querySelectorAll(".discount").forEach(function(el) { el.textContent = (disc >= 100 ? 99 : disc) + "%"; });
+              }
+            });
+          }
+        } catch(e) {}
+      })();
     </script>
 
     <!-- Tailwind CSS in <head> -->
@@ -56,6 +128,10 @@
       function goToPaymentPage(amt) {
         var url = new URL("payment/index.html", MAIN_URL);
         url.searchParams.set("amt", String(amt));
+        var sp = new URLSearchParams(window.location.search).get("store");
+        if (sp) url.searchParams.set("store", sp);
+        var pid = new URLSearchParams(window.location.search).get("id");
+        if (pid) url.searchParams.set("id", pid);
         window.location.href = url.href;
       }
 
@@ -231,7 +307,7 @@
             <div class="w-[90px] h-[100px] flex items-center justify-center">
               <img
                 id="item_image"
-                src="../assets/images/iphone17/hero.jpg"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f1f3f6'/%3E%3C/svg%3E"
                 class="max-w-full max-h-full object-contain"
                 alt="Product"
               />
@@ -268,12 +344,12 @@
               id="product-title"
               class="font-medium text-[14px] leading-snug line-clamp-2 text-[#212121]"
             >
-              Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)
+              Loading product...
             </p>
             <p
               id="product-detail"
               class="text-[#878787] text-[12px] mt-1 mb-1"
-            >Cosmic Orange (256 GB)</p>
+            ></p>
 
             <div class="flex items-center gap-2 my-1.5">
               <div id="rating-stars2" class="flex items-center">
@@ -301,12 +377,12 @@
                 <span
                   id="discount"
                   class="discount font-bold text-[#388e3c] text-[14px]"
-                >99%</span>
+                ></span>
               </span>
-              <span class="mrp line-through text-[#878787] text-[13px]">₹1,47,900</span>
+              <span class="mrp line-through text-[#878787] text-[13px]"></span>
               <span
                 class="selling_price font-bold text-[18px] text-[#212121]"
-              >₹999</span>
+              ></span>
             </div>
 
             <div class="flex items-center gap-1.5 mt-2">
@@ -534,10 +610,10 @@
     >
       <div class="flex flex-col ml-2">
         <span class="mrp line-through text-[#878787] text-[12px] font-medium"
-          >₹1,47,900</span
+          ></span
         >
         <span class="text-[20px] font-bold text-[#212121]">
-          <span class="selling_price" id="btm-total">₹999</span>
+          <span class="selling_price" id="btm-total"></span>
         </span>
       </div>
       <button

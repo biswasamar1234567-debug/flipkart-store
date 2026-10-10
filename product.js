@@ -1368,38 +1368,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 11. Buy Now & Add To Cart Flow -> Redirect to Address Page (address/index.html)
   window.buyNowAction = function() {
-    if (!currentProductData) return;
-    const mainImg = currentProductData.img1 || currentProductData.image || (Array.isArray(currentProductData.images) && currentProductData.images[0]) || (currentProductData.colors && (currentProductData.colors[0]?.color_img || currentProductData.colors[0]?.images?.[0])) || 'assets/images/iphone17/hero.jpg';
+    let p = currentProductData;
+    if (!p) {
+      try {
+        const pid = getQueryParam('id') || 'iphone17';
+        const cached = sessionStorage.getItem('fk_active_product_' + pid) || sessionStorage.getItem('fk_last_active_product');
+        if (cached) p = JSON.parse(cached);
+      } catch (e) {}
+    }
+    if (!p && window.__PRELOADED_PRODUCT__) {
+      p = window.__PRELOADED_PRODUCT__;
+    }
+    if (!p) return;
 
-    const activeSellingPrice = Number(currentProductData.active_selling_price) || Number(currentProductData.selling_price) || 999;
-    const activeMrp = Number(currentProductData.active_mrp) || Number(currentProductData.mrp) || 147900;
-    const activeSize = currentProductData.selected_size || currentProductData.default_size || '';
-    const activeColor = currentProductData.selected_color || currentProductData.default_color || (currentProductData.colors?.[0]?.color_name) || '';
+    const mainImg = p.img1 || p.image || (Array.isArray(p.images) && p.images[0]) || (p.colors && (p.colors[0]?.color_img || p.colors[0]?.images?.[0])) || 'assets/images/iphone17/hero.jpg';
 
-    let displayName = currentProductData.title2 || currentProductData.name || 'Product';
+    const activeSellingPrice = Number(p.active_selling_price) || Number(p.selling_price) || 999;
+    const activeMrp = Number(p.active_mrp) || Number(p.mrp) || 147900;
+    const activeSize = p.selected_size || p.default_size || p.size || '';
+    const activeColor = p.selected_color || p.default_color || (p.colors?.[0]?.color_name) || '';
+    const activeStorage = p.selected_storage || p.storage || '';
+    const activeRam = p.selected_ram || p.ram || '';
+
+    let displayName = p.title2 || p.name || 'Product';
     if (activeSize && !displayName.toLowerCase().includes(activeSize.toLowerCase())) {
       displayName += ` (Size: ${activeSize})`;
     }
 
     const variant = {
-      id: currentProductData.id,
+      id: p.id || getQueryParam('id'),
       name: displayName,
       title: displayName,
       mrp: activeMrp,
       selling_price: activeSellingPrice,
       unit_selling_price: activeSellingPrice,
+      unit_mrp: activeMrp,
+      qty: 1,
       size: activeSize,
       color: activeColor,
+      storage: activeStorage,
+      ram: activeRam,
       img: mainImg,
       img1: mainImg
     };
-    localStorage.setItem('selected_verient', JSON.stringify(variant));
+    try {
+      localStorage.setItem('selected_verient', JSON.stringify(variant));
+      sessionStorage.setItem('selected_verient', JSON.stringify(variant));
+    } catch (e) {}
 
     // Redirect to Address Page (handles both /product.html and /products/index.php paths)
     const targetAddressUrl = window.location.pathname.includes('/products') ? '../address/index.html' : 'address/index.html';
     const storeParam = new URLSearchParams(window.location.search).get('store');
-    const qStore = storeParam ? `?store=${encodeURIComponent(storeParam)}` : '';
-    window.location.href = targetAddressUrl + qStore;
+    const qParams = new URLSearchParams();
+    if (variant.id) qParams.set('id', variant.id);
+    if (storeParam) qParams.set('store', storeParam);
+    const qs = qParams.toString() ? ('?' + qParams.toString()) : '';
+    window.location.href = targetAddressUrl + qs;
   };
 
   window.addToCartAction = function() {
