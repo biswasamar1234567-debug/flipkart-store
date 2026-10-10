@@ -134,6 +134,16 @@ async function getProducts(storeId) {
     }
   }
 
+  // Deduplicate products by id to guarantee a store never serves duplicate products
+  const uniqueMap = new Map();
+  list.forEach(p => {
+    const key = String(p.id || p._id).toLowerCase();
+    if (!uniqueMap.has(key)) {
+      uniqueMap.set(key, p);
+    }
+  });
+  list = Array.from(uniqueMap.values());
+
   // Lazy migration: give every product a real position. Products without one
   // sort first (missing < numbers), which keeps "newest product on top".
   if (list.some(p => p.sort_order == null)) {
