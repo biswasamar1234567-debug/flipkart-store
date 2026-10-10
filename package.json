@@ -1,0 +1,21 @@
+{
+  "name": "flipkart-clone",
+  "version": "1.0.0",
+  "description": "Flipkart Clone responsive mobile web app with live countdown timer, single product card matching screenshots, and checkout drawer",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "flipkart",
+    "ecommerce",
+    "mobile-web"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^18.0.7",
+    "mongodb": "^7.7.0"
+  }
+}

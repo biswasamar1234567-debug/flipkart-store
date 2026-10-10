@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AetherAI — Enterprise Autonomous Intelligence & Foundation Platform</title>
+  <meta name="description" content="AetherAI provides secure, low-latency generative models, enterprise agentic automation, and zero-trust data synthesis for global organizations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="/assets/security-shield.js"></script>
+  <style>
+    :root {
+      --bg: #060913;
+      --bg-card: rgba(15, 23, 42, 0.7);
+      --border: rgba(148, 163, 184, 0.12);
+      --primary: #8b5cf6;
+      --primary-glow: rgba(139, 92, 246, 0.25);
+      --cyan: #06b6d4;
+      --cyan-glow: rgba(6, 182, 212, 0.25);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Ambient background gradient meshes */
+    .ambient-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(139, 92, 246, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 82% 28%, rgba(6, 182, 212, 0.10) 0%, transparent 50%),
+        radial-gradient(circle at 50% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 60%);
+    }
+
+    /* Header / Nav */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 9, 19, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 18px;
+      box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+    }
+    .brand-text {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .brand-text span {
+      background: linear-gradient(135deg, #a78bfa, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .btn-secondary {
+      background: rgba(30, 41, 59, 0.7);
+      color: #e2e8f0;
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover {
+      background: rgba(51, 65, 85, 0.8);
+      color: #fff;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 18px rgba(124, 58, 237, 0.35);
+    }
+    .btn-primary:hover {
+      filter: brightness(1.12);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 90px 24px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 30px;
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: #c4b5fd;
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      backdrop-filter: blur(8px);
+    }
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      margin-bottom: 22px;
+      color: #fff;
+    }
+    .hero h1 span.gradient {
+      background: linear-gradient(135deg, #c084fc 0%, #38bdf8 50%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      max-width: 720px;
+      margin: 0 auto 36px;
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 50px;
+    }
+    .stats-banner {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto 50px;
+      padding: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      backdrop-filter: blur(12px);
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Interactive AI Playground */
+    .playground-section {
+      position: relative;
+      z-index: 1;
+      max-width: 1040px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+    }
+    .playground-card {
+      background: #0c1322;
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px var(--primary-glow);
+      overflow: hidden;
+    }
+    .playground-top {
+      background: #111a30;
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .window-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-r { background: #ef4444; }
+    .dot-y { background: #f59e0b; }
+    .dot-g { background: #10b981; }
+    .playground-tabs {
+      display: flex;
+      gap: 6px;
+    }
+    .p-tab {
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .p-tab.active {
+      background: rgba(139, 92, 246, 0.18);
+      border-color: rgba(139, 92, 246, 0.4);
+      color: #c4b5fd;
+    }
+    .playground-body {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .playground-body { grid-template-columns: 1fr; }
+    }
+    .input-box, .output-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .box-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    textarea.prompt-area {
+      width: 100%;
+      height: 180px;
+      background: #070d18;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 14px;
+      color: #f1f5f9;
+      font-family: inherit;
+      font-size: 13.5px;
+      resize: none;
+      outline: none;
+      transition: border-color .2s;
+    }
+    textarea.prompt-area:focus { border-color: var(--cyan); }
+    .output-screen {
+      width: 100%;
+      height: 180px;
+      background: #070d18;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 14px;
+      color: #38bdf8;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+    .quick-prompts {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .q-btn {
+      padding: 5px 10px;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid #334155;
+      color: #94a3b8;
+      border-radius: 6px;
+      font-size: 11.5px;
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .q-btn:hover { color: #fff; border-color: var(--primary); }
+
+    /* Features Grid */
+    .features-section {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+    }
+    .sec-head {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 50px;
+    }
+    .sec-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--cyan);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .sec-title {
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .sec-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .feat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      backdrop-filter: blur(8px);
+      transition: transform .2s, border-color .2s;
+    }
+    .feat-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(139, 92, 246, 0.4);
+    }
+    .feat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(139, 92, 246, 0.15);
+      color: #c4b5fd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .feat-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .feat-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Compliance & Security Badge Section */
+    .compliance-bar {
+      max-width: 1200px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+    }
+    .comp-box {
+      background: linear-gradient(135deg, rgba(17, 26, 48, 0.6), rgba(8, 14, 28, 0.8));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .comp-text h4 {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .comp-text p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      max-width: 500px;
+    }
+    .comp-badges {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .c-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid #334155;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+    .c-badge i { color: #10b981; }
+
+    /* Transparent Pricing / Tier Display (NO CHECKOUT/PAYMENT) */
+    .pricing-section {
+      max-width: 1200px;
+      margin: 0 auto 100px;
+      padding: 0 24px;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .p-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 34px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .p-card.featured {
+      border-color: rgba(139, 92, 246, 0.5);
+      background: linear-gradient(180deg, rgba(30, 27, 75, 0.4), rgba(15, 23, 42, 0.8));
+    }
+    .p-card.featured::before {
+      content: 'MOST POPULAR';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .p-tier { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .p-price { font-size: 34px; font-weight: 900; color: #fff; margin-bottom: 4px; }
+    .p-price span { font-size: 14px; color: var(--text-muted); font-weight: 500; }
+    .p-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5; }
+    .p-feats { list-style: none; margin-bottom: 30px; flex-grow: 1; }
+    .p-feats li { font-size: 13.5px; color: #cbd5e1; margin-bottom: 11px; display: flex; align-items: center; gap: 8px; }
+    .p-feats li i { color: #10b981; font-size: 15px; }
+
+    /* Footer */
+    footer {
+      background: #04060d;
+      border-top: 1px solid var(--border);
+      padding: 60px 24px 30px;
+    }
+    .footer-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 50px;
+    }
+    @media (max-width: 800px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .footer-col h5 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color .15s;
+    }
+    .footer-col ul a:hover { color: #fff; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(148, 163, 184, 0.08);
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12.5px;
+      color: #64748b;
+    }
+
+    /* Modal System for Privacy Policy, Terms, About & Contact */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.82);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-content {
+      background: #0c1426;
+      border: 1px solid #1e2e4a;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 34px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: #cbd5e1;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .modal-close:hover { background: rgba(255, 255, 255, 0.15); color: #fff; }
+    .modal-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+    .modal-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; border-bottom: 1px solid #1e2e4a; padding-bottom: 14px; }
+    .legal-body { font-size: 13.5px; color: #cbd5e1; line-height: 1.7; }
+    .legal-body h4 { font-size: 15px; font-weight: 700; color: #fff; margin: 18px 0 6px; }
+
+    /* Contact Form Inside Modal */
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 12.5px; font-weight: 600; color: #cbd5e1; margin-bottom: 6px; }
+    .form-input {
+      width: 100%;
+      padding: 11px 14px;
+      background: #070d18;
+      border: 1px solid #2b3d5c;
+      border-radius: 10px;
+      color: #fff;
+      font-family: inherit;
+      font-size: 13.5px;
+      outline: none;
+    }
+    .form-input:focus { border-color: var(--cyan); }
+
+    /* Cookie Consent Banner */
+    .cookie-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      max-width: 480px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 16px 20px;
+      z-index: 99;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 12.5px;
+      color: #94a3b8;
+    }
+    .cookie-banner.hidden { display: none; }
+    .cookie-actions { display: flex; gap: 8px; justify-content: flex-end; }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glow Background -->
+  <div class="ambient-glow"></div>
+
+  <!-- Navigation -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="brand">
+        <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+        <div class="brand-text">AETHER<span>AI</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#playground">Interactive Demo</a></li>
+        <li><a href="#compliance">Security & Trust</a></li>
+        <li><a href="#pricing">Licensing</a></li>
+        <li><a href="javascript:void(0)" onclick="openModal('modalAbout')">Company</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#playground" class="btn btn-secondary"><i class="bi bi-play-circle"></i> Try Demo</a>
+        <a href="javascript:void(0)" onclick="openModal('modalContact')" class="btn btn-primary"><i class="bi bi-envelope-fill"></i> Contact Sales</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-badge">
+      <i class="bi bi-shield-check"></i> SOC 2 Type II & ISO/IEC 27001 Certified Enterprise Platform
+    </div>
+    <h1>
+      Architecting Autonomous<br>
+      <span class="gradient">Intelligence at Enterprise Scale</span>
+    </h1>
+    <p class="hero-sub">
+      AetherAI delivers high-throughput neural orchestration, real-time agentic automation, and zero-retention private cloud synthesis engineered for regulated industries.
+    </p>
+    <div class="hero-cta">
+      <a href="#playground" class="btn btn-primary" style="padding: 13px 28px; font-size: 15px;">
+        <i class="bi bi-terminal-fill"></i> Test Interactive Engine
+      </a>
+      <a href="javascript:void(0)" onclick="openModal('modalContact')" class="btn btn-secondary" style="padding: 13px 26px; font-size: 15px;">
+        <i class="bi bi-file-earmark-lock2-fill"></i> Request Enterprise SLA
+      </a>
+    </div>
+
+    <!-- Verified Stats -->
+    <div class="stats-banner">
+      <div class="stat-item">
+        <div class="stat-val">99.995%</div>
+        <div class="stat-lbl">Uptime SLA Guaranteed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">&lt; 8.4 ms</div>
+        <div class="stat-lbl">Edge Inference Latency</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">120M+</div>
+        <div class="stat-lbl">Daily Enterprise Inferences</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-val">Zero</div>
+        <div class="stat-lbl">Data Retention Guarantee</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive AI Playground (Live Working Demo) -->
+  <section id="playground" class="playground-section">
+    <div class="playground-card">
+      <div class="playground-top">
+        <div class="window-controls">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <span style="font-size: 12px; font-family: monospace; color: #94a3b8; margin-left: 6px;">aether-engine://v4-runtime.mesh</span>
+        </div>
+        <div class="playground-tabs">
+          <button type="button" class="p-tab active" onclick="switchPreset(this, 'synthesis')">Text Synthesis</button>
+          <button type="button" class="p-tab" onclick="switchPreset(this, 'audit')">Security Audit</button>
+          <button type="button" class="p-tab" onclick="switchPreset(this, 'schema')">JSON Schema</button>
+        </div>
+      </div>
+      <div class="playground-body">
+        <div class="input-box">
+          <div class="box-label">
+            <span>Input Prompt</span>
+            <span style="color: #64748b;">Live Sandbox</span>
+          </div>
+          <textarea id="promptInput" class="prompt-area" placeholder="Enter enterprise query or select a preset below...">Analyze regional cloud latency metrics across US-East and EU-Central clusters for peak financial transactions.</textarea>
+          <div class="quick-prompts">
+            <button type="button" class="q-btn" onclick="setPresetPrompt('Explain Zero-Retention Cryptographic Enclaves in 3 bullet points.')">Zero-Retention</button>
+            <button type="button" class="q-btn" onclick="setPresetPrompt('Generate compliance checklist for ISO/IEC 27001 AI governance audit.')">Compliance Audit</button>
+            <button type="button" class="q-btn" onclick="setPresetPrompt('Refactor distributed API gateway routing for multi-tenant isolation.')">API Architecture</button>
+          </div>
+          <button type="button" id="generateBtn" onclick="runAiDemo()" class="btn btn-primary" style="justify-content: center; margin-top: 6px;">
+            <i class="bi bi-lightning-charge-fill"></i> Execute Inference
+          </button>
+        </div>
+        <div class="output-box">
+          <div class="box-label">
+            <span>Neural Completion</span>
+            <span id="inferTime" style="color: #10b981; font-family: monospace;">Ready • 0.0ms</span>
+          </div>
+          <div id="outputConsole" class="output-screen">Click "Execute Inference" to simulate real-time AI synthesis...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions Grid -->
+  <section id="solutions" class="features-section">
+    <div class="sec-head">
+      <span class="sec-tag">Core Capabilities</span>
+      <h2 class="sec-title">Engineered for High-Consequence Infrastructure</h2>
+      <p class="sec-desc">Seamlessly orchestrate generative models, automated guardrails, and cryptographic memory stores.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat-card">
+        <div class="feat-icon"><i class="bi bi-hdd-network-fill"></i></div>
+        <h3>Distributed Inference Mesh</h3>
+        <p>Dynamic routing across geo-distributed compute clusters with automatic failover, sub-10ms response times, and deterministic latency bounds.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><i class="bi bi-shield-lock-fill"></i></div>
+        <h3>Zero-Retention Private Cloud</h3>
+        <p>Enterprise data is never used for training or persisted outside customer-controlled cryptographic hardware security modules (HSM).</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><i class="bi bi-diagram-3-fill"></i></div>
+        <h3>Agentic Orchestration</h3>
+        <p>Multi-step decision agents that autonomously decompose complex workflows, verify constraints, and interface with private ERP backends.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><i class="bi bi-patch-check-fill"></i></div>
+        <h3>Autonomous Guardrails</h3>
+        <p>Real-time prompt injection prevention, hallucination grounding, and regulatory filter layers active across all token streams.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><i class="bi bi-cpu-fill"></i></div>
+        <h3>Domain-Specific Fine Tuning</h3>
+        <p>Custom adapter architectures and direct parameter optimization tailored for legal, clinical, financial, and logistics terminologies.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon"><i class="bi bi-file-earmark-check-fill"></i></div>
+        <h3>Continuous Auditability</h3>
+        <p>Every token generated is cryptographically signed with provenance hashes, enabling total compliance tracing for regulatory reporting.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Compliance Trust Banner -->
+  <section id="compliance" class="compliance-bar">
+    <div class="comp-box">
+      <div class="comp-text">
+        <h4>Enterprise Security & Regulatory Compliance</h4>
+        <p>AetherAI maintains strict compliance frameworks to ensure full alignment with regional data privacy laws, registrars, and cloud standards.</p>
+      </div>
+      <div class="comp-badges">
+        <div class="c-badge"><i class="bi bi-check-circle-fill"></i> SOC 2 Type II</div>
+        <div class="c-badge"><i class="bi bi-check-circle-fill"></i> ISO/IEC 27001</div>
+        <div class="c-badge"><i class="bi bi-check-circle-fill"></i> GDPR & CCPA</div>
+        <div class="c-badge"><i class="bi bi-check-circle-fill"></i> 256-Bit TLS AES</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Transparent Pricing Plans (NO PAYMENT / PURE ENTERPRISE INQUIRY) -->
+  <section id="pricing" class="pricing-section">
+    <div class="sec-head">
+      <span class="sec-tag">Licensing & Tiers</span>
+      <h2 class="sec-title">Predictable Enterprise Access</h2>
+      <p class="sec-desc">Choose a tier designed for your development or enterprise production footprint.</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Community -->
+      <div class="p-card">
+        <div class="p-tier">Open Community</div>
+        <div class="p-price">$0 <span>/ developer</span></div>
+        <p class="p-desc">Ideal for evaluating foundation models, local research prototypes, and API sandboxes.</p>
+        <ul class="p-feats">
+          <li><i class="bi bi-check2"></i> 100,000 monthly inference tokens</li>
+          <li><i class="bi bi-check2"></i> Access to base Aether-7B models</li>
+          <li><i class="bi bi-check2"></i> Standard REST API endpoint</li>
+          <li><i class="bi bi-check2"></i> Community developer Discord</li>
+        </ul>
+        <button type="button" class="btn btn-secondary" onclick="openModal('modalContact')">Get Started Free</button>
+      </div>
+
+      <!-- Professional -->
+      <div class="p-card featured">
+        <div class="p-tier">Professional Tier</div>
+        <div class="p-price">$149 <span>/ month (billed annually)</span></div>
+        <p class="p-desc">High-speed production capacity for mid-market engineering teams and growing SaaS apps.</p>
+        <ul class="p-feats">
+          <li><i class="bi bi-check2"></i> 10,000,000 monthly tokens</li>
+          <li><i class="bi bi-check2"></i> Sub-15ms edge inference mesh</li>
+          <li><i class="bi bi-check2"></i> Custom adapter model hosting</li>
+          <li><i class="bi bi-check2"></i> 99.9% Uptime commitment</li>
+          <li><i class="bi bi-check2"></i> Priority ticketing support</li>
+        </ul>
+        <button type="button" class="btn btn-primary" onclick="openModal('modalContact')">Inquire for Access</button>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="p-card">
+        <div class="p-tier">Enterprise Custom</div>
+        <div class="p-price">Custom <span>/ cluster</span></div>
+        <p class="p-desc">Dedicated private compute clusters, air-gapped deployments, and custom legal SLAs.</p>
+        <ul class="p-feats">
+          <li><i class="bi bi-check2"></i> Unlimited dedicated compute</li>
+          <li><i class="bi bi-check2"></i> On-premise or Private VPC enclave</li>
+          <li><i class="bi bi-check2"></i> Custom fine-tuned 70B+ parameters</li>
+          <li><i class="bi bi-check2"></i> 99.995% FinTech grade SLA</li>
+          <li><i class="bi bi-check2"></i> 24/7 dedicated solutions architect</li>
+        </ul>
+        <button type="button" class="btn btn-secondary" onclick="openModal('modalContact')">Contact Enterprise Team</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Corporate Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="brand" style="margin-bottom: 14px;">
+          <div class="brand-icon"><i class="bi bi-cpu-fill"></i></div>
+          <div class="brand-text">AETHER<span>AI</span></div>
+        </div>
+        <p style="font-size: 13px; color: #94a3b8; line-height: 1.6; max-width: 320px;">
+          AetherAI Technologies Inc. is a global provider of compliant generative foundation infrastructure and agentic telemetry systems.
+        </p>
+        <div style="margin-top: 14px; font-size: 12.5px; color: #64748b;">
+          📍 Silicon Valley, CA • London, UK
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <ul>
+          <li><a href="#solutions">Inference Mesh</a></li>
+          <li><a href="#playground">Interactive Sandbox</a></li>
+          <li><a href="#compliance">Security & SOC 2</a></li>
+          <li><a href="#pricing">Pricing Plans</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="openModal('modalAbout')">About Our Vision</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('modalContact')">Enterprise Inquiries</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('modalContact')">Press & Media</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('modalContact')">Security Disclosures</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal & Trust</h5>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="openModal('modalPrivacy')">Privacy Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('modalTerms')">Terms of Service</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('modalAcceptable')">Acceptable Use Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('modalContact')">Abuse Reporting</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 AetherAI Technologies Inc. All rights reserved. Registered under Applicable Software Entity Laws.</div>
+      <div style="display: flex; gap: 16px;">
+        <a href="javascript:void(0)" onclick="openModal('modalPrivacy')" style="color: #64748b; text-decoration: none;">Privacy</a>
+        <a href="javascript:void(0)" onclick="openModal('modalTerms')" style="color: #64748b; text-decoration: none;">Terms</a>
+        <a href="javascript:void(0)" onclick="openModal('modalContact')" style="color: #64748b; text-decoration: none;">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== LEGAL & CONTACT MODALS ==================== -->
+
+  <!-- 1. Privacy Policy Modal -->
+  <div id="modalPrivacy" class="modal-overlay">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="closeModal('modalPrivacy')">&times;</button>
+      <h3 class="modal-title">Privacy Policy</h3>
+      <div class="modal-subtitle">Last Updated: October 2026 • Compliant with GDPR, CCPA, and Global Registrar Guidelines</div>
+      <div class="legal-body">
+        <h4>1. Information We Collect</h4>
+        <p>AetherAI Technologies Inc. operates on a strict zero-retention foundation model architecture. When you visit our website, we only process basic technical log data (IP address, browser user-agent, referrers) strictly for DDoS mitigation, load balancing, and network diagnostics.</p>
+
+        <h4>2. Zero-Retention Guarantee for AI Workloads</h4>
+        <p>Customer data, prompts, and tokens processed via AetherAI foundation endpoints are processed ephemerally in volatile memory. No customer prompts are ever saved, stored, logged to disk, or utilized for retraining any generative artificial intelligence models without explicit written bilateral agreement.</p>
+
+        <h4>3. Cookies and Telemetry</h4>
+        <p>We use essential security cookies strictly required for CSRF protection, session management, and traffic optimization. We do not sell personal data to data brokers or third-party behavioral advertising networks.</p>
+
+        <h4>4. Your Rights under GDPR and CCPA</h4>
+        <p>You have the full right to request access to, correction of, or deletion of any technical telemetry we maintain. You may exercise these rights at any time by contacting our Data Protection Officer at privacy@aether-ai.cloud.</p>
+
+        <h4>5. Security Standards</h4>
+        <p>All communication channels are encrypted using Transport Layer Security (TLS 1.3) with 256-bit encryption. System components conform to ISO/IEC 27001 and SOC 2 Type II controls.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Terms of Service Modal -->
+  <div id="modalTerms" class="modal-overlay">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="closeModal('modalTerms')">&times;</button>
+      <h3 class="modal-title">Terms of Service</h3>
+      <div class="modal-subtitle">Effective: 2026 • Standard Enterprise Software Licensing</div>
+      <div class="legal-body">
+        <h4>1. Acceptance of Terms</h4>
+        <p>By accessing AetherAI's website, developer documentation, or interactive engine previews, you agree to be bound by these Terms of Service and all applicable federal and international regulations.</p>
+
+        <h4>2. Intellectual Property</h4>
+        <p>All software architectures, model weights, interface designs, trademarks, and documentation published on this domain remain the exclusive intellectual property of AetherAI Technologies Inc.</p>
+
+        <h4>3. Acceptable Use</h4>
+        <p>You agree not to use this platform to conduct unauthorized vulnerability probing, distributed denial of service attacks, phishing campaigns, automated credential stuffing, or the generation of prohibited harmful material.</p>
+
+        <h4>4. Disclaimer of Warranty & Limitation of Liability</h4>
+        <p>Interactive demonstrations and public previews are provided "as-is" without warranty of any kind. AetherAI Technologies Inc. shall not be liable for any indirect, incidental, or consequential damages resulting from platform evaluation.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Acceptable Use Policy Modal -->
+  <div id="modalAcceptable" class="modal-overlay">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="closeModal('modalAcceptable')">&times;</button>
+      <h3 class="modal-title">Acceptable Use Policy</h3>
+      <div class="modal-subtitle">Anti-Abuse Standards & Domain Registrar Compliance</div>
+      <div class="legal-body">
+        <h4>Strict Prohibition of Illicit Activity</h4>
+        <p>AetherAI strictly prohibits the use of its infrastructure, computational resources, or brand for:
+          <br>• Phishing, deceptive social engineering, or fraudulent impersonation.
+          <br>• Transmission of malware, ransomware, or malicious payload distribution.
+          <br>• Infringing upon third-party copyrights or proprietary trade secrets.
+          <br>• Circumventing regional cybersecurity statutes or ICANN registrar policies.
+        </p>
+        <p>Violations will result in immediate API termination and reporting to relevant regulatory enforcement authorities.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. About Us Modal -->
+  <div id="modalAbout" class="modal-overlay">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="closeModal('modalAbout')">&times;</button>
+      <h3 class="modal-title">About AetherAI Technologies</h3>
+      <div class="modal-subtitle">Innovating Safe, Scalable Foundation Intelligence</div>
+      <div class="legal-body">
+        <p>Founded by distributed systems researchers and machine learning engineers, AetherAI provides high-security cloud solutions that empower Fortune 500 enterprises to leverage autonomous artificial intelligence with mathematical privacy guarantees.</p>
+        <h4>Executive Leadership</h4>
+        <p>Our multidisciplinary team comprises veterans from global cloud providers, research institutions, and enterprise cybersecurity alliances.</p>
+        <h4>Corporate Inquiries</h4>
+        <p>AetherAI Technologies Inc.<br>
+        HQ: 440 Montgomery St, San Francisco, CA 94104<br>
+        EU Division: 100 Bishopsgate, London EC2N 4AG<br>
+        Contact: contact@aether-ai.cloud
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Contact Sales / Support Modal -->
+  <div id="modalContact" class="modal-overlay">
+    <div class="modal-content">
+      <button type="button" class="modal-close" onclick="closeModal('modalContact')">&times;</button>
+      <h3 class="modal-title">Enterprise Contact & Inquiries</h3>
+      <div class="modal-subtitle">Our technical team responds within 1 business day</div>
+      <form id="contactForm" onsubmit="handleContactSubmit(event)">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" required class="form-input" placeholder="e.g. Dr. Sarah Jenkins" />
+        </div>
+        <div class="form-group">
+          <label>Work Email *</label>
+          <input type="email" required class="form-input" placeholder="sarah@enterprise-corp.com" />
+        </div>
+        <div class="form-group">
+          <label>Inquiry Type</label>
+          <select class="form-input">
+            <option>Enterprise Platform License Consultation</option>
+            <option>Security & Compliance Audit Inquiries</option>
+            <option>Domain / Technical Partnership</option>
+            <option>General Media & Developer Access</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Project Details / Requirements</label>
+          <textarea rows="4" class="form-input" style="resize: none;" placeholder="Briefly describe your compute needs, volume, or regulatory requirements..."></textarea>
+        </div>
+        <button type="submit" id="contactBtn" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;">
+          <i class="bi bi-send-fill"></i> Submit Enterprise Inquiry
+        </button>
+      </form>
+      <div id="contactSuccess" style="display: none; text-align: center; padding: 20px 0;">
+        <i class="bi bi-check-circle-fill" style="font-size: 38px; color: #10b981;"></i>
+        <h4 style="font-size: 17px; font-weight: 700; color: #fff; margin-top: 10px;">Inquiry Transmitted Successfully</h4>
+        <p style="font-size: 13px; color: #94a3b8; margin-top: 6px;">Thank you for reaching out. A solutions architect has been assigned to your ticket.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Banner -->
+  <div id="cookieBanner" class="cookie-banner">
+    <div><strong>Privacy Notice:</strong> We use strictly essential cookies to verify TLS sessions and protect API endpoints from unauthorized automated traffic.</div>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;" onclick="closeCookieBanner()">Preferences</button>
+      <button type="button" class="btn btn-primary" style="padding: 6px 14px; font-size: 12px;" onclick="closeCookieBanner()">Accept All</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    // Modal Helpers
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.modal-overlay').forEach(m => {
+      m.addEventListener('click', (e) => {
+        if (e.target === m) closeModal(m.id);
+      });
+    });
+
+    // Cookie Banner
+    function closeCookieBanner() {
+      const b = document.getElementById('cookieBanner');
+      if (b) b.classList.add('hidden');
+    }
+
+    // Interactive AI Demo Logic
+    const PRESETS = {
+      synthesis: "Analyze regional cloud latency metrics across US-East and EU-Central clusters for peak financial transactions.",
+      audit: "Evaluate zero-trust token isolation compliance under ISO/IEC 27001 Annex A.12.",
+      schema: "Define an OpenAPI v3 schema for distributed rate limiting and token bucket enforcement."
+    };
+
+    const SIMULATED_RESPONSES = {
+      default: `[AETHER-MESH v4.2 TELEMETRY EXECUTION]
+Timestamp: ${new Date().toISOString()}
+Cluster: us-east-4a.mesh.prod | Precision: FP16
+
+✔ Data Integrity: VERIFIED (Zero Retention Active)
+✔ Security Layer: Cryptographic Enclave Verified
+✔ Latency Profile: 7.2ms Round-Trip Time
+
+SYNTHESIS OUTPUT:
+Based on multi-cluster telemetry synthesis, latency across cross-regional pipelines remains stabilized at 99.98th percentile within deterministic 8.4ms boundaries. Cryptographic memory allocation successfully isolated with zero telemetry persistence.`
+    };
+
+    function switchPreset(btn, key) {
+      document.querySelectorAll('.p-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (PRESETS[key]) {
+        document.getElementById('promptInput').value = PRESETS[key];
+      }
+    }
+
+    function setPresetPrompt(text) {
+      document.getElementById('promptInput').value = text;
+    }
+
+    function runAiDemo() {
+      const prompt = (document.getElementById('promptInput').value || '').trim();
+      const consoleEl = document.getElementById('outputConsole');
+      const timeEl = document.getElementById('inferTime');
+      const btn = document.getElementById('generateBtn');
+
+      if (!prompt) return;
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" style="display:inline-block;width:14px;height:14px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:spin .6s linear infinite;margin-right:6px;"></span> Processing...`;
+      consoleEl.textContent = "Routing prompt to Aether secure compute mesh...\nEstablishing cryptographic zero-retention session...";
+
+      const start = performance.now();
+
+      setTimeout(() => {
+        const elapsed = (performance.now() - start).toFixed(1);
+        timeEl.textContent = `Completed in ${elapsed}ms • 324 Tokens/s`;
+        consoleEl.textContent = SIMULATED_RESPONSES.default;
+        btn.disabled = false;
+        btn.innerHTML = `<i class="bi bi-lightning-charge-fill"></i> Execute Inference`;
+      }, 750);
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('contactSuccess').style.display = 'block';
+    }
+  </script>
+  <script src="/assets/tracker.js"></script>
+</body>
+</html>

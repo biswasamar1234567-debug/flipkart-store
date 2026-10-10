@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Client Sign Up - Create Your Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Inter',system-ui,sans-serif;
+    background: linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    padding:24px 16px; color:#e2e8f0;
+  }
+  .wrap { width:100%; max-width:960px; display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; }
+  @media (max-width:860px){ .wrap{ grid-template-columns:1fr; } .promo{ display:none; } }
+
+  .promo h1 { font-size:34px; font-weight:800; line-height:1.2; margin-bottom:14px; color:#fff; }
+  .promo h1 span { color:#38bdf8; }
+  .promo p { color:#94a3b8; font-size:15px; line-height:1.65; margin-bottom:22px; }
+  .feat { display:flex; gap:12px; margin-bottom:14px; align-items:flex-start; }
+  .feat i { color:#22c55e; font-size:18px; margin-top:2px; }
+  .feat div b { display:block; color:#e2e8f0; font-size:14px; font-weight:600; }
+  .feat div span { color:#94a3b8; font-size:13px; }
+
+  .card { background:#111c33; border:1px solid #24334d; border-radius:18px; padding:30px; box-shadow:0 24px 60px rgba(0,0,0,.45); }
+  .card h2 { font-size:22px; font-weight:700; color:#fff; margin-bottom:6px; }
+  .card .sub { font-size:13.5px; color:#94a3b8; margin-bottom:22px; }
+
+  .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:480px){ .grid2{ grid-template-columns:1fr; } }
+  .field { margin-bottom:14px; }
+  .field label { display:block; font-size:12.5px; font-weight:600; color:#cbd5e1; margin-bottom:6px; }
+  .field label .req { color:#f87171; }
+  .inputWrap { position:relative; }
+  .inputWrap i { position:absolute; left:13px; top:50%; transform:translateY(-50%); color:#64748b; font-size:15px; }
+  input {
+    width:100%; padding:12px 13px 12px 38px; background:#0b1425; border:1px solid #2b3d5c;
+    border-radius:10px; color:#e2e8f0; font-size:14.5px; font-family:inherit; transition:.18s;
+  }
+  input:focus { outline:none; border-color:#38bdf8; box-shadow:0 0 0 3px rgba(56,189,248,.15); }
+  input::placeholder { color:#475569; }
+  .togglePw { position:absolute; right:11px; top:50%; transform:translateY(-50%); background:none; border:none; color:#64748b; cursor:pointer; font-size:15px; }
+  .togglePw:hover { color:#94a3b8; }
+
+  .hint { font-size:11.5px; color:#64748b; margin-top:5px; }
+  .slugPreview { font-size:12px; color:#38bdf8; margin-top:6px; word-break:break-all; }
+  .slugPreview b { color:#94a3b8; font-weight:500; }
+
+  .btn {
+    width:100%; padding:13px; background:linear-gradient(135deg,#2563eb,#38bdf8); color:#fff;
+    border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer;
+    font-family:inherit; transition:.18s; margin-top:6px;
+  }
+  .btn:hover { filter:brightness(1.08); }
+  .btn:disabled { opacity:.6; cursor:not-allowed; }
+
+  .msg { padding:11px 13px; border-radius:10px; font-size:13.5px; margin-bottom:16px; display:none; line-height:1.5; }
+  .msg.show { display:block; }
+  .msg.err { background:rgba(239,68,68,.13); border:1px solid rgba(239,68,68,.4); color:#fca5a5; }
+  .msg.ok  { background:rgba(34,197,94,.13); border:1px solid rgba(34,197,94,.4); color:#86efac; }
+
+  .alt { text-align:center; font-size:13.5px; color:#94a3b8; margin-top:18px; }
+  .alt a { color:#38bdf8; text-decoration:none; font-weight:600; }
+  .alt a:hover { text-decoration:underline; }
+  .back { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748b; text-decoration:none; margin-bottom:16px; }
+  .back:hover { color:#94a3b8; }
+  .spin { display:inline-block; width:15px; height:15px; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%; animation:sp .7s linear infinite; vertical-align:-3px; margin-right:7px; }
+  @keyframes sp { to { transform:rotate(360deg); } }
+
+  .successBox {
+    display:none; background:#0b1426; border:1px solid #1e3a5f; border-radius:16px; padding:22px; margin-top:8px;
+    animation: fadeIn .3s ease;
+  }
+  @keyframes fadeIn { from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+  .successBox.show { display:block; }
+  .sucHeader { display:flex; align-items:center; gap:12px; margin-bottom:18px; border-bottom:1px solid #1e293b; padding-bottom:14px; }
+  .sucIcon { width:44px; height:44px; border-radius:50%; background:rgba(34,197,94,.16); color:#22c55e; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+  .sucHeader h3 { font-size:18px; font-weight:700; color:#fff; }
+  .sucHeader p { font-size:12.5px; color:#94a3b8; }
+  .urlBlock { background:#111e38; border:1px solid #233554; border-radius:12px; padding:12px; margin-bottom:14px; }
+  .urlLabel { font-size:11.5px; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; }
+  .urlLabel span { color:#38bdf8; font-size:11px; text-transform:none; font-weight:500; }
+  .urlInputRow { display:flex; gap:8px; align-items:center; }
+  .urlInputRow input { background:#070d18; border:1px solid #2b3d5c; border-radius:8px; padding:9px 12px; font-size:12.5px; color:#38bdf8; font-family:monospace; width:100%; }
+  .copyBtn { padding:9px 14px; background:#1e293b; border:1px solid #334155; color:#f1f5f9; border-radius:8px; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap; transition:.15s; display:inline-flex; align-items:center; gap:5px; }
+  .copyBtn:hover { background:#334155; color:#38bdf8; }
+  .openBtn { padding:9px 14px; background:linear-gradient(135deg,#2563eb,#38bdf8); border:none; color:#fff; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap; text-decoration:none; display:inline-flex; align-items:center; gap:5px; }
+  .openBtn:hover { filter:brightness(1.08); }
+  .infoList { background:#0f172a; border-radius:10px; padding:12px 14px; font-size:12px; color:#cbd5e1; margin-bottom:16px; line-height:1.6; border:1px dashed #334155; }
+  .infoList b { color:#fff; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="promo">
+    <h1>Start selling with<br><span>your own store</span> today.</h1>
+    <p>Create your store account and get a live storefront with your own subdomain, admin panel and payment settings.</p>
+    <div class="feat"><i class="bi bi-check2-circle"></i><div><b>Free 7-day trial</b><span>Full access immediately after signup.</span></div></div>
+    <div class="feat"><i class="bi bi-check2-circle"></i><div><b>Your own subdomain</b><span>yourstore.yourdomain.com — no setup needed.</span></div></div>
+    <div class="feat"><i class="bi bi-check2-circle"></i><div><b>Your own payment details</b><span>Payments go only to YOUR UPI, never another store.</span></div></div>
+    <div class="feat"><i class="bi bi-check2-circle"></i><div><b>Full admin panel</b><span>Add products, photos, categories and banners.</span></div></div>
+  </div>
+
+  <div class="card">
+    <a class="back" href="/"><i class="bi bi-arrow-left"></i> Back to store</a>
+    <h2 id="cardTitle">Create your store</h2>
+    <div class="sub" id="cardSub">All fields are required.</div>
+
+    <div class="msg" id="msg"></div>
+
+    <form id="signupForm" novalidate>
+      <div class="field">
+        <label>Full Name <span class="req">*</span></label>
+        <div class="inputWrap"><i class="bi bi-person"></i>
+          <input type="text" id="fullName" placeholder="e.g. Amar Biswas" autocomplete="name" required />
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Mobile Number <span class="req">*</span></label>
+          <div class="inputWrap"><i class="bi bi-phone"></i>
+            <input type="tel" id="mobile" placeholder="98765 43210" autocomplete="tel" required />
+          </div>
+        </div>
+        <div class="field">
+          <label>Email Address <span class="req">*</span></label>
+          <div class="inputWrap"><i class="bi bi-envelope"></i>
+            <input type="email" id="email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Store Name <span class="req">*</span></label>
+        <div class="inputWrap"><i class="bi bi-shop"></i>
+          <input type="text" id="storeName" placeholder="e.g. Amar Fashion Hub" required />
+        </div>
+        <div class="slugPreview" id="slugPreview"><b>Your store URL:</b> yourstore.localhost</div>
+        <div class="hint">Letters and numbers only. This becomes your permanent subdomain.</div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Password <span class="req">*</span></label>
+          <div class="inputWrap"><i class="bi bi-lock"></i>
+            <input type="password" id="password" placeholder="Min. 6 characters" autocomplete="new-password" required />
+            <button type="button" class="togglePw" data-target="password"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Confirm Password <span class="req">*</span></label>
+          <div class="inputWrap"><i class="bi bi-lock-fill"></i>
+            <input type="password" id="confirmPassword" placeholder="Repeat password" autocomplete="new-password" required />
+            <button type="button" class="togglePw" data-target="confirmPassword"><i class="bi bi-eye"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn" id="submitBtn">Create My Store</button>
+    </form>
+
+    <!-- Success Screen displayed immediately upon store creation -->
+    <div id="successBox" class="successBox">
+      <div class="sucHeader">
+        <div class="sucIcon"><i class="bi bi-check-lg"></i></div>
+        <div>
+          <h3>Store Created Successfully!</h3>
+          <p id="sucStoreName">Your rented store is live with a 7-day trial.</p>
+        </div>
+      </div>
+
+      <!-- 1. Customer Storefront Link -->
+      <div class="urlBlock">
+        <div class="urlLabel">
+          <span><i class="bi bi-cart3"></i> Customer Flipkart Store (ওয়েবসাইট লিংক)</span>
+        </div>
+        <div class="urlInputRow">
+          <input type="text" id="storeUrlInput" readonly />
+          <button type="button" class="copyBtn" onclick="copyText('storeUrlInput', this)"><i class="bi bi-clipboard"></i> Copy</button>
+          <a id="storeUrlLink" href="#" target="_blank" class="openBtn"><i class="bi bi-box-arrow-up-right"></i> Open</a>
+        </div>
+      </div>
+
+      <!-- 2. Admin Panel Link -->
+      <div class="urlBlock">
+        <div class="urlLabel">
+          <span><i class="bi bi-shield-lock"></i> Admin Panel (অ্যাডমিন প্যানেল লিংক)</span>
+        </div>
+        <div class="urlInputRow">
+          <input type="text" id="adminUrlInput" readonly />
+          <button type="button" class="copyBtn" onclick="copyText('adminUrlInput', this)"><i class="bi bi-clipboard"></i> Copy</button>
+          <a id="adminUrlLink" href="#" target="_blank" class="openBtn"><i class="bi bi-box-arrow-up-right"></i> Open</a>
+        </div>
+      </div>
+
+      <!-- Important credentials note -->
+      <div class="infoList">
+        <div>🔑 <b>লগইন পদ্ধতি:</b> অ্যাডমিন প্যানেলে লগইন করতে সাইন আপ করার সময় যে <b>পাসওয়ার্ড</b> দিয়েছেন সেটি ব্যবহার করুন।</div>
+        <div style="margin-top:6px;">💳 <b>পেমেন্ট গেটওয়ে:</b> আপনার অ্যাডমিন প্যানেলের <b>Payment Settings</b>-এ গিয়ে নিজস্ব Paytm / MobiKwik UPI বসান। আপনার গ্রাহকদের সমস্ত পেমেন্ট ১০০% শুধু আপনার UPI তেই আসবে।</div>
+      </div>
+
+      <a id="mainAdminBtn" href="/admin/" class="btn" style="text-align:center; text-decoration:none; display:block;">
+        <i class="bi bi-speedometer2 mr-1"></i> Go To Admin Panel Now
+      </a>
+    </div>
+
+    <div class="alt" id="altFooter">Already have an account? <a href="/login">Sign in</a></div>
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const msg = $('msg');
+const baseDomain = location.hostname.includes('.') ? location.hostname.split('.').slice(1).join('.') : location.hostname;
+
+function slugify(v){
+  return (v||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40);
+}
+
+$('storeName').addEventListener('input', e => {
+  $('slugPreview').innerHTML = '<b>Your store URL:</b> ' + (slugify(e.target.value) || 'yourstore') + '.' + baseDomain;
+});
+
+document.querySelectorAll('.togglePw').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const inp = $(btn.dataset.target);
+    const showing = inp.type === 'text';
+    inp.type = showing ? 'password' : 'text';
+    btn.innerHTML = '<i class="bi bi-eye' + (showing ? '' : '-slash') + '"></i>';
+  });
+});
+
+function showMsg(text, type){
+  msg.textContent = text;
+  msg.className = 'msg show ' + type;
+}
+
+function copyText(inputId, btn) {
+  const inp = $(inputId);
+  if (!inp) return;
+  inp.select();
+  inp.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(inp.value).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+  }).catch(() => {
+    document.execCommand('copy');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+  });
+}
+
+$('signupForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const payload = {
+    fullName: $('fullName').value.trim(),
+    mobile: $('mobile').value.trim(),
+    storeName: $('storeName').value.trim(),
+    email: $('email').value.trim(),
+    password: $('password').value,
+    confirmPassword: $('confirmPassword').value
+  };
+
+  if (!payload.fullName || !payload.mobile || !payload.storeName || !payload.email || !payload.password) {
+    return showMsg('Please fill in all fields.', 'err');
+  }
+  if (payload.password.length < 6) return showMsg('Password must be at least 6 characters.', 'err');
+  if (payload.password !== payload.confirmPassword) return showMsg('Passwords do not match.', 'err');
+
+  const btn = $('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span>Creating your store...';
+
+  try {
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      showMsg(data.error || 'Signup failed. Please try again.', 'err');
+      return;
+    }
+
+    // Set cookie session token and store id
+    document.cookie = 'store_admin_token=' + encodeURIComponent(data.token) + '; path=/; max-age=86400; SameSite=Lax';
+    if (data.storeSlug) {
+      document.cookie = 'current_store_id=' + encodeURIComponent(data.storeSlug) + '; path=/; max-age=86400; SameSite=Lax';
+    }
+
+    // Hide registration form and display full URLs and access details
+    $('signupForm').style.display = 'none';
+    $('cardTitle').textContent = '🎉 Your Store Is Live!';
+    $('cardSub').textContent = `Store ID: ${data.storeSlug} • Role: Client (Tenant)`;
+    $('msg').style.display = 'none';
+    if ($('altFooter')) $('altFooter').style.display = 'none';
+
+    const storeUrl = data.subdomainStoreUrl || data.storeUrl || data.fallbackStoreUrl;
+    const adminUrl = data.subdomainAdminUrl || data.adminUrl || data.fallbackAdminUrl;
+
+    $('storeUrlInput').value = storeUrl;
+    $('storeUrlLink').href = storeUrl;
+    $('adminUrlInput').value = adminUrl;
+    $('adminUrlLink').href = adminUrl;
+    $('mainAdminBtn').href = adminUrl;
+    $('sucStoreName').textContent = `${data.storeName} (${data.storeSlug}) has been created with a 7-day free trial.`;
+
+    $('successBox').classList.add('show');
+  } catch (err) {
+    showMsg('Server connection error. Please ensure the backend is running.', 'err');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Create My Store';
+  }
+});
+</script>
+</body>
+</html>

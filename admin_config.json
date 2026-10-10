@@ -1,0 +1,113 @@
+{
+  "adminPassword": "Sumi@1998",
+  "jwtSecret": "flipkart_admin_session_token_2026_xyz",
+  "groqApiKey": "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",
+  "groqModel": "openai/gpt-oss-120b",
+  "cloudinary": {
+    "cloudName": "sricov3c",
+    "uploadPreset": "flipon",
+    "apiKey": "351953765475734",
+    "apiSecret": "TqZ3PqbweZPFG1JdVYWgILNW_1g"
+  },
+  "categorySize": 58,
+  "categories": [
+    {
+      "id": "mobiles",
+      "name": "Mobiles",
+      "image": "https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/mobiles.svg",
+      "icon": "bi-phone-fill",
+      "active": true,
+      "count": 8
+    },
+    {
+      "id": "electronics",
+      "name": "Electronics",
+      "image": "https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/electronics.svg",
+      "icon": "bi-laptop",
+      "active": true,
+      "count": 5
+    },
+    {
+      "id": "appliances",
+      "name": "Appliances",
+      "image": "https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/tv.svg",
+      "icon": "bi-plug-fill",
+      "active": true,
+      "count": 3
+    },
+    {
+      "id": "furniture",
+      "name": "Furniture",
+      "image": "https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/furniture.svg",
+      "icon": "bi-house-door-fill",
+      "active": true,
+      "count": 4
+    },
+    {
+      "id": "grocery",
+      "name": "Grocery",
+      "image": "https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/food.svg",
+      "icon": "bi-basket2-fill",
+      "active": true,
+      "count": 2
+    },
+    {
+      "id": "fashion",
+      "name": "Fashion",
+      "image": "https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/fashion.svg",
+      "icon": "bi-bag-heart-fill",
+      "active": true,
+      "count": 6
+    },
+    {
+      "id": "beauty",
+      "name": "Beauty",
+      "image": "https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/beauty.svg",
+      "icon": "bi-flower1",
+      "active": true,
+      "count": 2
+    },
+    {
+      "id": "home",
+      "name": "Home",
+      "image": "https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/home-final.svg",
+      "icon": "bi-house-door-fill",
+      "active": true,
+      "count": 3
+    }
+  ],
+  "banners": [
+    {
+      "id": "b1",
+      "title": "Big Billion Days Sale",
+      "subtitle": "Up to 95% Off on Flagship Phones",
+      "image": "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/1aa71a5c6046e7f8.jpg",
+      "link": "/product.html?id=iphone17",
+      "active": true
+    },
+    {
+      "id": "b2",
+      "title": "Apple iPhone 17 Pro Max",
+      "subtitle": "Exclusive Launch Deal @ ₹999",
+      "image": "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/d9290fbba96ebd91.jpg",
+      "link": "/product.html?id=iphone17",
+      "active": true
+    },
+    {
+      "id": "b3",
+      "title": "Mega Electronics Carnival",
+      "subtitle": "Smartwatches, Earbuds & Gadgets",
+      "image": "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/b8222998a69a6597.jpg",
+      "link": "/",
+      "active": true
+    },
+    {
+      "id": "b4",
+      "title": "Flipkart SuperCoins Fest",
+      "subtitle": "Earn Extra Coins on Every Order",
+      "image": "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/d340de5983845a70.jpg",
+      "link": "/",
+      "active": true
+    }
+  ]
+}

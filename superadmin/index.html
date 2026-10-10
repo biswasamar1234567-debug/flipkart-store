@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Super Admin - Store Control Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',system-ui,sans-serif; background:#0b1020; color:#e2e8f0; min-height:100vh; }
+  .layout { display:grid; grid-template-columns:250px 1fr; min-height:100vh; }
+  @media (max-width:900px){ .layout{ grid-template-columns:1fr; } .side{ position:static; } }
+
+  .side { background:#101728; border-right:1px solid #1e2a44; padding:20px 14px; }
+  .brand { display:flex; align-items:center; gap:11px; margin-bottom:26px; padding:0 6px; }
+  .brand .logo { width:40px; height:40px; border-radius:11px; background:linear-gradient(135deg,#7c3aed,#38bdf8); display:flex; align-items:center; justify-content:center; font-size:19px; color:#fff; }
+  .brand b { font-size:15px; color:#fff; display:block; line-height:1.25; }
+  .brand span { font-size:11px; color:#64748b; }
+
+  .navBtn { display:flex; align-items:center; gap:11px; width:100%; padding:11px 13px; background:none; border:none; border-radius:10px; color:#94a3b8; font-size:14px; font-weight:500; cursor:pointer; font-family:inherit; margin-bottom:5px; text-align:left; transition:.15s; }
+  .navBtn:hover { background:#18233c; color:#e2e8f0; }
+  .navBtn.active { background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(56,189,248,.18)); color:#fff; }
+  .navBtn i { font-size:16px; width:18px; }
+  .navBtn .badge { margin-left:auto; background:#ef4444; color:#fff; font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:20px; }
+
+  .main { padding:26px 28px; }
+  .topbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
+  .topbar h1 { font-size:24px; font-weight:800; color:#fff; }
+  .topbar .sub { font-size:13px; color:#64748b; margin-top:3px; }
+  .actions { display:flex; gap:9px; }
+  .btn { padding:9px 16px; border-radius:9px; border:none; font-size:13.5px; font-weight:600; cursor:pointer; font-family:inherit; transition:.15s; }
+  .btn.ghost { background:#18233c; color:#cbd5e1; border:1px solid #2b3d5c; }
+  .btn.ghost:hover { background:#22314f; }
+  .btn.primary { background:linear-gradient(135deg,#2563eb,#38bdf8); color:#fff; }
+  .btn.primary:hover { filter:brightness(1.1); }
+  .btn.ok { background:#16a34a; color:#fff; }
+  .btn.no { background:#dc2626; color:#fff; }
+  .btn:disabled { opacity:.55; cursor:not-allowed; }
+
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:14px; margin-bottom:24px; }
+  .stat { background:#101728; border:1px solid #1e2a44; border-radius:14px; padding:17px; }
+  .stat .lbl { font-size:11.5px; text-transform:uppercase; letter-spacing:.6px; color:#64748b; font-weight:600; }
+  .stat .val { font-size:30px; font-weight:800; color:#fff; margin-top:7px; }
+  .stat .foot { font-size:12px; color:#64748b; margin-top:3px; }
+  .stat.g .val{ color:#4ade80; } .stat.b .val{ color:#60a5fa; } .stat.p .val{ color:#c084fc; } .stat.o .val{ color:#fb923c; }
+
+  .panel { background:#101728; border:1px solid #1e2a44; border-radius:14px; overflow:hidden; margin-bottom:20px; }
+  .panelHead { padding:16px 18px; border-bottom:1px solid #1e2a44; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .panelHead h3 { font-size:15.5px; font-weight:700; color:#fff; }
+  .panelHead p { font-size:12.5px; color:#64748b; margin-top:2px; }
+  .panelBody { padding:6px 0; }
+
+  table { width:100%; border-collapse:collapse; font-size:13.5px; }
+  th { text-align:left; padding:11px 18px; font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:#64748b; font-weight:700; background:#0d1424; }
+  td { padding:13px 18px; border-top:1px solid #16203a; color:#cbd5e1; vertical-align:middle; }
+  tr:hover td { background:#0f1a30; }
+  .mono { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12.5px; }
+  .muted { color:#64748b; font-size:12.5px; }
+
+  .pill { display:inline-block; padding:3px 9px; border-radius:20px; font-size:11px; font-weight:700; }
+  .pill.ok { background:rgba(34,197,94,.16); color:#4ade80; }
+  .pill.warn { background:rgba(245,158,11,.16); color:#fbbf24; }
+  .pill.bad { background:rgba(239,68,68,.16); color:#f87171; }
+  .pill.info { background:rgba(56,189,248,.16); color:#38bdf8; }
+
+  .empty { padding:38px 20px; text-align:center; color:#475569; }
+  .empty i { font-size:34px; display:block; margin-bottom:10px; color:#2b3d5c; }
+
+  .tabs { display:flex; gap:7px; flex-wrap:wrap; }
+  .tab { padding:7px 14px; border-radius:8px; background:#18233c; border:1px solid #2b3d5c; color:#94a3b8; font-size:13px; font-weight:600; cursor:pointer; font-family:inherit; }
+  .tab.active { background:#2563eb; border-color:#2563eb; color:#fff; }
+
+  .rowActions { display:flex; gap:7px; }
+  .rowActions .btn { padding:6px 12px; font-size:12.5px; }
+
+  .toast { position:fixed; bottom:22px; right:22px; background:#101728; border:1px solid #2b3d5c; border-left:4px solid #38bdf8; border-radius:11px; padding:13px 18px; font-size:13.5px; color:#e2e8f0; box-shadow:0 16px 40px rgba(0,0,0,.5); transform:translateY(140%); transition:.35s cubic-bezier(.2,.9,.3,1.2); z-index:99; max-width:340px; }
+  .toast.show { transform:translateY(0); }
+  .toast.ok { border-left-color:#22c55e; } .toast.err { border-left-color:#ef4444; }
+
+  .modalBg { position:fixed; inset:0; background:rgba(3,7,18,.78); display:none; align-items:center; justify-content:center; padding:20px; z-index:50; }
+  .modalBg.show { display:flex; }
+  .modal { background:#101728; border:1px solid #24334d; border-radius:16px; width:100%; max-width:430px; padding:24px; }
+  .modal h3 { font-size:17px; font-weight:700; color:#fff; margin-bottom:5px; }
+  .modal p { font-size:13px; color:#94a3b8; margin-bottom:16px; line-height:1.55; }
+  .modal .field { margin-bottom:13px; }
+  .modal label { display:block; font-size:12.5px; font-weight:600; color:#cbd5e1; margin-bottom:6px; }
+  .modal input, .modal select { width:100%; padding:11px 13px; background:#0b1425; border:1px solid #2b3d5c; border-radius:9px; color:#e2e8f0; font-size:14px; font-family:inherit; }
+  .modal input:focus, .modal select:focus { outline:none; border-color:#38bdf8; }
+  .modalFoot { display:flex; gap:9px; justify-content:flex-end; margin-top:18px; }
+  .hide { display:none !important; }
+</style>
+</head>
+<body>
+<!-- Direct Super Admin Sign-In Screen -->
+<div id="superLoginScreen" class="hide" style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px;background:linear-gradient(135deg,#0b1020 0%,#111c33 100%);">
+  <div style="width:100%;max-width:420px;background:#101728;border:1px solid #24334d;border-radius:18px;padding:32px;box-shadow:0 24px 60px rgba(0,0,0,.5);">
+    <div style="display:flex;align-items:center;gap:11px;margin-bottom:22px;">
+      <div style="width:42px;height:42px;border-radius:11px;background:linear-gradient(135deg,#7c3aed,#38bdf8);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;">
+        <i class="bi bi-shield-lock"></i>
+      </div>
+      <div>
+        <b style="font-size:17px;color:#fff;display:block;">Super Admin Portal</b>
+        <span style="font-size:12px;color:#64748b;">Control Center Authentication</span>
+      </div>
+    </div>
+    <h2 style="font-size:22px;font-weight:700;color:#fff;margin-bottom:6px;">Sign In</h2>
+    <div style="font-size:13.5px;color:#94a3b8;margin-bottom:20px;">Enter your Super Admin credentials to continue.</div>
+    <div id="superLoginErr" class="msg err" style="display:none;margin-bottom:14px;padding:10px 14px;border-radius:9px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.4);color:#fca5a5;font-size:13px;"></div>
+    <form id="superLoginForm">
+      <div class="field" style="margin-bottom:14px;">
+        <label style="display:block;font-size:12.5px;font-weight:600;color:#cbd5e1;margin-bottom:6px;">Email Address</label>
+        <input type="email" id="superEmail" placeholder="amarbiswas887@gmail.com" value="amarbiswas887@gmail.com" required style="width:100%;padding:12px 14px;background:#0b1425;border:1px solid #2b3d5c;border-radius:9px;color:#e2e8f0;font-size:14px;" />
+      </div>
+      <div class="field" style="margin-bottom:20px;">
+        <label style="display:block;font-size:12.5px;font-weight:600;color:#cbd5e1;margin-bottom:6px;">Password</label>
+        <input type="password" id="superPassword" placeholder="Enter password" required style="width:100%;padding:12px 14px;background:#0b1425;border:1px solid #2b3d5c;border-radius:9px;color:#e2e8f0;font-size:14px;" />
+      </div>
+      <button type="submit" id="superLoginSubmitBtn" style="width:100%;padding:13px;background:linear-gradient(135deg,#7c3aed,#38bdf8);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:.18s;">
+        Sign In to Super Admin
+      </button>
+    </form>
+    <div style="text-align:center;font-size:13px;color:#94a3b8;margin-top:18px;">
+      Looking for store admin? <a href="/admin/" style="color:#38bdf8;text-decoration:none;font-weight:600;">Store Admin &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<div class="layout" id="mainLayout">
+  <aside class="side">
+    <div class="brand">
+      <div class="logo"><i class="bi bi-shield-lock"></i></div>
+      <div><b>Super Admin</b><span id="whoami">Owner</span></div>
+    </div>
+    <button class="navBtn active" data-view="dashboard"><i class="bi bi-speedometer2"></i> Dashboard</button>
+    <button class="navBtn" data-view="payments"><i class="bi bi-cash-stack"></i> UTR Payments <span class="badge hide" id="pendBadge">0</span></button>
+    <button class="navBtn" data-view="clients"><i class="bi bi-people"></i> Clients</button>
+    <button class="navBtn" data-view="licenses"><i class="bi bi-key"></i> Licenses</button>
+    <button class="navBtn" data-view="stores"><i class="bi bi-shop"></i> Stores</button>
+    <div style="height:1px;background:#1e2a44;margin:16px 6px;"></div>
+    <button class="navBtn" onclick="location.href='/'"><i class="bi bi-globe"></i> View Website</button>
+    <button class="navBtn" id="logoutBtn"><i class="bi bi-box-arrow-right"></i> Logout</button>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <h1 id="viewTitle">Dashboard</h1>
+        <div class="sub" id="viewSub">Overview of every store, license and payment.</div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" onclick="loadAll()"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+        <button class="btn primary" id="grantBtn"><i class="bi bi-plus-lg"></i> Grant License</button>
+      </div>
+    </div>
+
+    <div class="stats" id="statsRow">
+      <div class="stat b"><div class="lbl">Total Clients</div><div class="val" id="sClients">0</div><div class="foot">Registered stores</div></div>
+      <div class="stat g"><div class="lbl">Active Licenses</div><div class="val" id="sActive">0</div><div class="foot">Currently paying</div></div>
+      <div class="stat o"><div class="lbl">Pending UTR</div><div class="val" id="sPending">0</div><div class="foot">Awaiting your review</div></div>
+      <div class="stat p"><div class="lbl">Revenue</div><div class="val" id="sRevenue">₹0</div><div class="foot">Approved payments</div></div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <section id="view-dashboard">
+      <!-- 🛡️ GO DADDY DOMAIN SHIELD / WEBSITE MODE TOGGLE -->
+      <div class="panel" style="border:1px solid #3b82f6; background:linear-gradient(135deg, rgba(30,41,59,0.95), rgba(15,23,42,0.98)); box-shadow:0 10px 30px rgba(0,0,0,0.4); margin-bottom:20px;">
+        <div class="panelHead" style="border-bottom:1px solid rgba(59,130,246,0.25); padding:16px 20px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; border-radius:12px; background:linear-gradient(135deg, #2563eb, #38bdf8); display:flex; align-items:center; justify-content:center; font-size:20px; color:#fff;">
+              <i class="bi bi-shield-shaded"></i>
+            </div>
+            <div>
+              <h3 style="font-size:16px; font-weight:800; color:#fff; display:flex; align-items:center; gap:8px;">
+                Domain Shield & Website Mode
+                <span id="domainShieldBadge" class="pill ok" style="font-size:11px; padding:3px 10px;">🟢 Flipkart Live</span>
+              </h3>
+              <p style="font-size:12.5px; color:#94a3b8; margin-top:2px;">GoDaddy & Registrar Compliance Protection for Main Apex Domain</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <a href="/" target="_blank" class="btn ghost" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+              <i class="bi bi-box-arrow-up-right"></i> Open Live Domain
+            </a>
+          </div>
+        </div>
+        <div style="padding:18px 20px;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:14px;">
+            
+            <!-- OPTION 1: Flipkart Store -->
+            <div id="cardModeFlipkart" onclick="setMainSiteMode('flipkart')" style="cursor:pointer; border:2px solid #2563eb; background:rgba(37,99,235,0.12); border-radius:14px; padding:16px; transition:all .2s;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="font-size:24px;">🛒</span>
+                  <div>
+                    <b style="color:#fff; font-size:15px; display:block;">Flipkart Store</b>
+                    <span style="color:#60a5fa; font-size:11px; font-weight:600;">E-Commerce & Orders</span>
+                  </div>
+                </div>
+                <input type="radio" name="mainModeRadio" id="radioFlipkart" checked style="accent-color:#38bdf8; width:18px; height:18px; cursor:pointer;" />
+              </div>
+              <p style="color:#94a3b8; font-size:12px; line-height:1.5;">
+                Full product catalog, dynamic pricing, address checkout, and live UPI gateway (Paytm / MobiKwik).
+              </p>
+            </div>
+
+            <!-- OPTION 2: Safe AI Website -->
+            <div id="cardModeAi" onclick="setMainSiteMode('ai')" style="cursor:pointer; border:2px solid #1e2a44; background:rgba(15,23,42,0.6); border-radius:14px; padding:16px; transition:all .2s;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                  <span style="font-size:24px;">🤖</span>
+                  <div>
+                    <b style="color:#fff; font-size:15px; display:block;">Safe AI SaaS Website</b>
+                    <span style="color:#a855f7; font-size:11px; font-weight:600;">GoDaddy Safe · Zero Payments</span>
+                  </div>
+                </div>
+                <input type="radio" name="mainModeRadio" id="radioAi" style="accent-color:#a855f7; width:18px; height:18px; cursor:pointer;" />
+              </div>
+              <p style="color:#94a3b8; font-size:12px; line-height:1.5;">
+                AetherAI Technologies enterprise website. Zero shopping cart, zero UPI, interactive playground, and legal corporate policies.
+              </p>
+            </div>
+
+          </div>
+
+          <div style="margin-top:14px; padding:10px 14px; background:rgba(15,23,42,0.65); border:1px solid #1e2a44; border-radius:10px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+            <div style="font-size:12px; color:#94a3b8; display:flex; align-items:center; gap:8px;">
+              <i class="bi bi-info-circle-fill text-sky-400"></i>
+              <span>Instant real-time MongoDB switch. Super Admin and Client Admin stay 100% accessible in both modes.</span>
+            </div>
+            <div style="font-size:11.5px; color:#64748b;">
+              Target: <span class="mono" style="color:#38bdf8;">/ (Apex Domain)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panelHead"><div><h3>Pending Payments Review</h3><p>Approve a UTR to auto-generate that client's license key.</p></div>
+          <button class="tab active" onclick="switchView('payments')">Open queue</button></div>
+        <div class="panelBody" id="dashPending"></div>
+      </div>
+      <div class="panel">
+        <div class="panelHead"><div><h3>Recent Clients</h3><p>Latest stores to sign up.</p></div></div>
+        <div class="panelBody" id="dashClients"></div>
+      </div>
+    </section>
+
+    <!-- PAYMENTS -->
+    <section id="view-payments" class="hide">
+      <div class="panel">
+        <div class="panelHead">
+          <div><h3>UTR Payment Requests</h3><p>Verify the 12-digit UTR against your bank statement, then approve.</p></div>
+          <div class="tabs">
+            <button class="tab active" data-f="pending">Pending</button>
+            <button class="tab" data-f="approved">Approved</button>
+            <button class="tab" data-f="rejected">Rejected</button>
+            <button class="tab" data-f="">All</button>
+          </div>
+        </div>
+        <div class="panelBody" id="payList"></div>
+      </div>
+    </section>
+
+    <!-- CLIENTS -->
+    <section id="view-clients" class="hide">
+      <div class="panel">
+        <div class="panelHead"><div><h3>All Clients</h3><p>Every registered store owner and their license status.</p></div></div>
+        <div class="panelBody" id="clientList"></div>
+      </div>
+    </section>
+
+    <!-- LICENSES -->
+    <section id="view-licenses" class="hide">
+      <div class="panel">
+        <div class="panelHead"><div><h3>License Keys</h3><p>All generated keys with start and expiry dates.</p></div></div>
+        <div class="panelBody" id="licenseList"></div>
+      </div>
+    </section>
+
+    <!-- STORES -->
+    <section id="view-stores" class="hide">
+      <div class="panel">
+        <div class="panelHead"><div><h3>Stores</h3><p>Subdomains served by the platform.</p></div></div>
+        <div class="panelBody" id="storeList"></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Grant license modal -->
+<div class="modalBg" id="grantModal">
+  <div class="modal">
+    <h3>Grant / Renew License</h3>
+    <p>Creates a license key immediately with no payment required.</p>
+    <div class="field"><label>Store</label><select id="gStore"></select></div>
+    <div class="field"><label>Plan</label>
+      <select id="gPlan">
+        <option value="7">7 Days - ₹49</option>
+        <option value="30" selected>1 Month - ₹149</option>
+        <option value="90">3 Months - ₹399</option>
+        <option value="365">1 Year - ₹1299</option>
+      </select>
+    </div>
+    <div class="modalFoot">
+      <button class="btn ghost" onclick="closeModal('grantModal')">Cancel</button>
+      <button class="btn primary" id="grantConfirm">Generate Key</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+let token = '';
+let STATE = { clients: [], payments: [], licenses: [], stores: [] };
+let payFilter = 'pending';
+
+function getCookie(n){
+  const m = document.cookie.match(new RegExp('(?:^|;\\s*)'+n+'=([^;]+)'));
+  return m ? decodeURIComponent(m[1]) : '';
+}
+
+function toast(text, type){
+  const t = $('toast');
+  t.textContent = text;
+  t.className = 'toast show ' + (type || 'ok');
+  setTimeout(() => t.className = 'toast', 3600);
+}
+
+function fmtDate(d){ return d ? new Date(d).toISOString().slice(0,10) : '-'; }
+function daysLeft(d){ return Math.max(0, Math.ceil((new Date(d) - Date.now())/86400000)); }
+
+async function api(path, opts){
+  const res = await fetch(path, Object.assign({
+    headers: { 'Content-Type':'application/json', 'Authorization': 'Bearer ' + token }
+  }, opts || {}));
+  const data = await res.json().catch(() => ({}));
+  if (res.status === 401 || res.status === 403) {
+    if (path.includes('/auth/me')) throw new Error('unauthorized');
+    toast(data.error || 'Access denied.', 'err');
+  }
+  if (!res.ok) throw new Error(data.error || 'Request failed');
+  return data;
+}
+
+// ---------------- Auth ----------------
+async function boot(){
+  token = getCookie('store_admin_token');
+  if (!token) {
+    showSuperLogin();
+    return;
+  }
+  try {
+    const me = await api('/api/auth/me');
+    if (me.user.role !== 'owner' && me.user.role !== 'super_admin') {
+      showSuperLogin('Your account does not have Super Admin permissions.');
+      return;
+    }
+    $('whoami').textContent = me.user.fullName || me.user.email;
+    $('superLoginScreen').classList.add('hide');
+    $('mainLayout').classList.remove('hide');
+    await loadAll();
+  } catch(e) {
+    showSuperLogin();
+  }
+}
+
+function showSuperLogin(msgText){
+  $('mainLayout').classList.add('hide');
+  $('superLoginScreen').classList.remove('hide');
+  const errEl = $('superLoginErr');
+  if (msgText) {
+    errEl.textContent = msgText;
+    errEl.style.display = 'block';
+  } else {
+    errEl.style.display = 'none';
+  }
+}
+
+// ---------------- Data ----------------
+async function loadAll(){
+  try {
+    const [c, p, l, s] = await Promise.all([
+      api('/api/super/clients'),
+      api('/api/super/payments'),
+      api('/api/super/licenses'),
+      api('/api/super/stores')
+    ]);
+    STATE.clients = c.clients || [];
+    STATE.payments = p.payments || [];
+    STATE.licenses = l.licenses || [];
+    STATE.stores = s.stores || [];
+    STATE.ownerSiteMode = s.ownerSiteMode || 'flipkart';
+    render();
+  } catch(e){ toast(e.message, 'err'); }
+}
+
+function updateDomainShieldUI(){
+  const isAi = (STATE.ownerSiteMode === 'ai');
+  const badge = $('domainShieldBadge');
+  const cardF = $('cardModeFlipkart');
+  const cardA = $('cardModeAi');
+  const radF = $('radioFlipkart');
+  const radA = $('radioAi');
+  if (!badge || !cardF || !cardA) return;
+
+  if (isAi) {
+    badge.className = 'pill warn';
+    badge.innerHTML = '🛡️ Safe AI Shield Active';
+    cardF.style.borderColor = '#1e2a44';
+    cardF.style.background = 'rgba(15,23,42,0.6)';
+    cardA.style.borderColor = '#a855f7';
+    cardA.style.background = 'rgba(168,85,247,0.14)';
+    if (radF) radF.checked = false;
+    if (radA) radA.checked = true;
+  } else {
+    badge.className = 'pill ok';
+    badge.innerHTML = '🟢 Flipkart Store Live';
+    cardF.style.borderColor = '#2563eb';
+    cardF.style.background = 'rgba(37,99,235,0.14)';
+    cardA.style.borderColor = '#1e2a44';
+    cardA.style.background = 'rgba(15,23,42,0.6)';
+    if (radF) radF.checked = true;
+    if (radA) radA.checked = false;
+  }
+}
+
+async function setMainSiteMode(mode){
+  if (STATE.ownerSiteMode === mode) return;
+  try {
+    const res = await api('/api/super/site-mode', {
+      method: 'POST',
+      body: JSON.stringify({ storeId: 'owner', siteMode: mode })
+    });
+    STATE.ownerSiteMode = res.siteMode || mode;
+    updateDomainShieldUI();
+    toast(res.message || 'Website mode updated!', 'ok');
+  } catch(e) {
+    toast(e.message || 'Failed to update mode', 'err');
+  }
+}
+
+async function toggleStoreMode(slug, mode){
+  try {
+    const res = await api('/api/super/site-mode', {
+      method: 'POST',
+      body: JSON.stringify({ storeId: slug, siteMode: mode })
+    });
+    toast(res.message || 'Store mode updated', 'ok');
+    await loadAll();
+  } catch(e) {
+    toast(e.message || 'Failed to update mode', 'err');
+  }
+}
+
+function render(){
+  const pend = STATE.payments.filter(p => p.status === 'pending');
+  const approved = STATE.payments.filter(p => p.status === 'approved');
+  const activeLic = STATE.licenses.filter(l => l.status === 'active' && new Date(l.expiresAt) > new Date());
+
+  $('sClients').textContent = STATE.clients.length;
+  $('sActive').textContent = activeLic.length;
+  $('sPending').textContent = pend.length;
+  $('sRevenue').textContent = '₹' + approved.reduce((a,b) => a + (Number(b.amount)||0), 0);
+
+  const badge = $('pendBadge');
+  badge.textContent = pend.length;
+  badge.classList.toggle('hide', pend.length === 0);
+
+  updateDomainShieldUI();
+  renderPayTable($('dashPending'), pend.slice(0,5));
+  renderClients($('dashClients'), STATE.clients.slice(0,5));
+  renderPayTable($('payList'), STATE.payments.filter(p => !payFilter || p.status === payFilter));
+  renderClients($('clientList'), STATE.clients);
+  renderLicenses();
+  renderStores();
+  fillStoreSelect();
+}
+
+function renderPayTable(el, list){
+  if (!list.length) { el.innerHTML = '<div class="empty"><i class="bi bi-inbox"></i>No payment requests here.</div>'; return; }
+  el.innerHTML = `<table><thead><tr>
+    <th>Store</th><th>UTR (12 digit)</th><th>Plan</th><th>Amount</th><th>Submitted</th><th>Status</th><th>Action</th>
+  </tr></thead><tbody>` + list.map(p => `<tr>
+    <td><b>${esc(p.storeName||p.storeSlug)}</b><div class="muted mono">${esc(p.storeSlug)}</div></td>
+    <td class="mono">${esc(p.utr)}</td>
+    <td>${esc(p.plan)}<div class="muted">${p.durationDays} days</div></td>
+    <td><b>₹${Number(p.amount)||0}</b></td>
+    <td class="muted">${fmtDate(p.createdAt)}</td>
+    <td><span class="pill ${p.status==='approved'?'ok':p.status==='rejected'?'bad':'warn'}">${p.status}</span>
+      ${p.licenseKey?`<div class="muted mono">${esc(p.licenseKey)}</div>`:''}</td>
+    <td>${p.status==='pending'
+      ? `<div class="rowActions">
+           <button class="btn ok" onclick="review('${p._id}','approve')">Approve</button>
+           <button class="btn no" onclick="review('${p._id}','reject')">Reject</button>
+         </div>`
+      : '<span class="muted">Reviewed</span>'}</td>
+  </tr>`).join('') + '</tbody></table>';
+}
+
+function renderClients(el, list){
+  if (!list.length) { el.innerHTML = '<div class="empty"><i class="bi bi-people"></i>No clients yet.</div>'; return; }
+  el.innerHTML = `<table><thead><tr>
+    <th>Client</th><th>Store</th><th>Store URL</th><th>Mobile</th><th>License</th><th>Status</th>
+  </tr></thead><tbody>` + list.map(c => `<tr>
+    <td><b>${esc(c.fullName)}</b><div class="muted">${esc(c.email)}</div></td>
+    <td>${esc(c.storeName)}</td>
+    <td class="mono">${esc(c.storeUrl)}</td>
+    <td class="mono">${esc(c.mobile||'-')}</td>
+    <td>${c.license
+      ? `<span class="pill ${c.license.daysLeft>2?'ok':'warn'}">${c.license.daysLeft}d left</span><div class="muted mono">${esc(c.license.key)}</div>`
+      : '<span class="pill bad">No license</span>'}</td>
+    <td><span class="pill ${c.status==='active'?'info':'bad'}">${esc(c.status)}</span></td>
+  </tr>`).join('') + '</tbody></table>';
+}
+
+function renderLicenses(){
+  const el = $('licenseList');
+  if (!STATE.licenses.length) { el.innerHTML = '<div class="empty"><i class="bi bi-key"></i>No licenses generated yet.</div>'; return; }
+  el.innerHTML = `<table><thead><tr>
+    <th>Key</th><th>Store</th><th>Plan</th><th>Amount</th><th>Starts</th><th>Expires</th><th>Status</th>
+  </tr></thead><tbody>` + STATE.licenses.map(l => `<tr>
+    <td class="mono">${esc(l.key)}</td>
+    <td>${esc(l.storeName||l.storeSlug)}<div class="muted mono">${esc(l.storeSlug)}</div></td>
+    <td>${esc(l.plan)}</td>
+    <td>₹${Number(l.amount)||0}</td>
+    <td class="muted">${fmtDate(l.startsAt)}</td>
+    <td class="muted">${fmtDate(l.expiresAt)}</td>
+    <td><span class="pill ${l.status==='active'?(daysLeft(l.expiresAt)>2?'ok':'warn'):'bad'}">
+      ${l.status==='active'?daysLeft(l.expiresAt)+'d left':l.status}</span></td>
+  </tr>`).join('') + '</tbody></table>';
+}
+
+function renderStores(){
+  const el = $('storeList');
+  if (!STATE.stores.length) { el.innerHTML = '<div class="empty"><i class="bi bi-shop"></i>No stores.</div>'; return; }
+  el.innerHTML = `<table><thead><tr>
+    <th>Store</th><th>Slug / URL</th><th>Live Mode</th><th>Owner</th><th>UPI ID</th><th>Status</th><th>Action</th>
+  </tr></thead><tbody>` + STATE.stores.map(s => {
+    const isAi = (s.siteMode === 'ai');
+    return `<tr>
+    <td><b>${esc(s.storeName)}</b></td>
+    <td class="mono">${esc(s.slug)}<div class="muted">${esc(s.domain || (s.slug + '.' + (location.hostname.split('.').slice(1).join('.') || location.hostname)))}</div></td>
+    <td>
+      <span class="pill ${isAi ? 'warn' : 'ok'}">${isAi ? '🤖 Safe AI' : '🛒 Flipkart'}</span>
+    </td>
+    <td class="muted">${esc(s.ownerEmail||'-')}</td>
+    <td class="mono">${esc(s.upiId||'not set')}</td>
+    <td><span class="pill ${s.active?'ok':'bad'}">${s.active?'Active':'Inactive'}</span></td>
+    <td>
+      <button class="btn ghost" style="padding:4px 9px; font-size:11.5px;" onclick="toggleStoreMode('${esc(s.slug)}', '${isAi ? 'flipkart' : 'ai'}')">
+        Switch to ${isAi ? 'Flipkart' : 'AI'}
+      </button>
+    </td>
+  </tr>`;
+  }).join('') + '</tbody></table>';
+}
+
+function fillStoreSelect(){
+  const sel = $('gStore');
+  sel.innerHTML = STATE.stores.filter(s => s.slug !== 'owner')
+    .map(s => `<option value="${esc(s.slug)}">${esc(s.storeName)} (${esc(s.slug)})</option>`).join('')
+    || '<option value="">No client stores yet</option>';
+}
+
+function esc(v){ return String(v==null?'':v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// ---------------- Actions ----------------
+async function review(id, decision){
+  const label = decision === 'approve' ? 'APPROVE' : 'REJECT';
+  if (!confirm(label + ' this payment?\n\nApproving instantly generates the client license key.')) return;
+  try {
+    const r = await api(`/api/super/payments/${id}/review`, { method:'POST', body: JSON.stringify({ decision }) });
+    toast(r.message || 'Done.', 'ok');
+    await loadAll();
+  } catch(e){ toast(e.message, 'err'); }
+}
+
+async function grantLicense(){
+  const slug = $('gStore').value;
+  if (!slug) return toast('Select a store first.', 'err');
+  const days = Number($('gPlan').value);
+  try {
+    const r = await api('/api/super/licenses', { method:'POST', body: JSON.stringify({ storeSlug: slug, durationDays: days }) });
+    toast(r.message + ' Key: ' + r.licenseKey, 'ok');
+    closeModal('grantModal');
+    await loadAll();
+  } catch(e){ toast(e.message, 'err'); }
+}
+
+function closeModal(id){ $(id).classList.remove('show'); }
+
+// ---------------- Wiring ----------------
+document.querySelectorAll('.navBtn[data-view]').forEach(b => {
+  b.addEventListener('click', () => switchView(b.dataset.view));
+});
+
+function switchView(v){
+  document.querySelectorAll('.navBtn[data-view]').forEach(b => b.classList.toggle('active', b.dataset.view === v));
+  ['dashboard','payments','clients','licenses','stores'].forEach(x => $('view-'+x).classList.toggle('hide', x !== v));
+  const titles = {
+    dashboard:['Dashboard','Overview of every store, license and payment.'],
+    payments:['UTR Payments','Review and approve client rent payments.'],
+    clients:['Clients','All registered store owners.'],
+    licenses:['Licenses','Generated rent keys and expiry.'],
+    stores:['Stores','Subdomains served by the platform.']
+  };
+  $('viewTitle').textContent = titles[v][0];
+  $('viewSub').textContent = titles[v][1];
+}
+
+document.querySelectorAll('.tab[data-f]').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab[data-f]').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    payFilter = t.dataset.f;
+    renderPayTable($('payList'), STATE.payments.filter(p => !payFilter || p.status === payFilter));
+  });
+});
+
+$('grantBtn').addEventListener('click', () => $('grantModal').classList.add('show'));
+$('grantConfirm').addEventListener('click', grantLicense);
+document.querySelectorAll('.modalBg').forEach(m => m.addEventListener('click', e => { if (e.target === m) m.classList.remove('show'); }));
+
+$('superLoginForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = $('superEmail').value.trim();
+  const password = $('superPassword').value;
+  const btn = $('superLoginSubmitBtn');
+  const errEl = $('superLoginErr');
+  errEl.style.display = 'none';
+
+  if (!email || !password) {
+    errEl.textContent = 'Please enter email and password.';
+    errEl.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Signing in...';
+  try {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    if (!res.ok || !data.success) {
+      errEl.textContent = data.error || 'Invalid credentials.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (data.user.role !== 'owner' && data.user.role !== 'super_admin') {
+      errEl.textContent = 'This account does not have Super Admin permissions.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    token = data.token;
+    document.cookie = 'store_admin_token=' + encodeURIComponent(data.token) + '; path=/; max-age=86400; SameSite=Lax';
+    $('whoami').textContent = data.user.fullName || data.user.email;
+    $('superLoginScreen').classList.add('hide');
+    $('mainLayout').classList.remove('hide');
+    await loadAll();
+    toast('Welcome to Super Admin Control Center!', 'ok');
+  } catch(err) {
+    errEl.textContent = err.message || 'Login failed. Please try again.';
+    errEl.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Sign In to Super Admin';
+  }
+$('logoutBtn').addEventListener('click', async () => {
+  try { await fetch('/api/auth/logout', { method:'POST', headers:{'Authorization':'Bearer '+token} }); } catch(e){}
+  document.cookie = 'store_admin_token=; path=/; max-age=0';
+  token = '';
+  showSuperLogin('You have been logged out.');
+});
+
+boot();
+</script>
+</body>
+</html>

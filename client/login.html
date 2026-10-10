@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Client Sign In - Your Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family:'Inter',system-ui,sans-serif;
+    background: linear-gradient(135deg,#0f172a 0%,#1e293b 50%,#0f172a 100%);
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    padding:24px 16px; color:#e2e8f0;
+  }
+  .card { width:100%; max-width:420px; background:#111c33; border:1px solid #24334d; border-radius:18px; padding:32px; box-shadow:0 24px 60px rgba(0,0,0,.45); }
+  .brand { display:flex; align-items:center; gap:11px; margin-bottom:22px; }
+  .brand .logo { width:42px; height:42px; border-radius:11px; background:linear-gradient(135deg,#2563eb,#38bdf8); display:flex; align-items:center; justify-content:center; font-size:20px; color:#fff; }
+  .brand b { font-size:17px; color:#fff; display:block; }
+  .brand span { font-size:12.5px; color:#64748b; }
+
+  h2 { font-size:22px; font-weight:700; color:#fff; margin-bottom:6px; }
+  .sub { font-size:13.5px; color:#94a3b8; margin-bottom:22px; }
+
+  .field { margin-bottom:15px; }
+  .field label { display:block; font-size:12.5px; font-weight:600; color:#cbd5e1; margin-bottom:6px; }
+  .inputWrap { position:relative; }
+  .inputWrap i.ic { position:absolute; left:13px; top:50%; transform:translateY(-50%); color:#64748b; font-size:15px; }
+  input {
+    width:100%; padding:12px 40px 12px 38px; background:#0b1425; border:1px solid #2b3d5c;
+    border-radius:10px; color:#e2e8f0; font-size:14.5px; font-family:inherit; transition:.18s;
+  }
+  input:focus { outline:none; border-color:#38bdf8; box-shadow:0 0 0 3px rgba(56,189,248,.15); }
+  input::placeholder { color:#475569; }
+  .togglePw { position:absolute; right:8px; top:50%; transform:translateY(-50%); background:none; border:none; color:#64748b; cursor:pointer; font-size:16px; padding:5px; }
+  .togglePw:hover { color:#94a3b8; }
+
+  .btn {
+    width:100%; padding:13px; background:linear-gradient(135deg,#2563eb,#38bdf8); color:#fff;
+    border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer;
+    font-family:inherit; transition:.18s; margin-top:4px;
+  }
+  .btn:hover { filter:brightness(1.08); }
+  .btn:disabled { opacity:.6; cursor:not-allowed; }
+
+  .msg { padding:11px 13px; border-radius:10px; font-size:13.5px; margin-bottom:16px; display:none; line-height:1.5; }
+  .msg.show { display:block; }
+  .msg.err { background:rgba(239,68,68,.13); border:1px solid rgba(239,68,68,.4); color:#fca5a5; }
+  .msg.ok  { background:rgba(34,197,94,.13); border:1px solid rgba(34,197,94,.4); color:#86efac; }
+
+  .alt { text-align:center; font-size:13.5px; color:#94a3b8; margin-top:18px; }
+  .alt a { color:#38bdf8; text-decoration:none; font-weight:600; }
+  .alt a:hover { text-decoration:underline; }
+  .back { display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#64748b; text-decoration:none; margin-bottom:16px; }
+  .back:hover { color:#94a3b8; }
+  .spin { display:inline-block; width:15px; height:15px; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%; animation:sp .7s linear infinite; vertical-align:-3px; margin-right:7px; }
+  @keyframes sp { to { transform:rotate(360deg); } }
+</style>
+</head>
+<body>
+<div class="card">
+  <a class="back" href="/"><i class="bi bi-arrow-left"></i> Back to store</a>
+  <div class="brand">
+    <div class="logo"><i class="bi bi-shop"></i></div>
+    <div><b>Store Client Portal</b><span>Sign in to manage your store</span></div>
+  </div>
+
+  <h2>Welcome back</h2>
+  <div class="sub">Use the email and password you signed up with.</div>
+
+  <div class="msg" id="msg"></div>
+
+  <form id="loginForm" novalidate>
+    <div class="field">
+      <label>Email Address</label>
+      <div class="inputWrap"><i class="ic bi bi-envelope"></i>
+        <input type="email" id="email" placeholder="you@example.com" autocomplete="email" required />
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <div class="inputWrap"><i class="ic bi bi-lock"></i>
+        <input type="password" id="password" placeholder="Your password" autocomplete="current-password" required />
+        <button type="button" class="togglePw" id="togglePw"><i class="bi bi-eye"></i></button>
+      </div>
+    </div>
+
+    <button type="submit" class="btn" id="submitBtn">Sign In</button>
+  </form>
+
+  <div class="alt">New here? <a href="/signup">Create your store</a></div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const msg = $('msg');
+
+$('togglePw').addEventListener('click', () => {
+  const inp = $('password');
+  const showing = inp.type === 'text';
+  inp.type = showing ? 'password' : 'text';
+  $('togglePw').innerHTML = '<i class="bi bi-eye' + (showing ? '' : '-slash') + '"></i>';
+});
+
+function showMsg(text, type){ msg.textContent = text; msg.className = 'msg show ' + type; }
+
+$('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = $('email').value.trim();
+  const password = $('password').value;
+
+  if (!email || !password) return showMsg('Please enter your email and password.', 'err');
+
+  const btn = $('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin"></span>Signing in...';
+
+  try {
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      showMsg(data.error || 'Invalid email or password.', 'err');
+      return;
+    }
+
+    // Cookie only - no localStorage.
+    document.cookie = 'store_admin_token=' + encodeURIComponent(data.token) + '; path=/; max-age=86400; SameSite=Lax';
+
+    showMsg(data.message + ' Redirecting...', 'ok');
+    setTimeout(() => {
+      if (data.user.role === 'owner' || data.user.role === 'super_admin') location.href = '/superadmin/';
+      else location.href = '/admin/';
+    }, 900);
+  } catch (err) {
+    showMsg('Server connection error. Please ensure the backend is running.', 'err');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Sign In';
+  }
+});
+</script>
+</body>
+</html>

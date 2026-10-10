@@ -1,0 +1,260 @@
+/* ==========================================================================
+   FLIPKART DELIVERY ADDRESS PAGE STYLES
+   Matching https://mediumseagreen-quetzal-932356.hostingersite.com/freedom-fk/address/index.php
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+input, textarea, select {
+  user-select: auto !important;
+  -webkit-user-select: auto !important;
+}
+
+body {
+  background-color: #f1f2f4;
+  color: #212121;
+  font-size: 13px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Centered Mobile Container (Flipkart App / Mobile Web Layout) */
+.address-viewport {
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   1. HEADER (Back arrow, Add delivery address)
+   ========================================================================== */
+.address-header {
+  height: 52px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  padding: 0;
+  color: #000;
+  margin-right: 12px;
+}
+
+.header-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #212121;
+}
+
+/* ==========================================================================
+   2. PROGRESS BOX (Step 1, Step 2, Step 3)
+   ========================================================================== */
+.progress-box {
+  width: 100%;
+  background: #ffffff;
+  padding: 10px 14px 6px 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-box svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   3. ADDRESS FORM (Floating Labels matching reference)
+   ========================================================================== */
+.address-form-container {
+  padding: 14px 16px 90px 16px; /* 90px bottom padding for fixed save button */
+  flex: 1;
+}
+
+.form-floating {
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.form-floating > .form-control,
+.form-floating > .form-select {
+  width: 100%;
+  height: 52px;
+  padding: 18px 12px 6px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #212121;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-floating > .form-control:focus,
+.form-floating > .form-select:focus {
+  border-color: #2874f0;
+  box-shadow: 0 0 0 1px #2874f0;
+}
+
+.form-floating > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding: 16px 12px;
+  pointer-events: none;
+  border: 1px solid transparent;
+  transform-origin: 0 0;
+  transition: opacity 0.1s ease-in-out, transform 0.15s ease-in-out;
+  color: #878787;
+  font-size: 14px;
+}
+
+/* Floating animation when focused or has value */
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  opacity: 0.85;
+  transform: scale(0.78) translateY(-0.65rem) translateX(0.15rem);
+  color: #878787;
+  font-weight: 500;
+}
+
+.form-floating > .form-control::placeholder {
+  color: transparent;
+}
+
+.form-row-2 {
+  display: flex;
+  gap: 12px;
+}
+
+.form-row-2 .form-floating {
+  flex: 1;
+}
+
+/* Remove number spinner buttons */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Safety delivery banner */
+.safety-banner {
+  margin: 16px 0 20px 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.safety-banner img {
+  width: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   4. FIXED SAVE ADDRESS BUTTON (Matching .common-button from reference)
+   ========================================================================== */
+.card-footer-fixed {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  padding: 10px 16px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+}
+
+@media (min-width: 481px) {
+  .card-footer-fixed {
+    max-width: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px 8px 0 0;
+  }
+}
+
+.common-button {
+  background: #fb641b; /* Exact Flipkart Orange */
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  width: 100%;
+  height: 48px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.15s ease;
+}
+
+.common-button:hover,
+.common-button:active {
+  background: #e65100;
+  color: #ffffff;
+}
+
+/* Toast Message */
+.toast-msg {
+  position: fixed;
+  bottom: 75px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(33, 33, 33, 0.95);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 999999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.toast-msg.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

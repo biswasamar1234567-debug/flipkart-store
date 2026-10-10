@@ -1,0 +1,2962 @@
+{
+  "products": [
+    {
+      "_id": "6ac9b0fbe5cb008a36722502",
+      "id": "apple-iphone-17-pro-max-256-gb",
+      "name": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB) with A19 Pro Chip",
+      "title1": "Apple iPhone 17 Pro Max (256 GB)",
+      "title2": "Apple iPhone 17 Pro Max (Cosmic Orange, 256 GB) with A19 Pro Chip",
+      "brand": "Apple",
+      "category": "Mobiles",
+      "stock": 2,
+      "mrp": 144999,
+      "selling_price": 999,
+      "wow_price": 999,
+      "discount": 99,
+      "rating": 4.8,
+      "reviews_count": 4215,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791602108/bvgy2ot7dne42ybzjurd.webp",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602123/grm9x0izbss2rwrjtq1u.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602124/olufkpnmmvpvof7mlu8j.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602125/grotxpsnongx1yq72jaf.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602126/imy03lrsu1eqkpanejqq.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602127/tdcnfeezoffbcrqlbd8v.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602128/jexbj2eyrphceug1se16.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602129/bhfa6rb7gglpmz35ox8i.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602130/ecyjcrdtzwwituvpxmxf.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602130/qk8pkbl4rfrghnb1xnr0.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602131/qoptcwellkvgdu20rfgh.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "Cosmic Orange",
+          "color_hex": "#FF6F00",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791602108/bvgy2ot7dne42ybzjurd.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791602123/grm9x0izbss2rwrjtq1u.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791602124/olufkpnmmvpvof7mlu8j.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791602125/grotxpsnongx1yq72jaf.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791602126/imy03lrsu1eqkpanejqq.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791602127/tdcnfeezoffbcrqlbd8v.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791602128/jexbj2eyrphceug1se16.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791602129/bhfa6rb7gglpmz35ox8i.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791602130/ecyjcrdtzwwituvpxmxf.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791602130/qk8pkbl4rfrghnb1xnr0.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791602131/qoptcwellkvgdu20rfgh.webp"
+          ],
+          "ram": "8 GB",
+          "storage": "256 GB",
+          "selling_price": 999,
+          "mrp": 144999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791602137/vx8ji87oyh2uj97m9dvg.jpg"
+      ],
+      "default_color": "Cosmic Orange",
+      "default_ram": "",
+      "default_storage": "256 GB",
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the future of mobile technology with the Apple iPhone 17 Pro Max in striking Cosmic Orange. Powered by the groundbreaking A19 Pro Chip, this flagship delivers unrivaled performance, seamless multitasking, and stunning graphics. Capture every moment with a pro‑grade triple‑camera system, enjoy an immersive 6.7‑inch Super Retina XDR display, and benefit from iOS 17's intuitive features. With 256 GB of storage, you have ample space for apps, photos, and videos, all wrapped in a premium design that stands out. Elevate your everyday with speed, style, and sophistication—all at an unbeatable price.",
+      "highlights": [
+        "6.7‑inch Super Retina XDR OLED display with HDR10+ support",
+        "A19 Pro Chip ensures lightning‑fast performance and AI capabilities",
+        "Triple‑camera system: 48 MP main + 12 MP ultra‑wide + 12 MP telephoto",
+        "5G connectivity, Wi‑Fi 6E, and Ultra‑Wideband (UWB) technology",
+        "256 GB storage and 8 GB RAM for smooth multitasking",
+        "Durable Ceramic Shield front and IP68 water‑resistance"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "iPhone 17 Pro Max",
+          "Color": "Cosmic Orange",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.7 inches",
+          "Resolution": "2778 x 1284 pixels",
+          "Display Type": "Super Retina XDR OLED"
+        },
+        "Processor & OS": {
+          "Operating System": "iOS 17",
+          "Processor Type": "A19 Pro Chip"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "256 GB",
+          "RAM": "8 GB"
+        },
+        "Camera": {
+          "Primary Camera": "48 MP + 12 MP + 12 MP",
+          "Front Camera": "12 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "storeId": "owner",
+      "sort_order": 0
+    },
+    {
+      "_id": "6ac9b0fbe5cb008a36722503",
+      "id": "iphone16",
+      "name": "Apple iPhone 16 Pro Max (Black Titanium, 256 GB) (8 GB RAM)",
+      "title1": "Apple iPhone 16 Pro Max (Black Titanium, 256 GB)",
+      "title2": "Apple iPhone 16 Pro Max (Black Titanium, 256 GB) (8 GB RAM)",
+      "brand": "Apple",
+      "category": "Mobiles",
+      "mrp": 134900,
+      "selling_price": 998,
+      "wow_price": 998,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791603630/v7owm3fpp3cgtx1mgiay.webp",
+      "rating": 4.8,
+      "reviews_count": 3410,
+      "colors": [
+        {
+          "color_name": "Black Titanium",
+          "color_hex": "#1c1c1c",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791603630/v7owm3fpp3cgtx1mgiay.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791603637/nnhmltcyffvnepozeqd5.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791603637/ihjumwyzxtdw9drgx4oo.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791603638/cj3nsqvacgativhefcua.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791603639/jk9jpdy3xfdjug6meqgb.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791603640/yyoh3u4vzxecel51f2qj.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791603640/hhtuiykcksagucjdud6q.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791603641/abdzo6sciwhtjgwbobph.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791603642/gmomtdzpugulaj4eaqcp.webp"
+          ],
+          "ram": "8 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "8 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 149900
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603653/bc3ayjopwkczxup2drsx.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603654/d65rsn43a7exdp7e2vzj.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603655/vspxqx9ikbiaazqfekuq.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603655/ezfcxle2wcanflz8a7tx.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603656/uo9wuich5fcyqb9hi76x.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603657/i4b3srongrlmvl6gduzs.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603657/qf9pxml2ttorpbr9avta.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603658/g0leyqguhbpamtszmpdu.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603658/f3n0zz7csh62wbjns2im.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603659/n85g6swhcmv6q2oruuby.png"
+      ],
+      "description": "Experience the future of mobile technology with the Apple iPhone 16 Pro Max. Crafted in a sleek Black Titanium finish, this flagship device combines a stunning 6.7‑inch Super Retina XDR display, the powerful A18 Bionic chip, and a versatile triple‑camera system to deliver unmatched performance, photography, and entertainment. With 8 GB RAM and 256 GB of storage, you get smooth multitasking and ample space for all your apps, photos, and videos. Running iOS 18, the iPhone 16 Pro Max offers a seamless, secure, and intuitive user experience, making it the ultimate companion for work and play.",
+      "highlights": [
+        "6.7‑inch Super Retina XDR OLED display with ProMotion technology",
+        "A18 Bionic chip for lightning‑fast performance",
+        "Triple‑camera system: 48 MP wide, 12 MP ultra‑wide, 12 MP telephoto",
+        "8 GB RAM and 256 GB storage for smooth multitasking",
+        "iOS 18 with advanced privacy and ecosystem features",
+        "Premium Black Titanium body with IP68 water‑resistance"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "iPhone 16 Pro Max",
+          "Color": "Black Titanium",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.7 inches",
+          "Resolution": "2796 x 1290 pixels",
+          "Display Type": "Super Retina XDR OLED"
+        },
+        "Processor & OS": {
+          "Operating System": "iOS 18",
+          "Processor Type": "A18 Bionic"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "256 GB",
+          "RAM": "8 GB"
+        },
+        "Camera": {
+          "Primary Camera": "Triple 48 MP (wide) + 12 MP (ultra‑wide) + 12 MP (telephoto)",
+          "Front Camera": "12 MP"
+        }
+      },
+      "hidden": false,
+      "stock": 7,
+      "discount": 99,
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603637/nnhmltcyffvnepozeqd5.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603637/ihjumwyzxtdw9drgx4oo.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603638/cj3nsqvacgativhefcua.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603639/jk9jpdy3xfdjug6meqgb.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603640/yyoh3u4vzxecel51f2qj.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603640/hhtuiykcksagucjdud6q.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603641/abdzo6sciwhtjgwbobph.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791603642/gmomtdzpugulaj4eaqcp.webp"
+      ],
+      "default_color": "Black Titanium",
+      "default_ram": "8 GB",
+      "default_storage": "256 GB",
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "storeId": "owner",
+      "sort_order": 1,
+      "ram_options": [
+        "8 GB"
+      ],
+      "storage_options": [
+        "256 GB"
+      ]
+    },
+    {
+      "_id": "6ac9c6976615536352820270",
+      "id": "apple-iphone-15-pro-max-blue-titanium-256-gb",
+      "name": "Apple iPhone 15 Pro Max (Blue Titanium, 256 GB) (6 GB RAM)",
+      "title1": "Apple iPhone 15 Pro Max (Blue Titanium, 256 GB)",
+      "title2": "Apple iPhone 15 Pro Max (Blue Titanium, 256 GB) (6 GB RAM)",
+      "brand": "Apple",
+      "category": "Mobiles",
+      "stock": 5,
+      "mrp": 159900,
+      "selling_price": 995,
+      "wow_price": 995,
+      "discount": 99,
+      "rating": 4.8,
+      "reviews_count": 3420,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791608422/zft6088axumlrp36xuqz.webp",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608433/jk3iehvug6rgg3smhr4p.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608435/bmci9hdk4jr4kecmytpi.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608436/ql1qm8oafqo6xogzhe6z.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608436/v46mkhwv2elhfvdbbgvo.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608437/xjdu0qrjwb9lu5jbm5gu.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608439/t095zrxxiitpa4iefaqm.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608440/vj0va8unhzhk2goxkgvf.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608440/vsrnmyc74mnjerdwgz2v.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "Blue Titanium",
+          "color_hex": "#4A90E2",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791608422/zft6088axumlrp36xuqz.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608433/jk3iehvug6rgg3smhr4p.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608435/bmci9hdk4jr4kecmytpi.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608436/ql1qm8oafqo6xogzhe6z.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608436/v46mkhwv2elhfvdbbgvo.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608437/xjdu0qrjwb9lu5jbm5gu.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608439/t095zrxxiitpa4iefaqm.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608440/vj0va8unhzhk2goxkgvf.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608440/vsrnmyc74mnjerdwgz2v.webp"
+          ],
+          "ram": "6 GB",
+          "storage": "256 GB",
+          "selling_price": 999,
+          "mrp": 139900
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608438/hnanc8gjnu0bbqys4phm.jpg"
+      ],
+      "default_color": "Blue Titanium",
+      "default_ram": "6 GB",
+      "default_storage": "256 GB",
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the pinnacle of smartphone innovation with the Apple iPhone 15 Pro Max in striking Blue Titanium. Powered by the groundbreaking A17 Pro chip and iOS 17, this 6.7‑inch Super Retina XDR OLED device delivers lightning‑fast performance, stunning visuals, and an unrivaled camera system. With 256 GB of storage and 6 GB of RAM, you get ample space and smooth multitasking for all your apps, games, and media. Elevate your everyday moments with premium design, advanced photography, and seamless connectivity—all at an unbeatable price.",
+      "highlights": [
+        "6.7‑inch Super Retina XDR OLED display with ProMotion technology",
+        "A17 Pro chip ensures ultra‑fast performance and AI‑enhanced experiences",
+        "48 MP triple‑camera system with 3× optical zoom and Photonic Engine",
+        "5G, Dual SIM (Nano + eSIM) and Wi‑Fi 6E connectivity",
+        "256 GB storage and 6 GB RAM for smooth multitasking",
+        "Ceramic Shield front cover and surgical‑grade stainless steel frame"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "iPhone 15 Pro Max",
+          "Color": "Blue Titanium",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.7 inches",
+          "Resolution": "2796 x 1290 pixels",
+          "Display Type": "Super Retina XDR OLED"
+        },
+        "Processor & OS": {
+          "Operating System": "iOS 17",
+          "Processor Type": "A17 Pro chip"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "256 GB",
+          "RAM": "6 GB"
+        },
+        "Camera": {
+          "Primary Camera": "48 MP main + 12 MP ultra‑wide + 12 MP telephoto (3x optical zoom)",
+          "Front Camera": "12 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "storeId": "owner",
+      "sort_order": 2
+    },
+    {
+      "_id": "6ac9edd11c692051f5180670",
+      "id": "samsung-galaxy-s26-ultra-5g-cobalt-violet-12gb-ram-256gb-storage",
+      "name": "Samsung Galaxy S26 Ultra 5G (Cobalt Violet, 12GB RAM, 256GB Storage) with 200MP Camera, Privacy Display, Snapdragon 8 Elite Gen 5",
+      "title1": "Samsung Galaxy S26 Ultra 5G (Cobalt Violet, 12GB RAM, 256GB Storage)",
+      "title2": "Samsung Galaxy S26 Ultra 5G (Cobalt Violet, 12GB RAM, 256GB Storage) with 200MP Camera, Privacy Display, Snapdragon 8 Elite Gen 5",
+      "brand": "Samsung",
+      "category": "Mobiles",
+      "stock": 4,
+      "mrp": 124999,
+      "selling_price": 998,
+      "wow_price": 998,
+      "discount": 99,
+      "rating": 4.8,
+      "reviews_count": 4521,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791618484/w5cvwgwvikcb61xnltuh.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791618495/yzuajebnxhyoqsvj7dyy.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791618496/fjwrijcuwsmq3zhie6gu.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791618496/cshrtulfrrxgczwcl6ao.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791618497/kghr2dx8dudaxet6ryir.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791618498/hu8wfkuqiz5lhbkmbgw2.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791618498/cdpyzbysqxkg0fswrvlq.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791618499/eeig5nw7umnbreagaplx.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791618500/zy66k7yeg64dxsodirjn.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791618501/gtqw5hqnjmkbskguz2m5.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Cobalt Violet",
+          "color_hex": "#7F3FBF",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791618484/w5cvwgwvikcb61xnltuh.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791618495/yzuajebnxhyoqsvj7dyy.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791618496/fjwrijcuwsmq3zhie6gu.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791618496/cshrtulfrrxgczwcl6ao.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791618497/kghr2dx8dudaxet6ryir.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791618498/hu8wfkuqiz5lhbkmbgw2.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791618498/cdpyzbysqxkg0fswrvlq.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791618499/eeig5nw7umnbreagaplx.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791618500/zy66k7yeg64dxsodirjn.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791618501/gtqw5hqnjmkbskguz2m5.jpg"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 159999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791618500/kpkpd1gf4tsqljwmb7qd.jpg"
+      ],
+      "default_color": "Cobalt Violet",
+      "default_ram": "12 GB",
+      "default_storage": "256 GB",
+      "ram_options": [
+        "12 GB"
+      ],
+      "storage_options": [
+        "256 GB"
+      ],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the future of mobile photography and performance with the Samsung Galaxy S26 Ultra 5G. Powered by the cutting‑edge Snapdragon 8 Elite Gen 5 processor and Android 14 with One UI 6, this flagship delivers lightning‑fast speed, AI‑enhanced features and seamless 5G connectivity. Capture every detail with a groundbreaking 200MP primary sensor, supported by versatile ultra‑wide and telephoto lenses, while the built‑in Privacy Display ensures your screen content stays visible only to you. A massive 5000mAh battery keeps you going all day, and the sleek Cobalt Violet finish adds a premium touch to your pocket.",
+      "highlights": [
+        "200MP quad‑camera system with AI Photo Assist and Creative Studio",
+        "Built‑in Privacy Display for on‑screen confidentiality",
+        "Snapdragon 8 Elite Gen 5 chipset with 12GB RAM for ultra‑smooth performance",
+        "5G connectivity, Wi‑Fi 7 and Bluetooth 5.3 for fast, reliable links",
+        "6.8‑inch Dynamic AMOLED 2X, 3200×1440 resolution with 120Hz refresh rate",
+        "5000mAh battery with fast charging and intelligent power management"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Galaxy S26 Ultra",
+          "Color": "Cobalt Violet",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.8 inches",
+          "Resolution": "3200 x 1440 pixels",
+          "Display Type": "Dynamic AMOLED 2X with Privacy Display"
+        },
+        "Processor & OS": {
+          "Operating System": "Android 14 with One UI 6",
+          "Processor Type": "Snapdragon 8 Elite Gen 5 (4nm)"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "256 GB",
+          "RAM": "12 GB"
+        },
+        "Camera": {
+          "Primary Camera": "200 MP (wide) + 12 MP (ultrawide) + 10 MP (periscope telephoto) + 10 MP (telephoto)",
+          "Front Camera": "12 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "sort_order": 3,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6ac9f3886cc6b2e98b06f1ec",
+      "id": "xiaomi-17-ultra-world-s-first-leica-1-inch-lofic-sensor-black-16gb-512gb",
+      "name": "Xiaomi 17 Ultra (Black, 16GB RAM + 512GB Storage) | World's First Leica 1‑Inch LOFIC Sensor | Snapdragon 8 Elite Gen 5 | 2K AMOLED Display | 90W HyperCharge | HyperOS 3 | HyperAI Flagship Experience",
+      "title1": "Xiaomi 17 Ultra  |World's First Leica 1-Inch LOFIC Sensor (Black, 16GB+512GB)",
+      "title2": "Xiaomi 17 Ultra (Black, 16GB RAM + 512GB Storage) | World's First Leica 1‑Inch LOFIC Sensor | Snapdragon 8 Elite Gen 5 | 2K AMOLED Display | 90W HyperCharge | HyperOS 3 | HyperAI Flagship Experience",
+      "brand": "Xiaomi",
+      "category": "Mobiles",
+      "stock": 3,
+      "mrp": 129999,
+      "selling_price": 999,
+      "wow_price": 999,
+      "discount": 99,
+      "rating": 4.6,
+      "reviews_count": 2150,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791619856/gotfeug98bd1awielre9.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619871/sykljmaz0uf6yq5l8joj.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619871/kncpjmnk4sgrkfnwgs5p.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619872/f9a5cqpgo4qcsa2of8zh.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619873/y1jwln8cj09mtpypwlgs.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619874/rakmsxrq4mhledhv3ory.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619875/mdexlvb9ykwmjaiuie0m.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619875/pvmqiwqa5xgg8ruaevrd.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619876/gueffxcnvnmy40ldcbjm.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619877/xigsy7d6x2sengkgleu8.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619878/xjvauvxeq5pcbwcae1il.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619879/bm69glkjvvfbggdkd6ho.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619880/mxrztt9w49mmi4b6szow.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Black",
+          "color_hex": "#000000",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791619856/gotfeug98bd1awielre9.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619871/sykljmaz0uf6yq5l8joj.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619871/kncpjmnk4sgrkfnwgs5p.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619872/f9a5cqpgo4qcsa2of8zh.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619873/y1jwln8cj09mtpypwlgs.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619874/rakmsxrq4mhledhv3ory.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619875/mdexlvb9ykwmjaiuie0m.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619875/pvmqiwqa5xgg8ruaevrd.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619876/gueffxcnvnmy40ldcbjm.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619877/xigsy7d6x2sengkgleu8.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619878/xjvauvxeq5pcbwcae1il.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619879/bm69glkjvvfbggdkd6ho.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619880/mxrztt9w49mmi4b6szow.jpg"
+          ],
+          "ram": "16 GB",
+          "storage": "512 GB",
+          "ram_options": [
+            "16 GB"
+          ],
+          "storage_options": [
+            "512 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 109999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619936/jkfjuclqtmbu18fqk7id.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619937/j6vtkbm7a5zkdcyhbmje.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619938/sz1ogpmgxddmtsj6ua4d.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619939/p0yszvjjs9pvzvqjgf5u.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619940/wfx0lbbp4icqdd9vkqmn.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619942/guxgt6fyrafrcs4ohqry.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619943/wb8kbno0mvl7rxgkmaom.jpg"
+      ],
+      "default_color": "Black",
+      "default_ram": "16 GB",
+      "default_storage": "512 GB",
+      "ram_options": [
+        "16 GB"
+      ],
+      "storage_options": [
+        "512 GB"
+      ],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "The Xiaomi 17 Ultra redefines flagship photography with the world’s first Leica 1‑Inch LOFIC sensor, delivering unprecedented detail and colour accuracy. Powered by the Snapdragon 8 Elite Gen 5 and running HyperOS 3, it offers ultra‑smooth performance and AI‑driven features for a truly intelligent experience. A stunning 2K AMOLED display brings every visual to life, while 90W HyperCharge ensures you’re back to full power in minutes. Paired with a free photography kit, this device is built for creators who demand the ultimate in speed, style, and substance.",
+      "highlights": [
+        "Leica 1‑Inch LOFIC sensor sets new benchmark in mobile photography",
+        "Snapdragon 8 Elite Gen 5 chipset for flagship‑level performance",
+        "2K AMOLED display with vibrant colour reproduction",
+        "90W HyperCharge – full charge in under 30 minutes",
+        "HyperOS 3 with HyperAI for seamless, intelligent user experience",
+        "Free premium photography kit included"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Xiaomi 17 Ultra",
+          "Color": "Black",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.78 inches",
+          "Resolution": "3200 x 1440 pixels",
+          "Display Type": "2K AMOLED"
+        },
+        "Processor & OS": {
+          "Operating System": "HyperOS 3",
+          "Processor Type": "Snapdragon 8 Elite Gen 5"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "512 GB",
+          "RAM": "16 GB"
+        },
+        "Camera": {
+          "Primary Camera": "Leica 1‑Inch LOFIC Sensor (50 MP)",
+          "Front Camera": "32 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "sort_order": 4,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6aca34cc6b7a429de61561b7",
+      "id": "google-pixel-11-powered-by-the-latest-tensor-g3-chipset-and-android-14-256-gb",
+      "name": "Google Pixel 11 Powered by the latest Tensor G3 chipset and Android 14 (Pistachio, 256 GB) (12 GB RAM)",
+      "title1": "Google Pixel 11 Powered by the latest Tensor G3 chipset and Android 14 (256 GB)",
+      "title2": "Google Pixel 11 Powered by the latest Tensor G3 chipset and Android 14 (Pistachio, 256 GB) (12 GB RAM)",
+      "brand": "Google",
+      "category": "Mobiles",
+      "stock": 6,
+      "mrp": 89999,
+      "selling_price": 949,
+      "wow_price": 949,
+      "discount": 99,
+      "rating": 4.6,
+      "reviews_count": 3410,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791636665/m1vwo3ddmeithhi8zumm.webp",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636672/r08mhenbyg6ktiqof0pr.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636673/xy1mzooxvk2pkfd8sezm.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636673/srvq2nkbx1fnsmsjpkhk.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636674/pllzhtflfprj9zz5l3jq.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636675/uameubfnm7ltms3j02bl.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636678/e4qmkiewz65qd96rsx8j.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636680/boukzwwybfkp8bccl2pt.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636681/gmzkffhcus53cswmvymo.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "Pistachio",
+          "color_hex": "#c2b69d",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791636665/m1vwo3ddmeithhi8zumm.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636672/r08mhenbyg6ktiqof0pr.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636673/xy1mzooxvk2pkfd8sezm.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636673/srvq2nkbx1fnsmsjpkhk.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636674/pllzhtflfprj9zz5l3jq.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636675/uameubfnm7ltms3j02bl.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636678/e4qmkiewz65qd96rsx8j.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636680/boukzwwybfkp8bccl2pt.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636681/gmzkffhcus53cswmvymo.webp"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 89999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636677/s6wtnqklk0ypssmdkp0o.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636678/gpe5w2uynxz2fdeev7zb.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636678/dmrovd5syqpbs4optplx.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636679/bzyklx8syrfh9phzqxca.png"
+      ],
+      "default_color": "Pistachio",
+      "default_ram": "12 GB",
+      "default_storage": "256 GB",
+      "ram_options": [
+        "12 GB"
+      ],
+      "storage_options": [
+        "256 GB"
+      ],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the future of mobile photography and performance with the Google Pixel 11. Powered by the latest Tensor G3 chipset and Android 14, it delivers lightning‑fast AI features, seamless multitasking, and an unrivaled camera system that captures every detail in stunning clarity. The elegant Pistachio finish adds a touch of sophistication, while the 12 GB RAM and 256 GB storage ensure you have ample space and speed for all your apps, games, and memories. All this at an unbeatable price, making premium technology accessible to everyone.",
+      "highlights": [
+        "12 GB RAM for ultra‑smooth multitasking",
+        "256 GB UFS storage for massive app and media library",
+        "Google Tensor G3 processor with AI‑enhanced performance",
+        "50 MP + 12 MP dual rear camera system with Night Sight",
+        "6.3‑inch OLED display with vibrant colors and 1080 × 2400 resolution",
+        "Dual SIM (Nano + eSIM) support"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Pixel 11",
+          "Color": "Pistachio",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.3 inches",
+          "Resolution": "1080 x 2400 pixels",
+          "Display Type": "OLED"
+        },
+        "Processor & OS": {
+          "Operating System": "Android 14",
+          "Processor Type": "Google Tensor G3"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "256 GB",
+          "RAM": "12 GB"
+        },
+        "Camera": {
+          "Primary Camera": "50 MP + 12 MP Ultra Wide",
+          "Front Camera": "10.8 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "sort_order": 5,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6ac9ff012416424658c2b021",
+      "id": "oppo-find-x9-ultra-5g-hasselblad-50mp-10-ultra-sensing-canyon-orange-512gb",
+      "name": "Oppo Find X9 Ultra 5G (Canyon Orange, 12GB RAM, 512GB Storage) | Hasselblad 50MP 10× Ultra-Sensing Optical-Zoom Telephoto | Dual 200MP | 8K Video | Snapdragon 8 Elite Gen 5 | 7050mAh 100W",
+      "title1": "Oppo Find X9 Ultra 5G Hasselblad 50MP 10× Ultra-Sensing (Canyon Orange, 512GB)",
+      "title2": "Oppo Find X9 Ultra 5G (Canyon Orange, 12GB RAM, 512GB Storage) | Hasselblad 50MP 10× Ultra-Sensing Optical-Zoom Telephoto | Dual 200MP | 8K Video | Snapdragon 8 Elite Gen 5 | 7050mAh 100W",
+      "brand": "Oppo",
+      "category": "Mobiles",
+      "stock": 3,
+      "mrp": 169999,
+      "selling_price": 989,
+      "wow_price": 989,
+      "discount": 99,
+      "rating": 4.6,
+      "reviews_count": 4210,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791622893/atrrmxi4xnicw8e7jrtj.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622901/jqsbmcukd4osrwljgqbz.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622902/bgsdelqs1bvnzp2aal4s.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622903/acwfqzzvfy9dwqerzjkk.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622903/tj5cmieskra5mibflz6p.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622904/hxsdwkekx3ufsngsbrfh.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622904/iettma8agputo5miobnm.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622905/qqubjhhdllhtkr5vahob.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622906/sqf8xtktw1jcekg7b9th.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622906/sqwttr4b92t6z3xhan0f.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622908/icttbc8i3yhmjqslv2cm.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622909/rxiwlo8mascsidlggbru.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622910/gmbozdok9yuxsspdchwq.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622910/knamnieazsl4ilyuwlfv.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Canyon Orange",
+          "color_hex": "#FF7F00",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791622893/atrrmxi4xnicw8e7jrtj.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622901/jqsbmcukd4osrwljgqbz.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622902/bgsdelqs1bvnzp2aal4s.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622903/acwfqzzvfy9dwqerzjkk.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622903/tj5cmieskra5mibflz6p.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622904/hxsdwkekx3ufsngsbrfh.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622904/iettma8agputo5miobnm.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622905/qqubjhhdllhtkr5vahob.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622906/sqf8xtktw1jcekg7b9th.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622906/sqwttr4b92t6z3xhan0f.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622908/icttbc8i3yhmjqslv2cm.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622909/rxiwlo8mascsidlggbru.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622910/gmbozdok9yuxsspdchwq.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791622910/knamnieazsl4ilyuwlfv.jpg"
+          ],
+          "ram": "12 GB",
+          "storage": "512 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "512 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 109999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622907/if6a1uzvnypp3sdd50uv.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622908/r3v0w4roorz9xj3rpe2y.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622908/b3mlkduruciyey0i3nrx.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622909/lgz83tbp5n7lur1q8ilj.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622910/x7xpsqagerixtuaazhzn.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622910/oomvfvldd2uowafhe5bv.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622911/suyznp2wpgggjvyw64ic.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791622912/rnmlmbolpyostr9idtkr.jpg"
+      ],
+      "default_color": "Canyon Orange",
+      "default_ram": "12 GB",
+      "default_storage": "512 GB",
+      "ram_options": [
+        "12 GB"
+      ],
+      "storage_options": [
+        "512 GB"
+      ],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the pinnacle of mobile photography and performance with the Oppo Find X9 Ultra 5G. Powered by the Snapdragon 8 Elite Gen 5 processor and a massive 12GB RAM, it delivers ultra‑smooth multitasking and gaming. The Hasselblad‑tuned dual‑camera system features a 200MP main sensor and a 50MP 10× Ultra‑Sensing optical‑zoom telephoto lens, capturing every detail in stunning 8K video. With a 7050mAh battery and 100W SuperVOOC fast charging, you stay powered all day. Wrapped in a vibrant Canyon Orange finish, this flagship redefines premium smartphones.",
+      "highlights": [
+        "Snapdragon 8 Elite Gen 5 chipset with 12GB RAM for flagship performance",
+        "Dual 200MP + 50MP Hasselblad camera with 10× optical zoom and 8K video recording",
+        "6.78\" AMOLED display, 1440 × 3216 resolution, 120Hz refresh rate",
+        "7050mAh battery with 100W SuperVOOC fast charging",
+        "5G connectivity, Dual SIM (Nano + eSIM) support",
+        "Premium Canyon Orange finish with Gorilla Glass Victus 2"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Find X9 Ultra 5G",
+          "Color": "Canyon Orange",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.78 inches",
+          "Resolution": "1440 x 3216 pixels",
+          "Display Type": "AMOLED, 120Hz, HDR10+"
+        },
+        "Processor & OS": {
+          "Operating System": "Android 14, ColorOS 14",
+          "Processor Type": "Snapdragon 8 Elite Gen 5 (4nm)"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "512 GB",
+          "RAM": "12 GB"
+        },
+        "Camera": {
+          "Primary Camera": "Dual 200MP + 50MP Hasselblad Ultra‑Sensing Optical Zoom Telephoto (10×)",
+          "Front Camera": "32MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "sort_order": 6,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6ac9f72fa0be5eaa4d8b3193",
+      "id": "oneplus-15-sand-storm-india-s-first-snapdragon-8-elite-gen-5-12gb-256gb-sand-storm",
+      "name": "OnePlus 15 (Sand Storm, 12GB RAM + 256GB Storage) – Snapdragon® 8 Elite Gen 5, 7300mAh Battery, 165Hz Display, Triple 50MP Camera with 4K 120fps Dolby Vision",
+      "title1": "OnePlus 15 |Sand Storm | India's First Snapdragon® 8 Elite Gen 5 (12GB+256GB, Sand Storm)",
+      "title2": "OnePlus 15 (Sand Storm, 12GB RAM + 256GB Storage) – Snapdragon® 8 Elite Gen 5, 7300mAh Battery, 165Hz Display, Triple 50MP Camera with 4K 120fps Dolby Vision",
+      "brand": "OnePlus",
+      "category": "Mobiles",
+      "stock": 5,
+      "mrp": 84999,
+      "selling_price": 899,
+      "wow_price": 899,
+      "discount": 99,
+      "rating": 4.6,
+      "reviews_count": 3410,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791620882/i1zxzal2nlxlstmoev4o.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620891/ar2r97l00urf2fzbkkzc.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620891/envornuozmgcfuqayepa.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620892/fab1k9sju1gadhlnwcsw.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620893/f5ervux6qa2fj3nha725.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620893/bufu6wabmnvo2eoy6crl.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620894/tuig1dtklgs2cmobjvod.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620895/yldirm7xrr5gomwqkzuo.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620895/lcrr8ancinm0k52lcr7l.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620896/gcjdgmmvyoimgaypjen0.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620897/sovlib1rvlkzrviwg7ms.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620897/i0y07ajo2tna3zcaexil.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620898/zxpsijcflmuq6utzx1ix.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620898/gcvkhcljoyaso8eshxfh.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Sand Storm",
+          "color_hex": "#c2b69d",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791620882/i1zxzal2nlxlstmoev4o.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620891/ar2r97l00urf2fzbkkzc.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620891/envornuozmgcfuqayepa.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620892/fab1k9sju1gadhlnwcsw.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620893/f5ervux6qa2fj3nha725.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620893/bufu6wabmnvo2eoy6crl.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620894/tuig1dtklgs2cmobjvod.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620895/yldirm7xrr5gomwqkzuo.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620895/lcrr8ancinm0k52lcr7l.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620896/gcjdgmmvyoimgaypjen0.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620897/sovlib1rvlkzrviwg7ms.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620897/i0y07ajo2tna3zcaexil.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620898/zxpsijcflmuq6utzx1ix.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791620898/gcvkhcljoyaso8eshxfh.jpg"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 69999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620900/zhc3psrtu44zn0g2omer.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620901/sxuhk7defqk2x1bibffy.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620902/sdizcq5w8kyrxf3bqtcf.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620902/mgxerrmyajmabvqltfdg.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620903/mt2aykvfkdl2yofpbbqu.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620904/tboynxsuxcrroewhcng0.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620904/w0txkkq3epjqbkwarpen.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620905/fsorijnf81it4gdo7khj.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620905/kfv2s2k1mdakzttoc7tm.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620906/xdbqcofsz5sso99qw6if.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620907/ahdadzvux1liqyo9um3j.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791620908/qkkjn3ic2bvnfsp3eium.jpg"
+      ],
+      "default_color": "Sand Storm",
+      "default_ram": "12 GB",
+      "default_storage": "256 GB",
+      "ram_options": [
+        "12 GB"
+      ],
+      "storage_options": [
+        "256 GB"
+      ],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the future of mobile performance with the OnePlus 15. Powered by India's first Snapdragon® 8 Elite Gen 5 chipset and a massive 7300mAh battery, it delivers unrivaled speed and endurance. The 165Hz Fluid AMOLED display brings games and media to life with buttery‑smooth visuals, while the Triple 50MP camera system captures cinema‑grade 4K 120fps Dolby Vision videos. Coupled with personalized AI that learns your habits, the OnePlus 15 redefines what a flagship smartphone can do.",
+      "highlights": [
+        "India's first Snapdragon® 8 Elite Gen 5 chipset for blazing performance",
+        "7300mAh battery with fast charging for all‑day usage",
+        "165Hz Fluid AMOLED display for ultra‑smooth gaming and scrolling",
+        "Triple 50MP camera setup with 4K 120fps Dolby Vision video recording",
+        "12GB RAM + 256GB UFS 4.0 storage for seamless multitasking",
+        "Personalised AI that adapts to your usage patterns"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "OnePlus 15",
+          "Color": "Sand Storm",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.7 inches",
+          "Resolution": "1440 x 3216 pixels",
+          "Display Type": "Fluid AMOLED, 165Hz Refresh Rate"
+        },
+        "Processor & OS": {
+          "Operating System": "OxygenOS based on Android 14",
+          "Processor Type": "Snapdragon® 8 Elite Gen 5"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "256 GB",
+          "RAM": "12 GB"
+        },
+        "Camera": {
+          "Primary Camera": "Triple 50MP (wide) + 48MP (ultrawide) + 32MP (telephoto) with 4K 120fps Dolby Vision",
+          "Front Camera": "16MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "sort_order": 7,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6ac9f2296cc6b2e98b06f1eb",
+      "id": "samsung-galaxy-s25-5g-snapdragon-icyblue-256-gb-12-gb-ram",
+      "name": "Samsung Galaxy S25 5G Snapdragon (Icyblue, 256 GB) (12 GB RAM)",
+      "title1": "Samsung Galaxy S25 5G Snapdragon (Icyblue, 256 GB) (12 GB RAM)",
+      "title2": "Samsung Galaxy S25 5G Snapdragon (Icyblue, 256 GB) (12 GB RAM)",
+      "brand": "Samsung",
+      "category": "Mobiles",
+      "stock": 7,
+      "mrp": 60299,
+      "selling_price": 949,
+      "wow_price": 949,
+      "discount": 98,
+      "rating": 4.6,
+      "reviews_count": 3410,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791619597/vqwpsgtdnr71oysonhzr.webp",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619609/vdeisjokgfu4cr71eitb.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619610/adw2lnxlwvs5ykuc1mm7.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619612/u4mxoxr6fkr0fcv2x7mm.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619614/dfvxqmbayxljtcxbosni.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619616/eyh2nxxkvkwilubtwgy6.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619618/ycrexu1ng2obtd0vuwxs.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619619/uzah6idt9i2uwcqk6iaa.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619620/apdsxyfbosic2myyfsks.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619621/f0hc4vhutfjbtdmmm1hi.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619622/cryxdznpipovwidgodwj.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619623/kjfq0gzjey1e2kfxjpzm.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "Icyblue",
+          "color_hex": "#a0c4ff",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791619597/vqwpsgtdnr71oysonhzr.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619609/vdeisjokgfu4cr71eitb.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619610/adw2lnxlwvs5ykuc1mm7.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619612/u4mxoxr6fkr0fcv2x7mm.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619614/dfvxqmbayxljtcxbosni.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619616/eyh2nxxkvkwilubtwgy6.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619618/ycrexu1ng2obtd0vuwxs.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619619/uzah6idt9i2uwcqk6iaa.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619620/apdsxyfbosic2myyfsks.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619621/f0hc4vhutfjbtdmmm1hi.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619622/cryxdznpipovwidgodwj.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791619623/kjfq0gzjey1e2kfxjpzm.webp"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 119999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619618/nfui6fsmtk0w2ojhini7.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619619/nmukqzm3xjy7gdzf027a.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619620/la1xlxx99p9dardc1uez.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619620/iibpisstrwg1ssxaale7.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791619621/nvcllw7l8a6sdlqkkvtd.png"
+      ],
+      "default_color": "Icyblue",
+      "default_ram": "12 GB",
+      "default_storage": "256 GB",
+      "ram_options": [
+        "12 GB"
+      ],
+      "storage_options": [
+        "256 GB"
+      ],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the future of mobile technology with the Samsung Galaxy S25 5G. Powered by the cutting‑edge Snapdragon 8 Gen 3 processor and backed by 12 GB RAM, it delivers lightning‑fast performance for gaming, multitasking, and AI‑driven experiences. The stunning 6.7‑inch Dynamic AMOLED 2X display brings every visual to life with vibrant colors and crisp detail, while the 200 MP triple‑camera system captures professional‑grade photos and videos in any lighting. With 5G connectivity, 256 GB of storage, and a sleek Icyblue finish, the S25 redefines premium smartphones for the modern user.",
+      "highlights": [
+        "6.7‑inch Dynamic AMOLED 2X display with 1440 × 3200 resolution",
+        "Snapdragon 8 Gen 3 processor paired with 12 GB RAM for ultra‑smooth performance",
+        "200 MP triple‑camera system with 12 MP ultrawide and 10 MP telephoto lenses",
+        "5G support, Wi‑Fi 6E, and Bluetooth 5.3 for fast connectivity",
+        "256 GB internal storage with UFS 3.1 technology",
+        "IP68 water and dust resistance for durability"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Galaxy S25 5G",
+          "Color": "Icyblue",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.7 inches",
+          "Resolution": "1440 x 3200 pixels",
+          "Display Type": "Dynamic AMOLED 2X"
+        },
+        "Processor & OS": {
+          "Operating System": "Android 14 with One UI 6",
+          "Processor Type": "Snapdragon 8 Gen 3"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "256 GB",
+          "RAM": "12 GB"
+        },
+        "Camera": {
+          "Primary Camera": "200 MP (wide) + 12 MP (ultrawide) + 10 MP (telephoto)",
+          "Front Camera": "40 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "sort_order": 8,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6ac9c51e661553635282026f",
+      "id": "apple-iphone-16-128-gb",
+      "name": "Apple iPhone 16 (Ultramarine, 128 GB) (5G, A18 Chip, Enhanced Battery)",
+      "title1": "Apple iPhone 16 (Ultramarine, 128 GB) (5G, A18 Chip, Enhanced Battery)",
+      "title2": "Apple iPhone 16 (Ultramarine, 128 GB) (5G, A18 Chip, Enhanced Battery)",
+      "brand": "Apple",
+      "category": "Mobiles",
+      "stock": 9,
+      "mrp": 79999,
+      "selling_price": 997,
+      "wow_price": 997,
+      "discount": 99,
+      "rating": 4.8,
+      "reviews_count": 3410,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791610037/zmxr78sbwagjsbwsvy4u.png",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608071/rf437kqornwa17sfborf.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608072/dy19ab1fwtxpwe2zeivj.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608073/bofrd9cm1miz4gic3lee.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608074/muqxdzaf9vaox2v65dk3.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608075/k9nxsqat7cu54teliexr.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Ultramarine",
+          "color_hex": "#3F51B5",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791608064/s9slce535hjvworzirg1.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608071/rf437kqornwa17sfborf.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608072/dy19ab1fwtxpwe2zeivj.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608073/bofrd9cm1miz4gic3lee.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608074/muqxdzaf9vaox2v65dk3.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608075/k9nxsqat7cu54teliexr.jpg"
+          ],
+          "ram": "6 GB",
+          "storage": "128 GB",
+          "ram_options": [
+            "6 GB"
+          ],
+          "storage_options": [
+            "128 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 79999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608077/s4hnbomecwiji4mdfcjx.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608078/epdhlqea0dr7ohpafxjn.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608079/lsliwh0gmtu1eumdrk8z.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608079/vdxtquzk9ler2a240vub.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608080/pgnsz6c7drhys5rqpwyh.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608080/p05g0nmrn6y4r2hfrusl.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608081/dfi5ttiodxt2hibuwbnd.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608082/mvaykreuipwq2txuifti.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608082/nl30zevwieohysfeiwyz.jpg"
+      ],
+      "default_color": "Ultramarine",
+      "default_ram": "6 GB",
+      "default_storage": "128 GB",
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "The Apple iPhone 16 redefines the smartphone experience with its powerful A18 Bionic chip, 5G connectivity, and a massive boost in battery life. Housed in a sleek Ultramarine finish, it offers a stunning 6.7‑inch Super Retina XDR display, triple‑camera system for professional‑grade photos, and seamless integration with AirPods. Experience iOS 18’s latest features and enjoy a device built for speed, style, and durability.",
+      "highlights": [
+        "6.7-inch Super Retina XDR OLED display with HDR10+ support",
+        "Apple A18 Bionic chip delivers lightning‑fast performance",
+        "5G connectivity for ultra‑fast download and streaming",
+        "128 GB storage paired with 6 GB RAM for smooth multitasking",
+        "Triple‑camera system (48 MP wide, 12 MP ultra‑wide, 12 MP telephoto)",
+        "Enhanced battery life with fast‑charge and MagSafe support"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "iPhone 16",
+          "Color": "Ultramarine",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.7 inches",
+          "Resolution": "2778 x 1284 pixels",
+          "Display Type": "Super Retina XDR OLED"
+        },
+        "Processor & OS": {
+          "Operating System": "iOS 18",
+          "Processor Type": "Apple A18 Bionic"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "128 GB",
+          "RAM": "6 GB"
+        },
+        "Camera": {
+          "Primary Camera": "Triple 48 MP + 12 MP + 12 MP",
+          "Front Camera": "12 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "storeId": "owner",
+      "sort_order": 9,
+      "ram_options": [
+        "6 GB"
+      ],
+      "storage_options": [
+        "128 GB"
+      ]
+    },
+    {
+      "_id": "6ac9c82d6615536352820271",
+      "id": "apple-iphone-15-128-gb",
+      "name": "Apple iPhone 15 powerful A16 Bionic chip and iOS 17(Blue, 128 GB)",
+      "title1": "Apple iPhone 15 powerful A16 Bionic chip and iOS 17(128 GB)",
+      "title2": "Apple iPhone 15 powerful A16 Bionic chip and iOS 17(Blue, 128 GB)",
+      "brand": "Apple",
+      "category": "Mobiles",
+      "stock": 5,
+      "mrp": 79900,
+      "selling_price": 993,
+      "wow_price": 993,
+      "discount": 99,
+      "rating": 4.8,
+      "reviews_count": 4210,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791608846/u7u998kohnuebjepzlgi.webp",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608853/uduhab3pk3xudim57dhl.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608853/ok0smzvqi7yy5museyam.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608854/q9vbh9rw5dbdasi9t4yp.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608855/lzeao3z51tzmp4rjq0wj.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608855/cinjpeabjlavc6atjd8v.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608856/dacnvxdzzt0sonbykqqi.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608857/qfwshgqci8ihjqihy0t7.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608857/gbeaww3zkydsdxahdbth.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "Blue",
+          "color_hex": "#007AFF",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791608846/u7u998kohnuebjepzlgi.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608853/uduhab3pk3xudim57dhl.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608853/ok0smzvqi7yy5museyam.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608854/q9vbh9rw5dbdasi9t4yp.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608855/lzeao3z51tzmp4rjq0wj.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608855/cinjpeabjlavc6atjd8v.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608856/dacnvxdzzt0sonbykqqi.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608857/qfwshgqci8ihjqihy0t7.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791608857/gbeaww3zkydsdxahdbth.webp"
+          ],
+          "ram": "6 GB",
+          "storage": "128 GB",
+          "ram_options": [
+            "6 GB"
+          ],
+          "storage_options": [
+            "128 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 79900
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608861/ghhy9zm9y9fgqnefiqra.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608862/bqwgicmu5hdz5mdprrkp.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608862/k7ncczdhpiqpfng6fv3l.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608863/rwadwy1phznodsueeddk.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608863/hcrluvej7sve6ql4lbvm.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608864/uqqyqagbfns2ahotminp.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608865/uee5nmrtffgwc8ybyh85.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608866/up0wswxwmcn1os0julec.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608866/fy0sitlq88fcftsiymwi.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608867/bijeynwd4vwqnvixpjum.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608868/fleljtzigdc6gnzkcha6.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791608869/mnhp4sxqsgh7ynd1i9k7.png"
+      ],
+      "default_color": "Blue",
+      "default_ram": "6 GB",
+      "default_storage": "128 GB",
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the perfect blend of design, performance and innovation with the Apple iPhone 15. Featuring a sleek Blue finish, a vibrant 6.1‑inch Super Retina XDR display, the powerful A16 Bionic chip and iOS 17, this smartphone delivers lightning‑fast speed, stunning photography and seamless connectivity—all backed by Apple’s renowned ecosystem and premium build quality.",
+      "highlights": [
+        "6.1‑inch Super Retina XDR OLED display with True Tone",
+        "A16 Bionic processor for ultra‑smooth performance",
+        "Dual‑camera system: 48 MP main + 12 MP ultra‑wide for pro‑grade photos",
+        "12 MP TrueDepth front camera with Night mode",
+        "5G connectivity, Dual SIM (Nano + eSIM) and MagSafe accessories",
+        "iOS 17 with enhanced privacy and ecosystem integration"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "iPhone 15",
+          "Color": "Blue",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.1 inches",
+          "Resolution": "2556 x 1179 pixels",
+          "Display Type": "Super Retina XDR OLED"
+        },
+        "Processor & OS": {
+          "Operating System": "iOS 17",
+          "Processor Type": "A16 Bionic"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "128 GB",
+          "RAM": "6 GB"
+        },
+        "Camera": {
+          "Primary Camera": "Dual 48 MP (wide) + 12 MP (ultrawide)",
+          "Front Camera": "12 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "storeId": "owner",
+      "sort_order": 10,
+      "ram_options": [
+        "6 GB"
+      ],
+      "storage_options": [
+        "128 GB"
+      ]
+    },
+    {
+      "_id": "6aca33296b7a429de61561b5",
+      "id": "vivo-v80-sunrise-anthem-256-gb",
+      "name": "Vivo V80 (Sunrise Anthem, 256 GB) (8 GB RAM)",
+      "title1": "Vivo V80 (Sunrise Anthem, 256 GB)",
+      "title2": "Vivo V80 (Sunrise Anthem, 256 GB) (8 GB RAM)",
+      "brand": "Vivo",
+      "category": "Mobiles",
+      "stock": 5,
+      "mrp": 69999,
+      "selling_price": 995,
+      "wow_price": 995,
+      "discount": 99,
+      "rating": 4.6,
+      "reviews_count": 2150,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791636229/fuavddjrwbzzoredsayb.webp",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636241/vrmbrytnytemyjvnspmq.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636242/ww9kue8iebnoq7eazv0t.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636243/lsipafcc2qsrfhw2vdm7.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636243/ur52oncp9fznbmrrvcsy.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636244/p6fag7fwg6qjp3hhfgc2.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636245/wbjj9sn7f6k2avjeqhne.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636246/muebncttm3klq641mbz2.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636246/pq6qkewsmjsny7xmnxdi.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636247/k74uee58sft77kwcyka4.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636248/puywvkj6kvfrbiirngog.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636248/uwk5bpzymtnaeuz4hv7q.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636249/enq3xpyllumyyghcpvqa.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636250/x3oj7asntxzdwmoyayod.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "Sunrise Anthem",
+          "color_hex": "#ffb347",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791636229/fuavddjrwbzzoredsayb.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636241/vrmbrytnytemyjvnspmq.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636242/ww9kue8iebnoq7eazv0t.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636243/lsipafcc2qsrfhw2vdm7.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636243/ur52oncp9fznbmrrvcsy.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636244/p6fag7fwg6qjp3hhfgc2.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636245/wbjj9sn7f6k2avjeqhne.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636246/muebncttm3klq641mbz2.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636246/pq6qkewsmjsny7xmnxdi.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636247/k74uee58sft77kwcyka4.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636248/puywvkj6kvfrbiirngog.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636248/uwk5bpzymtnaeuz4hv7q.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636249/enq3xpyllumyyghcpvqa.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791636250/x3oj7asntxzdwmoyayod.webp"
+          ],
+          "ram": "8 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "8 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 44990
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636248/iomfzkdragankappra7b.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636249/syl1gq2dfyp17gedidpg.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636250/ds1cu0d1ijsnvch8vlfe.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636251/qgzbtrkm3vrnjpmhqlqv.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791636252/owvjaxkhghyzfja6lebm.png"
+      ],
+      "default_color": "Sunrise Anthem",
+      "default_ram": "8 GB",
+      "default_storage": "256 GB",
+      "ram_options": [
+        "8 GB"
+      ],
+      "storage_options": [
+        "256 GB"
+      ],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "The Vivo V80 blends cutting‑edge performance with a sleek Sunrise Anthem finish, delivering a premium smartphone experience. Powered by the Snapdragon 8+ Gen 1 chipset and Origin OS 2.0, it offers lightning‑fast multitasking, stunning 6.78‑inch AMOLED visuals, and a versatile triple‑camera system that captures every moment in vivid detail. With 8 GB RAM and 256 GB storage, you get ample space for apps, media, and games, while the sleek design and long‑lasting battery keep you productive and entertained all day long.",
+      "highlights": [
+        "6.78‑inch Full HD+ AMOLED display with 120 Hz refresh rate",
+        "Qualcomm Snapdragon 8+ Gen 1 processor for flagship performance",
+        "Triple rear camera setup: 50 MP wide, 50 MP ultrawide, 12 MP telephoto",
+        "32 MP front camera for sharp selfies and video calls",
+        "8 GB RAM + 256 GB UFS 3.1 storage",
+        "5000 mAh battery with fast charging support"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "V80",
+          "Color": "Sunrise Anthem",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano)"
+        },
+        "Display Features": {
+          "Display Size": "6.78 inches",
+          "Resolution": "1080 x 2412 pixels",
+          "Display Type": "AMOLED"
+        },
+        "Processor & OS": {
+          "Operating System": "Android 13, Origin OS 2.0",
+          "Processor Type": "Qualcomm Snapdragon 8+ Gen 1"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "256 GB",
+          "RAM": "8 GB"
+        },
+        "Camera": {
+          "Primary Camera": "50 MP (wide) + 50 MP (ultrawide) + 12 MP (telephoto)",
+          "Front Camera": "32 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "sort_order": 11,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6aca2625fca93f090d2e5fbf",
+      "id": "adidas-supernova-rise-2-m-running-shoes-white-10",
+      "name": "Adidas Supernova Rise 2 M Men's Running Shoes (White, Size 6 uk-7 uk-8 uk -9 uk -10 uk)",
+      "title1": "Adidas Supernova Rise 2 M Running Shoes (White, 10)",
+      "title2": "Adidas Supernova Rise 2 M Men's Running Shoes (White, Size 6 uk-7 uk-8 uk -9 uk -10 uk)",
+      "brand": "Adidas",
+      "category": "Fashion",
+      "stock": 3,
+      "mrp": 6999,
+      "selling_price": 599,
+      "wow_price": 599,
+      "discount": 91,
+      "rating": 4.6,
+      "reviews_count": 1245,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791632909/w8npewtckdkhxg8zpn5l.webp",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791632913/qs01pefhaegdnu0a64mr.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791632914/r9mcrr8mpdqx8mpyxed5.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791632915/kxkmhfg5yjn9mppf3bbz.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791632915/uywb91p1bxtmepcyynvi.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791632916/irmej0bquzozj0skrdgv.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791632917/cf05h4lgfxrzzsf0lgs9.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "White",
+          "color_hex": "#FFFFFF",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791632909/w8npewtckdkhxg8zpn5l.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791632913/qs01pefhaegdnu0a64mr.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791632914/r9mcrr8mpdqx8mpyxed5.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791632915/kxkmhfg5yjn9mppf3bbz.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791632915/uywb91p1bxtmepcyynvi.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791632916/irmej0bquzozj0skrdgv.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791632917/cf05h4lgfxrzzsf0lgs9.webp"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 6999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791632918/jsauig5banllcfhdywje.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791632919/ltedp3uzumgwxuhzlku0.webp"
+      ],
+      "default_color": "White",
+      "default_ram": "",
+      "default_storage": "",
+      "ram_options": [],
+      "storage_options": [],
+      "custom_size": "6 uk-7 uk-8 uk -9 uk -10 uk",
+      "show_custom_size": true,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience unmatched comfort and performance with the Adidas Supernova Rise 2 M Running Shoes for men. Engineered with a breathable mesh upper, responsive cushioning, and a durable outsole, these shoes provide the perfect blend of style and functionality for daily runs and workouts. The sleek white design adds a fresh look to any athletic outfit, while the size 10 fit ensures a snug, supportive feel. Whether you're hitting the track or the streets, the Supernova Rise 2 M keeps you moving with confidence.",
+      "highlights": [
+        "Breathable mesh upper for superior airflow",
+        "Responsive Boost cushioning for energy return",
+        "Durable rubber outsole for excellent traction",
+        "Lightweight construction reduces fatigue",
+        "Sleek white aesthetic matches any workout gear",
+        "Size 10 provides a snug, supportive fit"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Supernova Rise 2 M",
+          "Color": "White",
+          "Browse Type": "Running Shoes",
+          "SIM Type": "N/A"
+        },
+        "Display Features": {
+          "Display Size": "N/A",
+          "Resolution": "N/A",
+          "Display Type": "N/A"
+        },
+        "Processor & OS": {
+          "Operating System": "N/A",
+          "Processor Type": "N/A"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "N/A",
+          "RAM": "N/A"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 12,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6aca1ba5528ad2264704e247",
+      "id": "fastrack-astor-fs2-pro-1-96-super-amoled-smart-watch-silver",
+      "name": "Fastrack Astor FS2 Pro 1.96\" Super AMOLED Smart Watch, Metal Body, 1000 Nits Brightness, SpO2, BP & Sleep Monitor, BT Calling, 100+ Sports Modes (Silver)",
+      "title1": "Fastrack Astor FS2 Pro 1.96\" Super AMOLED Smart Watch (Silver)",
+      "title2": "Fastrack Astor FS2 Pro 1.96\" Super AMOLED Smart Watch, Metal Body, 1000 Nits Brightness, SpO2, BP & Sleep Monitor, BT Calling, 100+ Sports Modes (Silver)",
+      "brand": "Fastrack",
+      "category": "Electronics",
+      "stock": 12,
+      "mrp": 1999,
+      "selling_price": 199,
+      "wow_price": 199,
+      "discount": 90,
+      "rating": 4.6,
+      "reviews_count": 1280,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791630214/ympdnm4h8tdqavm9itxt.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791630217/awukaenftjfs8wqsfnon.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791630217/xxa7vdepkz9ddg9tgiut.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791630218/gstggkcfqe1lnydu8ktc.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791630218/xnc0rj1lg94emq53tifb.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791630219/muijtz9orbujdq8pcgay.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791630220/ycvvr3ojqcqh1j2oidsp.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Silver",
+          "color_hex": "#C0C0C0",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791630214/ympdnm4h8tdqavm9itxt.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791630217/awukaenftjfs8wqsfnon.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791630217/xxa7vdepkz9ddg9tgiut.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791630218/gstggkcfqe1lnydu8ktc.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791630218/xnc0rj1lg94emq53tifb.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791630219/muijtz9orbujdq8pcgay.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791630220/ycvvr3ojqcqh1j2oidsp.jpg"
+          ],
+          "ram": "512 MB",
+          "storage": "4 GB",
+          "ram_options": [
+            "512 MB"
+          ],
+          "storage_options": [
+            "4 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 14999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791630222/xas9syhofwzutzqespux.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791630222/fwwuprnhbiqzqatllolk.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791630223/y84zvfsqv5nxxbuiedzi.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791630224/frtl4ruml4bhhx1r6qhh.jpg"
+      ],
+      "default_color": "Silver",
+      "default_ram": "",
+      "default_storage": "",
+      "ram_options": [],
+      "storage_options": [],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "The Fastrack Astor FS2 Pro blends premium metal craftsmanship with cutting‑edge health and connectivity features. Its 1.96\" Super AMOLED display delivers crystal‑clear visuals at a striking 1000 nits, while SpO2, blood‑pressure and sleep monitoring keep you on top of your wellness. Stay connected on the go with Bluetooth calling and explore over 100 sports modes. Designed for both men and women, this sleek silver smartwatch is the perfect everyday companion for style and performance.",
+      "highlights": [
+        "1.96\" Super AMOLED display with 1000 nits brightness for outdoor readability",
+        "Metal body in elegant silver finish",
+        "Comprehensive health suite: SpO2, BP, heart‑rate & sleep tracking",
+        "Bluetooth calling and notifications on the wrist",
+        "100+ sports modes with automatic activity detection",
+        "Water‑resistant design suitable for daily wear"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Astor FS2 Pro",
+          "Color": "Silver",
+          "Browse Type": "Smartwatch",
+          "SIM Type": "N/A"
+        },
+        "Display Features": {
+          "Display Size": "1.96 inches",
+          "Resolution": "390 x 390 pixels",
+          "Display Type": "Super AMOLED"
+        },
+        "Processor & OS": {
+          "Operating System": "Fastrack OS",
+          "Processor Type": "Quad‑core Proprietary"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "4 GB",
+          "RAM": "512 MB"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 13,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6aca31826b7a429de61561b4",
+      "id": "reebok-indoor-courtflex-m-blue-7",
+      "name": "REEBOK Indoor COURTFLEX M For Men (Blue, Size 7)",
+      "title1": "REEBOK Indoor COURTFLEX M (Blue, 7)",
+      "title2": "REEBOK Indoor COURTFLEX M For Men (Blue, Size 7)",
+      "brand": "REEBOK",
+      "category": "Fashion",
+      "stock": 2,
+      "mrp": 3999,
+      "selling_price": 499,
+      "wow_price": 499,
+      "discount": 88,
+      "rating": 4.6,
+      "reviews_count": 1245,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791635815/wdqpjdviwjdkcxsfhib0.webp",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635819/bl3kebker96awuhs2t4e.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635820/op7u1zj7sg47jtompgnc.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635821/kecblt1zm2i9zvthqezx.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635824/dbho4jfptx55d6ujvl0u.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635826/gzia7x3cuyvx8mbgzdv4.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635827/yjo1x1nf2pm0nswfwubv.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635827/ld55qpuu9eqmtjqxphvx.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "Blue",
+          "color_hex": "#0000FF",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791635815/wdqpjdviwjdkcxsfhib0.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635819/bl3kebker96awuhs2t4e.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635820/op7u1zj7sg47jtompgnc.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635821/kecblt1zm2i9zvthqezx.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635824/dbho4jfptx55d6ujvl0u.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635826/gzia7x3cuyvx8mbgzdv4.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635827/yjo1x1nf2pm0nswfwubv.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635827/ld55qpuu9eqmtjqxphvx.webp"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 3999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635819/bl3kebker96awuhs2t4e.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635820/op7u1zj7sg47jtompgnc.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635821/kecblt1zm2i9zvthqezx.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635824/dbho4jfptx55d6ujvl0u.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635826/gzia7x3cuyvx8mbgzdv4.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635827/yjo1x1nf2pm0nswfwubv.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635827/ld55qpuu9eqmtjqxphvx.webp"
+      ],
+      "default_color": "Blue",
+      "default_ram": "",
+      "default_storage": "",
+      "ram_options": [],
+      "storage_options": [],
+      "custom_size": "UK 6, UK 7, UK 8, UK 9, UK 10",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Designed for indoor courts, the REEBOK COURTFLEX M offers superior grip, lightweight comfort and durable construction. The breathable mesh upper keeps your feet cool while the flexible rubber outsole provides excellent traction on polished surfaces. Perfect for quick footwork and intense training sessions, this shoe ensures you stay agile and supported throughout the game.",
+      "highlights": [
+        "Lightweight mesh upper for breathability",
+        "Flexible rubber outsole for superior indoor traction",
+        "Cushioned midsole for all‑day comfort",
+        "Reinforced toe guard for added durability",
+        "Stylish blue colorway with REEBOK branding",
+        "Ideal for indoor basketball and court sports"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "COURTFLEX M",
+          "Color": "Blue",
+          "Browse Type": "Indoor Shoes",
+          "SIM Type": ""
+        },
+        "Display Features": {
+          "Display Size": "N/A",
+          "Resolution": "N/A",
+          "Display Type": "N/A"
+        },
+        "Processor & OS": {
+          "Operating System": "N/A",
+          "Processor Type": "N/A"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "N/A",
+          "RAM": "N/A"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 14,
+      "storeId": "owner",
+      "show_sizes": true,
+      "default_size": "UK 7",
+      "sizes": [
+        {
+          "id": "sz_6",
+          "size": "UK 6",
+          "selling_price": 449,
+          "mrp": 3999
+        },
+        {
+          "id": "sz_7",
+          "size": "UK 7",
+          "selling_price": 499,
+          "mrp": 3999
+        },
+        {
+          "id": "sz_8",
+          "size": "UK 8",
+          "selling_price": 549,
+          "mrp": 3999
+        },
+        {
+          "id": "sz_9",
+          "size": "UK 9",
+          "selling_price": 599,
+          "mrp": 3999
+        },
+        {
+          "id": "sz_10",
+          "size": "UK 10",
+          "selling_price": 649,
+          "mrp": 3999
+        }
+      ]
+    },
+    {
+      "_id": "6aca30846b7a429de61561b3",
+      "id": "nike-vomero-18-running-shoes-black-size-8",
+      "name": "NIKE Vomero 18 Running Shoes for Men (Black, Size 8)",
+      "title1": "NIKE Vomero 18 Running Shoes (Black, Size 8)",
+      "title2": "NIKE Vomero 18 Running Shoes for Men (Black, Size 8)",
+      "brand": "NIKE",
+      "category": "Fashion",
+      "stock": 4,
+      "mrp": 13999,
+      "selling_price": 599,
+      "wow_price": 599,
+      "discount": 96,
+      "rating": 4.6,
+      "reviews_count": 1245,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791635548/tgl1fvpwpihjjesnibui.png",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635552/tihhsbwhiihr8bbea8gi.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635553/jos5lxuvyiooglfjb2ah.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635553/chkrpw7ueb8syl0pr1bl.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635555/arrpycys31yhgtk9bbas.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635555/nfhbego2uuqnzo7qatkv.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635556/mtp4jlur5zodzi9dnbal.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "Red Black",
+          "color_hex": "#622d2d",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791635548/tgl1fvpwpihjjesnibui.png",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635552/tihhsbwhiihr8bbea8gi.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635553/jos5lxuvyiooglfjb2ah.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635553/chkrpw7ueb8syl0pr1bl.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635555/arrpycys31yhgtk9bbas.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635555/nfhbego2uuqnzo7qatkv.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791635556/mtp4jlur5zodzi9dnbal.webp"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 7499
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791635556/sji1p8lgftaqnvkvlsdf.webp"
+      ],
+      "default_color": "Black",
+      "default_ram": "",
+      "default_storage": "",
+      "ram_options": [],
+      "storage_options": [],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience unmatched comfort and performance with NIKE Vomero 18 Running Shoes for Men. Engineered with lightweight responsive cushioning, breathable mesh upper and a durable rubber outsole, these shoes deliver superior traction and support for every run. The sleek black finish adds a versatile style edge, while Nike’s trusted quality ensures long‑lasting durability. Perfect for daily training, casual jogs, or city runs, the Vomero 18 keeps you moving forward with confidence.",
+      "highlights": [
+        "Lightweight responsive cushioning for superior comfort",
+        "Breathable mesh upper enhances ventilation",
+        "Durable rubber outsole provides excellent traction",
+        "Sleek black color complements any outfit",
+        "Available in size 8 for a perfect fit",
+        "Trusted NIKE quality and durability"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Vomero 18",
+          "Color": "Black",
+          "Browse Type": "Running Shoes",
+          "SIM Type": "N/A"
+        },
+        "Display Features": {
+          "Display Size": "N/A",
+          "Resolution": "N/A",
+          "Display Type": "N/A"
+        },
+        "Processor & OS": {
+          "Operating System": "N/A",
+          "Processor Type": "N/A"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "N/A",
+          "RAM": "N/A"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 15,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6aca12d97d10263df52bee9a",
+      "id": "samsung-galaxy-watch-ultra-47mm-titanium-silver-lte-47mm-titanium-silver",
+      "name": "Samsung Galaxy Watch Ultra 47mm Titanium Silver LTE (CAD Version)",
+      "title1": "Samsung Galaxy Watch Ultra 47mm Titanium Silver LTE (47mm, Titanium Silver)",
+      "title2": "Samsung Galaxy Watch Ultra 47mm Titanium Silver LTE (CAD Version)",
+      "brand": "Samsung",
+      "category": "Electronics",
+      "stock": 2,
+      "mrp": 45999,
+      "selling_price": 499,
+      "wow_price": 499,
+      "discount": 99,
+      "rating": 4.6,
+      "reviews_count": 2150,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791627914/y4szdsqucgtyqdi2cgdb.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627914/y4szdsqucgtyqdi2cgdb.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Titanium Silver",
+          "color_hex": "#c0c0c0",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791627914/y4szdsqucgtyqdi2cgdb.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791627914/y4szdsqucgtyqdi2cgdb.jpg"
+          ],
+          "ram": "2 GB",
+          "storage": "64 GB",
+          "ram_options": [
+            "2 GB"
+          ],
+          "storage_options": [
+            "64 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 45999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627921/rjevzzmzwse15wp7xrov.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627922/xomukxpjrwvpsychbxmm.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627922/e2gi0frdzorhdtqzioqz.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627923/djchhmhovdzg1yewz6ui.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627924/qibpcxep67w5vlcmrbhd.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627925/hobna1owz6albx4aaqvq.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627926/igojqg6myjoshiarew5p.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627927/dkprngnnzlte7mh0p6ow.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627927/fd4kmzeut6iy07f6pobq.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627928/bokkbtx71pjgi5sbrztg.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627928/iozghntsnty6gof3lbon.jpg"
+      ],
+      "default_color": "Titanium Silver",
+      "default_ram": "2",
+      "default_storage": "64",
+      "ram_options": [
+        "2"
+      ],
+      "storage_options": [
+        "64"
+      ],
+      "custom_size": "47mm",
+      "show_custom_size": true,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "The Samsung Galaxy Watch Ultra 47mm in Titanium Silver combines rugged durability with premium design, delivering a true smartwatch experience. Featuring a larger 1.4‑inch Super AMOLED display, LTE connectivity via eSIM, and the latest Wear OS 4 with One UI Watch, it keeps you connected, tracks advanced health metrics, and offers a suite of outdoor navigation tools—all while looking sleek on your wrist. With 16 GB storage and 2 GB RAM, the watch runs apps smoothly and stores music for offline playback. Whether you’re scaling a mountain or navigating city streets, the Galaxy Watch Ultra is built to withstand the elements and keep you informed.",
+      "highlights": [
+        "1.4‑inch Super AMOLED display with 450×450 resolution for crisp visuals",
+        "Titanium Silver body – lightweight yet highly durable",
+        "LTE (eSIM) connectivity – stay connected without your phone",
+        "Advanced health tracking: ECG, blood‑oxygen, body composition",
+        "Built‑in GPS, compass, and Route‑Tracking for outdoor adventures",
+        "Exynos W920 processor with 2 GB RAM and 16 GB storage for smooth performance"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Galaxy Watch Ultra",
+          "Color": "Titanium Silver",
+          "Browse Type": "Smartwatch",
+          "SIM Type": "eSIM (LTE)"
+        },
+        "Display Features": {
+          "Display Size": "1.4 inches",
+          "Resolution": "450 x 450 pixels",
+          "Display Type": "Super AMOLED"
+        },
+        "Processor & OS": {
+          "Operating System": "Wear OS 4 with One UI Watch",
+          "Processor Type": "Exynos W920 Dual‑core"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "16 GB",
+          "RAM": "2 GB"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "sort_order": 16,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6aca28a3fca93f090d2e5fc3",
+      "id": "nike-running-shoes-for-men-black-6-7-8-9-10",
+      "name": "Nike Running Shoes for Men (Black, Size 6,7,8,9,10)",
+      "title1": "Nike Running Shoes for Men (Black, 6,7,8,9,10)",
+      "title2": "Nike Running Shoes for Men (Black, Size 6,7,8,9,10)",
+      "brand": "Nike",
+      "category": "Fashion",
+      "stock": 5,
+      "mrp": 6999,
+      "selling_price": 699,
+      "wow_price": 699,
+      "discount": 90,
+      "rating": 4.6,
+      "reviews_count": 1245,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791633532/v8vorwzjyh72wdlqohbr.webp",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791633555/hvytimq7dvgw5lbyvuhh.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791633558/ram8szrtodbspk5jaqrz.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791633560/mkpuovqb6c53bw7smbrw.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791633562/deqeaimpkpmrp6o7r0na.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791633565/yximvbvqdhmfu0iitulq.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "Black",
+          "color_hex": "#000000",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791633532/v8vorwzjyh72wdlqohbr.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791633555/hvytimq7dvgw5lbyvuhh.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791633558/ram8szrtodbspk5jaqrz.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791633560/mkpuovqb6c53bw7smbrw.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791633562/deqeaimpkpmrp6o7r0na.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791633565/yximvbvqdhmfu0iitulq.webp"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 6999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791633563/iutzoz4hjcd0iegdvr51.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791633564/r9jxtyicrxoegrhwin53.webp"
+      ],
+      "default_color": "Black",
+      "default_ram": "",
+      "default_storage": "",
+      "ram_options": [],
+      "storage_options": [],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Step up your game with Nike Running Shoes for Men, crafted to deliver unmatched comfort, support, and style on every run. The lightweight breathable mesh upper keeps your feet cool, while the cushioned midsole provides responsive energy return. A durable rubber outsole ensures excellent traction on varied surfaces, making these shoes perfect for daily training, jogging, or casual wear. Designed in a sleek black finish, they combine performance technology with Nike's iconic aesthetic, giving you confidence with every stride.",
+      "highlights": [
+        "Breathable mesh upper for superior ventilation",
+        "Cushioned midsole for responsive comfort",
+        "Durable rubber outsole for excellent traction",
+        "Lightweight construction reduces fatigue",
+        "Sleek black design matches any athletic outfit",
+        "Nike branding for trusted performance"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Running Shoes",
+          "Color": "Black",
+          "Browse Type": "Men's",
+          "SIM Type": ""
+        },
+        "Display Features": {
+          "Display Size": "N/A",
+          "Resolution": "N/A",
+          "Display Type": "N/A"
+        },
+        "Processor & OS": {
+          "Operating System": "N/A",
+          "Processor Type": "N/A"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "N/A",
+          "RAM": "N/A"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 17,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6ac9ce2b6615536352820273",
+      "id": "nothing-phone-4b-5g-128gb",
+      "name": "Nothing Phone (4b) 5G (Black, 8 GB RAM, 128 GB Storage) | Snapdragon 6 Gen 4 Octa-Core | 50MP + 8MP Dual Rear Camera | 16MP Front Camera | 6.77\" AMOLED Display | 6000mAh Battery",
+      "title1": "Nothing Phone (4b) 5G (Black, 8 GB RAM, 128 GB Storage",
+      "title2": "Nothing Phone (4b) 5G (Black, 8 GB RAM, 128 GB Storage) | Snapdragon 6 Gen 4 Octa-Core | 50MP + 8MP Dual Rear Camera | 16MP Front Camera | 6.77\" AMOLED Display | 6000mAh Battery",
+      "brand": "Nothing",
+      "category": "Mobiles",
+      "stock": 4,
+      "mrp": 49999,
+      "selling_price": 989,
+      "wow_price": 989,
+      "discount": 98,
+      "rating": 4.6,
+      "reviews_count": 2150,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791610385/b5xvv1jfszqvpzsa0hw7.webp",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610394/vsa3xyaqoa4ewxa1w0nr.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610394/ymx5ssdpjc9obcju0x8x.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610396/mxic9id7a7xxts1lmrya.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610397/oa5r8z8qndkzky5wilfx.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610398/x0qxaccewy31tnumqtmu.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610398/zsc0ssksf4xlaguqut31.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610400/ceqhtdvlezfaggpxwlnn.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610400/vg9vkqav4nf6gosjg5kd.webp",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610401/sizjipw1dbzgwrwowjzj.webp"
+      ],
+      "colors": [
+        {
+          "color_name": "Black",
+          "color_hex": "#000000",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791610385/b5xvv1jfszqvpzsa0hw7.webp",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791610394/vsa3xyaqoa4ewxa1w0nr.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791610394/ymx5ssdpjc9obcju0x8x.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791610396/mxic9id7a7xxts1lmrya.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791610397/oa5r8z8qndkzky5wilfx.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791610398/x0qxaccewy31tnumqtmu.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791610398/zsc0ssksf4xlaguqut31.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791610400/ceqhtdvlezfaggpxwlnn.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791610400/vg9vkqav4nf6gosjg5kd.webp",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791610401/sizjipw1dbzgwrwowjzj.webp"
+          ],
+          "ram": "8 GB",
+          "storage": "128 GB",
+          "ram_options": [
+            "8 GB"
+          ],
+          "storage_options": [
+            "128 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 49999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610403/ekmenzxxanzsrsuhhu8o.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610405/ipc6l85e9jjh0iub6qwk.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610406/kmelvonyxm8weeud5vbb.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791610408/nisfsfka12tlcnxqprya.png"
+      ],
+      "default_color": "Black",
+      "default_ram": "8 GB",
+      "default_storage": "128 GB",
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the future of mobile technology with the Nothing Phone (4b) 5G. Powered by the Snapdragon 6 Gen 4 octa‑core processor and backed by 8 GB RAM, it delivers ultra‑smooth performance for gaming, multitasking, and streaming. The 6.77‑inch AMOLED display offers vibrant colours and deep blacks, while the 50 MP + 8 MP dual rear camera setup captures stunning photos in any light. A massive 6000 mAh battery ensures you stay connected all day, and the sleek Black finish adds a premium touch. All this at an unbeatable price, making cutting‑edge tech accessible to everyone.",
+      "highlights": [
+        "Snapdragon 6 Gen 4 octa‑core processor for lightning‑fast performance",
+        "6.77‑inch AMOLED display with crisp 1080 × 2400 resolution",
+        "50 MP + 8 MP dual rear camera system with advanced AI modes",
+        "16 MP front camera for sharp selfies and video calls",
+        "6000 mAh battery with fast‑charge support for all‑day usage",
+        "Dual SIM (Nano + eSIM) and 5G connectivity"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Nothing Phone (4b)",
+          "Color": "Black",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.77 inches",
+          "Resolution": "1080 x 2400 pixels",
+          "Display Type": "AMOLED"
+        },
+        "Processor & OS": {
+          "Operating System": "Nothing OS 2.0 based on Android 13",
+          "Processor Type": "Snapdragon 6 Gen 4 Octa-Core"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "128 GB",
+          "RAM": "8 GB"
+        },
+        "Camera": {
+          "Primary Camera": "50 MP + 8 MP Dual Rear Camera",
+          "Front Camera": "16 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "storeId": "owner",
+      "sort_order": 18,
+      "ram_options": [
+        "8 GB"
+      ],
+      "storage_options": [
+        "128 GB"
+      ]
+    },
+    {
+      "_id": "6aca0a81fbc6ab957c437d53",
+      "id": "noise-pro-6-max-smart-watch-intelligent-ai-pure-titanium",
+      "name": "Noise Pro 6 Max Smart Watch: Intelligent AI, 1.96\" AMOLED, Stainless Steel Build, Built-in GPS, 5 ATM, EN2 Processor, iOS & Android (Pure Titanium)",
+      "title1": "Noise Pro 6 Max Smart Watch:Intelligent AI (Pure Titanium)",
+      "title2": "Noise Pro 6 Max Smart Watch: Intelligent AI, 1.96\" AMOLED, Stainless Steel Build, Built-in GPS, 5 ATM, EN2 Processor, iOS & Android (Pure Titanium)",
+      "brand": "Noise",
+      "category": "Electronics",
+      "stock": 2,
+      "mrp": 6999,
+      "selling_price": 299,
+      "wow_price": 299,
+      "discount": 96,
+      "rating": 4.6,
+      "reviews_count": 1245,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791625801/yhdoqzlp1yyqy1peadmx.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625818/jird3liaigamq4hchn0h.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625819/i57wuwwsh8fcn0seym3x.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625820/nt6ze8wllaptmqzt2abo.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625820/lnpzemaarnfisuohnqyo.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625821/evlywee90jwd4ovdp0gh.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625822/xi8xxqf36ytpibssqfh7.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625823/f3ncn9re4ww149raahon.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625824/twj1jralemh3deqbihm8.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625824/kxeexqmfzt4krzzikjuq.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625825/wd1ejdp3adkznlywcadv.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Titanium Black",
+          "color_hex": "#2b2b2b",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791625801/yhdoqzlp1yyqy1peadmx.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791625818/jird3liaigamq4hchn0h.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791625819/i57wuwwsh8fcn0seym3x.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791625820/nt6ze8wllaptmqzt2abo.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791625820/lnpzemaarnfisuohnqyo.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791625821/evlywee90jwd4ovdp0gh.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791625822/xi8xxqf36ytpibssqfh7.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791625823/f3ncn9re4ww149raahon.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791625824/twj1jralemh3deqbihm8.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791625824/kxeexqmfzt4krzzikjuq.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791625825/wd1ejdp3adkznlywcadv.jpg"
+          ],
+          "ram": "1 GB",
+          "storage": "4 GB",
+          "ram_options": [
+            "1 GB"
+          ],
+          "storage_options": [
+            "4 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 14999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625836/bl5ujfxv2lx6c0urycgm.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625836/t1iqbwph5jw1xoabbuub.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625838/kdco6i773s0gnewrbwtn.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625838/x9figms7o6vpqj0iilzu.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625839/ztbrubftqtyx39hcu60g.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625840/jyo4h896ffexddggpz7k.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625841/fwszebvvpjpdp72zr5lr.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791625843/qvg3ndqa9sjr2dnikre5.png"
+      ],
+      "default_color": "Pure Titanium",
+      "default_ram": "",
+      "default_storage": "",
+      "ram_options": [],
+      "storage_options": [],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "The Noise Pro 6 Max Smart Watch blends cutting‑edge AI with premium design. Housed in a pure titanium case, it offers a crisp 1.96‑inch AMOLED display, EN2 processor for ultra‑smooth performance, and built‑in GPS for accurate tracking. With 5 ATM water resistance, AI‑driven watch faces, and seamless compatibility with iOS and Android, it’s the ultimate companion for fitness enthusiasts and tech lovers alike.",
+      "highlights": [
+        "Intelligent AI engine with endless AI watch faces",
+        "Vibrant 1.96\" AMOLED display for crystal‑clear visuals",
+        "Pure titanium stainless‑steel build with 5 ATM water resistance",
+        "EN2 processor ensures lag‑free performance",
+        "Built‑in GPS for precise outdoor tracking",
+        "Compatible with both iOS and Android devices"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Pro 6 Max",
+          "Color": "Pure Titanium",
+          "Browse Type": "Smart Watch",
+          "SIM Type": "N/A"
+        },
+        "Display Features": {
+          "Display Size": "1.96 inches",
+          "Resolution": "360 x 360 pixels",
+          "Display Type": "AMOLED"
+        },
+        "Processor & OS": {
+          "Operating System": "Compatible with iOS & Android",
+          "Processor Type": "EN2 Processor"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "4 GB",
+          "RAM": "1 GB"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 19,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6aca0b75fbc6ab957c437d54",
+      "id": "noise-endeavour-pro-smartchoice-outdoor-rugged-smart-watch-driftstone-beige",
+      "name": "Noise Endeavour Pro (Smartchoice) Outdoor Rugged Military Smart Watch, Dual‑Band GPS, 164ft Water Resistance, 28 Days Battery on Standby, AI Companion, for iOS & Android (Driftstone Beige)",
+      "title1": "Noise Endeavour Pro (Smartchoice) Outdoor Rugged Smart Watch (Driftstone Beige)",
+      "title2": "Noise Endeavour Pro (Smartchoice) Outdoor Rugged Military Smart Watch, Dual‑Band GPS, 164ft Water Resistance, 28 Days Battery on Standby, AI Companion, for iOS & Android (Driftstone Beige)",
+      "brand": "Noise",
+      "category": "Electronics",
+      "stock": 7,
+      "mrp": 8999,
+      "selling_price": 299,
+      "wow_price": 299,
+      "discount": 97,
+      "rating": 4.6,
+      "reviews_count": 3120,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791626077/fp026ukmeixwieyji6by.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626085/cnz4s4lrwfo9wezish00.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626085/k1ly53djnfjchs4ufg1t.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626086/g34r9ou95ex49qoudpfb.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626088/srxu4sxhye9vfu6w818s.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626089/vnnc8ktnsgwxklzljguw.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626089/geymsmqkngx40stqry8f.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626090/ezozwwggbkir0pjtdm8d.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626091/yiaqyxoi1qylzfmdv0by.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626092/nveyq8yti3mmwy2we4kn.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626093/cswv4mbxn0dxpxnrxtgt.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Driftstone Beige",
+          "color_hex": "#c2b69d",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791626077/fp026ukmeixwieyji6by.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791626085/cnz4s4lrwfo9wezish00.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791626085/k1ly53djnfjchs4ufg1t.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791626086/g34r9ou95ex49qoudpfb.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791626088/srxu4sxhye9vfu6w818s.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791626089/vnnc8ktnsgwxklzljguw.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791626089/geymsmqkngx40stqry8f.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791626090/ezozwwggbkir0pjtdm8d.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791626091/yiaqyxoi1qylzfmdv0by.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791626092/nveyq8yti3mmwy2we4kn.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791626093/cswv4mbxn0dxpxnrxtgt.jpg"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 14999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626094/tgmeat1sm2hurqan5wly.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626095/iq4knwjsvgcssqweli0h.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626096/vq4r5lqhhgcpo5p8db8f.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626097/wpo8u5x7njaqazyz3c2z.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791626098/hohiyv0vhkfb4ds9ggbg.png"
+      ],
+      "default_color": "Driftstone Beige",
+      "default_ram": "",
+      "default_storage": "",
+      "ram_options": [],
+      "storage_options": [],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "The Noise Endeavour Pro Smartchoice is built for the toughest adventures. With a rugged military‑grade chassis, dual‑band GPS, and 164ft water resistance, it stands up to extreme conditions while keeping you connected. A massive 28‑day standby battery ensures you stay on track for weeks without recharge, and the AI companion offers personalized health insights. Seamlessly compatible with both iOS and Android, this smartwatch blends durability with smart features for the ultimate outdoor experience.",
+      "highlights": [
+        "Rugged military‑grade design for outdoor adventures",
+        "Dual‑band GPS for precise location tracking",
+        "164ft (50m) water resistance – suitable for swimming and diving",
+        "28‑day standby battery life on a single charge",
+        "AI‑driven health and activity companion",
+        "Compatible with iOS & Android smartphones"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Endeavour Pro (Smartchoice)",
+          "Color": "Driftstone Beige",
+          "Browse Type": "Rugged Outdoor Smartwatch",
+          "SIM Type": "N/A"
+        },
+        "Display Features": {
+          "Display Size": "1.39 inches",
+          "Resolution": "360 x 360 pixels",
+          "Display Type": "AMOLED"
+        },
+        "Processor & OS": {
+          "Operating System": "Noise OS",
+          "Processor Type": "Dual‑core"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "4 GB",
+          "RAM": "512 MB"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 20,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6ac9c9076615536352820272",
+      "id": "apple-iphone-14-128-gb-blue",
+      "name": "Apple iPhone 14 Powered by the A15 Bionic (Blue, 128 GB)",
+      "title1": "Apple iPhone 14 Powered by the A15 Bionic (128 GB, Blue)",
+      "title2": "Apple iPhone 14 Powered by the A15 Bionic (Blue, 128 GB)",
+      "brand": "Apple",
+      "category": "Mobiles",
+      "stock": 4,
+      "mrp": 79900,
+      "selling_price": 949,
+      "wow_price": 949,
+      "discount": 99,
+      "rating": 4.6,
+      "reviews_count": 5421,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791610102/tmfsu6vifao7nen1en3u.png",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791609055/zr3zmg65moisqxy2ckk1.avif",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791609069/geba23k6bcaefvkktmpc.avif",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791609069/kj50gia0gxhmbnwb4z01.avif",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791609070/wpuik58jxeocvvk75zzj.avif",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791609071/ignqoi7scanoqq50rjlh.avif",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791609071/bgebn1oic2db3hmaeu9i.avif",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791609072/j9qxndir8whqp6zjbmwl.avif",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791609072/q1y7ipr5ifiwmlv4ny6t.avif",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791609073/phddobohufnrjdafvecr.avif"
+      ],
+      "colors": [
+        {
+          "color_name": "Blue",
+          "color_hex": "#007AFF",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791609055/zr3zmg65moisqxy2ckk1.avif",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791609055/zr3zmg65moisqxy2ckk1.avif",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791609069/geba23k6bcaefvkktmpc.avif",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791609069/kj50gia0gxhmbnwb4z01.avif",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791609070/wpuik58jxeocvvk75zzj.avif",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791609071/ignqoi7scanoqq50rjlh.avif",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791609071/bgebn1oic2db3hmaeu9i.avif",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791609072/j9qxndir8whqp6zjbmwl.avif",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791609072/q1y7ipr5ifiwmlv4ny6t.avif",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791609073/phddobohufnrjdafvecr.avif"
+          ],
+          "ram": "6 GB",
+          "storage": "128 GB",
+          "ram_options": [
+            "6 GB"
+          ],
+          "storage_options": [
+            "128 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 79900
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791609076/b449ix6yrvnyjslah4ho.jpg"
+      ],
+      "default_color": "Blue",
+      "default_ram": "6 GB",
+      "default_storage": "128 GB",
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the perfect blend of performance and elegance with the Apple iPhone 14. Powered by the A15 Bionic chip and iOS 16, it delivers lightning‑fast speed, stunning photography, and a brilliant 6.1‑inch Super Retina XDR display—all wrapped in a sleek Blue finish that stands out. With 128 GB of storage and 6 GB of RAM, you get ample space and smooth multitasking for all your daily needs.",
+      "highlights": [
+        "6.1‑inch Super Retina XDR OLED display with HDR support",
+        "Apple A15 Bionic processor ensures fast and efficient performance",
+        "Dual 12 MP rear cameras with Night mode and Deep Fusion",
+        "12 MP TrueDepth front camera for crisp selfies and Face ID",
+        "5G connectivity, IP68 water‑resistance, and MagSafe accessories",
+        "128 GB storage and 6 GB RAM for seamless multitasking"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "iPhone 14",
+          "Color": "Blue",
+          "Browse Type": "Smartphone",
+          "SIM Type": "Dual SIM (Nano + eSIM)"
+        },
+        "Display Features": {
+          "Display Size": "6.1 inches",
+          "Resolution": "1170 x 2532 pixels",
+          "Display Type": "Super Retina XDR OLED"
+        },
+        "Processor & OS": {
+          "Operating System": "iOS 16",
+          "Processor Type": "Apple A15 Bionic"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "128 GB",
+          "RAM": "6 GB"
+        },
+        "Camera": {
+          "Primary Camera": "Dual 12 MP (Wide, Ultra Wide)",
+          "Front Camera": "12 MP"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "storeId": "owner",
+      "sort_order": 21,
+      "ram_options": [
+        "6 GB"
+      ],
+      "storage_options": [
+        "128 GB"
+      ]
+    },
+    {
+      "_id": "6aca02f85987ad481825afe3",
+      "id": "dailyobjects-loop-qi2-20000mah-power-bank-titanium",
+      "name": "DailyObjects Loop Qi2 Certified 20000 mAh Aluminium Wireless Power Bank with Fast Charging, Mag‑Safe, Retractable Stand (Titanium)",
+      "title1": "DailyObjects Loop Qi2 20000mAh Power Bank (Titanium)",
+      "title2": "DailyObjects Loop Qi2 Certified 20000 mAh Aluminium Wireless Power Bank with Fast Charging, Mag‑Safe, Retractable Stand (Titanium)",
+      "brand": "DailyObjects",
+      "category": "Electronics",
+      "stock": 6,
+      "mrp": 7499,
+      "selling_price": 399,
+      "wow_price": 399,
+      "discount": 95,
+      "rating": 4.6,
+      "reviews_count": 1245,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791623908/ya3qvmqpeia59orlf1vq.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623913/kvicbf44vrputnibkzlc.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623913/xhjtwqbocgxbvqid7al5.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623914/kcepop686unzpagijfk2.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623915/kp1xqamfhdccn5t3ymk8.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623915/obhwns8gdrwyqpmcyzhp.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623916/shighz13przyn5pepvnu.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623917/a0yltwi5382bklcbuqwi.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Titanium",
+          "color_hex": "#c2b69d",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791623908/ya3qvmqpeia59orlf1vq.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623913/kvicbf44vrputnibkzlc.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623913/xhjtwqbocgxbvqid7al5.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623914/kcepop686unzpagijfk2.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623915/kp1xqamfhdccn5t3ymk8.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623915/obhwns8gdrwyqpmcyzhp.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623916/shighz13przyn5pepvnu.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623917/a0yltwi5382bklcbuqwi.jpg"
+          ],
+          "ram": "12 GB",
+          "storage": "20000 mAh",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "20000 mAh"
+          ],
+          "selling_price": 999,
+          "mrp": 3999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623919/k76kpqd4bxpezecbvxmn.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623919/btwepkbty66sg1nuzwv1.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623920/n5dcwsuerizhyeplh0fh.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623921/lz4iqybsm6au6nenwweb.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623921/lwjlz84oz3uljc09w2jf.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623922/mmnumfflc6kqbb81z3s0.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623923/zsulnsgkevds5vagx04a.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623924/nsjgqhqyiks9h33crqro.jpg"
+      ],
+      "default_color": "Titanium",
+      "default_ram": "",
+      "default_storage": "20000 mAh",
+      "ram_options": [],
+      "storage_options": [
+        "20000 mAh"
+      ],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "The DailyObjects Loop Qi2 Certified Power Bank combines premium aluminium build with 20,000 mAh high‑capacity battery to keep your devices powered all day. Featuring Mag‑Safe compatibility, fast wired and wireless charging, and a clever retractable stand, it’s the perfect on‑the‑go companion for Samsung, OnePlus, iPhone 12‑17 series and more. Its sleek titanium finish adds a touch of elegance while the Qi2 certification ensures safe, efficient wireless power delivery. Compact, lightweight and ready for any adventure, this power bank delivers reliable performance without compromising style.",
+      "highlights": [
+        "20,000 mAh high‑capacity battery for extended usage",
+        "Qi2 certified wireless charging up to 15W",
+        "Mag‑Safe compatible for iPhone 12‑17 series",
+        "Fast wired charging via USB‑C Power Delivery",
+        "Aluminium titanium finish with retractable stand",
+        "Universal compatibility with Samsung, OnePlus, iPhone and more"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Loop Qi2 Certified",
+          "Color": "Titanium",
+          "Browse Type": "Power Bank",
+          "SIM Type": "N/A"
+        },
+        "Display Features": {
+          "Display Size": "",
+          "Resolution": "",
+          "Display Type": ""
+        },
+        "Processor & OS": {
+          "Operating System": "",
+          "Processor Type": ""
+        },
+        "Memory & Storage": {
+          "Internal Storage": "20000 mAh",
+          "RAM": ""
+        },
+        "Camera": {
+          "Primary Camera": "",
+          "Front Camera": ""
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 22,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6aca00042416424658c2b022",
+      "id": "realme-buds-air-8-11mm-6mm-dual-dynamic-bass-master-purple",
+      "name": "realme Buds Air 8 (Master Purple, 55dB ANC, 58mm+6mm Dual Dynamic Bass Drivers, 58 Hrs Playtime)",
+      "title1": "realme Buds Air 8 ,11mm+6mm Dual Dynamic Bass(Master Purple)",
+      "title2": "realme Buds Air 8 (Master Purple, 55dB ANC, 58mm+6mm Dual Dynamic Bass Drivers, 58 Hrs Playtime)",
+      "brand": "realme",
+      "category": "Electronics",
+      "stock": 6,
+      "mrp": 3999,
+      "selling_price": 299,
+      "wow_price": 299,
+      "discount": 93,
+      "rating": 4.6,
+      "reviews_count": 1245,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791623152/e3dutqbmufm6cjawrm1b.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623161/nui8ldzadbz9yvvw85my.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623161/ufyvuhapqrpjeh7ql3lk.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623162/wdgmqfnluab9y6eqbq5t.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623163/i5j15b3yxgeu3fdofcqp.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623163/x2wosnnutbpe7brsjcr4.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623164/l5vav6kchp1hdka9pp2m.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623164/jztrdk9kcetviccy5qq4.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623165/houv40idyattlkv6eax0.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623166/treycvrp3x52rcgdvs2r.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Master Purple",
+          "color_hex": "#c2b69d",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791623152/e3dutqbmufm6cjawrm1b.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623161/nui8ldzadbz9yvvw85my.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623161/ufyvuhapqrpjeh7ql3lk.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623162/wdgmqfnluab9y6eqbq5t.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623163/i5j15b3yxgeu3fdofcqp.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623163/x2wosnnutbpe7brsjcr4.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623164/l5vav6kchp1hdka9pp2m.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623164/jztrdk9kcetviccy5qq4.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623165/houv40idyattlkv6eax0.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791623166/treycvrp3x52rcgdvs2r.jpg"
+          ],
+          "ram": "12 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "12 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 3999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623165/ha5gilecs5zfst7s99kh.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623165/napozlbynkj2z1hn7zk0.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623166/e5dsbc1c1id0xuuz8cpa.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791623167/xnv7jauoi0nnylxfhv8b.jpg"
+      ],
+      "default_color": "Master Purple",
+      "default_ram": "",
+      "default_storage": "",
+      "ram_options": [],
+      "storage_options": [],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience immersive, high‑resolution sound with the realme Buds Air 8. Featuring dual dynamic bass drivers (58mm + 6mm), 55dB active noise cancellation, and 360° spatial audio, these true‑wireless earbuds deliver crystal‑clear vocals and deep bass. With up to 58 hours of total playtime, low‑latency gaming mode, six‑mic ENC for crystal‑clear calls, and IP55 dust‑water resistance, they are built for both everyday use and intense gaming sessions. Bluetooth 5.4 ensures a stable, fast connection, while LHDC Hi‑Res support brings studio‑grade audio to your ears.",
+      "highlights": [
+        "Dual 58mm+6mm dynamic bass drivers for powerful sound",
+        "55dB active noise cancellation blocks ambient noise",
+        "Up to 58 hrs total playback with fast charging",
+        "45 ms ultra‑low latency for gaming and video sync",
+        "360° spatial audio with Hi‑Res LHDC support",
+        "IP55 dust & water resistance for active lifestyles"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Buds Air 8",
+          "Color": "Master Purple",
+          "Browse Type": "In‑Ear",
+          "SIM Type": "N/A"
+        },
+        "Display Features": {
+          "Display Size": "N/A",
+          "Resolution": "N/A",
+          "Display Type": "N/A"
+        },
+        "Processor & OS": {
+          "Operating System": "N/A",
+          "Processor Type": "Bluetooth v5.4"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "N/A",
+          "RAM": "N/A"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 23,
+      "storeId": "owner"
+    },
+    {
+      "_id": "6ac9d0a16615536352820274",
+      "id": "apple-macbook-neo-13-256-gb",
+      "name": "Apple 2026 MacBook Neo 13\" Laptop with A18 Pro chip, Liquid Retina Display, 8 GB Unified Memory, 256 GB SSD, 1080p FaceTime HD Camera – Silver",
+      "title1": "Apple 2026 MacBook Neo 13\" Laptop with A18 Pro chip (256 GB)",
+      "title2": "Apple 2026 MacBook Neo 13\" Laptop with A18 Pro chip, Liquid Retina Display, 8 GB Unified Memory, 256 GB SSD, 1080p FaceTime HD Camera – Silver",
+      "brand": "Apple",
+      "category": "Electronics",
+      "stock": 6,
+      "mrp": 67900,
+      "selling_price": 899,
+      "wow_price": 899,
+      "discount": 99,
+      "rating": 4.8,
+      "reviews_count": 1245,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791611145/l9idz52pf47cfgltlklk.png",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791611016/alkq1qqxoozonzsxnt9z.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791611017/uhjdme3qpu26vpyihqrx.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791611017/tc7iplmkkdq2uixpkk7k.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791611018/k6l2c2bwaabj0njsj9r4.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Space Gray",
+          "color_hex": "#4B4B4B",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791611003/dkezud2sp3viatbmmvsl.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791611016/alkq1qqxoozonzsxnt9z.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791611017/uhjdme3qpu26vpyihqrx.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791611017/tc7iplmkkdq2uixpkk7k.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791611018/k6l2c2bwaabj0njsj9r4.jpg"
+          ],
+          "ram": "8 GB",
+          "storage": "256 GB",
+          "ram_options": [
+            "8 GB"
+          ],
+          "storage_options": [
+            "256 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 149900
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791611023/ypaxrd3gy4ygccryx9gl.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791611023/qoyekx8kixylvauhyv2w.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791611024/ry7zotq9ixk398mvgarg.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791611025/ajgxzpzyggbdunxuocvm.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791611025/dpikxirxqhvrw8mhqjgq.jpg"
+      ],
+      "default_color": "Silver",
+      "default_ram": "8 GB",
+      "default_storage": "256 GB",
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "Experience the future of computing with the Apple 2026 MacBook Neo 13\" laptop. Powered by the groundbreaking A18 Pro chip, it delivers unparalleled AI performance and seamless Apple Intelligence integration. The stunning 13.3‑inch Liquid Retina display offers vibrant colors and razor‑sharp detail, while the 8 GB unified memory and 256 GB SSD ensure lightning‑fast multitasking and storage. Capture crystal‑clear video calls with the 1080p FaceTime HD camera, all housed in a sleek Silver chassis that epitomises Apple’s premium design language.",
+      "highlights": [
+        "A18 Pro chip engineered for AI‑first workflows",
+        "13.3‑inch Liquid Retina display with True Tone technology",
+        "8 GB unified memory for smooth multitasking",
+        "256 GB SSD for rapid app launches and file access",
+        "1080p FaceTime HD camera with advanced noise reduction",
+        "Sleek Silver aluminium body, lightweight and portable"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "MacBook Neo 13\"",
+          "Color": "Silver",
+          "Browse Type": "Laptop",
+          "SIM Type": ""
+        },
+        "Display Features": {
+          "Display Size": "13.3 inches",
+          "Resolution": "2560 x 1600",
+          "Display Type": "Liquid Retina"
+        },
+        "Processor & OS": {
+          "Operating System": "macOS 15",
+          "Processor Type": "Apple A18 Pro"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "256 GB SSD",
+          "RAM": "8 GB Unified Memory"
+        },
+        "Camera": {
+          "Primary Camera": "1080p FaceTime HD",
+          "Front Camera": "1080p FaceTime HD"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": true,
+      "storeId": "owner",
+      "sort_order": 24,
+      "ram_options": [
+        "8 GB"
+      ],
+      "storage_options": [
+        "256 GB"
+      ]
+    },
+    {
+      "_id": "6aca1184fbc6ab957c437d55",
+      "id": "titan-celestor-1-43-amoled-smart-watch-with-built-in-gps-beige",
+      "name": "Titan Celestor 1.43\" AMOLED Smart Watch with Built-in GPS, Advanced Health Intelligence, AI Voice Assistant, Aluminium Case, 100+ Sports Modes, Water Resistance – Smartwatch for Men & Women (Beige)",
+      "title1": "Titan Celestor 1.43\" AMOLED Smart Watch with Built-in GPS (Beige)",
+      "title2": "Titan Celestor 1.43\" AMOLED Smart Watch with Built-in GPS, Advanced Health Intelligence, AI Voice Assistant, Aluminium Case, 100+ Sports Modes, Water Resistance – Smartwatch for Men & Women (Beige)",
+      "brand": "Titan",
+      "category": "Electronics",
+      "stock": 9,
+      "mrp": 7125,
+      "selling_price": 399,
+      "wow_price": 399,
+      "discount": 94,
+      "rating": 4.6,
+      "reviews_count": 3410,
+      "img1": "https://res.cloudinary.com/sricov3c/image/upload/v1791627636/gwfdeczavrngeylr37d4.jpg",
+      "images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627641/vhqj82wuckpbvdnral2n.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627642/crlq0mpor3bi8v1za8dd.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627643/qklz3ltym0fgkkkm4bap.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627644/yxm88lcwr7m66ukdcomf.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627645/fu0aqrqtkxyh5fryaf1h.jpg",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627645/vncpnb91vufpovcuo7xd.jpg"
+      ],
+      "colors": [
+        {
+          "color_name": "Beige",
+          "color_hex": "#f5f5dc",
+          "color_img": "https://res.cloudinary.com/sricov3c/image/upload/v1791627636/gwfdeczavrngeylr37d4.jpg",
+          "images": [
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791627641/vhqj82wuckpbvdnral2n.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791627642/crlq0mpor3bi8v1za8dd.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791627643/qklz3ltym0fgkkkm4bap.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791627644/yxm88lcwr7m66ukdcomf.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791627645/fu0aqrqtkxyh5fryaf1h.jpg",
+            "https://res.cloudinary.com/sricov3c/image/upload/v1791627645/vncpnb91vufpovcuo7xd.jpg"
+          ],
+          "ram": "1 GB",
+          "storage": "4 GB",
+          "ram_options": [
+            "1 GB"
+          ],
+          "storage_options": [
+            "4 GB"
+          ],
+          "selling_price": 999,
+          "mrp": 14999
+        }
+      ],
+      "description_images": [
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627646/jibcxlmnpbejeyj4rkoa.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627647/qnyeh6tmxperbldqp53w.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627647/xrhamok96xx7njbck1wl.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627648/hralwrxbz00vtggyewfc.png",
+        "https://res.cloudinary.com/sricov3c/image/upload/v1791627649/mm3rdjey64zrzefqz6zc.png"
+      ],
+      "default_color": "Beige",
+      "default_ram": "",
+      "default_storage": "",
+      "ram_options": [],
+      "storage_options": [],
+      "custom_size": "",
+      "show_custom_size": false,
+      "delivery_text": "Free Delivery in Two Days",
+      "description": "The Titan Celestor 1.43\" AMOLED Smart Watch blends premium design with cutting‑edge health and connectivity features. Housed in a sleek aluminium case, it offers a vibrant AMOLED display, built‑in GPS, AI voice assistant, and over 100 sports modes, making it perfect for both fitness enthusiasts and everyday users. Water‑resistant and packed with advanced health intelligence, this smartwatch keeps you informed, motivated, and connected wherever you go.",
+      "highlights": [
+        "1.43\" Full‑color AMOLED display with crisp 360×360 resolution",
+        "Built‑in GPS and AI voice assistant for hands‑free control",
+        "Advanced health sensors: heart rate, SpO2, stress, sleep tracking",
+        "100+ sports modes & water resistance up to 5 ATM",
+        "Aluminium case with premium Beige finish for a stylish look",
+        "Long‑lasting battery with fast charging support"
+      ],
+      "specifications": {
+        "General": {
+          "Model Name": "Celestor",
+          "Color": "Beige",
+          "Browse Type": "Smartwatch",
+          "SIM Type": "N/A"
+        },
+        "Display Features": {
+          "Display Size": "1.43 inches",
+          "Resolution": "360 x 360 pixels",
+          "Display Type": "AMOLED"
+        },
+        "Processor & OS": {
+          "Operating System": "Titan OS (based on Wear OS)",
+          "Processor Type": "Quad‑core 1.2 GHz"
+        },
+        "Memory & Storage": {
+          "Internal Storage": "4 GB",
+          "RAM": "1 GB"
+        },
+        "Camera": {
+          "Primary Camera": "N/A",
+          "Front Camera": "N/A"
+        }
+      },
+      "hidden": false,
+      "active": true,
+      "featured": false,
+      "hot_deal": false,
+      "show_variants": false,
+      "sort_order": 25,
+      "storeId": "owner"
+    }
+  ]
+}

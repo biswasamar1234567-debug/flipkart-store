@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Store Admin Portal</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- Critical Inline Styles (Guarantees 100% Isolation on Initial Load) -->
+  <style>
+    /* ---- Gateway toggle switches (Payment Settings) ---- */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 46px;
+      height: 26px;
+      flex: none;
+      background: #d1d5db;
+      border-radius: 999px;
+      transition: background .2s ease;
+      cursor: pointer;
+    }
+    .toggle-switch .toggle-knob {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,.3);
+      transition: transform .2s ease;
+    }
+    .toggle-switch.on {
+      background: #2563eb;
+    }
+    .toggle-switch.on .toggle-knob {
+      transform: translateX(20px);
+    }
+    .gateway-toggle-card {
+      cursor: pointer;
+      border-color: #e5e7eb;
+      transition: border-color .18s ease, background .18s ease;
+    }
+    .gateway-toggle-card:hover {
+      border-color: #93c5fd;
+    }
+
+    /* Absolute isolation: until authenticated, ONLY #loginScreen is rendered */
+    #adminApp {
+      display: none !important;
+    }
+    #adminApp.authenticated {
+      display: block !important;
+    }
+    #loginScreen {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 999999 !important;
+      background: #0b1329 !important;
+      background: radial-gradient(circle at 50% 35%, #172554 0%, #0b1329 65%, #030712 100%) !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      padding: 20px !important;
+    }
+    #loginScreen.hidden {
+      display: none !important;
+    }
+    .portal-login-card {
+      width: 100% !important;
+      max-width: 420px !important;
+      background: #ffffff !important;
+      border-radius: 24px !important;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+      padding: 42px 34px 34px 34px !important;
+      text-align: center !important;
+    }
+    .admin-modal-overlay {
+      display: none !important;
+    }
+    .admin-modal-overlay.active {
+      display: flex !important;
+    }
+  </style>
+
+  <!-- Custom Admin Styles -->
+  <link rel="stylesheet" href="/admin/admin.css?v=2" />
+</head>
+<body class="bg-[#f8fafc] text-[#0f172a]">
+
+  <!-- ========================================================================= -->
+  <!-- 🔒 1. FULL-SCREEN DEDICATED LOGIN PORTAL (SCREENSHOT 2)                    -->
+  <!-- ========================================================================= -->
+  <div id="loginScreen">
+    <div class="portal-login-card">
+      
+      <!-- Padlock Illustration SVG matching Screenshot 2 -->
+      <div class="lock-illustration">
+        <svg viewBox="0 0 80 80" width="76" height="76" fill="none">
+          <!-- Shackle Loop -->
+          <path d="M26 38V24C26 16.268 32.268 10 40 10C47.732 10 54 16.268 54 24V38" stroke="#111827" stroke-width="8" stroke-linecap="round"/>
+          <!-- Lock Body -->
+          <rect x="18" y="34" width="44" height="36" rx="10" fill="#f59e0b" stroke="#111827" stroke-width="4"/>
+          <!-- Top highlight -->
+          <path d="M25 40H55" stroke="#fcd34d" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- Keyhole -->
+          <circle cx="40" cy="50" r="4.5" fill="#111827"/>
+          <path d="M38 52L36.5 61H43.5L42 52Z" fill="#111827"/>
+        </svg>
+      </div>
+
+      <!-- Portal Title & Subtitle -->
+      <h1 class="portal-title">Store Admin Portal</h1>
+      <p class="portal-subtitle">Enter admin PIN / password to access</p>
+
+      <!-- Login Form -->
+      <form id="portalLoginForm">
+        <label class="form-label-left" for="portalPassword">Enter PIN / Password</label>
+
+        <div class="portal-input-wrapper">
+          <input 
+            type="password" 
+            id="portalPassword" 
+            class="portal-input" 
+            placeholder="Enter PIN / Password..." 
+            autocomplete="current-password" 
+            required 
+          />
+          <span class="portal-input-icon" id="togglePasswordVis" title="Toggle visibility">
+            <i class="bi bi-lock-fill"></i>
+          </span>
+        </div>
+
+        <div id="loginError" class="login-error-msg hidden"></div>
+
+        <button type="submit" id="portalLoginBtn" class="portal-btn-primary">
+          Login
+        </button>
+      </form>
+
+      <!-- Back to Store Link -->
+      <a href="../" class="portal-back-link">
+        ← Back to Store
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 🖥️ 2. MASTER OWNER ADMIN APP (SCREENSHOT 3)                               -->
+  <!-- ========================================================================= -->
+  <div id="adminApp" style="display: none;">
+
+    <!-- Mobile Drawer Backdrop -->
+    <div id="sidebarBackdrop" class="master-backdrop"></div>
+
+    <!-- Master Sidebar Drawer -->
+    <aside id="masterSidebar" class="master-sidebar">
+      
+      <!-- Top Header (Dark Container with Crown Icon) -->
+      <div class="master-header-dark">
+        <div class="master-brand-box">
+          <div class="master-crown-icon">
+            <i class="bi bi-crown-fill"></i>
+          </div>
+          <div>
+            <div class="master-title">Master Owner Admin</div>
+            <div class="master-subtitle">Master Store Full Access</div>
+          </div>
+        </div>
+        <button id="sidebarCloseBtn" class="master-close-btn lg:hidden" title="Close Menu">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <!-- Exact 10 Menu Options from Screenshot 3 -->
+      <nav class="master-nav-list">
+        
+        <!-- 1. Dashboard -->
+        <button type="button" class="menu-card-btn active" data-tab="dashboard">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-bar-chart-line-fill text-slate-700"></i></span>
+            <span>Dashboard</span>
+          </div>
+        </button>
+
+        <!-- 2. Real-Time IP Tracker -->
+        <button type="button" class="menu-card-btn ip-tracker-style" data-tab="ip-tracker">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-broadcast-pin text-emerald-600"></i></span>
+            <span>Real-Time IP Tracker</span>
+          </div>
+          <span class="badge-pill-green" id="sidebarLiveIpBadge">LIVE 1</span>
+        </button>
+
+        <!-- 3. Products -->
+        <button type="button" class="menu-card-btn products-style" data-tab="products">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-box-seam-fill text-blue-600"></i></span>
+            <span>Products</span>
+          </div>
+          <span class="badge-pill-blue" id="sidebarProductCount">38</span>
+        </button>
+
+        <!-- 4. Bulk Price Scaler -->
+        <button type="button" class="menu-card-btn price-scaler-style" data-tab="bulk-price">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-lightning-charge-fill text-emerald-600"></i></span>
+            <span>Bulk Price Scaler</span>
+          </div>
+          <span class="badge-pill-green">NEW</span>
+        </button>
+
+        <!-- 5. Quick Product Reorder -->
+        <button type="button" class="menu-card-btn reorder-style" data-tab="quick-reorder">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-123 text-amber-600 font-bold"></i></span>
+            <span>Quick Product Reorder</span>
+          </div>
+          <span class="badge-pill-orange">NEW</span>
+        </button>
+
+        <!-- 6. Categories -->
+        <button type="button" class="menu-card-btn" data-tab="categories">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-folder-fill text-amber-500"></i></span>
+            <span>Categories</span>
+          </div>
+          <span class="badge-pill-gray" id="sidebarCatCount">9</span>
+        </button>
+
+        <!-- 7. Banners -->
+        <button type="button" class="menu-card-btn" data-tab="banners">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-image-fill text-rose-500"></i></span>
+            <span>Banners</span>
+          </div>
+          <span class="badge-pill-gray" id="sidebarBannerCount">4</span>
+        </button>
+
+        <!-- 8. Payment Settings -->
+        <button type="button" class="menu-card-btn" data-tab="payment-settings">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-credit-card-2-front-fill text-amber-600"></i></span>
+            <span>Payment Settings</span>
+          </div>
+          <span class="badge-pill-gray">UPI</span>
+        </button>
+
+        <!-- 9. Settings & Password -->
+        <button type="button" class="menu-card-btn" data-tab="settings">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-gear-fill text-slate-600"></i></span>
+            <span>Settings & Shield</span>
+          </div>
+          <span class="badge-pill-gray" id="sidebarShieldBadge">Flipkart</span>
+        </button>
+
+        <!-- 10. P2P Help & Support -->
+        <button type="button" class="menu-card-btn support-style" data-tab="support">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-ticket-detailed-fill text-purple-600"></i></span>
+            <span>P2P Help & Support</span>
+          </div>
+          <span class="badge-pill-purple">LIVE</span>
+        </button>
+
+      </nav>
+
+      <!-- Divider -->
+      <hr class="sidebar-hr" />
+
+      <!-- Footer Actions: View Live Store & Logout -->
+      <div class="sidebar-bottom-links">
+        <!-- 11. View Live Store -->
+        <a href="../" target="_blank" class="menu-card-btn">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-globe2 text-cyan-600"></i></span>
+            <span>View Live Store</span>
+          </div>
+        </a>
+
+        <!-- 12. Logout -->
+        <button type="button" id="adminLogoutBtn" class="menu-card-btn logout-red">
+          <div class="btn-left">
+            <span class="menu-icon"><i class="bi bi-door-closed-fill text-red-500"></i></span>
+            <span>Logout</span>
+          </div>
+        </button>
+      </div>
+
+    </aside>
+
+    <!-- Main Content Application -->
+    <main class="master-main">
+      
+      <!-- Topbar Header -->
+      <header class="master-topbar">
+        <div class="flex items-center gap-3">
+          <button id="mobileToggleBtn" class="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-xl" title="Toggle Menu">
+            <i class="bi bi-list text-2xl"></i>
+          </button>
+          <div>
+            <h2 id="topbarSectionTitle" class="text-base sm:text-lg font-bold text-gray-900 leading-tight">Dashboard</h2>
+            <span class="text-[11px] text-emerald-600 font-semibold inline-flex items-center gap-1.5">
+              <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span> Cloudinary Connected (sricov3c)
+            </span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Screenshot 3: Store button -->
+          <a href="../" target="_blank" class="btn-store-pill">
+            <i class="bi bi-globe"></i> Store
+          </a>
+          <span id="topbarItemCount" class="text-xs font-extrabold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-lg">
+            38 items
+          </span>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <div class="master-content-area">
+
+        <!-- ================================================================= -->
+        <!-- TAB 1: DASHBOARD                                                  -->
+        <!-- ================================================================= -->
+        <section id="tab-dashboard" class="tab-panel active space-y-6">
+          
+          <!-- Stat Widgets -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
+              <div class="flex items-center justify-between text-xs font-bold text-gray-400 uppercase">
+                <span>Total Products</span>
+                <span class="p-2 bg-blue-50 text-blue-600 rounded-xl"><i class="bi bi-boxes"></i></span>
+              </div>
+              <div class="mt-3">
+                <span id="dashTotalProducts" class="text-3xl font-extrabold text-gray-900">38</span>
+                <span class="text-xs text-gray-400 block mt-0.5">Catalog Items</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
+              <div class="flex items-center justify-between text-xs font-bold text-gray-400 uppercase">
+                <span>Active In Store</span>
+                <span class="p-2 bg-emerald-50 text-emerald-600 rounded-xl"><i class="bi bi-check-circle-fill"></i></span>
+              </div>
+              <div class="mt-3">
+                <span id="dashActiveProducts" class="text-3xl font-extrabold text-emerald-600">38</span>
+                <span class="text-xs text-emerald-600 font-semibold block mt-0.5">Live on Website</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
+              <div class="flex items-center justify-between text-xs font-bold text-gray-400 uppercase">
+                <span>Cloud Photos</span>
+                <span class="p-2 bg-sky-50 text-sky-600 rounded-xl"><i class="bi bi-cloud-check-fill"></i></span>
+              </div>
+              <div class="mt-3">
+                <span id="dashCloudPhotos" class="text-3xl font-extrabold text-sky-600">0</span>
+                <span class="text-xs text-sky-600 font-semibold block mt-0.5">Cloudinary Assets</span>
+              </div>
+            </div>
+
+            <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
+              <div class="flex items-center justify-between text-xs font-bold text-gray-400 uppercase">
+                <span>Live Visitors</span>
+                <span class="p-2 bg-amber-50 text-amber-600 rounded-xl"><i class="bi bi-broadcast"></i></span>
+              </div>
+              <div class="mt-3">
+                <span id="dashActiveVisitors" class="text-3xl font-extrabold text-amber-600">1</span>
+                <span class="text-xs text-amber-600 font-semibold block mt-0.5">Real-Time Traffic</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Cloudinary Banner -->
+          <div class="bg-gradient-to-r from-slate-900 via-blue-950 to-indigo-950 text-white rounded-2xl p-6 shadow-sm border border-slate-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-2xl text-sky-400 shrink-0">
+                <i class="bi bi-cloud-arrow-up-fill"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="font-bold text-base">Cloudinary Direct Cloud Storage</h3>
+                  <span class="text-[10px] bg-emerald-500/20 text-emerald-300 font-bold px-2 py-0.5 rounded-full border border-emerald-500/30">Synced</span>
+                </div>
+                <p class="text-xs text-slate-300 mt-1">
+                  Cloud: <span class="font-mono text-white font-bold">sricov3c</span> | Preset: <span class="font-mono text-white font-bold">flipon</span>
+                </p>
+                <p class="text-[11px] text-slate-400 mt-0.5">
+                  Direct client uploads enabled. Deleting any product automatically triggers Cloudinary API to destroy all associated photos.
+                </p>
+              </div>
+            </div>
+            <button onclick="openProductModal()" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition shrink-0 shadow-sm">
+              <i class="bi bi-plus-lg mr-1.5"></i> Add New Product
+            </button>
+          </div>
+
+          <!-- Quick Navigation Actions -->
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+            <button onclick="switchTab('products')" class="p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-400 transition text-left flex items-center gap-3">
+              <span class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-lg"><i class="bi bi-boxes"></i></span>
+              <div>
+                <div class="text-xs font-bold text-gray-900">Manage Catalog</div>
+                <div class="text-[11px] text-gray-500">Edit products</div>
+              </div>
+            </button>
+
+            <button onclick="switchTab('bulk-price')" class="p-4 bg-white rounded-xl border border-gray-200 hover:border-emerald-400 transition text-left flex items-center gap-3">
+              <span class="w-10 h-10 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-lg"><i class="bi bi-lightning-charge-fill"></i></span>
+              <div>
+                <div class="text-xs font-bold text-gray-900">Bulk Price Scaler</div>
+                <div class="text-[11px] text-gray-500">Update all prices</div>
+              </div>
+            </button>
+
+            <button onclick="switchTab('ip-tracker')" class="p-4 bg-white rounded-xl border border-gray-200 hover:border-green-400 transition text-left flex items-center gap-3">
+              <span class="w-10 h-10 rounded-lg bg-green-50 text-green-600 flex items-center justify-center text-lg"><i class="bi bi-broadcast-pin"></i></span>
+              <div>
+                <div class="text-xs font-bold text-gray-900">IP Tracker</div>
+                <div class="text-[11px] text-gray-500">Live visitors</div>
+              </div>
+            </button>
+
+            <button onclick="switchTab('payment-settings')" class="p-4 bg-white rounded-xl border border-gray-200 hover:border-amber-400 transition text-left flex items-center gap-3">
+              <span class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-lg"><i class="bi bi-credit-card"></i></span>
+              <div>
+                <div class="text-xs font-bold text-gray-900">UPI Settings</div>
+                <div class="text-[11px] text-gray-500">info.json gateway</div>
+              </div>
+            </button>
+
+            <button onclick="switchTab('settings')" class="p-4 bg-white rounded-xl border border-gray-200 hover:border-purple-400 transition text-left flex items-center gap-3">
+              <span class="w-10 h-10 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-lg"><i class="bi bi-shield-shaded"></i></span>
+              <div>
+                <div class="text-xs font-bold text-gray-900">Domain Shield</div>
+                <div class="text-[11px] text-gray-500" id="dashShieldSub">Flipkart Live</div>
+              </div>
+            </button>
+          </div>
+
+          <!-- Recent Products Preview -->
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-gray-900 text-sm sm:text-base">Catalog Overview</h3>
+              <button onclick="switchTab('products')" class="text-xs text-blue-600 font-bold hover:underline flex items-center gap-1">
+                View All Products <i class="bi bi-arrow-right"></i>
+              </button>
+            </div>
+            <div id="dashRecentProductsList"></div>
+          </div>
+
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- TAB 2: REAL-TIME IP TRACKER                                       -->
+        <!-- ================================================================= -->
+        <!-- ================================================================= -->
+        <!-- TAB 2: REAL-TIME IP TRACKER & PUSH.HOUSE BOT AUDIT                -->
+        <!-- ================================================================= -->
+        <section id="tab-ip-tracker" class="tab-panel space-y-6">
+          
+          <!-- Top Header Banner -->
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2.5">
+                <h3 class="font-bold text-gray-900 text-lg">Real-Time IP Tracker & Push.House Audit</h3>
+                <span class="badge-pill-green flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 bg-white rounded-full animate-ping"></span> LIVE
+                </span>
+              </div>
+              <p class="text-xs text-gray-500 mt-1">Live tracking of store visitors, Push.House ad macros, and 100% real human vs automated bot detection.</p>
+            </div>
+
+            <div class="flex items-center gap-2.5">
+              <button onclick="fetchIpTracker()" class="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded-xl text-xs transition flex items-center gap-1.5 shadow-sm">
+                <i class="bi bi-arrow-clockwise"></i> Refresh Now
+              </button>
+              <button onclick="clearIpLogsConfirm()" class="px-3 py-2 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 font-bold rounded-xl text-xs transition flex items-center gap-1.5">
+                <i class="bi bi-trash"></i> Clear History
+              </button>
+            </div>
+          </div>
+
+          <!-- Stats Overview Cards (5 Metrics) -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
+            <!-- 1. Total Visitors -->
+            <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm flex flex-col justify-between">
+              <div class="flex items-center justify-between text-gray-500 mb-2">
+                <span class="text-xs font-semibold">Total Clicks</span>
+                <i class="bi bi-people text-gray-400 text-base"></i>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span id="ipStatTotal" class="text-2xl font-black text-gray-900">0</span>
+                <span class="text-[10px] text-gray-400">All visits</span>
+              </div>
+            </div>
+
+            <!-- 2. Real Humans (BLUE) -->
+            <div class="bg-blue-50/60 p-4 rounded-2xl border border-blue-200 shadow-sm flex flex-col justify-between">
+              <div class="flex items-center justify-between text-blue-700 mb-2">
+                <span class="text-xs font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-blue-500"></span> Real Humans
+                </span>
+                <i class="bi bi-person-check-fill text-blue-600 text-base"></i>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span id="ipStatReal" class="text-2xl font-black text-blue-700">0</span>
+                <span class="text-[10px] font-bold text-blue-600 bg-blue-100 px-1.5 py-0.5 rounded">Verified</span>
+              </div>
+            </div>
+
+            <!-- 3. Bot Users (RED) -->
+            <div class="bg-red-50/60 p-4 rounded-2xl border border-red-200 shadow-sm flex flex-col justify-between">
+              <div class="flex items-center justify-between text-red-700 mb-2">
+                <span class="text-xs font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-red-500"></span> Bot Clicks
+                </span>
+                <i class="bi bi-robot text-red-600 text-base"></i>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span id="ipStatBot" class="text-2xl font-black text-red-700">0</span>
+                <span class="text-[10px] font-bold text-red-600 bg-red-100 px-1.5 py-0.5 rounded">Fake/Crawler</span>
+              </div>
+            </div>
+
+            <!-- 4. Bot Rate % -->
+            <div class="bg-amber-50/50 p-4 rounded-2xl border border-amber-200 shadow-sm flex flex-col justify-between">
+              <div class="flex items-center justify-between text-amber-800 mb-2">
+                <span class="text-xs font-semibold">Bot Detection Rate</span>
+                <i class="bi bi-shield-exclamation text-amber-600 text-base"></i>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span id="ipStatBotRatio" class="text-2xl font-black text-amber-700">0%</span>
+                <span class="text-[10px] text-amber-600">Push.House Bot %</span>
+              </div>
+            </div>
+
+            <!-- 5. Active Live (5 min) -->
+            <div class="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-200 shadow-sm flex flex-col justify-between col-span-2 sm:col-span-1">
+              <div class="flex items-center justify-between text-emerald-800 mb-2">
+                <span class="text-xs font-bold flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Active Now
+                </span>
+                <i class="bi bi-broadcast text-emerald-600 text-base"></i>
+              </div>
+              <div class="flex items-baseline gap-2">
+                <span id="ipStatActive" class="text-2xl font-black text-emerald-700">1</span>
+                <span class="text-[10px] text-emerald-600">Browsing Store</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3-Way Filter Tabs (All / Real [Blue] / Bot [Red]) -->
+          <div class="bg-white p-3.5 sm:p-4 rounded-2xl border border-gray-200 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+            <!-- Filter Buttons -->
+            <div class="inline-flex p-1 bg-gray-100 rounded-xl gap-1">
+              <button 
+                id="btnFilterAll" 
+                onclick="setIpFilter('all')" 
+                class="px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 bg-white text-gray-900 shadow-sm"
+              >
+                <i class="bi bi-grid-fill"></i> All Users (<span id="filterCountAll">0</span>)
+              </button>
+              
+              <button 
+                id="btnFilterReal" 
+                onclick="setIpFilter('real')" 
+                class="px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-gray-600 hover:text-blue-600"
+              >
+                <span class="w-2 h-2 rounded-full bg-blue-500"></span> Real Users (<span id="filterCountReal">0</span>)
+              </button>
+              
+              <button 
+                id="btnFilterBot" 
+                onclick="setIpFilter('bot')" 
+                class="px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-1.5 text-gray-600 hover:text-red-600"
+              >
+                <span class="w-2 h-2 rounded-full bg-red-500"></span> Bot Users (<span id="filterCountBot">0</span>)
+              </button>
+            </div>
+
+            <!-- Search in Logs -->
+            <div class="relative w-full sm:w-64">
+              <i class="bi bi-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xs"></i>
+              <input 
+                type="text" 
+                id="ipSearchInput" 
+                oninput="searchIpLogs(this.value)"
+                placeholder="Search IP, click_id, camp..." 
+                class="w-full pl-8 pr-3 py-1.5 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:ring-2 focus:ring-blue-600 outline-none"
+              />
+            </div>
+          </div>
+
+          <!-- IP Logs Table -->
+          <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="bg-gray-50 text-[11px] font-bold text-gray-500 uppercase border-b border-gray-200">
+                    <th class="py-3 px-4">Visitor Type</th>
+                    <th class="py-3 px-4">IP Address</th>
+                    <th class="py-3 px-4">Push.House Ad Info</th>
+                    <th class="py-3 px-4">Location</th>
+                    <th class="py-3 px-4">Device & OS</th>
+                    <th class="py-3 px-4">Page Visited</th>
+                    <th class="py-3 px-4">Timestamp</th>
+                    <th class="py-3 px-4 text-right">Detection Status</th>
+                  </tr>
+                </thead>
+                <tbody id="ipTrackerTableBody" class="divide-y divide-gray-100 text-xs">
+                  <!-- Dynamically populated via renderIpLogs -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- TAB 3: PRODUCTS CATALOG (SCREENSHOT 3)                             -->
+        <!-- ================================================================= -->
+        <section id="tab-products" class="tab-panel space-y-5">
+          
+          <!-- Toolbar -->
+          <div class="bg-white p-4 rounded-2xl border border-gray-200 shadow-sm flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+            <div class="relative flex-1">
+              <i class="bi bi-search absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              <input 
+                type="text" 
+                id="catalogSearchInput" 
+                placeholder="Search products by title, id, or variant..." 
+                class="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-blue-600 outline-none" 
+              />
+            </div>
+            
+            <div class="flex items-center gap-2">
+              <select id="catalogCategorySelect" class="px-3.5 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs font-semibold text-gray-700 outline-none">
+                <option value="all">All Categories</option>
+                <option value="mobiles">Mobiles</option>
+                <option value="electronics">Electronics</option>
+                <option value="fashion">Fashion</option>
+              </select>
+
+              <button onclick="openProductModal()" class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shrink-0 inline-flex items-center gap-1.5 shadow-md shadow-blue-600/20">
+                <i class="bi bi-plus-lg"></i> Add Product
+              </button>
+            </div>
+          </div>
+
+          <!-- Total count indicator -->
+          <div class="flex items-center justify-between px-1 text-xs font-semibold text-gray-500">
+            <span id="productsFilterStats">Showing products</span>
+            <span class="text-blue-600 cursor-pointer hover:underline" onclick="switchTab('quick-reorder')">
+              <i class="bi bi-arrow-down-up mr-1"></i> Reorder display order
+            </span>
+          </div>
+
+          <!-- Product Rows Container -->
+          <div id="catalogListContainer">
+            <!-- Dynamically populated with .product-row-card elements -->
+          </div>
+
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- TAB 4: BULK PRICE SCALER                                          -->
+        <!-- ================================================================= -->
+        <section id="tab-bulk-price" class="tab-panel space-y-6">
+          
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm max-w-2xl mx-auto">
+            <div class="flex items-center gap-3 pb-4 mb-5 border-b border-gray-100">
+              <span class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl">
+                <i class="bi bi-lightning-charge-fill"></i>
+              </span>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="font-extrabold text-gray-900 text-base sm:text-lg">Bulk Price Scaler</h3>
+                  <span class="badge-pill-green">NEW</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-0.5">Pick a category, set a Min and Max selling price, preview it live, then save straight to MongoDB</p>
+              </div>
+            </div>
+
+            <form id="bulkPriceForm" class="space-y-4">
+
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label class="block text-xs font-bold text-gray-800 mb-1.5">🎯 Target Category</label>
+                  <select id="bulkCategory" onchange="renderBulkPreview()"
+                    class="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-xl text-sm font-bold text-gray-900 focus:ring-2 focus:ring-emerald-600 outline-none">
+                    <option value="all">All Categories</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-800 mb-1.5">Minimum Selling Price (₹)</label>
+                  <input type="number" id="bulkMinPrice" oninput="renderBulkPreview()" min="1"
+                    class="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-xl text-sm font-bold text-gray-900 focus:ring-2 focus:ring-emerald-600 outline-none"
+                    placeholder="e.g. 499" />
+                  <p class="text-[11px] text-gray-500 mt-1">Assigned to the lowest MRP</p>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-gray-800 mb-1.5">Maximum Selling Price (₹)</label>
+                  <input type="number" id="bulkMaxPrice" oninput="renderBulkPreview()" min="1"
+                    class="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-xl text-sm font-bold text-gray-900 focus:ring-2 focus:ring-emerald-600 outline-none"
+                    placeholder="e.g. 799" />
+                  <p class="text-[11px] text-gray-500 mt-1">Assigned to the highest MRP</p>
+                </div>
+              </div>
+
+              <div class="max-w-sm">
+                <label class="block text-xs font-bold text-gray-800 mb-1.5">🏷️ Pricing Ending</label>
+                <select id="bulkPricingEnding" onchange="renderBulkPreview()"
+                  class="w-full px-3 py-2.5 bg-white border border-gray-300 rounded-xl text-sm font-bold text-gray-900 focus:ring-2 focus:ring-emerald-600 outline-none">
+                  <option value="9">Psychological ₹...9 (499, 599, 759)</option>
+                  <option value="99">Psychological ₹...99 (499, 599, 699)</option>
+                  <option value="0">Round to ₹100 (500, 600, 700)</option>
+                  <option value="none">Exact — no rounding</option>
+                </select>
+              </div>
+
+              <div class="p-4 bg-gray-50 rounded-xl border border-gray-200">
+                <div class="flex items-center justify-between mb-2.5 gap-2">
+                  <span class="text-xs font-bold text-gray-800">📊 Live Preview: <span id="bulkPreviewCount">0</span> Products (Ranked by MRP)</span>
+                  <span class="text-[11px] font-bold text-emerald-700 whitespace-nowrap">💾 Saves to MongoDB Cloud</span>
+                </div>
+                <div class="overflow-auto max-h-72">
+                  <table class="w-full text-xs border-collapse">
+                    <thead class="sticky top-0 z-10">
+                      <tr class="bg-gray-100 text-gray-600">
+                        <th class="text-left px-2 py-1.5 font-bold">Product</th>
+                        <th class="text-right px-2 py-1.5 font-bold">Original MRP</th>
+                        <th class="text-right px-2 py-1.5 font-bold">Current Price</th>
+                        <th class="text-right px-2 py-1.5 font-bold text-emerald-700">→ New Selling Price</th>
+                        <th class="text-right px-2 py-1.5 font-bold text-red-600">New Discount</th>
+                      </tr>
+                    </thead>
+                    <tbody id="bulkPreviewBody">
+                      <tr><td colspan="5" class="px-2 py-4 text-center text-gray-400 text-[11px]">Pick a category and enter a min / max price to preview.</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="p-3.5 bg-amber-50 text-amber-800 rounded-xl border border-amber-200 text-xs font-semibold flex items-center gap-2">
+                <i class="bi bi-exclamation-triangle-fill text-amber-600 text-base shrink-0"></i>
+                <span>Saves straight to MongoDB — the homepage and every product page show the new selling price on their next load.</span>
+              </div>
+
+              <button type="submit" id="applyBulkPriceBtn" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm transition shadow-md shadow-emerald-600/25 active:scale-[0.98]">
+                ⚡ Apply &amp; Save to MongoDB (<span id="bulkApplyCount">0</span> Products)
+              </button>
+
+            </form>
+          </div>
+
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- TAB 5: QUICK PRODUCT REORDER                                      -->
+        <!-- ================================================================= -->
+        <section id="tab-quick-reorder" class="tab-panel space-y-5">
+
+          <div class="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-4 mb-4 border-b border-gray-100">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center text-xl">
+                  <i class="bi bi-sort-numeric-down"></i>
+                </span>
+                <div>
+                  <h3 class="font-bold text-gray-900 text-lg leading-tight">Quick Serial Sorter</h3>
+                  <p class="text-xs text-gray-500">Type a rank (#1, #2, #3...) to send any product straight to that position.</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 flex-wrap">
+                <span id="reorderSelectedPill" class="px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-blue-50 text-blue-700">Selected: 0 / 0</span>
+                <span id="reorderNextPill" class="px-2.5 py-1.5 rounded-lg text-[11px] font-bold bg-amber-50 text-amber-700">Next Click: #1</span>
+                <button type="button" onclick="autoFillRest()" class="px-3 py-1.5 rounded-lg text-[11px] font-bold bg-gray-100 hover:bg-gray-200 text-gray-700 transition">⚡ Auto-fill Rest</button>
+                <button type="button" onclick="loadCurrentOrder()" class="px-3 py-1.5 rounded-lg text-[11px] font-bold bg-gray-100 hover:bg-gray-200 text-gray-700 transition">⟳ Load Current</button>
+                <button type="button" onclick="resetReorderAssignments()" class="px-3 py-1.5 rounded-lg text-[11px] font-bold bg-red-50 hover:bg-red-100 text-red-600 transition">✕ Reset</button>
+              </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-2 mb-4">
+              <div class="relative flex-1">
+                <i class="bi bi-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                <input id="reorderSearch" type="text" oninput="renderReorderList()" placeholder="Search product title..."
+                  class="w-full pl-9 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm outline-none focus:bg-white focus:border-indigo-400 transition" />
+              </div>
+              <select id="reorderCategory" onchange="renderReorderList()"
+                class="px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm font-semibold outline-none focus:bg-white focus:border-indigo-400 transition">
+                <option value="">All Categories</option>
+              </select>
+            </div>
+
+            <div class="flex gap-2 mb-4">
+              <button type="button" data-reorder-view="all" onclick="setReorderView('all')"
+                class="reorder-view-tab px-4 py-2 rounded-lg text-xs font-bold transition bg-indigo-600 text-white">
+                📦 All Products (<span id="reorderAllCount">0</span>)
+              </button>
+              <button type="button" data-reorder-view="sorted" onclick="setReorderView('sorted')"
+                class="reorder-view-tab px-4 py-2 rounded-lg text-xs font-bold transition bg-gray-100 text-gray-600">
+                ⭐ Sorted Sequence (<span id="reorderSortedCount">0</span>)
+              </button>
+            </div>
+
+            <div id="reorderListContainer" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-3 max-h-[560px] overflow-y-auto pr-1"></div>
+
+            <p class="text-[11px] text-gray-500 mt-3 flex items-start gap-1.5">
+              <i class="bi bi-lightbulb-fill text-amber-500 mt-0.5"></i>
+              <span>Type a position number and press <b>Enter</b> or <b>Go</b> — that product jumps to the rank you typed and the others shift automatically. Then hit <b>Save &amp; Apply Order</b>.</span>
+            </p>
+
+            <div class="flex justify-end gap-2 mt-4 pt-4 border-t border-gray-100">
+              <button type="button" onclick="loadCurrentOrder()"
+                class="px-5 py-2.5 rounded-xl text-xs font-bold bg-gray-100 hover:bg-gray-200 text-gray-700 transition">Cancel</button>
+              <button type="button" onclick="saveProductOrder()" id="saveOrderBtn"
+                class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl text-xs transition flex items-center gap-2 shadow-md shadow-indigo-600/25">
+                <i class="bi bi-save"></i> Save &amp; Apply Order (<span id="reorderSaveCount">0</span>)
+              </button>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- TAB 6: CATEGORIES MANAGEMENT (Custom Photos, Cloudinary, Live Sync) -->
+        <!-- ================================================================= -->
+        <section id="tab-categories" class="tab-panel space-y-6">
+          
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-bold text-gray-900 text-lg">Categories Management</h3>
+                <span class="badge-pill-green">LIVE SYNC</span>
+              </div>
+              <p class="text-xs text-gray-500 mt-1">Change category names, upload authentic original photos/SVGs, or paste custom image URLs. Synced live with the storefront home page.</p>
+            </div>
+            
+            <div class="flex items-center gap-2 flex-wrap">
+              <button type="button" onclick="resetToOfficialFlipkartIcons()" class="px-3.5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl text-xs font-bold transition flex items-center gap-1.5" title="Reset all icons to official Flipkart SVG icons">
+                <i class="bi bi-arrow-counterclockwise"></i> Flipkart Icons
+              </button>
+              <button type="button" onclick="addNewCategoryItem()" class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                <i class="bi bi-plus-lg"></i> Add Category
+              </button>
+              <button type="button" onclick="saveCategoriesToServer()" id="saveCategoriesBtn" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm shadow-emerald-600/20">
+                <i class="bi bi-check2-circle text-base"></i> Save All Categories
+              </button>
+            </div>
+          </div>
+
+          <!-- Category Display & Size Controls Card (Matches User Spec: Reorder, Resize, Delete, Instant Sync) -->
+          <div class="bg-gradient-to-r from-blue-50/80 via-indigo-50/50 to-white p-5 rounded-2xl border border-blue-200/80 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="w-8 h-8 rounded-xl bg-blue-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">
+                  <i class="bi bi-aspect-ratio"></i>
+                </span>
+                <div>
+                  <h4 class="font-bold text-gray-900 text-sm">Storefront Category Icon Size (ক্যাটাগরি আইকন সাইজ)</h4>
+                  <p class="text-xs text-gray-500">আইকন বড় বা ছোট করুন। ওয়েবসাইটে প্রতি স্ক্রিনে পাশাপাশি ঠিক ৫টি করে ক্যাটাগরি সুন্দরভাবে ফিট হয়ে প্রদর্শিত হবে।</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3 flex-wrap">
+              <!-- Preset size buttons -->
+              <div class="inline-flex rounded-xl bg-white p-1 border border-gray-200 shadow-sm" id="catSizePresets">
+                <button type="button" onclick="setCategorySizePreset(48)" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-600 hover:text-gray-900 transition" data-size="48">Small (48px)</button>
+                <button type="button" onclick="setCategorySizePreset(58)" class="px-3 py-1.5 text-xs font-bold rounded-lg bg-blue-600 text-white shadow-sm" data-size="58">Medium (58px)</button>
+                <button type="button" onclick="setCategorySizePreset(66)" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-600 hover:text-gray-900 transition" data-size="66">Large (66px)</button>
+                <button type="button" onclick="setCategorySizePreset(74)" class="px-3 py-1.5 text-xs font-bold rounded-lg text-gray-600 hover:text-gray-900 transition" data-size="74">X-Large (74px)</button>
+              </div>
+
+              <!-- Slider control -->
+              <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-gray-200 shadow-sm">
+                <input type="range" id="catSizeSlider" min="40" max="85" value="58" oninput="onCategorySizeSlider(this.value)" class="w-24 accent-blue-600 cursor-pointer" />
+                <span id="catSizeVal" class="text-xs font-mono font-bold text-blue-700 w-11">58px</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Categories Grid -->
+          <div id="categoriesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Dynamically populated with editable category cards -->
+          </div>
+
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- TAB 7: BANNERS                                                    -->
+        <!-- ================================================================= -->
+        <section id="tab-banners" class="tab-panel space-y-6">
+
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-bold text-gray-900 text-lg">Promotional Banners</h3>
+                <span class="badge-pill-green">LIVE SYNC</span>
+              </div>
+              <p class="text-xs text-gray-500 mt-1">Add, edit, reorder and remove the homepage carousel banners. Uploaded photos go to Cloudinary.</p>
+            </div>
+
+            <div class="flex items-center gap-2 flex-wrap">
+              <span id="bannerCountPill" class="badge-pill-gray text-xs">0 Banners</span>
+              <button type="button" onclick="addNewBanner()" class="px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm">
+                <i class="bi bi-plus-lg"></i> Add Banner
+              </button>
+              <button type="button" onclick="saveBannersToServer()" id="saveBannersBtn" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-sm shadow-emerald-600/20">
+                <i class="bi bi-check2-circle text-base"></i> Save All Banners
+              </button>
+            </div>
+          </div>
+
+          <div id="bannersList" class="space-y-4 max-w-4xl">
+            <!-- Dynamically populated -->
+          </div>
+
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- TAB 8: PAYMENT SETTINGS (2 Gateway Toggles)                       -->
+        <!-- ================================================================= -->
+        <section id="tab-payment-settings" class="tab-panel space-y-6">
+
+          <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm max-w-xl mx-auto">
+            <div class="flex items-center gap-3 pb-4 mb-5 border-b border-gray-100">
+              <span class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-2xl">
+                <i class="bi bi-credit-card-2-front-fill"></i>
+              </span>
+              <div>
+                <h3 class="font-bold text-gray-900 text-base sm:text-lg">Payment Gateway</h3>
+                <p class="text-xs text-gray-500 mt-0.5">Toggle a gateway ON, then enter its UPI ID only</p>
+              </div>
+            </div>
+
+            <!-- Store tenant isolation badge -->
+            <div id="paymentStoreNotice" class="mb-3 px-3.5 py-2.5 rounded-xl text-xs bg-slate-50 border border-slate-200 text-slate-700 leading-relaxed">
+              🏪 <strong>Loading Store Configuration...</strong>
+            </div>
+
+            <!-- Active gateway badge -->
+            <div id="activeGatewayBanner" class="mb-4 px-4 py-3 rounded-xl text-xs font-bold text-center border">
+              <span id="activeGatewayText">No gateway enabled yet</span>
+            </div>
+
+            <form id="paymentSettingsForm" class="space-y-5">
+
+              <!-- TOGGLE 1: Paytm Merchant -->
+              <div class="gateway-toggle-card border-2 rounded-2xl p-4 transition" data-mode="merchant">
+                <label class="flex items-center justify-between gap-3 cursor-pointer">
+                  <span class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl flex items-center justify-center text-lg font-black text-white" style="background:#00baf2;">P</span>
+                    <span>
+                      <span class="block text-sm font-bold text-gray-900">Paytm Merchant</span>
+                      <span class="block text-[11px] text-gray-500">PhonePe Native · Paytm Wallet · GPay · QR</span>
+                    </span>
+                  </span>
+                  <input type="radio" name="gatewayMode" value="merchant" class="gatewayModeRadio sr-only" />
+                  <span class="toggle-switch" data-for="merchant"><span class="toggle-knob"></span></span>
+                </label>
+                <div class="gateway-upi mt-3" data-upi-for="merchant">
+                  <label class="block text-xs font-bold text-gray-800 mb-1">Paytm Merchant UPI ID (VPA) *</label>
+                  <input type="text" id="merchantUpiId"
+                    class="gatewayUpiInput w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm font-mono font-bold text-gray-900 focus:ring-2 focus:ring-blue-600 outline-none"
+                    placeholder="e.g. 7501589025@pthdfc" />
+                </div>
+              </div>
+
+              <!-- TOGGLE 2: MobiKwik Merchant -->
+              <div class="gateway-toggle-card border-2 rounded-2xl p-4 transition" data-mode="mobikwik_merchant">
+                <label class="flex items-center justify-between gap-3 cursor-pointer">
+                  <span class="flex items-center gap-3">
+                    <span class="w-10 h-10 rounded-xl flex items-center justify-center text-lg font-black text-white" style="background:#e02020;">M</span>
+                    <span>
+                      <span class="block text-sm font-bold text-gray-900">MobiKwik Merchant</span>
+                      <span class="block text-[11px] text-gray-500">PhonePe Native · Paytm Wallet · GPay · QR</span>
+                    </span>
+                  </span>
+                  <input type="radio" name="gatewayMode" value="mobikwik_merchant" class="gatewayModeRadio sr-only" />
+                  <span class="toggle-switch" data-for="mobikwik_merchant"><span class="toggle-knob"></span></span>
+                </label>
+                <div class="gateway-upi mt-3" data-upi-for="mobikwik_merchant">
+                  <label class="block text-xs font-bold text-gray-800 mb-1">MobiKwik Merchant UPI ID (VPA) *</label>
+                  <input type="text" id="mobikwikUpiId"
+                    class="gatewayUpiInput w-full px-3.5 py-2.5 bg-gray-50 border border-gray-300 rounded-xl text-sm font-mono font-bold text-gray-900 focus:ring-2 focus:ring-blue-600 outline-none"
+                    placeholder="e.g. ombk.aaho495767773i2xv62@mbk" />
+                </div>
+              </div>
+
+              <p class="text-[11px] text-gray-400 text-center leading-relaxed">
+                Only the UPI ID is editable. Merchant codes (TR / MC / MBKMC) are stored
+                securely in the database and are never exposed here.
+              </p>
+
+              <div class="p-4 bg-gray-50 rounded-xl border border-gray-200 text-center">
+                <span class="text-xs font-bold text-gray-600 block mb-2">Live QR Code Test Preview</span>
+                <div class="w-40 h-40 bg-white border border-gray-300 rounded-xl mx-auto flex items-center justify-center p-2 shadow-inner">
+                  <img id="upiQrPreviewImg" src="" alt="UPI QR" class="w-full h-full object-contain" />
+                </div>
+                <span id="qrPreviewHint" class="text-[11px] text-gray-400 mt-2 block">Enable a gateway and enter its UPI ID</span>
+              </div>
+
+              <button type="submit" id="savePaymentBtn" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm transition shadow-md shadow-blue-600/25">
+                Save Payment Settings
+              </button>
+            </form>
+          </div>
+
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- TAB 9: SETTINGS & PASSWORD                                        -->
+        <!-- ================================================================= -->
+        <section id="tab-settings" class="tab-panel space-y-6">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+            
+            <!-- 🛡️ Website Mode & Domain Shield Card -->
+            <div class="bg-white p-6 rounded-2xl border-2 border-blue-500 shadow-sm md:col-span-2">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-100 flex-wrap gap-3">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-lg"><i class="bi bi-shield-shaded"></i></span>
+                  <div>
+                    <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+                      Website Mode & Domain Shield (GoDaddy Safe Mode)
+                      <span id="clientSiteModeBadge" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700">🟢 Flipkart Live</span>
+                    </h3>
+                    <p class="text-[11px] text-gray-500">Switch your live website between Flipkart Store and Safe AI SaaS Website</p>
+                  </div>
+                </div>
+                <a id="clientTestSiteLink" href="/" target="_blank" class="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-bold transition flex items-center gap-1.5">
+                  <i class="bi bi-box-arrow-up-right"></i> Open Live Site
+                </a>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- Option 1: Flipkart -->
+                <div id="clientCardFlipkart" onclick="selectClientSiteMode('flipkart')" class="p-4 rounded-xl border-2 border-blue-600 bg-blue-50/50 cursor-pointer transition hover:shadow-sm">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2.5">
+                      <span class="text-2xl">🛒</span>
+                      <div>
+                        <span class="text-sm font-bold text-gray-900 block">Flipkart Store</span>
+                        <span class="text-[11px] text-blue-600 font-semibold">Active E-Commerce</span>
+                      </div>
+                    </div>
+                    <input type="radio" name="clientSiteModeRadio" id="clientRadioFlipkart" checked class="w-4 h-4 text-blue-600 cursor-pointer" />
+                  </div>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Shows product catalog, shopping cart, address form, and active UPI checkout gateway.
+                  </p>
+                </div>
+
+                <!-- Option 2: Safe AI Website -->
+                <div id="clientCardAi" onclick="selectClientSiteMode('ai')" class="p-4 rounded-xl border-2 border-gray-200 bg-white cursor-pointer transition hover:border-purple-300 hover:shadow-sm">
+                  <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2.5">
+                      <span class="text-2xl">🤖</span>
+                      <div>
+                        <span class="text-sm font-bold text-gray-900 block">Safe AI SaaS Website</span>
+                        <span class="text-[11px] text-purple-600 font-semibold">GoDaddy Compliant · Zero Payments</span>
+                      </div>
+                    </div>
+                    <input type="radio" name="clientSiteModeRadio" id="clientRadioAi" class="w-4 h-4 text-purple-600 cursor-pointer" />
+                  </div>
+                  <p class="text-xs text-gray-600 leading-relaxed">
+                    Shows clean AetherAI Technologies SaaS site. Zero payments, corporate privacy policies, zero report risks.
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between flex-wrap gap-2 text-xs text-gray-500">
+                <span class="flex items-center gap-1.5">
+                  <i class="bi bi-info-circle text-blue-500"></i> Saves instantly to MongoDB. Your admin portal remains active at all times.
+                </span>
+                <button type="button" id="saveSiteModeBtn" onclick="saveClientSiteMode()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold transition text-xs shadow-sm shadow-blue-600/20">
+                  Save Website Mode
+                </button>
+              </div>
+            </div>
+
+            <!-- Anti-Inspection & Mobile-Only Shield (Developer Protection) -->
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-100 flex-wrap gap-3">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center text-lg shadow-sm">
+                    <i class="bi bi-shield-lock-fill"></i>
+                  </span>
+                  <div>
+                    <h3 class="font-bold text-gray-900 text-sm flex items-center gap-2">
+                      Anti-Inspection & Mobile-Only Shield
+                      <span id="mobileShieldStatusBadge" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-600">⚪ OFF</span>
+                    </h3>
+                    <p class="text-[11px] text-gray-500">Block F12, Right-Click, Chrome DevTools & Auto-Redirect PC to Google</p>
+                  </div>
+                </div>
+                <!-- Toggle Switch -->
+                <div class="flex items-center gap-3">
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="mobileShieldToggle" onchange="toggleMobileShieldSwitch(this.checked)" class="sr-only peer">
+                    <div class="w-12 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-red-600"></div>
+                  </label>
+                  <span id="mobileShieldToggleLabel" class="text-xs font-extrabold text-gray-700 uppercase">OFF</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="p-4 rounded-xl bg-red-50/50 border border-red-100">
+                  <div class="flex items-center gap-2 font-bold text-xs text-red-800 mb-1.5">
+                    <span class="text-base">🚫</span> Anti-Inspection Protection
+                  </div>
+                  <ul class="text-xs text-gray-600 space-y-1 leading-relaxed">
+                    <li>• Blocks <b>F12</b> & keyboard shortcuts (Ctrl+Shift+I/J/C, Ctrl+U, Cmd+Opt+I).</li>
+                    <li>• Blocks <b>Right-Click</b> context menu completely.</li>
+                    <li>• Chrome <b>3-dots ➔ More Tools ➔ Developer Tools</b> triggers a security block popup so no code can be seen.</li>
+                  </ul>
+                </div>
+
+                <div class="p-4 rounded-xl bg-blue-50/50 border border-blue-100">
+                  <div class="flex items-center gap-2 font-bold text-xs text-blue-800 mb-1.5">
+                    <span class="text-base">📱</span> Mobile-Only Traffic Shield
+                  </div>
+                  <ul class="text-xs text-gray-600 space-y-1 leading-relaxed">
+                    <li>• When <b>ON</b>: Only real mobile phones/tablets can browse the store.</li>
+                    <li>• Any PC / Laptop / Desktop visitor is <b>instantly transferred to google.com</b>.</li>
+                    <li>• Automatically catches Chrome DevTools mobile emulation mode.</li>
+                    <li>• When <b>OFF</b>: Both PC and mobile can browse normally.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between text-xs text-gray-500">
+                <span class="flex items-center gap-1.5">
+                  <i class="bi bi-info-circle text-red-500"></i> Settings sync in real-time with MongoDB. Your admin dashboard is never blocked.
+                </span>
+                <span id="mobileShieldSyncStatus" class="text-[11px] text-gray-400 font-medium">Ready</span>
+              </div>
+            </div>
+
+            <!-- Change Password Card -->
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+              <div class="flex items-center gap-3 pb-4 mb-4 border-b border-gray-100">
+                <span class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-lg"><i class="bi bi-key-fill"></i></span>
+                <div>
+                  <h3 class="font-bold text-gray-900 text-sm">Change Admin Password</h3>
+                  <p class="text-[11px] text-gray-500">Update master password (default: Sumi@1998)</p>
+                </div>
+              </div>
+
+              <form id="changePasswordForm" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Current Password</label>
+                  <input type="password" id="currentPassword" required class="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-600 outline-none" placeholder="Enter current password..." />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">New Password</label>
+                  <input type="password" id="newPassword" required minlength="4" class="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-600 outline-none" placeholder="Minimum 4 characters..." />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Confirm New Password</label>
+                  <input type="password" id="confirmPassword" required minlength="4" class="w-full px-3.5 py-2.5 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-blue-600 outline-none" placeholder="Re-enter new password..." />
+                </div>
+                <button type="submit" id="savePasswordBtn" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs transition">
+                  Update Password
+                </button>
+              </form>
+            </div>
+
+            <!-- Cloudinary API Configuration Card -->
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+              <div class="flex items-center gap-3 pb-4 mb-4 border-b border-gray-100">
+                <span class="w-10 h-10 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center text-lg"><i class="bi bi-cloud-check-fill"></i></span>
+                <div>
+                  <h3 class="font-bold text-gray-900 text-sm">Cloudinary Storage Config</h3>
+                  <p class="text-[11px] text-gray-500">Cloud credentials for media uploads & purge</p>
+                </div>
+              </div>
+
+              <form id="cloudinarySettingsForm" class="space-y-3">
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Cloud Name</label>
+                  <input type="text" id="settingCloudName" required class="w-full px-3.5 py-2 border border-gray-300 rounded-xl text-xs font-mono focus:ring-2 focus:ring-sky-500 outline-none" value="sricov3c" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">Upload Preset (Unsigned)</label>
+                  <input type="text" id="settingUploadPreset" required class="w-full px-3.5 py-2 border border-gray-300 rounded-xl text-xs font-mono focus:ring-2 focus:ring-sky-500 outline-none" value="flipon" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">API Key</label>
+                  <input type="text" id="settingApiKey" class="w-full px-3.5 py-2 border border-gray-300 rounded-xl text-xs font-mono focus:ring-2 focus:ring-sky-500 outline-none" value="351953765475734" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-gray-700 mb-1">API Secret</label>
+                  <input type="text" id="settingApiSecret" class="w-full px-3.5 py-2 border border-gray-300 rounded-xl text-xs font-mono focus:ring-2 focus:ring-sky-500 outline-none" value="TqZ3PqbweZPFG1JdVYWgILNW_1g" />
+                </div>
+                <button type="submit" id="saveCloudinaryBtn" class="w-full py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs transition">
+                  Save Credentials
+                </button>
+              </form>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- TAB 10: P2P HELP & SUPPORT                                        -->
+        <!-- ================================================================= -->
+        <section id="tab-support" class="tab-panel space-y-6">
+          
+          <div class="bg-white p-5 sm:p-6 rounded-2xl border border-gray-200 shadow-sm flex items-center justify-between">
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-bold text-gray-900 text-lg">P2P Help & Customer Support</h3>
+                <span class="badge-pill-purple">LIVE</span>
+              </div>
+              <p class="text-xs text-gray-500 mt-1">Live customer inquiries and support tickets inbox</p>
+            </div>
+            <button onclick="fetchSupportTickets()" class="px-4 py-2 bg-purple-50 text-purple-700 font-bold rounded-xl text-xs border border-purple-200 hover:bg-purple-100 transition">
+              <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+          </div>
+
+          <div id="supportTicketsList" class="space-y-3 max-w-4xl">
+            <!-- Dynamically populated -->
+          </div>
+
+        </section>
+
+      </div>
+    </main>
+
+    <!-- ========================================================================= -->
+    <!-- 📦 PRODUCT ADD / EDIT MODAL (INSIDE #adminApp for 100% Isolation)         -->
+    <!-- ========================================================================= -->
+    <!-- ========================================================================= -->
+    <!-- 📦 PRODUCT ADD / EDIT MODAL (SCREENSHOTS 1 - 5 EXACT REPLICA)             -->
+    <!-- ========================================================================= -->
+    <div id="productModal" class="admin-modal-overlay">
+      <div class="admin-modal-card admin-product-modal-card">
+        
+        <!-- Modal Top Bar -->
+        <div class="modal-header-bar">
+          <h3 id="productModalTitle" class="modal-title-txt">Add New Product</h3>
+          <button type="button" onclick="closeProductModal()" class="modal-close-icon-btn" title="Close">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <form id="productEditForm" class="modal-form-body">
+          
+          <!-- 🤖 SCREENSHOT 1: AI Autofill from Flipkart Gradient Box -->
+          <div class="ai-autofill-banner">
+            <div class="ai-banner-header">
+              <span class="ai-bot-icon">🤖</span>
+              <span class="ai-banner-title">AI Autofill from Flipkart</span>
+            </div>
+            <p class="ai-banner-sub">
+              Paste a Flipkart product title to automatically generate specs, pricing, and descriptions.
+            </p>
+            <div class="ai-input-row">
+              <input 
+                type="text" 
+                id="aiProductTitle" 
+                class="ai-title-input" 
+                placeholder="e.g. , Apple iPhone 17 Pro Max (1 TB) - De" 
+              />
+              <button type="button" id="aiGenerateBtn" class="ai-generate-btn">
+                <span>✨ Generate</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Hidden Slug / ID for editing -->
+          <input type="hidden" id="prodHiddenId" value="" />
+
+          <!-- Form Fields Section (Screenshots 1 & 2) -->
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Title 1 (Homepage) *</label>
+            <input type="text" id="prodTitle1" class="modal-field-input" placeholder="Short title for cards" required />
+            <span class="modal-field-caption">Short title for cards</span>
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Title 2 (Product Page) *</label>
+            <input type="text" id="prodTitle2" class="modal-field-input" placeholder="Full detailed title" required />
+            <span class="modal-field-caption">Full detailed title</span>
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Category *</label>
+            <select id="prodCategory" class="modal-field-select">
+              <option value="For You" selected>For You</option>
+              <option value="Mobiles">Mobiles</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Appliances">Appliances</option>
+              <option value="Fashion">Fashion</option>
+              <option value="Home">Home</option>
+              <option value="Deals">Deals</option>
+            </select>
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Brand</label>
+            <input type="text" id="prodBrand" class="modal-field-input" placeholder="e.g. Apple, Samsung, Safari" />
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Stock Quantity</label>
+            <input type="number" id="prodStock" class="modal-field-input" value="0" min="0" />
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ MRP (₹) *</label>
+            <input type="number" id="prodMrp" class="modal-field-input" value="189900" required />
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Selling Price (₹) *</label>
+            <input type="number" id="prodSellingPrice" class="modal-field-input" value="999" required />
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Discount (%)</label>
+            <input type="number" id="prodDiscount" class="modal-field-input" value="0" min="0" max="100" />
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Star Rating (e.g. 4.7, 4.3, 4.8)</label>
+            <input type="text" id="prodRating" class="modal-field-input" value="4.7" />
+            <span class="modal-field-caption">Auto-generated by AI or enter custom (e.g. 4.7)</span>
+          </div>
+
+          <!-- SCREENSHOT 2: Ratings Count & Media Uploads -->
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Total Ratings Count</label>
+            <input type="number" id="prodRatingsCount" class="modal-field-input" value="3410" />
+            <span class="modal-field-caption">Number of verified customer ratings</span>
+          </div>
+
+          <!-- 🖼️ 1. Feature Image (Card Box) -->
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Feature Image *</label>
+            <div class="media-upload-card">
+              <div class="file-pick-row">
+                <label class="choose-file-btn" for="featureImageFile">
+                  Choose File
+                </label>
+                <input type="file" id="featureImageFile" accept="image/*" class="hidden-file-input" />
+                <span id="featureImageFileName" class="file-chosen-text">No file chosen</span>
+              </div>
+              <div class="url-input-subrow">
+                <span class="url-sublabel">or paste image URL:</span>
+                <input type="text" id="featureImageUrl" class="media-url-input" placeholder="https://..." />
+              </div>
+              <!-- Preview thumbnail -->
+              <div id="featureImagePreviewBox" class="media-preview-container hidden"></div>
+            </div>
+          </div>
+
+          <!-- 🖼️ 2. Album Images (Gallery) -->
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Album Images (Gallery)</label>
+            <div class="media-upload-card">
+              <div class="file-pick-row">
+                <label class="choose-file-btn" for="albumImagesFiles">
+                  Choose Files
+                </label>
+                <input type="file" id="albumImagesFiles" multiple accept="image/*" class="hidden-file-input" />
+                <span id="albumImagesFileName" class="file-chosen-text">No file chosen</span>
+              </div>
+              <div class="url-add-row">
+                <input type="text" id="albumImageUrlInput" class="media-url-input flex-1" placeholder="Paste image URL..." />
+                <button type="button" id="addAlbumUrlBtn" class="media-add-btn">
+                  <i class="bi bi-plus-lg"></i> Add
+                </button>
+              </div>
+              <!-- Multi thumbnails grid -->
+              <div id="albumImagesPreviewBox" class="media-preview-grid"></div>
+            </div>
+          </div>
+
+          <!-- 🖼️ 3. DSC Banner Image (Down Side Content) -->
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ DSC Banner Image</label>
+            <div class="media-upload-card">
+              <div class="file-pick-row">
+                <label class="choose-file-btn" for="dscImageFiles">
+                  Choose File
+                </label>
+                <input type="file" id="dscImageFiles" multiple accept="image/*" class="hidden-file-input" />
+                <span id="dscImageFileName" class="file-chosen-text">No file chosen</span>
+              </div>
+              <div class="url-add-row">
+                <input type="text" id="dscImageUrlInput" class="media-url-input flex-1" placeholder="Paste DSC banner image URL..." />
+                <button type="button" id="addDscUrlBtn" class="media-add-btn">
+                  <i class="bi bi-plus-lg"></i> Add
+                </button>
+              </div>
+              <!-- Multi DSC thumbnails grid -->
+              <div id="dscImagesPreviewBox" class="media-preview-grid"></div>
+            </div>
+          </div>
+
+          <!-- 🎨 SCREENSHOT 3: Color-Linked Variants Block -->
+          <div class="variants-master-block">
+            <div class="variants-master-header">
+              <span class="variants-header-title">
+                🎨 Color-Linked Variants (Color + Feature Image + Gallery + RAM + Storage + Price)
+              </span>
+              <p class="variants-header-sub">
+                Connect specific photos, gallery slides, RAM, Storage, and pricing to each color variant!
+              </p>
+            </div>
+
+            <button type="button" id="addColorVariantBtn" class="btn-add-color-variant">
+              <i class="bi bi-plus-lg"></i> Add Color Variant
+            </button>
+
+            <!-- Container for Color Variant Cards or Empty Box -->
+            <div id="colorVariantsList" class="variants-cards-container">
+              <div class="variants-empty-card" id="variantsEmptyCard">
+                No color-specific variants added yet. Click "<strong>+ Add Color Variant</strong>" above to link specific photos, RAM, Storage, and Prices to each color!
+              </div>
+            </div>
+          </div>
+
+          <!-- ⚙️ SCREENSHOT 3 & 4: Default Selection Block -->
+          <div class="default-selection-card">
+            <div class="default-select-header">
+              <span class="default-title">⚙️ Default Selection (Color, RAM & Storage)</span>
+              <p class="default-bengali-sub">
+                কালার সিলেক্ট করলেই সেই কালারের RAM ও Storage অটোমেটিক ডিফল্ট ফিল্ডে অ্যাড হয়ে যাবে
+              </p>
+            </div>
+
+            <!-- Green inner active variant box -->
+            <div class="active-variant-green-box">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-gray-800 flex items-center gap-1.5">
+                  <span>🎨</span> Select Default Active Variant / Color:
+                </span>
+                <span class="badge-auto-sync">Auto-syncs RAM & Storage</span>
+              </div>
+              <select id="defaultVariantSelect" class="default-select-dropdown">
+                <option value="">▼ No color variants added above yet (Add a color variant)</option>
+              </select>
+            </div>
+
+            <!-- Default RAM Options -->
+            <div class="modal-field-group mt-3">
+              <label class="modal-field-label">▸ Default RAM Options</label>
+              <select id="defaultRamSelect" class="modal-field-select mb-1.5">
+                <option value="">▼ Select RAM...</option>
+                <option value="6 GB">6 GB</option>
+                <option value="8 GB">8 GB</option>
+                <option value="12 GB">12 GB</option>
+                <option value="16 GB">16 GB</option>
+              </select>
+              <input type="text" id="defaultRamInput" class="modal-field-input" placeholder="e.g. 12 GB, 16 GB" value="" />
+              <span class="modal-field-caption">Auto-filled from selected color or edit custom</span>
+            </div>
+
+            <!-- Default Storage Options (Screenshot 4) -->
+            <div class="modal-field-group">
+              <label class="modal-field-label">▸ Default Storage Options</label>
+              <select id="defaultStorageSelect" class="modal-field-select mb-1.5">
+                <option value="">▼ Select Storage...</option>
+                <option value="128 GB">128 GB</option>
+                <option value="256 GB">256 GB</option>
+                <option value="512 GB">512 GB</option>
+                <option value="1 TB">1 TB</option>
+              </select>
+              <input type="text" id="defaultStorageInput" class="modal-field-input" placeholder="e.g. 256 GB, 512 GB" value="" />
+              <span class="modal-field-caption">Auto-filled from selected color or edit custom</span>
+            </div>
+
+            <!-- Default Color Options -->
+            <div class="modal-field-group">
+              <label class="modal-field-label">▸ Default Color Options</label>
+              <select id="defaultColorSelect" class="modal-field-select mb-1.5">
+                <option value="">▼ Select Color (Auto-fills RAM & Storage)...</option>
+              </select>
+              <input type="text" id="defaultColorInput" class="modal-field-input" placeholder="e.g. Legend, Alpha Black" value="" />
+              <span class="modal-field-caption">Auto-filled from selected color or edit custom</span>
+            </div>
+
+            <!-- 👟 Product Sizes & Price Variation (Shoe Sizes / UK / EU / Clothes) -->
+            <div class="modal-field-group p-3.5 bg-blue-50/50 rounded-xl border border-blue-200" id="productSizesSection">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-xl">👟</span>
+                  <div>
+                    <label class="modal-field-label !mb-0 font-bold text-blue-900">Product Sizes (Shoe & Clothing Sizes)</label>
+                    <p class="text-[11px] text-gray-500">জুতোর প্রোডাক্টের জন্য মাল্টিপল সাইজ ও প্রতিটি সাইজের আলাদা প্রাইস সেট করুন</p>
+                  </div>
+                </div>
+                <label class="flex items-center gap-2 text-xs font-bold text-blue-700 cursor-pointer bg-white px-2.5 py-1 rounded-lg border border-blue-200 shadow-xs">
+                  <input type="checkbox" id="enableProductSizes" onchange="syncSizesCheckbox(this.checked)" class="w-4 h-4 rounded text-blue-600" />
+                  <span>Enable Sizes</span>
+                </label>
+              </div>
+
+              <!-- Quick Presets -->
+              <div class="mb-3">
+                <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider block mb-1">Quick Presets:</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <button type="button" onclick="applyShoeSizePreset('uk_shoes_standard')" class="px-2.5 py-1 bg-white hover:bg-blue-100 border border-blue-300 text-blue-800 rounded-lg text-xs font-semibold transition">
+                    👟 UK 6, 7, 8, 9, 10
+                  </button>
+                  <button type="button" onclick="applyShoeSizePreset('uk_shoes_extended')" class="px-2.5 py-1 bg-white hover:bg-blue-100 border border-blue-300 text-blue-800 rounded-lg text-xs font-semibold transition">
+                    👟 UK 6, 7, 8, 9, 10, 11
+                  </button>
+                  <button type="button" onclick="applyShoeSizePreset('clothing')" class="px-2.5 py-1 bg-white hover:bg-blue-100 border border-blue-300 text-blue-800 rounded-lg text-xs font-semibold transition">
+                    👕 S, M, L, XL, XXL
+                  </button>
+                  <button type="button" onclick="clearAllSizes()" class="px-2 py-1 bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 rounded-lg text-xs font-bold transition">
+                    ✕ Clear
+                  </button>
+                </div>
+              </div>
+
+              <!-- Quick comma-separated sync input -->
+              <div class="flex items-center gap-1.5 mb-3">
+                <input type="text" id="quickSizesCommaInput" class="flex-1 px-2.5 py-1.5 bg-white border border-gray-300 rounded-lg text-xs font-medium" placeholder="Quick sizes (e.g. 6, 7, 8, 9, 10 or UK 7, UK 8)" />
+                <button type="button" onclick="syncCommaSizes()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition">
+                  Apply
+                </button>
+              </div>
+
+              <!-- Dynamic Sizes List Builder -->
+              <div class="space-y-1.5 mb-3" id="sizesListContainer">
+                <div class="text-[11px] text-gray-400 italic p-2 bg-white rounded-lg border border-dashed border-gray-200 text-center" id="sizesEmptyNotice">
+                  No sizes added yet. Click a preset above or "+ Add Size".
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between gap-2 pt-2 border-t border-blue-200/60 flex-wrap">
+                <button type="button" onclick="addNewSizeRow()" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition flex items-center gap-1 shadow-xs">
+                  <i class="bi bi-plus-circle"></i> + Add Size
+                </button>
+                <div class="flex items-center gap-1.5 text-xs text-gray-600">
+                  <span class="text-[11px] font-bold">Default Selected:</span>
+                  <select id="defaultSizeSelect" class="p-1 text-xs border border-gray-300 rounded-lg bg-white">
+                    <option value="">(Auto: First Size)</option>
+                  </select>
+                </div>
+              </div>
+
+              <input type="hidden" id="customSizeInput" value="" />
+              <input type="checkbox" id="showCustomSize" class="hidden" />
+            </div>
+
+            <!-- Delivery Text -->
+            <div class="modal-field-group">
+              <label class="modal-field-label">▸ Delivery Text (Homepage Card)</label>
+              <select id="deliveryTextSelect" class="modal-field-select">
+                <option value="Free Delivery in Two Days" selected>Free Delivery in Two Days</option>
+                <option value="Free delivery">Free delivery</option>
+                <option value="Free delivery by Tomorrow">Free delivery by Tomorrow</option>
+                <option value="Express Delivery in 1 Day">Express Delivery in 1 Day</option>
+                <option value="Free Delivery in 3 Days">Free Delivery in 3 Days</option>
+              </select>
+              <span class="modal-field-caption">
+                Choose preset or type custom delivery text to display under Assured logo on homepage product cards.
+              </span>
+            </div>
+
+            <!-- Description -->
+            <div class="modal-field-group">
+              <label class="modal-field-label">▸ Description</label>
+              <textarea id="prodDescription" rows="4" class="modal-field-textarea" placeholder="Comprehensive product description..."></textarea>
+            </div>
+
+          </div>
+
+          <!-- SCREENSHOT 5: About Section, Specs JSON & Checkboxes -->
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ About Section (Key Features)</label>
+            <textarea id="prodAboutFeatures" rows="4" class="modal-field-textarea font-mono text-xs" placeholder="• 5G Ready Smartphone&#10;• 50MP Sony OIS Camera&#10;• 6000mAh Battery"></textarea>
+            <span class="modal-field-caption">Enter bullet points, one per line</span>
+          </div>
+
+          <div class="modal-field-group">
+            <label class="modal-field-label">▸ Specifications (JSON)</label>
+            <textarea id="prodSpecifications" rows="5" class="modal-field-textarea font-mono text-xs" placeholder='{&#10;  "General": {&#10;    "Model Name": "...",&#10;    "Color": "..."&#10;  }&#10;}'></textarea>
+          </div>
+
+          <!-- Status Checkboxes (Screenshot 5) -->
+          <div class="checkboxes-card-box">
+            <label class="checkbox-line-item">
+              <input type="checkbox" id="prodActive" class="w-4 h-4 rounded text-blue-600" checked />
+              <span class="checkbox-label-txt">Active (Show on Website)</span>
+            </label>
+            <label class="checkbox-line-item">
+              <input type="checkbox" id="prodFeatured" class="w-4 h-4 rounded text-blue-600" />
+              <span class="checkbox-label-txt">Featured Product (Show in Deals)</span>
+            </label>
+            <label class="checkbox-line-item">
+              <input type="checkbox" id="prodShowVariants" class="w-4 h-4 rounded text-blue-600" checked />
+              <span class="checkbox-label-txt">Show Variants (RAM/Storage/Color)</span>
+            </label>
+            <label class="checkbox-line-item">
+              <input type="checkbox" id="prodShowSizes" class="w-4 h-4 rounded text-blue-600" onchange="syncSizesCheckbox(this.checked)" />
+              <span class="checkbox-label-txt font-bold text-blue-700">👟 Show Size Options (Shoe / Footwear / Clothes Sizes)</span>
+            </label>
+          </div>
+
+          <!-- Action Buttons (Screenshot 5) -->
+          <div class="modal-action-buttons-row">
+            <button type="submit" id="productFormSubmitBtn" class="btn-create-product">
+              Create Product
+            </button>
+            <button type="button" onclick="closeProductModal()" class="btn-cancel-product">
+              Cancel
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- 🗑️ DELETE PRODUCT CONFIRMATION MODAL (INSIDE #adminApp)                   -->
+    <!-- ========================================================================= -->
+    <div id="deleteModal" class="admin-modal-overlay">
+      <div class="admin-modal-card p-6 sm:p-7 max-w-md">
+        <div class="text-center mb-4">
+          <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+            <i class="bi bi-trash3-fill"></i>
+          </div>
+          <h3 class="text-base font-bold text-gray-900">Delete Product Confirmation</h3>
+          <p class="text-xs text-gray-600 mt-1">
+            Are you sure you want to delete <span id="deleteProductName" class="font-bold text-gray-900"></span>?
+          </p>
+          <p class="text-[11px] text-red-600 font-semibold mt-2.5 bg-red-50 p-2.5 rounded-xl border border-red-100">
+            ⚠️ Notice: This will remove the product from catalog AND destroy all connected images (<span id="deleteProductCloudPhotosCount">0</span>) from your Cloudinary storage account!
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3 mt-5">
+          <button type="button" onclick="closeDeleteModal()" class="flex-1 py-2.5 border border-gray-300 text-gray-700 rounded-xl text-xs font-semibold hover:bg-gray-50 transition">
+            Cancel
+          </button>
+          <button type="button" id="confirmDeleteBtn" class="flex-1 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-bold transition shadow-sm">
+            Confirm & Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- End #adminApp -->
+
+  <!-- Toast Notification Container -->
+  <div id="masterToast"></div>
+
+  <!-- Admin Application Logic -->
+  <script src="/admin/admin.js?v=2"></script>
+</body>
+</html>

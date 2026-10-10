@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,minimum-scale=1,user-scalable=no"
+    />
+    <title>Order Summary - My Store</title>
+
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <!-- Faster CDN connect + FOUC prevention -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin />
+    <style>
+      html.fouc-pending body {
+        visibility: hidden;
+        background-color: #f1f3f6;
+      }
+    </style>
+    <script>
+      document.documentElement.classList.add("fouc-pending");
+    </script>
+
+    <!-- Tailwind in <head> (not deferred at bottom) — stops unstyled flash -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Bootstrap Icons (lightweight — Font Awesome ki jagah) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+
+    <script>
+      // Site root (not /cart/) — payment must be /payment/index.html
+      (function () {
+        var parts = window.location.pathname.split("/").filter(Boolean);
+        var sections = ["cart", "payment", "address", "products", "order"];
+        while (
+          parts.length &&
+          (parts[parts.length - 1].indexOf(".") !== -1 ||
+            sections.indexOf(parts[parts.length - 1]) !== -1)
+        ) {
+          parts.pop();
+        }
+        window.MAIN_URL =
+          window.location.origin +
+          (parts.length ? "/" + parts.join("/") + "/" : "/");
+      })();
+      function goToPaymentPage(amt) {
+        var url = new URL("payment/index.html", MAIN_URL);
+        url.searchParams.set("amt", String(amt));
+        window.location.href = url.href;
+      }
+
+      var PRIMARY_ID = "0";
+      var PAY_TYPE = "false";
+      var SHOW_GPAY = false;
+      var ALTERNATE = "";
+    </script>
+
+    <style>
+      /* 🛡️ ANTI-SELECT & ANTI-DRAG CSS */
+      * {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+        -webkit-user-drag: none !important;
+      }
+      input,
+      textarea,
+      select {
+        -webkit-user-select: auto !important;
+        -moz-user-select: auto !important;
+        -ms-user-select: auto !important;
+        user-select: auto !important;
+      }
+
+      body {
+        font-family: "Inter", Roboto, system-ui, -apple-system, Arial,
+          sans-serif;
+        background-color: #f1f3f6;
+      }
+
+      .donation-card {
+        width: 100%;
+        background: #fff;
+        text-align: left;
+        box-sizing: border-box;
+      }
+
+      .donation-btn {
+        transition: all 0.2s ease;
+        border: 1px solid #e0e0e0;
+      }
+
+      .donation-btn:hover {
+        background-color: #f8fafc;
+      }
+
+      .donation-btn.active {
+        background-color: #f0f6ff !important;
+        border-color: #2874f0 !important;
+        color: #2874f0 !important;
+        font-weight: 600;
+        box-shadow: 0 0 0 1px #2874f0;
+      }
+
+      #price-details-content {
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      }
+
+      #qtyStepper button:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+      }
+
+      .footer-copy {
+        text-align: center;
+        font-size: 12px;
+        color: #878787;
+        padding: 15px 0 25px 0;
+      }
+    </style>
+  </head>
+
+  <body
+    class="text-[#212121]"
+    style="
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      position: relative;
+      background-color: #f1f3f6;
+    "
+  >
+    <!-- Header With Back Arrow -->
+    <header
+      id="product-header"
+      class="sticky top-0 z-30 flex items-center p-3 bg-white border-b border-gray-200 shadow-sm gap-3"
+    >
+      <button
+        id="back_btn"
+        class="text-gray-700 p-1"
+        onclick="window.history.back()"
+        aria-label="Back"
+      >
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+      </button>
+      <span class="text-[17px] font-medium text-gray-900">Order Summary</span>
+    </header>
+
+    <main class="pb-28">
+      <!-- Progress Steps Image -->
+      <section class="bg-white pb-2">
+        <img
+          class="w-full object-contain"
+          src="cc200d5d-6f40-4ed7-9431-fe0806c18025_q%3D90.png"
+          alt="Order steps"
+        />
+      </section>
+
+      <!-- Delivery Address -->
+      <section class="mt-2 bg-white px-4 py-3">
+        <div class="flex items-start justify-between">
+          <div>
+            <p class="text-gray-700 text-[13px]">
+              Deliver to:
+              <span class="font-bold text-black customer-name"
+                >Customer Name</span
+              >
+            </p>
+            <div
+              class="mt-1 text-gray-800 customer-address"
+              style="font-size: 13px; line-height: 1.4"
+            >
+              Fetching address details...
+            </div>
+            <div
+              class="customer-contact font-medium text-black"
+              style="font-size: 13px; margin-top: 6px"
+            >
+              Loading number...
+            </div>
+          </div>
+          <div class="flex flex-col gap-2 ml-4">
+            <button
+              onclick="history.back()"
+              class="text-[#2874f0] font-medium border px-4 py-1.5 rounded text-[13px] border-gray-300 shadow-sm"
+            >
+              Change
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Product Details -->
+      <div class="mt-2 bg-white px-4 py-3">
+        <div class="flex gap-2 mb-3">
+          <span
+            class="bg-[#00a098] text-white text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm tracking-wide"
+            >BESTSELLER</span
+          >
+          <span
+            class="bg-green-100 text-green-700 text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm tracking-wide"
+            >Hot Deal</span
+          >
+        </div>
+
+        <div class="flex gap-4">
+          <div class="flex flex-col items-center w-[100px] shrink-0">
+            <div class="w-[90px] h-[100px] flex items-center justify-center">
+              <img
+                id="item_image"
+                src=""
+                class="max-w-full max-h-full object-contain"
+              />
+            </div>
+            <div
+              class="mt-3 flex items-center border rounded border-gray-300 bg-gray-50 shadow-sm overflow-hidden w-fit"
+              id="qtyStepper"
+            >
+              <button
+                type="button"
+                id="qtyMinus"
+                class="px-3 py-1.5 text-gray-700 font-bold text-[16px] leading-none hover:bg-gray-100 active:bg-gray-200"
+                aria-label="Decrease quantity"
+              >
+                −
+              </button>
+              <span
+                id="qtyDisplay"
+                class="px-3 py-1.5 text-[12px] font-medium text-gray-800 border-x border-gray-300 min-w-[40px] text-center select-none"
+                >1</span
+              >
+              <button
+                type="button"
+                id="qtyPlus"
+                class="px-3 py-1.5 text-gray-700 font-bold text-[16px] leading-none hover:bg-gray-100 active:bg-gray-200"
+                aria-label="Increase quantity"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <div class="flex-1">
+            <p
+              id="product-title"
+              class="font-medium text-[14px] leading-snug line-clamp-2 text-[#212121]"
+            >
+              Loading Product...
+            </p>
+            <p
+              id="product-detail"
+              class="text-[#878787] text-[12px] mt-1 mb-1"
+            ></p>
+
+            <div class="flex items-center gap-2 my-1.5">
+              <div id="rating-stars2" class="flex items-center"></div>
+              <img
+                src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/fa_62673a.png"
+                alt="Assured"
+                style="height: 16px; width: auto; object-fit: contain"
+              />
+            </div>
+
+            <div class="flex items-center gap-2 mt-1">
+              <span class="flex items-center gap-0.5">
+                <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
+                  <path
+                    d="M6.73461 1V8.46236L9.5535 5.63352L10.5876 6.65767L5.99384 11.2415L1.41003 6.65767L2.42424 5.63352L5.25307 8.46236V1H6.73461Z"
+                    fill="#388e3c"
+                  ></path>
+                </svg>
+                <span
+                  id="discount"
+                  class="discount font-bold text-[#388e3c] text-[14px]"
+                ></span>
+              </span>
+              <span class="mrp line-through text-[#878787] text-[13px]"></span>
+              <span
+                class="selling_price font-bold text-[18px] text-[#212121]"
+              ></span>
+            </div>
+
+            <div class="flex items-center gap-1.5 mt-2">
+              <p class="text-[#388e3c] font-medium text-[11px]">
+                1 coupon applied
+              </p>
+              <div class="w-[3px] h-[3px] bg-[#388e3c] rounded-full"></div>
+              <p class="text-[#388e3c] font-medium text-[11px]">
+                1 offer available
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex items-center gap-2 mt-4 pt-3 border-t border-gray-100 text-[12px] text-gray-800"
+        >
+          <img
+            src="../xxx/assets/images/express.png"
+            style="height: 14px; object-fit: contain"
+          />
+          <span>Delivery by</span>
+          <span id="delivery-date2" class="font-bold text-black"></span>
+          <span
+            class="text-[#388e3c] font-medium border-l border-gray-300 pl-2 ml-1"
+            >FREE</span
+          >
+        </div>
+      </div>
+
+      <!-- Flipkart Black Box -->
+      <section class="mt-2 bg-white px-4 py-3">
+        <div
+          class="border rounded-lg flex flex-col border-gray-200 p-3 bg-gradient-to-r from-white to-gray-50 shadow-sm"
+        >
+          <div class="flex items-start gap-3">
+            <img
+              src="985f2979-7ae1-4a04-8470-226b6eff9430_q%3D90.png"
+              class="w-14 h-14 rounded-md object-contain border border-gray-200"
+            />
+            <div>
+              <h2 class="text-[14px] font-bold text-gray-900">
+                Get privileges worth ₹2,290
+              </h2>
+              <p class="text-[11px] text-gray-600 leading-snug mt-1">
+                FREE YouTube Premium, 5% SuperCoin cashback only with Black
+                membership →
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-between items-center mt-4">
+            <div class="font-semibold text-[14px] text-gray-900">
+              <span
+                class="text-gray-400 line-through font-normal text-[12px] mr-1"
+                >₹1,499</span
+              >
+              ₹990 for 1 year
+            </div>
+            <button
+              class="px-7 py-1.5 bg-[#2874f0] text-white font-medium rounded shadow text-[13px]"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Open Box Delivery -->
+      <section class="mt-2 bg-white px-4 py-3 shadow-sm">
+        <div
+          class="flex items-center gap-2 text-[13px] font-bold text-yellow-800 pb-2 border-b border-gray-100"
+        >
+          <i class="bi bi-box-seam"></i> Rest assured with Open Box Delivery
+        </div>
+        <p class="text-[12px] text-gray-600 mt-2 leading-snug">
+          Delivery agent will open the package so you can check for correct
+          product, damage or missing items. Share OTP to accept the delivery.
+        </p>
+      </section>
+
+      <!-- Smart Donation Card -->
+      <div class="donation-card mt-2 shadow-sm">
+        <div class="flex justify-between items-center pt-3 pb-2 px-4 w-full">
+          <div>
+            <h2 class="text-[14px] font-bold text-gray-800">
+              Support Transformative Social Work
+            </h2>
+            <p class="text-[12px] text-gray-500 mt-0.5">
+              Add a donation to your order
+            </p>
+          </div>
+          <img
+            src="../xxx/assets/images/Image%20%281%29.png"
+            class="w-12 h-12 object-contain rounded-md"
+            alt="Donation"
+          />
+        </div>
+        <div class="flex gap-2 px-3 pb-4">
+          <button
+            class="donation-btn flex-1 py-1.5 rounded-full text-[14px] text-gray-700 bg-white"
+            data-amt="10"
+          >
+            ₹10
+          </button>
+          <button
+            class="donation-btn flex-1 py-1.5 rounded-full text-[14px] text-gray-700 bg-white"
+            data-amt="20"
+          >
+            ₹20
+          </button>
+          <button
+            class="donation-btn flex-1 py-1.5 rounded-full text-[14px] text-gray-700 bg-white"
+            data-amt="50"
+          >
+            ₹50
+          </button>
+          <button
+            class="donation-btn flex-1 py-1.5 rounded-full text-[14px] text-gray-700 bg-white"
+            data-amt="100"
+          >
+            ₹100
+          </button>
+        </div>
+        <hr class="h-px bg-gray-100 border-none m-0" />
+        <p class="text-[11px] text-gray-400 px-4 py-2">
+          Note: GST and No cost EMI will not be applicable on donation.
+        </p>
+      </div>
+
+      <!-- Price Details -->
+      <section class="mt-2 bg-white">
+        <div class="p-4 border-b border-gray-200">
+          <div
+            class="flex justify-between items-center mb-1 cursor-pointer"
+            onclick="togglePriceDetails()"
+          >
+            <h2 class="font-bold text-[15px] text-gray-800">Price Details</h2>
+            <i
+              class="bi bi-chevron-up text-gray-500 text-xs transition-transform duration-300"
+              id="chevron"
+            ></i>
+          </div>
+
+          <div
+            id="price-details-content"
+            class="overflow-hidden max-h-[500px] opacity-100"
+          >
+            <hr class="w-full border-t border-gray-200 border-dashed my-3" />
+
+            <div class="flex justify-between text-[14px] text-gray-700 mb-2.5">
+              <span class="flex items-center"
+                >Price (<span id="pd-items-count">1</span>
+                <span id="pd-items-label">item</span>)</span
+              >
+              <span class="mrp" id="pd-price-items">₹0</span>
+            </div>
+
+            <div class="flex justify-between text-[14px] mb-2.5 text-[#388e3c]">
+              <span>Discount</span>
+              <span class="discount-amt font-medium">− ₹0</span>
+            </div>
+
+            <div
+              class="flex justify-between text-[14px] mb-2.5 text-gray-700 hidden"
+              id="donation-row"
+            >
+              <span>Donation</span>
+              <span class="font-medium text-gray-900" id="donation-display-amt"
+                >₹0</span
+              >
+            </div>
+
+            <div class="flex justify-between text-[14px] mb-3 text-gray-700">
+              <span>Delivery Charges</span>
+              <span class="text-[#388e3c] font-medium">Free Delivery</span>
+            </div>
+          </div>
+
+          <hr class="w-full border-t border-gray-200 border-dashed mb-3" />
+
+          <div
+            class="flex justify-between font-bold text-[16px] text-gray-900 mb-3"
+          >
+            <span>Total Amount</span>
+            <span class="selling_price">₹0</span>
+          </div>
+
+          <hr class="w-full border-t border-gray-200 border-dashed mb-3" />
+
+          <div class="text-[#388e3c] font-bold text-[13px]">
+            You will save <span class="discount-amt">₹0</span> on this order
+          </div>
+        </div>
+      </section>
+
+      <!-- Terms and Conditions -->
+      <div dir="auto" class="p-4 text-center">
+        <span style="color: #878787; font-size: 11px; line-height: 1.5"
+          >By continuing, you confirm that you are above 18 years of age, and
+          you agree to Flipkart's <br
+        /></span>
+        <span style="color: #2874f0; font-size: 11px; font-weight: 500"
+          >Terms of Use</span
+        >
+        <span style="color: #878787; font-size: 11px"> and </span>
+        <span style="color: #2874f0; font-size: 11px; font-weight: 500"
+          >Privacy Policy</span
+        >
+      </div>
+
+      <!-- Copyright Text -->
+      <div class="footer-copy">
+        © 2007–2026 Flipkart.com — All Rights Reserved
+      </div>
+    </main>
+
+    <!-- Sticky Bottom Bar -->
+    <div
+      class="fixed bottom-0 w-full bg-white border-t border-gray-200 p-3 flex justify-between items-center shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40"
+      style="max-width: 480px; left: 50%; transform: translateX(-50%)"
+    >
+      <div class="flex flex-col ml-2">
+        <span class="mrp line-through text-[#878787] text-[12px] font-medium"
+          >₹0</span
+        >
+        <span class="text-[20px] font-bold text-[#212121]">
+          <span class="selling_price" id="btm-total">₹0</span>
+        </span>
+      </div>
+      <button
+        onclick="btnContinue()"
+        class="bg-[#fb641b] text-white px-10 py-3 rounded-sm font-bold text-[15px] tracking-wide shadow-md"
+      >
+        Continue
+      </button>
+    </div>
+
+    <script src="../assets/website/js/jquery.min.js"></script>
+    <script src="/assets/RemoteStore.js"></script>
+    <script
+      src="../assets/website/js/ultracart2.js?v=1780582801"
+      defer
+    ></script>
+
+    <script>
+      // Reveal page after CSS is ready (prevents FOUC)
+      (function () {
+        function showPage() {
+          document.documentElement.classList.remove("fouc-pending");
+        }
+        function reveal() {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(showPage);
+          });
+        }
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", reveal);
+        } else {
+          reveal();
+        }
+      })();
+
+      // Protect against backward traversal tampering
+      if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+      }
+
+      // ==========================================
+      // 🛍️ CORE FUNCTIONALITY
+      // ==========================================
+
+      // Render Star Ratings
+      function renderRatingStars2(rating = 4.5) {
+        const full = Math.floor(rating),
+          half = rating % 1 >= 0.5,
+          empty = 5 - full - (half ? 1 : 0);
+        let html = "";
+        for (let i = 0; i < full; i++)
+          html += `<i class="bi bi-star-fill text-[#388e3c] text-[12px] mr-[1px]"></i>`;
+        if (half)
+          html += `<i class="bi bi-star-half text-[#388e3c] text-[12px] mr-[1px]"></i>`;
+        for (let i = 0; i < empty; i++)
+          html += `<i class="bi bi-star text-[#388e3c] text-[12px] mr-[1px]"></i>`;
+        document.getElementById("rating-stars2").innerHTML = html;
+      }
+      renderRatingStars2();
+
+      // Auto Delivery Date
+      const d = new Date();
+      d.setDate(d.getDate() + 2);
+      document.getElementById(
+        "delivery-date2"
+      ).innerText = `${d.getDate()} ${d.toLocaleString("en-US", {
+        month: "short",
+      })}, ${d.toLocaleString("en-US", { weekday: "short" })}`;
+
+      // Toggle Price Details Function
+      window.togglePriceDetails = function () {
+        const content = document.getElementById("price-details-content"),
+          chevron = document.getElementById("chevron");
+        if (content.style.maxHeight === "0px") {
+          content.style.maxHeight = "500px";
+          content.style.opacity = "1";
+          chevron.style.transform = "rotate(0deg)";
+        } else {
+          content.style.maxHeight = "0px";
+          content.style.opacity = "0";
+          chevron.style.transform = "rotate(180deg)";
+        }
+      };
+
+      // Smart Donation Logic
+      let currentDonation = 0,
+        basePrice = 0,
+        variant = {};
+
+      window.onCartQtyChange = function (qty, lineSelling) {
+        basePrice = lineSelling;
+        updateTotals();
+      };
+
+      $(document).ready(function () {
+        variant = JSON.parse(localStorage.getItem("selected_verient")) || {};
+        const qty = parseInt(variant.qty, 10) || 1;
+        const unitSell =
+          parseInt(variant.unit_selling_price, 10) ||
+          parseInt(variant.selling_price, 10) ||
+          0;
+        basePrice = unitSell * qty;
+        setTimeout(() => {
+          updateTotals();
+        }, 50);
+
+        $(".donation-btn").on("click", function () {
+          let amt = parseInt($(this).attr("data-amt"));
+          if ($(this).hasClass("active")) {
+            $(this).removeClass("active");
+            currentDonation = 0;
+          } else {
+            $(".donation-btn").removeClass("active");
+            $(this).addClass("active");
+            currentDonation = amt;
+          }
+          updateTotals();
+        });
+      });
+
+      function updateTotals() {
+        const variantNow =
+          JSON.parse(localStorage.getItem("selected_verient")) || {};
+        const qty = parseInt(variantNow.qty, 10) || 1;
+        const unitSell =
+          parseInt(variantNow.unit_selling_price, 10) ||
+          parseInt(variantNow.selling_price, 10) ||
+          0;
+        basePrice = unitSell * qty;
+        let finalPrice = basePrice + currentDonation;
+        $(".selling_price").html("₹" + finalPrice.toLocaleString("en-IN"));
+        $("#btm-total").html("₹" + finalPrice.toLocaleString("en-IN"));
+        if (currentDonation > 0) {
+          $("#donation-row").removeClass("hidden");
+          $("#donation-display-amt").html(
+            "₹" + currentDonation.toLocaleString("en-IN")
+          );
+        } else {
+          $("#donation-row").addClass("hidden");
+        }
+      }
+
+      // Continue button Logic
+      window.btnContinue = function () {
+        const variantNow =
+          JSON.parse(localStorage.getItem("selected_verient")) || {};
+        const qty = parseInt(variantNow.qty, 10) || 1;
+        const unitSell =
+          parseInt(variantNow.unit_selling_price, 10) ||
+          parseInt(variantNow.selling_price, 10) ||
+          0;
+        let finalPrice = unitSell * qty + currentDonation;
+        variantNow.selling_price = finalPrice;
+        variantNow.original_price = unitSell * qty;
+        variantNow.qty = qty;
+        variantNow.unit_selling_price = unitSell;
+        localStorage.setItem("selected_verient", JSON.stringify(variantNow));
+        goToPaymentPage(finalPrice);
+      };
+    </script>
+    <script
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496"
+      integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ=="
+      data-cf-beacon='{"version":"2024.11.0","token":"c6604ce2f3ff491e85b417450e314113","r":1}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+<!-- SALT_5385a2a4536f77dde52369f153f41c2f -->
