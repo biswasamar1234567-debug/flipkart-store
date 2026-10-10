@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Client Sign In - Your Store</title>
+<title>Client Sign In - Store Portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
@@ -15,7 +15,7 @@
     min-height:100vh; display:flex; align-items:center; justify-content:center;
     padding:24px 16px; color:#e2e8f0;
   }
-  .card { width:100%; max-width:420px; background:#111c33; border:1px solid #24334d; border-radius:18px; padding:32px; box-shadow:0 24px 60px rgba(0,0,0,.45); }
+  .card { width:100%; max-width:460px; background:#111c33; border:1px solid #24334d; border-radius:18px; padding:32px; box-shadow:0 24px 60px rgba(0,0,0,.45); }
   .brand { display:flex; align-items:center; gap:11px; margin-bottom:22px; }
   .brand .logo { width:42px; height:42px; border-radius:11px; background:linear-gradient(135deg,#2563eb,#38bdf8); display:flex; align-items:center; justify-content:center; font-size:20px; color:#fff; }
   .brand b { font-size:17px; color:#fff; display:block; }
@@ -40,7 +40,8 @@
   .btn {
     width:100%; padding:13px; background:linear-gradient(135deg,#2563eb,#38bdf8); color:#fff;
     border:none; border-radius:10px; font-size:15px; font-weight:700; cursor:pointer;
-    font-family:inherit; transition:.18s; margin-top:4px;
+    font-family:inherit; transition:.18s; margin-top:4px; display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    text-decoration:none;
   }
   .btn:hover { filter:brightness(1.08); }
   .btn:disabled { opacity:.6; cursor:not-allowed; }
@@ -57,6 +58,29 @@
   .back:hover { color:#94a3b8; }
   .spin { display:inline-block; width:15px; height:15px; border:2px solid rgba(255,255,255,.35); border-top-color:#fff; border-radius:50%; animation:sp .7s linear infinite; vertical-align:-3px; margin-right:7px; }
   @keyframes sp { to { transform:rotate(360deg); } }
+
+  /* Success Screen / Link Dashboard */
+  .successBox {
+    display:none; background:#0b1426; border:1px solid #1e3a5f; border-radius:16px; padding:22px;
+    animation: fadeIn .3s ease;
+  }
+  @keyframes fadeIn { from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+  .successBox.show { display:block; }
+  .sucHeader { display:flex; align-items:center; gap:12px; margin-bottom:18px; border-bottom:1px solid #1e293b; padding-bottom:14px; }
+  .sucIcon { width:44px; height:44px; border-radius:50%; background:rgba(34,197,94,.16); color:#22c55e; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+  .sucHeader h3 { font-size:18px; font-weight:700; color:#fff; }
+  .sucHeader p { font-size:12.5px; color:#94a3b8; margin-top:2px; }
+  .urlBlock { background:#111e38; border:1px solid #233554; border-radius:12px; padding:12px; margin-bottom:14px; }
+  .urlLabel { font-size:11.5px; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:.5px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; }
+  .urlLabel span { color:#38bdf8; font-size:11.5px; text-transform:none; font-weight:600; display:flex; align-items:center; gap:5px; }
+  .urlInputRow { display:flex; gap:8px; align-items:center; }
+  .urlInputRow input { background:#070d18; border:1px solid #2b3d5c; border-radius:8px; padding:9px 12px; font-size:12.5px; color:#38bdf8; font-family:monospace; width:100%; }
+  .copyBtn { padding:9px 13px; background:#1e293b; border:1px solid #334155; color:#f1f5f9; border-radius:8px; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap; transition:.15s; display:inline-flex; align-items:center; gap:5px; }
+  .copyBtn:hover { background:#334155; color:#38bdf8; }
+  .openBtn { padding:9px 13px; background:linear-gradient(135deg,#2563eb,#38bdf8); border:none; color:#fff; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; white-space:nowrap; text-decoration:none; display:inline-flex; align-items:center; gap:5px; }
+  .openBtn:hover { filter:brightness(1.08); }
+  .infoList { background:#0f172a; border-radius:10px; padding:12px 14px; font-size:12px; color:#cbd5e1; margin-bottom:16px; line-height:1.6; border:1px dashed #334155; }
+  .infoList b { color:#fff; }
 </style>
 </head>
 <body>
@@ -67,11 +91,12 @@
     <div><b>Store Client Portal</b><span>Sign in to manage your store</span></div>
   </div>
 
-  <h2>Welcome back</h2>
-  <div class="sub">Use the email and password you signed up with.</div>
+  <h2 id="cardTitle">Welcome back</h2>
+  <div class="sub" id="cardSub">Use the email and password you signed up with.</div>
 
   <div class="msg" id="msg"></div>
 
+  <!-- Login Form -->
   <form id="loginForm" novalidate>
     <div class="field">
       <label>Email Address</label>
@@ -88,10 +113,62 @@
       </div>
     </div>
 
-    <button type="submit" class="btn" id="submitBtn">Sign In</button>
+    <button type="submit" class="btn" id="submitBtn">
+      <i class="bi bi-box-arrow-in-right"></i> Sign In
+    </button>
   </form>
 
-  <div class="alt">New here? <a href="/signup">Create your store</a></div>
+  <!-- Store Links Dashboard (Displayed on Sign In Without Auto-Redirect) -->
+  <div id="successBox" class="successBox">
+    <div class="sucHeader">
+      <div class="sucIcon"><i class="bi bi-check-lg"></i></div>
+      <div>
+        <h3 id="sucTitle">Sign In Successful!</h3>
+        <p id="sucStoreName">Store links are ready below.</p>
+      </div>
+    </div>
+
+    <!-- 1. Customer Storefront Link -->
+    <div class="urlBlock">
+      <div class="urlLabel">
+        <span><i class="bi bi-cart3"></i> Main Website Link (মেইন ওয়েবসাইট লিংক)</span>
+      </div>
+      <div class="urlInputRow">
+        <input type="text" id="storeUrlInput" readonly />
+        <button type="button" class="copyBtn" onclick="copyText('storeUrlInput', this)"><i class="bi bi-clipboard"></i> Copy</button>
+        <a id="storeUrlLink" href="#" target="_blank" class="openBtn"><i class="bi bi-box-arrow-up-right"></i> Open</a>
+      </div>
+    </div>
+
+    <!-- 2. Admin Panel Link -->
+    <div class="urlBlock">
+      <div class="urlLabel">
+        <span><i class="bi bi-shield-lock"></i> Admin Panel Link (অ্যাডমিন প্যানেল লিংক)</span>
+      </div>
+      <div class="urlInputRow">
+        <input type="text" id="adminUrlInput" readonly />
+        <button type="button" class="copyBtn" onclick="copyText('adminUrlInput', this)"><i class="bi bi-clipboard"></i> Copy</button>
+        <a id="adminUrlLink" href="#" target="_blank" class="openBtn"><i class="bi bi-box-arrow-up-right"></i> Open</a>
+      </div>
+    </div>
+
+    <!-- Guidance note -->
+    <div class="infoList">
+      <div>📋 <b>লিংক সংরক্ষণ:</b> ওপরের দুটি লিংক কপি করে আপনার কাছে সুরক্ষিতভাবে রেখে দিন।</div>
+      <div style="margin-top:6px;">💳 <b>পেমেন্ট সেটিংস:</b> অ্যাডমিন প্যানেলে গিয়ে <b>Payment Settings</b> থেকে আপনার UPI যোগ করুন।</div>
+    </div>
+
+    <div style="display:flex; gap:10px; margin-top:14px;">
+      <a id="mainAdminBtn" href="/admin/" class="btn" style="text-align:center; text-decoration:none; display:flex; flex:1;">
+        <i class="bi bi-speedometer2"></i> Go To Admin Panel
+      </a>
+      <button type="button" onclick="logoutFromPortal()" class="copyBtn" style="padding:13px 16px; border-radius:10px;">
+        <i class="bi bi-box-arrow-right"></i> Sign Out
+      </button>
+    </div>
+  </div>
+
+  <div class="alt" id="altFooter">New here? <a href="/signup">Create your store</a></div>
 </div>
 
 <script>
@@ -105,7 +182,85 @@ $('togglePw').addEventListener('click', () => {
   $('togglePw').innerHTML = '<i class="bi bi-eye' + (showing ? '' : '-slash') + '"></i>';
 });
 
-function showMsg(text, type){ msg.textContent = text; msg.className = 'msg show ' + type; }
+function showMsg(text, type){
+  msg.textContent = text;
+  msg.className = 'msg show ' + type;
+}
+
+function copyText(inputId, btn) {
+  const inp = $(inputId);
+  if (!inp) return;
+  inp.select();
+  inp.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(inp.value).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+  }).catch(() => {
+    document.execCommand('copy');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="bi bi-check2"></i> Copied!';
+    setTimeout(() => { btn.innerHTML = orig; }, 2000);
+  });
+}
+
+function getStoreBaseUrl() {
+  const origin = window.location.origin;
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return origin;
+  }
+  if (window.location.hostname.includes('onrender.com') || window.location.hostname.includes('render.com')) {
+    return 'https://filpshoponline.shop';
+  }
+  return origin;
+}
+
+function renderStoreLinks(user) {
+  $('loginForm').style.display = 'none';
+  $('cardTitle').textContent = 'Store Portal Ready';
+  $('cardSub').textContent = `Welcome, ${user.fullName || 'Client'}!`;
+  msg.style.display = 'none';
+  if ($('altFooter')) $('altFooter').style.display = 'none';
+
+  const base = getStoreBaseUrl();
+  const slug = user.storeSlug || '';
+
+  let storeUrl = slug ? `${base}/?store=${encodeURIComponent(slug)}` : `${base}/`;
+  let adminUrl = slug ? `${base}/admin/?store=${encodeURIComponent(slug)}` : `${base}/admin/`;
+
+  if (user.role === 'owner' || user.role === 'super_admin') {
+    adminUrl = `${base}/superadmin/`;
+  }
+
+  $('storeUrlInput').value = storeUrl;
+  $('storeUrlLink').href = storeUrl;
+  $('adminUrlInput').value = adminUrl;
+  $('adminUrlLink').href = adminUrl;
+  $('mainAdminBtn').href = adminUrl;
+  $('sucTitle').textContent = user.storeName ? `${user.storeName}` : 'Sign In Successful!';
+  $('sucStoreName').textContent = slug ? `Store ID: ${slug} • Role: ${user.role || 'Client'}` : 'Your store links are ready:';
+
+  $('successBox').classList.add('show');
+}
+
+function logoutFromPortal() {
+  document.cookie = 'store_admin_token=; path=/; max-age=0;';
+  document.cookie = 'current_store_id=; path=/; max-age=0;';
+  window.location.reload();
+}
+
+// Check if user is already signed in on page load
+window.addEventListener('DOMContentLoaded', async () => {
+  try {
+    const res = await fetch('/api/auth/me');
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.success && data.user) {
+        renderStoreLinks(data.user);
+      }
+    }
+  } catch(e) {}
+});
 
 $('loginForm').addEventListener('submit', async e => {
   e.preventDefault();
@@ -131,23 +286,19 @@ $('loginForm').addEventListener('submit', async e => {
       return;
     }
 
-    // Cookie only - no localStorage.
+    // Set auth cookie
     document.cookie = 'store_admin_token=' + encodeURIComponent(data.token) + '; path=/; max-age=86400; SameSite=Lax';
     if (data.user && data.user.storeSlug) {
       document.cookie = 'current_store_id=' + encodeURIComponent(data.user.storeSlug) + '; path=/; max-age=86400; SameSite=Lax';
     }
 
-    showMsg(data.message + ' Redirecting...', 'ok');
-    setTimeout(() => {
-      if (data.user.role === 'owner' || data.user.role === 'super_admin') location.href = '/superadmin/';
-      else if (data.user.storeSlug) location.href = '/admin/?store=' + encodeURIComponent(data.user.storeSlug);
-      else location.href = '/admin/';
-    }, 900);
+    // Render both links right here WITHOUT auto-redirecting away!
+    renderStoreLinks(data.user);
   } catch (err) {
     showMsg('Server connection error. Please ensure the backend is running.', 'err');
   } finally {
     btn.disabled = false;
-    btn.textContent = 'Sign In';
+    btn.innerHTML = '<i class="bi bi-box-arrow-in-right"></i> Sign In';
   }
 });
 </script>

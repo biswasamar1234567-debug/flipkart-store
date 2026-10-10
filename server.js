@@ -1542,23 +1542,22 @@ const server = http.createServer(async (req, res) => {
           userId: String(user._id), role: 'client', storeId: slug, email
         });
 
-        const reqHost = req.headers['host'] || '';
-        const hostParts = reqHost.split(':');
-        const isLocal = hostParts[0] === 'localhost' || hostParts[0] === '127.0.0.1';
-
-        // Prefer custom domain www.filpshoponline.shop; avoid onrender.com internal URLs
-        let publicHost = '';
-        if (isLocal) {
-          publicHost = reqHost;
-        } else if (reqHost && !reqHost.includes('onrender.com') && !reqHost.includes('render.com')) {
-          publicHost = reqHost;
-        } else {
-          publicHost = process.env.CUSTOM_DOMAIN || process.env.BASE_DOMAIN || 'www.filpshoponline.shop';
+        function getDomainForClient(request) {
+          const hostRaw = (request.headers['x-forwarded-host'] || request.headers['host'] || '').split(':')[0].trim().toLowerCase();
+          if (hostRaw === 'localhost' || hostRaw === '127.0.0.1') {
+            const port = (request.headers['host'] || '').split(':')[1] || process.env.PORT || '3000';
+            return { proto: 'http', host: `localhost:${port}` };
+          }
+          if (hostRaw && !hostRaw.includes('onrender.com') && !hostRaw.includes('render.com')) {
+            return { proto: 'https', host: hostRaw };
+          }
+          const custom = process.env.CUSTOM_DOMAIN || 'filpshoponline.shop';
+          return { proto: 'https', host: custom };
         }
 
-        const finalProto = isLocal ? 'http' : 'https';
-        const storeUrl = `${finalProto}://${publicHost}/?store=${encodeURIComponent(slug)}`;
-        const adminUrl = `${finalProto}://${publicHost}/admin/?store=${encodeURIComponent(slug)}`;
+        const domInfo = getDomainForClient(req);
+        const storeUrl = `${domInfo.proto}://${domInfo.host}/?store=${encodeURIComponent(slug)}`;
+        const adminUrl = `${domInfo.proto}://${domInfo.host}/admin/?store=${encodeURIComponent(slug)}`;
 
         return sendJson(res, 201, {
           success: true,
@@ -1606,6 +1605,27 @@ const server = http.createServer(async (req, res) => {
           userId: String(user._id), role: user.role, storeId, email: user.email
         });
 
+        function getDomainForClient(request) {
+          const hostRaw = (request.headers['x-forwarded-host'] || request.headers['host'] || '').split(':')[0].trim().toLowerCase();
+          if (hostRaw === 'localhost' || hostRaw === '127.0.0.1') {
+            const port = (request.headers['host'] || '').split(':')[1] || process.env.PORT || '3000';
+            return { proto: 'http', host: `localhost:${port}` };
+          }
+          if (hostRaw && !hostRaw.includes('onrender.com') && !hostRaw.includes('render.com')) {
+            return { proto: 'https', host: hostRaw };
+          }
+          const custom = process.env.CUSTOM_DOMAIN || 'filpshoponline.shop';
+          return { proto: 'https', host: custom };
+        }
+
+        const domInfo = getDomainForClient(req);
+        const storeUrl = user.storeSlug
+          ? `${domInfo.proto}://${domInfo.host}/?store=${encodeURIComponent(user.storeSlug)}`
+          : `${domInfo.proto}://${domInfo.host}/`;
+        const adminUrl = user.storeSlug
+          ? `${domInfo.proto}://${domInfo.host}/admin/?store=${encodeURIComponent(user.storeSlug)}`
+          : `${domInfo.proto}://${domInfo.host}/admin/`;
+
         return sendJson(res, 200, {
           success: true,
           token,
@@ -1613,6 +1633,10 @@ const server = http.createServer(async (req, res) => {
             id: user._id, fullName: user.fullName, email: user.email,
             role: user.role, storeName: user.storeName, storeSlug: user.storeSlug
           },
+          storeSlug: user.storeSlug,
+          storeName: user.storeName,
+          storeUrl: storeUrl,
+          adminUrl: adminUrl,
           message: 'Login successful.'
         });
       } catch (err) {
