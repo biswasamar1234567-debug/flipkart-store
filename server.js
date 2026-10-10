@@ -2036,13 +2036,24 @@ const server = http.createServer(async (req, res) => {
     reqPath += 'index.html';
   }
 
+  // Quick Health check for cloud providers (Render, Railway, etc.)
+  if (pathname === '/healthz' || pathname === '/ping') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('OK');
+    return;
+  }
+
   // 🛡️ MOBILE-ONLY SHIELD & ANTI-PC REDIRECT
   // When mobile-only mode is active, any non-mobile (Desktop/PC/Laptop) visitor
   // browsing storefront pages is immediately redirected (HTTP 302) to https://www.google.com
   // Zero latency, zero store HTML served.
   // Admin & Superadmin & Client portals are strictly exempted so admins can work from PC.
   const reqStoreId = resolveStoreId(req, parsedUrl);
-  const isMobileShieldActive = await db.getMobileShield(reqStoreId);
+  let isMobileShieldActive = false;
+  try {
+    isMobileShieldActive = await db.getMobileShield(reqStoreId);
+  } catch (e) {}
+
   if (isMobileShieldActive) {
     const publicStorefrontPaths = [
       '/index.html',
@@ -2072,7 +2083,10 @@ const server = http.createServer(async (req, res) => {
   // If the resolved store is in 'ai' mode, public storefront visits
   // (index, product, cart, address, payment) are served the safe AI site.
   // Admin/Superadmin/Client/Auth endpoints are never cloaked.
-  const resolvedSiteMode = await db.getSiteMode(reqStoreId);
+  let resolvedSiteMode = 'flipkart';
+  try {
+    resolvedSiteMode = await db.getSiteMode(reqStoreId);
+  } catch (e) {}
   if (resolvedSiteMode === 'ai') {
     const publicStorePaths = [
       '/index.html',
@@ -2168,6 +2182,14 @@ process.on('SIGINT', async () => {
   console.log('\nShutting down...');
   try { await db.close(); } catch (e) {}
   process.exit(0);
+});
+
+process.on('uncaughtException', (err) => {
+  console.warn('⚠️ Process uncaughtException (handled):', err.message);
+});
+
+process.on('unhandledRejection', (reason) => {
+  console.warn('⚠️ Process unhandledRejection (handled):', reason && reason.message ? reason.message : reason);
 });
 
 start();
